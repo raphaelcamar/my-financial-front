@@ -1,0 +1,64 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true,
+    "jest": true
+	},
+	"settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx"]
+      }
+    }
+  },
+	"extends": [
+		"plugin:react/recommended",
+		"airbnb",
+    "plugin:@Typescript-eslint/recommended",
+		"prettier"
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 13,
+		"sourceType": "module"
+	},
+	"plugins": [
+		"react",
+		"@typescript-eslint",
+    "prettier"
+	],
+	"rules": {
+    "space-before-function-paren": "off",
+		"react/jsx-no-constructed-context-values": "off",
+    "prettier/prettier": ["error", {
+			"singleQuote": true,
+			"semi": true
+		}],
+    "react/prop-types": "off",
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [".tsx"]
+			}
+		],
+		"react/function-component-definition": [
+			2,
+			{
+				"namedComponents": "arrow-function",
+				"unnamedComponents": "arrow-function"
+			}
+		],
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-props-no-spreading": "off",
+		"import/prefer-default-export": "off",
+		"import/no-unresolved": "off",
+		"import/extensions": "off",
+		"react/require-default-props": "off",
+		"class-methods-use-this": "off"
+	}
+}
+

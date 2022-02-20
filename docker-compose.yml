@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  financial-front:
+    container_name: financial-front
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    volumes:
+      - ./src:/app/src
+      - ./package.json:/app/package.json
+      - ./.env:/src/.env
+    expose:
+      - '3000'
+    ports:
+      - '3000:3000'
+    command: npm run dev
