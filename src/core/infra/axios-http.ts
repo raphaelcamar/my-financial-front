@@ -15,7 +15,10 @@ export class AxiosHttpClient<T, R> implements HttpClient<T, R> {
   }
 
   async post(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
-    const httpResponse = await axios.post(params.url, params.body);
+    const httpResponse = await axios.post(
+      `${process.env.BASE_URL}/${params.url}`,
+      params.body
+    );
 
     return {
       statusCode: httpResponse.status,

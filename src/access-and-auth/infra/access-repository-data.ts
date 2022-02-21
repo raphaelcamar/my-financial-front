@@ -11,8 +11,4 @@ export class AccessRepositoryData implements AccessRepository {
 
     return httpResponse.body;
   }
-
-  // subscribe(user: Partial<User>): Promise<User> {
-  //   return null;
-  // }
 }

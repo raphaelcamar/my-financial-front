@@ -16,6 +16,8 @@ type FormLoginProps = {
 export const Login: React.FC = () => {
   const classes = useStyles();
 
+  console.log(process.env.BASE_URL);
+
   const [loading, setLoading] = useState<boolean>(false);
 
   return (

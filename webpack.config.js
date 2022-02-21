@@ -1,5 +1,7 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
+const dotenv = require('dotenv')
+const webpack = require('webpack')
 
 module.exports = {
   mode: 'development',
@@ -38,6 +40,9 @@ module.exports = {
     'react-dom': 'ReactDOM'
   },
   plugins: [
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
   ]
 }
