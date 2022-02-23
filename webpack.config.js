@@ -1,6 +1,6 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
-const dotenv = require('dotenv')
+const Dotenv = require('dotenv-webpack')
 const webpack = require('webpack')
 
 module.exports = {
@@ -44,5 +44,8 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
+    new Dotenv({
+      safe: true,
+    })
   ]
 }
