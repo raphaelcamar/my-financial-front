@@ -4,10 +4,13 @@ import { AxiosHttpClient } from '@/core/infra';
 
 // Aqui faz a comunicação com o context
 export class AccessRepositoryData implements AccessRepository {
-  async login(login: Login): Promise<User> {
+  async login(bodyLogin: Login): Promise<User> {
     const axios = new AxiosHttpClient<Login, User>();
 
-    const httpResponse = await axios.post({ url: '', body: login });
+    const httpResponse = await axios.post({
+      url: `${process.env.BASE_URL}/something`,
+      body: bodyLogin,
+    });
 
     return httpResponse.body;
   }
