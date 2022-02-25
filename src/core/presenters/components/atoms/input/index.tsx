@@ -2,14 +2,17 @@ import React, { InputHTMLAttributes, useState } from 'react';
 import { useTheme } from '@mui/material';
 import { ClickAwayListener, Icon } from '@/core/presenters/components/atoms/';
 import { useStylesProvider } from './styles';
+import { GetIconProps } from '../icon';
 
 export type InputProps = {
   label?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  inputProps?: InputHTMLAttributes<any>;
+  inputProps?: InputHTMLAttributes<HTMLInputElement>;
   validator?: boolean;
   messageValidator?: string;
-  placeholder: string;
+  placeholder?: string;
+  icon?: GetIconProps;
+  ref?: React.LegacyRef<HTMLInputElement>;
 };
 
 export const Input: React.FC<InputProps> = ({
@@ -18,7 +21,7 @@ export const Input: React.FC<InputProps> = ({
   inputProps,
   validator,
   messageValidator,
-  placeholder,
+  icon,
 }) => {
   const theme = useTheme();
   const [focused, setFocused] = useState(theme.palette.primary.light);
@@ -38,13 +41,12 @@ export const Input: React.FC<InputProps> = ({
           className={classes.containerInput}
           onFocusCapture={() => setFocused(theme.palette.primary.main)}
         >
-          <Icon icon="person" />
+          {icon && <Icon icon={icon || 'person'} />}
           <input
             onChange={onChange}
             className={classes.input}
             id={label}
             type="text"
-            placeholder={placeholder}
             {...inputProps}
           />
         </div>
