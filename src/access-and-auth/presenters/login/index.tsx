@@ -10,6 +10,7 @@ import { LoginIllustration } from '../../../core/presenters/components/atoms/ill
 import { CircularProgress } from '../../../core/presenters/components/atoms/circular-progress';
 import { UserLoginValidatorSchema } from '@/access-and-auth/data';
 import { Login as LoginTypeForm } from '@/access-and-auth/domain';
+import { AccessRepositoryData } from '@/access-and-auth/infra';
 
 type FormLoginProps = {
   email: string;
@@ -20,22 +21,28 @@ type FormLoginProps = {
 export const Login: React.FC = () => {
   const classes = useStyles();
 
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<LoginTypeForm>({
     resolver: yupResolver(UserLoginValidatorSchema),
   });
 
-  const handleSubmitForm = (e: any) => {
-    // handleSubmit();
-    e.preventDefault();
+  const handleSubmitForm = async (data: FormLoginProps) => {
+    setLoading(true);
+    try {
+      const repositoryData = new AccessRepositoryData();
+      const response = await repositoryData.login(data);
+    } catch (err) {
+      setErrorMessage(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
-
-
-  const [loading, setLoading] = useState<boolean>(false);
 
   return (
     <div className={classes.container}>
@@ -57,13 +64,16 @@ export const Login: React.FC = () => {
             <Typography variant="body1">Ou logue com seu e-mail</Typography>
             <div className={classes.line} />
           </div>
-          <form className={classes.form} onSubmit={handleSubmitForm}>
+          <form
+            className={classes.form}
+            onSubmit={handleSubmit(handleSubmitForm)}
+          >
             <Input
               label="E-mail"
               inputProps={{
                 placeholder: 'Ex: email@email.com',
+                ...register('email'),
               }}
-              {...register('email')}
               validator={!!errors?.email}
               messageValidator={errors?.email?.message}
               icon="person"
@@ -95,6 +105,9 @@ export const Login: React.FC = () => {
                 'Login'
               )}
             </Button>
+            {errorMessage && (
+              <div className={classes.messageValidator}>{errorMessage}</div>
+            )}
           </form>
         </div>
       </div>

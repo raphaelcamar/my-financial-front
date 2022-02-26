@@ -31,7 +31,10 @@ export const useStylesProvider = (colorFocus: string) => {
       transition: `${theme.transitions.duration.enteringScreen} ${theme.transitions.easing.sharp}`,
     },
 
-    label: {},
+    messageValidator: {
+      color: theme.palette.error.main,
+      fontSize: 12,
+    },
   }));
 
   return useStyles();

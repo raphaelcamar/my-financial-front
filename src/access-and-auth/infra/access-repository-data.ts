@@ -8,7 +8,7 @@ export class AccessRepositoryData implements AccessRepository {
     const axios = new AxiosHttpClient<Login, User>();
 
     const httpResponse = await axios.post({
-      url: `${process.env.BASE_URL}/something`,
+      url: 'user/login',
       body: bodyLogin,
     });
 

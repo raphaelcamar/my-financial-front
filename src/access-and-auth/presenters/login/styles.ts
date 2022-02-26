@@ -70,4 +70,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column',
     gap: 30,
   },
+  messageValidator: {
+    color: theme.palette.error.main,
+    fontWeight: 600,
+  },
 }));

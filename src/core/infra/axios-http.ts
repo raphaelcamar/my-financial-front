@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { api } from '@/core/infra';
 import {
   HttpClient,
   HttpPostParams,
@@ -7,7 +7,7 @@ import {
 
 export class AxiosHttpClient<T, R> implements HttpClient<T, R> {
   async get(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
-    const httpResponse = await axios.post(params.url, params.body);
+    const httpResponse = await api.post(params.url, params.body);
     return {
       statusCode: httpResponse.status,
       body: httpResponse.data,
@@ -15,10 +15,7 @@ export class AxiosHttpClient<T, R> implements HttpClient<T, R> {
   }
 
   async post(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
-    const httpResponse = await axios.post(
-      `${process.env.BASE_URL}/${params.url}`,
-      params.body
-    );
+    const httpResponse = await api.post(`/${params.url}`, params.body);
 
     return {
       statusCode: httpResponse.status,

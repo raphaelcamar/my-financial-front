@@ -34,9 +34,7 @@ export const Input: React.FC<InputProps> = ({
       onClickAway={() => setFocused(theme.palette.primary.light)}
     >
       <div className={classes.container}>
-        <label className={classes.label} htmlFor={label}>
-          {label}
-        </label>
+        <label htmlFor={label}>{label}</label>
         <div
           className={classes.containerInput}
           onFocusCapture={() => setFocused(theme.palette.primary.main)}
@@ -50,6 +48,9 @@ export const Input: React.FC<InputProps> = ({
             {...inputProps}
           />
         </div>
+        {messageValidator && (
+          <div className={classes.messageValidator}>{messageValidator}</div>
+        )}
       </div>
     </ClickAwayListener>
   );
