@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
 import {
   Icon,
   Typography,
@@ -27,6 +28,7 @@ export const Login: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>(null);
   const { postUserAuth } = useAccessAndAuthContext();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -40,6 +42,7 @@ export const Login: React.FC = () => {
     setLoading(true);
     try {
       await postUserAuth(data);
+      navigate('/main');
     } catch (err) {
       setErrorMessage(err.message);
     } finally {

@@ -3,20 +3,30 @@ import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme: Theme) => ({
   container: {
-    width: '100%',
     background: theme.palette.background.default,
-    overflow: 'hidden',
     display: 'flex',
     flexDirection: 'row',
     height: '100%',
+    overflow: 'hidden',
+    width: '100%',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+    },
   },
   login: {
     width: '45%',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+      marginBottom: 36,
+    },
   },
   illustration: {
-    width: '55%',
-    height: '100vh',
     background: theme.palette.primary.main,
+    height: '100vh',
+    width: '55%',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
   spacing: {
     padding: 25,
@@ -33,11 +43,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
   },
   buttonLogin: {
-    padding: 14,
-    width: '100%',
-    textTransform: 'inherit',
-    fontSize: 16,
     borderRadius: 15,
+    fontSize: 16,
+    padding: 14,
+    textTransform: 'inherit',
+    width: '100%',
   },
   emailLogin: {
     display: 'flex',
@@ -55,20 +65,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flexGrow: 1,
   },
   containerError: {
-    border: `1px solid ${theme.palette.error.main}`,
     background: theme.palette.error.light,
+    border: `1px solid ${theme.palette.error.main}`,
+    borderRadius: 8,
     color: 'white',
     padding: 8,
-    borderRadius: 8,
   },
   circularProgress: {
     color: 'white',
   },
   form: {
     display: 'flex',
-    justifyContent: 'center',
     flexDirection: 'column',
     gap: 30,
+    justifyContent: 'center',
   },
   messageValidator: {
     color: theme.palette.error.main,

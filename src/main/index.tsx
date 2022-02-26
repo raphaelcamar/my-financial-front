@@ -12,6 +12,7 @@ ReactDOM.render(
       <AccessAndAuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/main" element={<div>TESTEAAAAAAAAAAAAA</div>} />
         </Routes>
       </AccessAndAuthProvider>
     </BrowserRouter>
