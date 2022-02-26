@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 
-// Transformar em um hook. Pois assim conseguimos usar o hook form dentro daqui, desacoplando do componente
 export const UserLoginValidatorSchema = yup.object({
   email: yup
     .string()

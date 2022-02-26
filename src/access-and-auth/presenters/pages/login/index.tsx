@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Icon, Typography } from '@/core/presenters/components/atoms';
+import {
+  Icon,
+  Typography,
+  Input,
+  StyledCheckbox,
+  LoginIllustration,
+  CircularProgress,
+} from '@/core/presenters/components/atoms';
 import { useStyles } from './styles';
-import { Input } from '../../../core/presenters/components/atoms/input';
-import StyledCheckbox from '../../../core/presenters/components/atoms/checkbox';
-import { LoginIllustration } from '../../../core/presenters/components/atoms/illustation-login';
-import { CircularProgress } from '../../../core/presenters/components/atoms/circular-progress';
 import { UserLoginValidatorSchema } from '@/access-and-auth/data';
 import { Login as LoginTypeForm } from '@/access-and-auth/domain';
-import { AccessRepositoryData } from '@/access-and-auth/infra';
+import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts/access-and-auth/';
 
 type FormLoginProps = {
   email: string;
@@ -23,6 +26,7 @@ export const Login: React.FC = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>(null);
+  const { postUserAuth } = useAccessAndAuthContext();
 
   const {
     register,
@@ -35,8 +39,7 @@ export const Login: React.FC = () => {
   const handleSubmitForm = async (data: FormLoginProps) => {
     setLoading(true);
     try {
-      const repositoryData = new AccessRepositoryData();
-      const response = await repositoryData.login(data);
+      await postUserAuth(data);
     } catch (err) {
       setErrorMessage(err.message);
     } finally {

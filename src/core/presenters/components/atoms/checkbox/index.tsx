@@ -11,7 +11,10 @@ export type StyledCheckboxProps = CheckboxProps & {
   props?: CheckboxProps;
 };
 
-const StyledCheckbox: React.FC<StyledCheckboxProps> = ({ label, props }) => (
+export const StyledCheckbox: React.FC<StyledCheckboxProps> = ({
+  label,
+  props,
+}) => (
   <>
     {label ? (
       <FormGroup>
@@ -22,4 +25,3 @@ const StyledCheckbox: React.FC<StyledCheckboxProps> = ({ label, props }) => (
     )}
   </>
 );
-export default StyledCheckbox;
