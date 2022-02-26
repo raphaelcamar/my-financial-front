@@ -59,7 +59,9 @@
 		"import/extensions": "off",
 		"react/require-default-props": "off",
 		"class-methods-use-this": "off",
-		"react/jsx-no-useless-fragment": "off"
+		"react/jsx-no-useless-fragment": "off",
+		"default-case": "off",
+		"no-useless-constructor": "off"
 	}
 }
 
