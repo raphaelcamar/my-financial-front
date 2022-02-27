@@ -3,23 +3,15 @@ import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
-import {
-  Icon,
-  Typography,
-  Input,
-  StyledCheckbox,
-  LoginIllustration,
-  CircularProgress,
-} from '@/core/presenters/components/atoms';
+import { Icon, Typography, Input, LoginIllustration, CircularProgress } from '@/core/presenters/components/atoms';
 import { useStyles } from './styles';
 import { UserLoginValidatorSchema } from '@/access-and-auth/data';
-import { Login as LoginTypeForm } from '@/access-and-auth/domain';
+import { UserLogin as LoginTypeForm } from '@/access-and-auth/domain';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts/access-and-auth/';
 
 type FormLoginProps = {
   email: string;
   password: string;
-  rememberMe: boolean;
 };
 
 export const Login: React.FC = () => {
@@ -58,9 +50,7 @@ export const Login: React.FC = () => {
         </div>
         <div className={classes.formContainer}>
           <Typography variant="h2">Login</Typography>
-          <Typography variant="body1">
-            Controle suas finanças de uma forma simples!
-          </Typography>
+          <Typography variant="body1">Controle suas finanças de uma forma simples!</Typography>
           <Button variant="outlined" className={classes.buttonLoginGoogle}>
             Logue com sua conta Google
           </Button>
@@ -70,10 +60,7 @@ export const Login: React.FC = () => {
             <Typography variant="body1">Ou logue com seu e-mail</Typography>
             <div className={classes.line} />
           </div>
-          <form
-            className={classes.form}
-            onSubmit={handleSubmit(handleSubmitForm)}
-          >
+          <form className={classes.form} onSubmit={handleSubmit(handleSubmitForm)}>
             <Input
               label="E-mail"
               inputProps={{
@@ -93,27 +80,12 @@ export const Login: React.FC = () => {
                 ...register('password'),
                 placeholder: 'Sua senha',
               }}
-              icon="person"
+              icon="key"
             />
-            <StyledCheckbox
-              label="Lembre-se de mim"
-              props={{ ...register('rememberMe') }}
-            />
-            <Button
-              variant="contained"
-              className={classes.buttonLogin}
-              disabled={loading}
-              type="submit"
-            >
-              {loading ? (
-                <CircularProgress size={25} color="primary" />
-              ) : (
-                'Login'
-              )}
+            <Button variant="contained" className={classes.buttonLogin} disabled={loading} type="submit">
+              {loading ? <CircularProgress size={25} color="primary" /> : 'Login'}
             </Button>
-            {errorMessage && (
-              <div className={classes.messageValidator}>{errorMessage}</div>
-            )}
+            {errorMessage && <div className={classes.messageValidator}>{errorMessage}</div>}
           </form>
         </div>
       </div>
