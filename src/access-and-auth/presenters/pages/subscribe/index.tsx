@@ -65,8 +65,8 @@ export const Subscribe: React.FC = () => {
           />
           <Input
             label="Sobrenonme"
-            messageValidator={errors?.password?.message}
-            validator={!!errors?.password}
+            messageValidator={errors?.lastname?.message}
+            validator={!!errors?.lastname}
             inputProps={{
               ...register('lastname'),
               placeholder: 'Ex: Santantonio',
@@ -75,10 +75,9 @@ export const Subscribe: React.FC = () => {
           />
           <Input
             label="Email"
-            messageValidator={errors?.password?.message}
-            validator={!!errors?.password}
+            messageValidator={errors?.email?.message}
+            validator={!!errors?.email}
             inputProps={{
-              type: 'email',
               ...register('email'),
               placeholder: 'ex: raphael1234@email.com',
             }}
