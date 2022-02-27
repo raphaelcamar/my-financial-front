@@ -1,5 +1,8 @@
 import { createTheme } from '@mui/material';
 
+// 9c71fd
+// 5F61DA - atual
+// 9c72fb
 export const main = createTheme({
   palette: {
     primary: {
@@ -29,6 +32,7 @@ export const main = createTheme({
     },
   },
   typography: {
+    fontFamily: ['Nunito', 'sans-serif'].join(','),
     allVariants: {
       color: '#4A4A4A',
     },
