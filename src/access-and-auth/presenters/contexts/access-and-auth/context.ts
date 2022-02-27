@@ -1,9 +1,10 @@
 import { createContext, useContext } from 'react';
-import { UserLogin, User } from '@/access-and-auth/domain';
+import { UserLogin, User, UserSubscribe } from '@/access-and-auth/domain';
 
 type PropsAccessAndAuthContext = {
   user: User;
-  postUserAuth: (body: UserLogin) => Promise<void>;
+  userAuth: (body: UserLogin) => Promise<void>;
+  newUser: (body: UserSubscribe) => Promise<void>;
 };
 
 export const AccessAndAuthContext = createContext<PropsAccessAndAuthContext>({} as PropsAccessAndAuthContext);

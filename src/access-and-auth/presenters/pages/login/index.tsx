@@ -19,7 +19,7 @@ export const Login: React.FC = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>(null);
-  const { postUserAuth } = useAccessAndAuthContext();
+  const { userAuth } = useAccessAndAuthContext();
   const navigate = useNavigate();
 
   const {
@@ -33,7 +33,7 @@ export const Login: React.FC = () => {
   const handleSubmitForm = async (data: FormLoginProps) => {
     setLoading(true);
     try {
-      await postUserAuth(data);
+      await userAuth(data);
       navigate('/main');
     } catch (err) {
       setErrorMessage(err.message);

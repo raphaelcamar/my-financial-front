@@ -13,12 +13,15 @@ import {
 import { useStyles } from './styles';
 import { UserSubscribeValidatorSchema } from '@/access-and-auth/data';
 import { UserSubscribe } from '@/access-and-auth/domain';
+import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 
 export const Subscribe: React.FC = () => {
   const classes = useStyles();
 
   const [errorMessage, setErrorMessage] = useState<string>(null);
   const [loading, setLoading] = useState(false);
+
+  const { newUser } = useAccessAndAuthContext();
   const navigate = useNavigate();
 
   const {
@@ -31,8 +34,9 @@ export const Subscribe: React.FC = () => {
 
   const handleSubmitForm = async (data: UserSubscribe) => {
     setLoading(true);
+
     try {
-      // await postUserAuth(data);
+      await newUser(data);
       navigate('/main');
     } catch (err) {
       setErrorMessage(err.message);

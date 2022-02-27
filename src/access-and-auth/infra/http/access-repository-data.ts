@@ -18,7 +18,7 @@ export class AccessRepositoryData implements AccessRepository {
     const request = new AxiosHttpClient<UserSubscribe, User>();
 
     const httpResponse = await request.post({
-      url: 'user/subscribe',
+      url: 'user/create',
       body: bodyLogin,
     });
 
