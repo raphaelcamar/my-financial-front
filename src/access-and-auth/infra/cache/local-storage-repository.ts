@@ -1,16 +1,16 @@
-import { CacheRepository } from '@/access-and-auth/data/protocols';
+import { CacheRepository, localStorageKey } from '@/access-and-auth/data/protocols';
 
 export class LocalStorageRepository<T> implements CacheRepository<T> {
-  set(key: string, value: object): void {
+  set(key: localStorageKey, value: object): void {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  get(key: string): T {
+  get(key: localStorageKey): T {
     const cache: T = JSON.parse(localStorage.getItem(key));
     return cache;
   }
 
-  clean(key: string): void {
+  clean(key: localStorageKey): void {
     localStorage.removeItem(key);
   }
 }

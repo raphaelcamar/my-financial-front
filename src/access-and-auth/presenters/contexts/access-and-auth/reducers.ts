@@ -6,10 +6,7 @@ export const initialState: InitialState = {
 };
 
 // eslint-disable-next-line consistent-return
-export function reducer(
-  state = initialState,
-  action: ActionTypes
-): InitialState {
+export function reducer(state = initialState, action: ActionTypes): InitialState {
   switch (action.type) {
     case USER_AUTHORIZED:
       return {

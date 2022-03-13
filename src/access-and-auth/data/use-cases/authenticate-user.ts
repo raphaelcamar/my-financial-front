@@ -12,6 +12,7 @@ export class AuthenticateUser<T> {
     const userLogged = await this.accessRepository.login(this.loginData);
     if (userLogged) {
       this.cacheRepository.set('@user', userLogged);
+      this.cacheRepository.set('@token', userLogged.token);
     }
 
     return userLogged;

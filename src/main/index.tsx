@@ -6,6 +6,7 @@ import { Login } from '@/access-and-auth/presenters/pages';
 import './global.css';
 import { AccessAndAuthProvider } from '@/access-and-auth/presenters/contexts';
 import { Subscribe } from '@/access-and-auth/presenters/pages/subscribe';
+import { PrivateRoute } from '@/core/presenters/routes/privateRoute';
 
 ReactDOM.render(
   <ThemeProvider>
@@ -14,7 +15,14 @@ ReactDOM.render(
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/subscribe" element={<Subscribe />} />
-          <Route path="/main" element={<div>TESTEAAAAAAAAAAAAA</div>} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <div>asdas</div>
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </AccessAndAuthProvider>
     </BrowserRouter>

@@ -12,6 +12,7 @@ export class CreateUser<T> {
     const userLogged = await this.accessRepository.subscribe(this.subscribeData);
     if (userLogged) {
       this.cacheRepository.set('@user', userLogged);
+      this.cacheRepository.set('@token', userLogged.token);
     }
 
     return userLogged;

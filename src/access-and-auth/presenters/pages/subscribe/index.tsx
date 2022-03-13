@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -15,8 +15,12 @@ export const Subscribe: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>(null);
   const [loading, setLoading] = useState(false);
 
-  const { newUser } = useAccessAndAuthContext();
+  const { newUser, verifyUserAuth } = useAccessAndAuthContext();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (verifyUserAuth()) navigate('/');
+  }, []);
 
   const {
     register,
@@ -31,7 +35,7 @@ export const Subscribe: React.FC = () => {
 
     try {
       await newUser(data);
-      navigate('/main');
+      navigate('/');
     } catch (err) {
       setErrorMessage(err.message);
     } finally {

@@ -6,6 +6,4 @@ export const api = axios.create({
   baseURL: url,
 });
 
-api.interceptors.response.use(undefined, error =>
-  Promise.reject(error?.response?.data)
-);
+api.interceptors.response.use(undefined, error => Promise.reject(error?.response?.data));
