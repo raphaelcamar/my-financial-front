@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
-import { Icon, Typography, Input, LoginIllustration, CircularProgress } from '@/core/presenters/components/atoms';
+import { Icon, Typography, LoginIllustration, CircularProgress } from '@/core/presenters/components/atoms';
+import { Input, Button } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
 import { UserLoginValidatorSchema } from '@/access-and-auth/data';
 import { UserLogin as LoginTypeForm } from '@/access-and-auth/domain';
@@ -82,7 +82,7 @@ export const Login: React.FC = () => {
               }}
               icon="key"
             />
-            <Button variant="contained" className={classes.buttonLogin} disabled={loading} type="submit">
+            <Button variant="fullfiled" className={classes.buttonLogin} disabled={loading} type="submit">
               {loading ? <CircularProgress size={25} color="primary" /> : 'Login'}
             </Button>
             {errorMessage && <div className={classes.messageValidator}>{errorMessage}</div>}

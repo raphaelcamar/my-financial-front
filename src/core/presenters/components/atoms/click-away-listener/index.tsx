@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  ClickAwayListener as MuiClickAwayListener,
-  ClickAwayListenerProps,
-} from '@mui/material';
+import { ClickAwayListener as MuiClickAwayListener, ClickAwayListenerProps } from '@mui/material';
 
 type Props = ClickAwayListenerProps;
 

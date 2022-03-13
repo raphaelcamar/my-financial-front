@@ -2,3 +2,4 @@ export * from './key-icon';
 export * from './logo-icon';
 export * from './mail-icon';
 export * from './person-icon';
+export * from './question-mark-rounded-icon';

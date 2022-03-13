@@ -2,14 +2,8 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
-import {
-  Button,
-  CircularProgress,
-  Icon,
-  Input,
-  SubscribeIllustration,
-  Typography,
-} from '@/core/presenters/components/atoms';
+import { CircularProgress, Icon, SubscribeIllustration, Typography } from '@/core/presenters/components/atoms';
+import { Button, Input } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
 import { UserSubscribeValidatorSchema } from '@/access-and-auth/data';
 import { UserSubscribe } from '@/access-and-auth/domain';
@@ -66,6 +60,7 @@ export const Subscribe: React.FC = () => {
             validator={!!errors?.name}
             messageValidator={errors?.name?.message}
             icon="person"
+            tooltipMessage="sda"
           />
           <Input
             label="Sobrenonme"
@@ -99,7 +94,7 @@ export const Subscribe: React.FC = () => {
             }}
             icon="key"
           />
-          <Button variant="contained" className={classes.buttonLogin} disabled={loading} type="submit">
+          <Button size="large" variant="fullfiled" disabled={loading} type="submit">
             {loading ? <CircularProgress size={25} color="primary" /> : 'Login'}
           </Button>
           {errorMessage && <div className={classes.messageValidator}>{errorMessage}</div>}
