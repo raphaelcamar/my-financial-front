@@ -1,8 +1,9 @@
 import { useTheme } from '@mui/material';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Accordion, ButtonLinkMenu, GetIconProps, Icon, Typography } from '../../atoms';
-import { ButtonMenu } from '../../molecules';
+import { Accordion, ButtonLinkMenu, Icon, Typography } from '@/core/presenters/components/atoms';
+import { AvailableIcons } from '@/core/presenters/components/atoms/icon/available-icons';
+import { ButtonMenu } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
 
 const sidebarOptions = [

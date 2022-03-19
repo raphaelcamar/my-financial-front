@@ -8,11 +8,10 @@ import {
   ArrowDownIcon,
   DashboardIcon,
 } from '@/core/presenters/components/atoms/icon/icons';
-
-export type GetIconProps = 'key' | 'logo' | 'person' | 'mail' | 'questionMarkRounded' | 'arrowDown' | 'dashboard';
+import { AvailableIcons } from '@/core/domain';
 
 export type IconProps = {
-  icon: GetIconProps;
+  icon: AvailableIcons;
   color?: string;
 };
 

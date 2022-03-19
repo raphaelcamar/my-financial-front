@@ -1,6 +1,6 @@
 import { useTheme } from '@mui/material';
 import React from 'react';
-import { Icon } from './types';
+import { Icon } from '@/core/domain';
 
 export const ArrowDownIcon: React.FC<Icon> = ({ color }) => {
   const theme = useTheme();
