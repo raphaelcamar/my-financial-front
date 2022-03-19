@@ -1,6 +1,6 @@
 import { useTheme } from '@mui/material';
 import React, { useState } from 'react';
-import { Accordion, AccordionDetails } from '../../atoms';
+import { Accordion, AccordionDetails, ButtonLinkMenu } from '../../atoms';
 import { AccordionSummary } from '../../molecules';
 import { useStyles } from './styles';
 
@@ -18,7 +18,10 @@ export const SidebarMenu: React.FC = () => {
       <Accordion onClick={() => handleClickAccordion()}>
         <AccordionSummary subItems={['']}>teste</AccordionSummary>
         <div className={classes.line}>
-          <AccordionDetails>teste</AccordionDetails>
+          <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
+          <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
+          <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
+          <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
         </div>
       </Accordion>
       <AccordionSummary>teste</AccordionSummary>
