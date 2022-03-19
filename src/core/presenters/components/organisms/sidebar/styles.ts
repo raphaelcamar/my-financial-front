@@ -13,4 +13,19 @@ export const useStyles = makeStyles((theme: Theme) => ({
   header: {
     marginBottom: 48,
   },
+
+  line: {
+    borderLeft: `1px solid ${theme.palette.grey[500]}`,
+    margin: '8px 0px 8px 16px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4,
+    paddingLeft: 12,
+  },
+
+  wrapperIconText: {
+    display: 'flex',
+    gap: 16,
+    alignItems: 'center',
+  },
 }));
