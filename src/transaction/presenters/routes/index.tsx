@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Container } from '@/core/presenters/components/organisms/container';
-import { PrivateRoute } from '@/core/presenters/routes/privateRoute';
+import { PrivateRoute } from '@/core/presenters/utils/';
 
 export const TransactionRoutes: React.FC = () => (
   <Routes>

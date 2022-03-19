@@ -5,12 +5,12 @@ import { useStyles } from './styles';
 import { GetIconProps, Icon } from '../../atoms/icon';
 import { Typography } from '../../atoms/typography';
 
-interface IAccordionSummary extends AccordionSummaryProps {
+interface IButtonMenu extends AccordionSummaryProps {
   icon?: GetIconProps;
-  subItems?: any[];
+  isAccordion?: boolean;
 }
 
-export const AccordionSummary: React.FC<IAccordionSummary> = ({ children, icon = 'key', subItems }) => {
+export const ButtonMenu: React.FC<IButtonMenu> = ({ children, icon = 'key', isAccordion }) => {
   const [toggle, setToggle] = useState(false);
   const classes = useStyles(toggle);
   const theme = useTheme();
@@ -24,7 +24,7 @@ export const AccordionSummary: React.FC<IAccordionSummary> = ({ children, icon =
           <Icon icon={icon} color={toggle ? theme.palette.grey[50] : theme.palette.grey[500]} />
           <Typography variant="body1">{children}</Typography>
         </div>
-        {subItems && (
+        {isAccordion && (
           <div className={classes.icon}>
             <Icon icon="arrowDown" color={toggle ? theme.palette.grey[50] : theme.palette.grey[500]} />
           </div>

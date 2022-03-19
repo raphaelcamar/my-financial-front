@@ -1,3 +1,3 @@
 export * from './button';
 export * from './input';
-export * from './accordion-summary';
+export * from './button-menu';

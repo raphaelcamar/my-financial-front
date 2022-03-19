@@ -1,30 +1,66 @@
 import { useTheme } from '@mui/material';
-import React, { useState } from 'react';
-import { Accordion, AccordionDetails, ButtonLinkMenu } from '../../atoms';
-import { AccordionSummary } from '../../molecules';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { Accordion, ButtonLinkMenu, GetIconProps, Icon, Typography } from '../../atoms';
+import { ButtonMenu } from '../../molecules';
 import { useStyles } from './styles';
+
+const sidebarOptions = [
+  {
+    isAccordion: false,
+    icon: 'dashboard',
+    title: 'Visão geral',
+    path: '/',
+    accordionItems: [],
+  },
+];
 
 export const SidebarMenu: React.FC = () => {
   const classes = useStyles();
+  const location = useLocation();
   const theme = useTheme();
-  const [color, setColor] = useState(theme.palette.primary.main);
-
-  const handleClickAccordion = () => {
-    setColor(theme.palette.grey[50]);
-  };
-
   return (
     <div>
-      <Accordion onClick={() => handleClickAccordion()}>
-        <AccordionSummary subItems={['']}>teste</AccordionSummary>
-        <div className={classes.line}>
-          <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
-          <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
-          <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
-          <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
-        </div>
-      </Accordion>
-      <AccordionSummary>teste</AccordionSummary>
+      {sidebarOptions.map(item =>
+        item.isAccordion ? (
+          <Accordion>
+            <ButtonMenu isAccordion={item.isAccordion}>{item.title}</ButtonMenu>
+            <div className={classes.line}>
+              {item?.accordionItems?.map(accordionItem => (
+                <ButtonLinkMenu path={accordionItem.path} selected={location.pathname === accordionItem.path}>
+                  <div className={classes.wrapperIconText}>
+                    {accordionItem.icon && <Icon icon={accordionItem.icon as GetIconProps} />}
+                    <Typography variant="body1">{accordionItem.title}</Typography>
+                  </div>
+                </ButtonLinkMenu>
+              ))}
+            </div>
+          </Accordion>
+        ) : (
+          <ButtonLinkMenu path={item.path} selected={location.pathname === item.path}>
+            <div className={classes.wrapperIconText}>
+              {item.icon && (
+                <Icon
+                  icon={item.icon as GetIconProps}
+                  color={location.pathname === item.path && theme.palette.grey[50]}
+                />
+              )}
+              <Typography variant="body1">{item.title}</Typography>
+            </div>
+          </ButtonLinkMenu>
+        )
+      )}
     </div>
   );
 };
+
+// <Accordion>
+// <ButtonMenu isAccordion>teste</ButtonMenu>
+// <div className={classes.line}>
+//   <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
+//   <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
+//   <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
+//   <ButtonLinkMenu path="/">Teste</ButtonLinkMenu>
+// </div>
+// </Accordion>
+// <ButtonMenu>ad</ButtonMenu>

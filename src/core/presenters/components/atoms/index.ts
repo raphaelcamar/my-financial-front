@@ -1,4 +1,3 @@
-export * from './accordion-details';
 export * from './accordion';
 export * from './button-link-menu';
 export * from './checkbox';
