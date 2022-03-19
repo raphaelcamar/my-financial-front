@@ -55,13 +55,11 @@ export const Login: React.FC = () => {
         <div className={classes.formContainer}>
           <Typography variant="h2">Login</Typography>
           <Typography variant="body1">Controle suas finanças de uma forma simples!</Typography>
-          <Button variant="outlined" className={classes.buttonLoginGoogle}>
-            Logue com sua conta Google
-          </Button>
+          {/* <Button variant="outlined">Logue com sua conta Google</Button> */}
 
           <div className={classes.emailLogin}>
             <div className={classes.line} />
-            <Typography variant="body1">Ou logue com seu e-mail</Typography>
+            {/* <Typography variant="body1">Ou logue com seu e-mail</Typography> */}
             <div className={classes.line} />
           </div>
           <form className={classes.form} onSubmit={handleSubmit(handleSubmitForm)}>
@@ -86,7 +84,7 @@ export const Login: React.FC = () => {
               }}
               icon="key"
             />
-            <Button variant="fullfiled" className={classes.buttonLogin} disabled={loading} type="submit">
+            <Button variant="fullfiled" size="large" disabled={loading} type="submit">
               {loading ? <CircularProgress size={25} color="primary" /> : 'Login'}
             </Button>
             {errorMessage && <div className={classes.messageValidator}>{errorMessage}</div>}
