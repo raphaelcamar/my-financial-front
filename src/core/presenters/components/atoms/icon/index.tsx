@@ -5,9 +5,10 @@ import {
   LogoIcon,
   MailIcon,
   QuestionMarkRoundedIcon,
+  ArrowDownIcon,
 } from '@/core/presenters/components/atoms/icon/icons';
 
-export type GetIconProps = 'key' | 'logo' | 'person' | 'mail' | 'questionMarkRounded';
+export type GetIconProps = 'key' | 'logo' | 'person' | 'mail' | 'questionMarkRounded' | 'arrowDown';
 
 export type IconProps = {
   icon: GetIconProps;
@@ -21,6 +22,7 @@ export const Icon: React.FC<IconProps> = ({ icon, color }) => {
     person: <PersonIcon color={color && color} />,
     mail: <MailIcon color={color && color} />,
     questionMarkRounded: <QuestionMarkRoundedIcon color={color && color} />,
+    arrowDown: <ArrowDownIcon color={color && color} />,
   };
 
   return getIcon[icon];

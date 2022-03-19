@@ -6,7 +6,13 @@ export const Accordion: React.FC<AccordionProps> = ({ children, onChange }) => {
   const classes = useStyles();
 
   return (
-    <MuiAccordion className={classes.container} defaultExpanded={false} disableGutters onChange={onChange}>
+    <MuiAccordion
+      className={classes.container}
+      sx={{ boxShadow: 'none', background: 'none' }}
+      defaultExpanded={false}
+      disableGutters
+      onChange={onChange}
+    >
       {children}
     </MuiAccordion>
   );

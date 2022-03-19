@@ -10,20 +10,18 @@ export const SidebarMenu: React.FC = () => {
   const [color, setColor] = useState(theme.palette.primary.main);
 
   const handleClickAccordion = () => {
-    console.log('Teste');
     setColor(theme.palette.grey[50]);
   };
 
-  console.log(color);
-
   return (
-    <>
+    <div>
       <Accordion onClick={() => handleClickAccordion()}>
-        <AccordionSummary>teste</AccordionSummary>
+        <AccordionSummary subItems={['']}>teste</AccordionSummary>
         <div className={classes.line}>
           <AccordionDetails>teste</AccordionDetails>
         </div>
       </Accordion>
-    </>
+      <AccordionSummary>teste</AccordionSummary>
+    </div>
   );
 };
