@@ -1,6 +1,7 @@
 import React, { InputHTMLAttributes, useState } from 'react';
 import { useTheme } from '@mui/material';
-import { ClickAwayListener, Icon, GetIconProps, Typography } from '@/core/presenters/components/atoms';
+import { ClickAwayListener, Icon, Typography } from '@/core/presenters/components/atoms';
+import { AvailableIcons } from '@/core/domain';
 import { useStylesProvider } from './styles';
 
 export type InputProps = {
@@ -10,7 +11,7 @@ export type InputProps = {
   validator?: boolean;
   messageValidator?: string;
   placeholder?: string;
-  icon?: GetIconProps;
+  icon?: AvailableIcons;
   ref?: React.LegacyRef<HTMLInputElement>;
   tooltipMessage?: string;
 };

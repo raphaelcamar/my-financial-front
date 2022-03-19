@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { AccordionSummary as MuiAccordionSummary, AccordionSummaryProps, useTheme } from '@mui/material';
 import clsx from 'clsx';
 import { useStyles } from './styles';
-import { GetIconProps, Icon } from '../../atoms/icon';
-import { Typography } from '../../atoms/typography';
+import { AvailableIcons } from '@/core/domain';
+import { Typography, Icon } from '@/core/presenters/components/atoms';
 
 interface IButtonMenu extends AccordionSummaryProps {
-  icon?: GetIconProps;
+  icon?: AvailableIcons;
   isAccordion?: boolean;
 }
 

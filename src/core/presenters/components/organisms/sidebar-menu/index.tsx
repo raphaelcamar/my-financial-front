@@ -1,10 +1,11 @@
 import { useTheme } from '@mui/material';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Accordion, ButtonLinkMenu, Icon, Typography } from '@/core/presenters/components/atoms';
-import { AvailableIcons } from '@/core/presenters/components/atoms/icon/available-icons';
-import { ButtonMenu } from '@/core/presenters/components/molecules';
+import { Accordion, Icon, Typography } from '@/core/presenters/components/atoms';
+import { ButtonLinkMenu, ButtonMenu } from '@/core/presenters/components/molecules';
+
 import { useStyles } from './styles';
+import { AvailableIcons } from '@/core/domain';
 
 const sidebarOptions = [
   {
@@ -30,7 +31,7 @@ export const SidebarMenu: React.FC = () => {
               {item?.accordionItems?.map(accordionItem => (
                 <ButtonLinkMenu path={accordionItem.path} selected={location.pathname === accordionItem.path}>
                   <div className={classes.wrapperIconText}>
-                    {accordionItem.icon && <Icon icon={accordionItem.icon as GetIconProps} />}
+                    {accordionItem.icon && <Icon icon={accordionItem.icon as AvailableIcons} />}
                     <Typography variant="body1">{accordionItem.title}</Typography>
                   </div>
                 </ButtonLinkMenu>
@@ -42,7 +43,7 @@ export const SidebarMenu: React.FC = () => {
             <div className={classes.wrapperIconText}>
               {item.icon && (
                 <Icon
-                  icon={item.icon as GetIconProps}
+                  icon={item.icon as AvailableIcons}
                   color={location.pathname === item.path && theme.palette.grey[50]}
                 />
               )}

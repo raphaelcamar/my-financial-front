@@ -1,5 +1,4 @@
 export * from './accordion';
-export * from './button-link-menu';
 export * from './checkbox';
 export * from './circular-progress';
 export * from './click-away-listener';

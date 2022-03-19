@@ -1,14 +1,15 @@
 import clsx from 'clsx';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GetIconProps, Icon } from '../icon';
+import { Icon } from '@/core/presenters/components/atoms';
+import { AvailableIcons } from '@/core/domain';
 import { useStyles } from './styles';
 
 interface IButtonProps {
   onClick?: () => void;
   selected?: boolean;
   path?: string;
-  icon?: GetIconProps;
+  icon?: AvailableIcons;
 }
 
 export const ButtonLinkMenu: React.FC<IButtonProps> = ({ onClick, path, selected, children, icon }) => {

@@ -2,13 +2,14 @@
 import { useTheme } from '@mui/material';
 import clsx from 'clsx';
 import React, { ButtonHTMLAttributes } from 'react';
-import { GetIconProps, Icon } from '@/core/presenters/components/atoms';
+import { AvailableIcons } from '@/core/domain';
+import { Icon } from '@/core/presenters/components/atoms';
 import { useStyles } from './styles';
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'error' | 'outlined' | 'outlinedError' | 'fullfiled';
   size?: 'normal' | 'large';
-  icon?: GetIconProps;
+  icon?: AvailableIcons;
 }
 
 export const Button: React.FC<IButtonProps> = ({
