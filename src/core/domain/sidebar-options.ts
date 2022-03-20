@@ -8,4 +8,5 @@ export interface ISidebaroption {
 
 export enum SIZES {
   width = 286,
+  marginLeft = 103,
 }

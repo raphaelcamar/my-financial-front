@@ -1,18 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Container } from '@/core/presenters/components/organisms/container';
-import { PrivateRoute } from '@/core/presenters/proxies';
+import { Overview } from '@/transaction/presenters/pages';
 
-// TODO nested routes
 export const TransactionRoutes: React.FC = () => (
   <Routes>
-    <Route
-      path="/"
-      element={
-        <PrivateRoute>
-          <Container />
-        </PrivateRoute>
-      }
-    />
+    <Route path="/" element={<Overview />} />
   </Routes>
 );

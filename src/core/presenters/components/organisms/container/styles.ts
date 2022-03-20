@@ -5,18 +5,19 @@ import { SIZES } from '@/core/domain';
 export const useStyles = makeStyles((theme: Theme) => ({
   content: {
     flexGrow: 1,
-    padding: '2rem',
+    padding: 48,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: SIZES.width,
   },
+
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 96,
+    marginLeft: SIZES.marginLeft,
   },
 }));

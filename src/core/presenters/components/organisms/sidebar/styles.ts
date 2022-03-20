@@ -20,6 +20,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    width: 103,
+    width: SIZES.marginLeft,
   },
 }));

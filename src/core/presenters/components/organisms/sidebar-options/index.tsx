@@ -26,7 +26,12 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, open
                 {item?.accordionItems?.map(accordionItem => (
                   <ButtonLinkMenu path={accordionItem.path} selected={location.pathname === accordionItem.path}>
                     <div className={classes.wrapperIconText}>
-                      {accordionItem.icon && <Icon icon={accordionItem.icon as AvailableIcons} />}
+                      {accordionItem.icon && (
+                        <Icon
+                          icon={accordionItem.icon as AvailableIcons}
+                          color={location.pathname === item.path && theme.palette.grey[50]}
+                        />
+                      )}
                       <Typography variant="body1">{accordionItem.title}</Typography>
                     </div>
                   </ButtonLinkMenu>

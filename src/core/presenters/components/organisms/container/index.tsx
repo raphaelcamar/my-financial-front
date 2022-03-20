@@ -6,7 +6,7 @@ import { Sidebar } from '@/core/presenters/components/organisms';
 import { IconSidebarAction } from '../../molecules/icon-sidebar-action';
 import { useStyles } from './styles';
 
-export const Container: React.FC = () => {
+export const Container: React.FC = ({ children }) => {
   const classes = useStyles();
   const [open, setOpen] = useState<boolean>(true);
 
@@ -19,7 +19,7 @@ export const Container: React.FC = () => {
           [classes.contentShift]: !open,
         })}
       >
-        <div>teste</div>
+        {children}
       </div>
     </div>
   );
