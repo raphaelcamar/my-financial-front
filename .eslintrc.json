@@ -61,7 +61,10 @@
 		"class-methods-use-this": "off",
 		"react/jsx-no-useless-fragment": "off",
 		"default-case": "off",
-		"no-useless-constructor": "off"
+		"no-useless-constructor": "off",
+		"no-shadow": "off",
+  	"@typescript-eslint/no-shadow": ["error"]
+
 	}
 }
 

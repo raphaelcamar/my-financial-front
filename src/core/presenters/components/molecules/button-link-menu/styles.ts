@@ -4,7 +4,6 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      // background: theme.palette.background.paper,
       borderRadius: 8,
       padding: '0px 16px',
       textDecoration: 'none',

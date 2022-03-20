@@ -1,60 +1,27 @@
-import { useTheme } from '@mui/material';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { Accordion, Icon, Typography } from '@/core/presenters/components/atoms';
-import { ButtonLinkMenu, ButtonMenu } from '@/core/presenters/components/molecules';
+import clsx from 'clsx';
 
 import { useStyles } from './styles';
-import { AvailableIcons } from '@/core/domain';
+import { SidebarDrawer } from '../../atoms/sidebar-drawer';
+import { HeaderSidebar } from '../../atoms/header-sidebar';
+import { SidebarOptions } from '../sidebar-options';
+import { SidebarData } from '@/core/presenters/utils/sidebar-data';
 
-const sidebarOptions = [
-  {
-    isAccordion: false,
-    icon: 'dashboard',
-    title: 'Visão geral',
-    path: '/',
-    accordionItems: [],
-  },
-];
+interface ISidebarProps {
+  open: boolean;
+}
 
-export const Sidebar: React.FC = () => {
+export const Sidebar: React.FC<ISidebarProps> = ({ open }) => {
   const classes = useStyles();
-  const location = useLocation();
-  const theme = useTheme();
+
   return (
-    <div className={classes.container}>
-      <div className={classes.header}>My Financial</div>
-      <div>
-        {sidebarOptions.map(item =>
-          item.isAccordion ? (
-            <Accordion>
-              <ButtonMenu isAccordion={item.isAccordion}>{item.title}</ButtonMenu>
-              <div className={classes.line}>
-                {item?.accordionItems?.map(accordionItem => (
-                  <ButtonLinkMenu path={accordionItem.path} selected={location.pathname === accordionItem.path}>
-                    <div className={classes.wrapperIconText}>
-                      {accordionItem.icon && <Icon icon={accordionItem.icon as AvailableIcons} />}
-                      <Typography variant="body1">{accordionItem.title}</Typography>
-                    </div>
-                  </ButtonLinkMenu>
-                ))}
-              </div>
-            </Accordion>
-          ) : (
-            <ButtonLinkMenu path={item.path} selected={location.pathname === item.path}>
-              <div className={classes.wrapperIconText}>
-                {item.icon && (
-                  <Icon
-                    icon={item.icon as AvailableIcons}
-                    color={location.pathname === item.path && theme.palette.grey[50]}
-                  />
-                )}
-                <Typography variant="body1">{item.title}</Typography>
-              </div>
-            </ButtonLinkMenu>
-          )
-        )}
+    <SidebarDrawer open={open}>
+      <div className={clsx(classes.container, !open && classes.closed)}>
+        <HeaderSidebar open={open} />
+        <div>
+          <SidebarOptions open={open} sidebarOptions={SidebarData} />
+        </div>
       </div>
-    </div>
+    </SidebarDrawer>
   );
 };

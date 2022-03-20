@@ -7,6 +7,7 @@ import {
   QuestionMarkRoundedIcon,
   ArrowDownIcon,
   DashboardIcon,
+  LogoSmallIcon,
 } from '@/core/presenters/components/atoms/icon/icons';
 import { AvailableIcons } from '@/core/domain';
 
@@ -24,6 +25,7 @@ export const Icon: React.FC<IconProps> = ({ icon, color }) => {
     questionMarkRounded: <QuestionMarkRoundedIcon color={color && color} />,
     arrowDown: <ArrowDownIcon color={color && color} />,
     dashboard: <DashboardIcon color={color && color} />,
+    logoSmall: <LogoSmallIcon color={color && color} />,
   };
 
   return getIcon[icon];

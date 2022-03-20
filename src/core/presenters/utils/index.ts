@@ -1,1 +1,1 @@
-export * from './private-route';
+export * from './sidebar-data';
