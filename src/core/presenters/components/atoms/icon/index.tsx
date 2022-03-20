@@ -8,6 +8,8 @@ import {
   ArrowDownIcon,
   DashboardIcon,
   LogoSmallIcon,
+  BellIcon,
+  BellBallIcon,
 } from '@/core/presenters/components/atoms/icon/icons';
 import { AvailableIcons } from '@/core/domain';
 
@@ -26,6 +28,8 @@ export const Icon: React.FC<IconProps> = ({ icon, color }) => {
     arrowDown: <ArrowDownIcon color={color && color} />,
     dashboard: <DashboardIcon color={color && color} />,
     logoSmall: <LogoSmallIcon color={color && color} />,
+    bell: <BellIcon color={color && color} />,
+    bellBall: <BellBallIcon color={color && color} />,
   };
 
   return getIcon[icon];

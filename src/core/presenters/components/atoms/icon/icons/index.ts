@@ -1,4 +1,6 @@
 export * from './arrow-down-icon';
+export * from './bell-ball-icon';
+export * from './bell-icon';
 export * from './dashboard-icon';
 export * from './key-icon';
 export * from './logo-icon';

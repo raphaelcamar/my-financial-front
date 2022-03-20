@@ -6,4 +6,6 @@ export type AvailableIcons =
   | 'questionMarkRounded'
   | 'arrowDown'
   | 'dashboard'
-  | 'logoSmall';
+  | 'logoSmall'
+  | 'bell'
+  | 'bellBall';
