@@ -1,0 +1,15 @@
+import { Theme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+
+export const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+
+  filterSearch: {
+    display: 'flex',
+    gap: 16,
+    alignItems: 'center',
+  },
+}));

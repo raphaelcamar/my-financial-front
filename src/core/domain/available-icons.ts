@@ -3,6 +3,7 @@ export type AvailableIcons =
   | 'bell'
   | 'bellBall'
   | 'dashboard'
+  | 'filter'
   | 'key'
   | 'lineArrowDown'
   | 'lineArrowUp'
@@ -11,4 +12,5 @@ export type AvailableIcons =
   | 'mail'
   | 'person'
   | 'questionMarkRounded'
+  | 'search'
   | 'transaction';

@@ -2,6 +2,7 @@ export * from './accordion';
 export * from './checkbox';
 export * from './circular-progress';
 export * from './click-away-listener';
+export * from './grid';
 export * from './header-sidebar';
 export * from './icon';
 export * from './illustration-login';

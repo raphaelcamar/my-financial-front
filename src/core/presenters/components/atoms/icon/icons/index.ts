@@ -10,4 +10,6 @@ export * from './logo-small-icon';
 export * from './mail-icon';
 export * from './person-icon';
 export * from './question-mark-rounded-icon';
+export * from './search-icon';
 export * from './transaction-icon';
+export * from './filter-icon';
