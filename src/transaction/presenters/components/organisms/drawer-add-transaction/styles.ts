@@ -5,5 +5,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   bodyContent: {
     display: 'flex',
     flexDirection: 'column',
+    gap: 24,
   },
 }));

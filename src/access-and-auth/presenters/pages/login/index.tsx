@@ -23,7 +23,7 @@ export const Login: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (verifyUserAuth()) navigate('/');
+    if (verifyUserAuth()) navigate('/transacoes');
   }, []);
 
   const {
@@ -38,7 +38,7 @@ export const Login: React.FC = () => {
     setLoading(true);
     try {
       await userAuth(data);
-      navigate('/');
+      navigate('/transacoes');
     } catch (err) {
       setErrorMessage(err.message);
     } finally {

@@ -1,13 +1,14 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 
 export const PrivateRoute: React.FC = ({ children }) => {
   const { verifyUserAuth } = useAccessAndAuthContext();
+  const navigate = useNavigate();
 
   const verifyUser = () => {
     const user = verifyUserAuth();
-    if (!user) return <Navigate to="/login" />;
+    if (!user) navigate('/login');
 
     return children;
   };

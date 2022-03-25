@@ -19,7 +19,7 @@ export const Subscribe: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (verifyUserAuth()) navigate('/');
+    if (verifyUserAuth()) navigate('/transacoes');
   }, []);
 
   const {
@@ -35,7 +35,7 @@ export const Subscribe: React.FC = () => {
 
     try {
       await newUser(data);
-      navigate('/');
+      navigate('/transacoes');
     } catch (err) {
       setErrorMessage(err.message);
     } finally {
