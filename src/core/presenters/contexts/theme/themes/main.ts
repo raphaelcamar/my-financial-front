@@ -97,6 +97,9 @@ export const main = createTheme({
     allVariants: {
       color: '#4A4A4A',
     },
+    body1: {
+      color: '#667085',
+    },
     h2: {
       fontSize: 36,
       fontWeight: '700',

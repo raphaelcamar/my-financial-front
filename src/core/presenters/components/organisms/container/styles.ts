@@ -6,6 +6,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
   content: {
     flexGrow: 1,
     padding: 48,
+    background: theme.palette.grey[50],
+    minHeight: '100vh',
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

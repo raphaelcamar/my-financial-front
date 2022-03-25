@@ -1,11 +1,14 @@
 export type AvailableIcons =
-  | 'key'
-  | 'logo'
-  | 'person'
-  | 'mail'
-  | 'questionMarkRounded'
   | 'arrowDown'
-  | 'dashboard'
-  | 'logoSmall'
   | 'bell'
-  | 'bellBall';
+  | 'bellBall'
+  | 'dashboard'
+  | 'key'
+  | 'lineArrowDown'
+  | 'lineArrowUp'
+  | 'logo'
+  | 'logoSmall'
+  | 'mail'
+  | 'person'
+  | 'questionMarkRounded'
+  | 'transaction';

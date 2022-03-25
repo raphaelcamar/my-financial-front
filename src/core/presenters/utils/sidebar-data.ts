@@ -1,10 +1,16 @@
 import { ISidebaroption } from '@/core/domain';
 
 export const SidebarData: ISidebaroption[] = [
+  // {
+  //   isAccordion: false,
+  //   icon: 'asdas',
+  //   title: 'Visão geral',
+  //   path: '/',
+  // },
   {
     isAccordion: false,
-    icon: 'dashboard',
-    title: 'Visão geral',
-    path: '/',
+    icon: 'transaction',
+    path: '/transacoes',
+    title: 'Transações',
   },
 ];

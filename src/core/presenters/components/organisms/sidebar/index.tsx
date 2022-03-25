@@ -2,9 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 
 import { useStyles } from './styles';
-import { SidebarDrawer } from '../../atoms/sidebar-drawer';
-import { HeaderSidebar } from '../../atoms/header-sidebar';
-import { SidebarOptions } from '../sidebar-options';
+import { HeaderSidebar, SidebarDrawer } from '@/core/presenters/components/atoms';
+import { SidebarOptions } from '@/core/presenters/components/organisms';
 import { SidebarData } from '@/core/presenters/utils/sidebar-data';
 
 interface ISidebarProps {
