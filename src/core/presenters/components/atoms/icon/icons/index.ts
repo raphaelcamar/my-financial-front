@@ -1,7 +1,10 @@
+export * from './add-icon';
 export * from './arrow-down-icon';
 export * from './bell-ball-icon';
 export * from './bell-icon';
+export * from './close-icon';
 export * from './dashboard-icon';
+export * from './filter-icon';
 export * from './key-icon';
 export * from './line-arrow-down-icon';
 export * from './line-arrow-up-icon';
@@ -12,4 +15,3 @@ export * from './person-icon';
 export * from './question-mark-rounded-icon';
 export * from './search-icon';
 export * from './transaction-icon';
-export * from './filter-icon';

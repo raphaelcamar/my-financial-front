@@ -1,7 +1,9 @@
 export type AvailableIcons =
+  | 'add'
   | 'arrowDown'
   | 'bell'
   | 'bellBall'
+  | 'close'
   | 'dashboard'
   | 'filter'
   | 'key'

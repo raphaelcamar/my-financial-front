@@ -1,8 +1,10 @@
 import React from 'react';
 import {
+  AddIcon,
   ArrowDownIcon,
   BellBallIcon,
   BellIcon,
+  CloseIcon,
   DashboardIcon,
   KeyIcon,
   LineArrowDownIcon,
@@ -25,6 +27,7 @@ export type IconProps = {
 
 export const Icon: React.FC<IconProps> = ({ icon, color }) => {
   const getIcon = {
+    add: <AddIcon color={color && color} />,
     arrowDown: <ArrowDownIcon color={color && color} />,
     bell: <BellIcon color={color && color} />,
     bellBall: <BellBallIcon color={color && color} />,
@@ -40,6 +43,7 @@ export const Icon: React.FC<IconProps> = ({ icon, color }) => {
     transaction: <TransactionIcon color={color && color} />,
     search: <SearchIcon color={color && color} />,
     filter: <FilterIcon color={color && color} />,
+    close: <CloseIcon color={color && color} />,
   };
 
   return getIcon[icon];

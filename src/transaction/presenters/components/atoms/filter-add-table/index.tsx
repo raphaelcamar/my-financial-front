@@ -17,7 +17,7 @@ export const FilterAddTable: React.FC<IFilterAddTable> = ({ setOpenModal, button
           <IconButton icon="filter" size="large" />
         </div>
         <div>
-          <Button variant="fullfiled" size="large" type="submit" onClick={() => setOpenModal}>
+          <Button variant="fullfiled" size="large" type="submit" onClick={setOpenModal}>
             {buttonText}
           </Button>
         </div>

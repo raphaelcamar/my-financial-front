@@ -18,7 +18,7 @@ export const TransactionsPage: React.FC = () => {
         </Grid>
       </Grid>
       <Grid item md={3}>
-        <div style={{ minHeight: '100vh', background: 'blue' }}>Another sidebar</div>
+        <div style={{ minHeight: '100vh' }}>Fechamento dos últimos meses</div>
       </Grid>
     </Grid>
   );

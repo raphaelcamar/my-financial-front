@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 8,
       color: theme.palette.grey[100],
       fontSize: 14,
-      padding: '8px 0',
+      padding: '8px',
       border: 'none',
       transition: 'all ease .08s',
       cursor: 'pointer',
