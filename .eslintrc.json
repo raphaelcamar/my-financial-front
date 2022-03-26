@@ -63,7 +63,8 @@
 		"default-case": "off",
 		"no-useless-constructor": "off",
 		"no-shadow": "off",
-  	"@typescript-eslint/no-shadow": ["error"]
+  	"@typescript-eslint/no-shadow": ["error"],
+		"import/no-extraneous-dependencies": ["off", {"devDependencies": false}]
 
 	}
 }
