@@ -24,7 +24,7 @@ export const useStylesProvider = (colorFocus: string) => {
     },
 
     containerInput: {
-      border: `2px solid ${colorFocus}`,
+      border: `1px solid ${colorFocus}`,
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
