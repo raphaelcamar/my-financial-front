@@ -1,11 +1,11 @@
 import { AccessRepository, CacheRepository } from '@/access-and-auth/data/protocols';
-import { User, UserSubscribe } from '@/access-and-auth/domain';
+import { User } from '@/access-and-auth/domain';
 
 export class CreateUser<T> {
   constructor(
     private accessRepository: AccessRepository,
     private cacheRepository: CacheRepository<T>,
-    private subscribeData: UserSubscribe
+    private subscribeData: User.Subscribe
   ) {}
 
   async execute(): Promise<User> {

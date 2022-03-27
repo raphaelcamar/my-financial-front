@@ -64,7 +64,10 @@
 		"no-useless-constructor": "off",
 		"no-shadow": "off",
   	"@typescript-eslint/no-shadow": ["error"],
-		"import/no-extraneous-dependencies": ["off", {"devDependencies": false}]
+		"import/no-extraneous-dependencies": ["off", {"devDependencies": false}],
+		"no-underscore-dangle": "off",
+		"@typescript-eslint/no-namespace": "off",
+		"import/export": "off"
 
 	}
 }

@@ -6,7 +6,7 @@ import { CircularProgress, Icon, SubscribeIllustration, Typography } from '@/cor
 import { Button, Input } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
 import { UserSubscribeValidatorSchema } from '@/access-and-auth/data';
-import { UserSubscribe } from '@/access-and-auth/domain';
+import { User } from '@/access-and-auth/domain';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 
 export const Subscribe: React.FC = () => {
@@ -26,11 +26,11 @@ export const Subscribe: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserSubscribe>({
+  } = useForm<User.Subscribe>({
     resolver: yupResolver(UserSubscribeValidatorSchema),
   });
 
-  const handleSubmitForm = async (data: UserSubscribe) => {
+  const handleSubmitForm = async (data: User.Subscribe) => {
     setLoading(true);
 
     try {

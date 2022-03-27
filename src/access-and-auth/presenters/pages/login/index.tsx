@@ -6,7 +6,7 @@ import { Icon, Typography, LoginIllustration, CircularProgress } from '@/core/pr
 import { Input, Button } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
 import { UserLoginValidatorSchema } from '@/access-and-auth/data';
-import { UserLogin as LoginTypeForm } from '@/access-and-auth/domain';
+import { User } from '@/access-and-auth/domain';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts/access-and-auth/';
 
 type FormLoginProps = {
@@ -30,7 +30,7 @@ export const Login: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginTypeForm>({
+  } = useForm<User.Login>({
     resolver: yupResolver(UserLoginValidatorSchema),
   });
 

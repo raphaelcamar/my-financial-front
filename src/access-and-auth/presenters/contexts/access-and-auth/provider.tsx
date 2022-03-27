@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import { AccessRepositoryData } from '@/access-and-auth/infra';
 import { AccessAndAuthContext } from './context';
 import { initialState, reducer } from './reducers';
-import { User, UserLogin, UserSubscribe } from '@/access-and-auth/domain';
+import { User } from '@/access-and-auth/domain';
 import { LocalStorageRepository } from '@/access-and-auth/infra/cache';
 import { AuthenticateUser, CreateUser, VerifySession } from '@/access-and-auth/data';
 import { fetchUserAuth } from './actions';
@@ -22,7 +22,7 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
     if (user) dispatch(fetchUserAuth(user));
   }, []);
 
-  const userAuth = async (loginData: UserLogin): Promise<void> => {
+  const userAuth = async (loginData: User.Login): Promise<void> => {
     const accessRepository = new AccessRepositoryData();
     const localStorageRepository = new LocalStorageRepository<User>();
     const authenticateUser = new AuthenticateUser(accessRepository, localStorageRepository, loginData);
@@ -31,7 +31,7 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
     dispatch(fetchUserAuth(user));
   };
 
-  const newUser = async (subscribeData: UserSubscribe): Promise<void> => {
+  const newUser = async (subscribeData: User.Subscribe): Promise<void> => {
     const accessRepository = new AccessRepositoryData();
     const localStorageRepository = new LocalStorageRepository();
     const createUser = new CreateUser(accessRepository, localStorageRepository, subscribeData);
