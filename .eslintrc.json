@@ -67,8 +67,8 @@
 		"import/no-extraneous-dependencies": ["off", {"devDependencies": false}],
 		"no-underscore-dangle": "off",
 		"@typescript-eslint/no-namespace": "off",
-		"import/export": "off"
-
+		"import/export": "off",
+		"lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
 	}
 }
 
