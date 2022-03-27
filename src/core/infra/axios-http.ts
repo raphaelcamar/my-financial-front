@@ -1,9 +1,5 @@
 import { api } from '@/core/infra';
-import {
-  HttpClient,
-  HttpPostParams,
-  HttpResponse,
-} from '@/core/data/protocols';
+import { HttpClient, HttpPostParams, HttpResponse } from '@/core/data/protocols';
 
 export class AxiosHttpClient<T, R> implements HttpClient<T, R> {
   async get(params: HttpPostParams<T>): Promise<HttpResponse<R>> {

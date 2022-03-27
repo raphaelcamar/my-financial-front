@@ -25,18 +25,18 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
   const userAuth = async (loginData: User.Login): Promise<void> => {
     const accessRepository = new AccessRepositoryData();
     const localStorageRepository = new LocalStorageRepository<User>();
-    const authenticateUser = new AuthenticateUser(accessRepository, localStorageRepository, loginData);
+    const useCase = new AuthenticateUser(accessRepository, localStorageRepository, loginData);
 
-    const user = await authenticateUser.execute();
+    const user = await useCase.execute();
     dispatch(fetchUserAuth(user));
   };
 
   const newUser = async (subscribeData: User.Subscribe): Promise<void> => {
     const accessRepository = new AccessRepositoryData();
     const localStorageRepository = new LocalStorageRepository();
-    const createUser = new CreateUser(accessRepository, localStorageRepository, subscribeData);
+    const useCase = new CreateUser(accessRepository, localStorageRepository, subscribeData);
 
-    const user = await createUser.execute();
+    const user = await useCase.execute();
     dispatch(fetchUserAuth(user));
   };
 
