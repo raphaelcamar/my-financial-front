@@ -1,4 +1,4 @@
-import { User } from '@/access-and-auth/domain';
+import { User } from '@/access-and-auth/domain/entities';
 
 export const USER_AUTHORIZED = 'USER_AUTHORIZED';
 

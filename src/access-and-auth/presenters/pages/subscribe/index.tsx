@@ -6,7 +6,7 @@ import { CircularProgress, Icon, SubscribeIllustration, Typography } from '@/cor
 import { Button, Input } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
 import { UserSubscribeValidatorSchema } from '@/access-and-auth/data';
-import { User } from '@/access-and-auth/domain';
+import { User } from '@/access-and-auth/domain/entities';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 
 export const Subscribe: React.FC = () => {

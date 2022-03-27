@@ -1,5 +1,5 @@
 import { AccessRepository, CacheRepository } from '@/access-and-auth/data/protocols';
-import { User } from '@/access-and-auth/domain';
+import { User } from '@/access-and-auth/domain/entities';
 
 export class CreateUser<T> {
   constructor(

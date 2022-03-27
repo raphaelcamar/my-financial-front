@@ -6,7 +6,7 @@ import { Icon, Typography, LoginIllustration, CircularProgress } from '@/core/pr
 import { Input, Button } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
 import { UserLoginValidatorSchema } from '@/access-and-auth/data';
-import { User } from '@/access-and-auth/domain';
+import { User } from '@/access-and-auth/domain/entities';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts/access-and-auth/';
 
 type FormLoginProps = {

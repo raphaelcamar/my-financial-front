@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { User } from '@/access-and-auth/domain';
+import { User } from '@/access-and-auth/domain/entities';
 
 type PropsAccessAndAuthContext = {
   user: User;

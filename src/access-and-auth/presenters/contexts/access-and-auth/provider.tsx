@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import { AccessRepositoryData } from '@/access-and-auth/infra';
 import { AccessAndAuthContext } from './context';
 import { initialState, reducer } from './reducers';
-import { User } from '@/access-and-auth/domain';
+import { User } from '@/access-and-auth/domain/entities';
 import { LocalStorageRepository } from '@/access-and-auth/infra/cache';
 import { AuthenticateUser, CreateUser, VerifySession } from '@/access-and-auth/data';
 import { fetchUserAuth } from './actions';
