@@ -2,8 +2,8 @@
 
 Project made to study clean architeture in front-end, and other concepts about webpack, docker, etc.
 
-## What i´m using in this project
+## What am i using in this project
 - Webpack
 - Clean Architeture
-- Material
+- Material UI
 - Atomic design
