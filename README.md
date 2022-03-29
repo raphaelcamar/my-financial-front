@@ -7,3 +7,4 @@ Project made to study clean architeture in front-end, and other concepts about w
 - Clean Architeture
 - Material UI
 - Atomic design
+- Typescript
