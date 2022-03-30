@@ -10,5 +10,5 @@ export const CreateTransactionSchema = yup.object({
   value: yup.number().required('Deve informar um valor').nullable().min(0, 'Caso negativo, coloque como despesa'),
   billedAt: yup.date().required('Deve informar uma data').nullable(),
   type: yup.string().oneOf(['SPENT', 'ENTRANCE']).required('Deve informar um tipo').nullable(),
-  anotation: yup.string().max(100).nullable(),
+  anotation: yup.string().max(100).nullable().required('Deve informar uma anotação'),
 });
