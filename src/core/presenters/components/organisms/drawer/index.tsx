@@ -20,18 +20,6 @@ export const Drawer: React.FC<IDrawer> = ({ children, text, onClose, onSubmit, .
         <IconButton icon="close" onClick={onClose} size="large" />
       </div>
       <div>{children}</div>
-      <div className={classes.buttons}>
-        <div>
-          <Button variant="outlined" size="large" onClick={onClose}>
-            Cancelar
-          </Button>
-        </div>
-        <div>
-          <Button icon="add" variant="fullfiled" size="large" onClick={onSubmit}>
-            Adicionar
-          </Button>
-        </div>
-      </div>
     </MuiDrawer>
   );
 };

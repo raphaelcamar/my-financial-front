@@ -5,10 +5,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
   container: {
     '& .MuiDrawer-paper': {
       borderRadius: 16,
-      height: 'auto !important',
       padding: '28px 36px',
       marginTop: 48,
       minWidth: 504,
+      height: '90%',
     },
   },
 
@@ -25,11 +25,5 @@ export const useStyles = makeStyles((theme: Theme) => ({
       fontWeight: 500,
       fontSize: 18,
     },
-  },
-
-  buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    gap: 16,
   },
 }));

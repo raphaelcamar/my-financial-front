@@ -8,6 +8,7 @@ import { AccessAndAuthRoutes } from '@/access-and-auth/presenters/routes';
 import { TransactionRoutes } from '@/transaction/presenters/routes';
 import { PrivateRoute } from '@/core/presenters/proxies';
 import { Container } from '@/core/presenters/components/organisms';
+import { TransactionProvider } from '@/transaction/presenters/contexts';
 
 ReactDOM.render(
   <ThemeProvider>
@@ -16,7 +17,9 @@ ReactDOM.render(
         <AccessAndAuthRoutes />
         <PrivateRoute>
           <Container>
-            <TransactionRoutes />
+            <TransactionProvider>
+              <TransactionRoutes />
+            </TransactionProvider>
           </Container>
         </PrivateRoute>
       </AccessAndAuthProvider>

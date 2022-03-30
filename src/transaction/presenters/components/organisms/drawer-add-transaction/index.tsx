@@ -2,15 +2,36 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Drawer } from '@/core/presenters/components/organisms';
-import { Input } from '@/core/presenters/components/molecules';
+import { Button, Input } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
 import { Transaction } from '@/transaction/domain/entities';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
+import { Select } from '@/core/presenters/components/atoms';
 
 interface IDrawerAddTransaction {
   openModal: boolean;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const items = [
+  {
+    text: 'teste1',
+    value: 'teste1',
+  },
+  {
+    text: 'teste2',
+    value: 'teste2',
+  },
+  {
+    text: 'teste3',
+    value: 'teste3',
+  },
+  {
+    text: 'teste4',
+    value: 'teste4',
+  },
+];
+
 export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModal, setOpenModal }) => {
   // TODO: context for creating transaction, react hook form for him as well
   const classes = useStyles();
@@ -44,6 +65,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
       <form className={classes.bodyContent} onSubmit={() => handleSubmit(handleSubmitForm)}>
         {/* TODO select */}
         <Input label="Tópico" />
+        <Select label="Tópico" items={items} />
         {/* TODO select */}
         <Input label="Tipo da transação" />
         {/* TODO input mask install */}
@@ -51,7 +73,20 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
         {/* TODO input mask value, with helper */}
         <Input label="Valor" />
         <Input label="Anotação" />
-        <button type="submit">teste</button>
+        <div className={classes.buttons}>
+          <Button variant="outlined" size="large" onClick={() => setOpenModal(false)}>
+            Cancelar
+          </Button>
+          <Button
+            type="submit"
+            icon="add"
+            variant="fullfiled"
+            size="large"
+            onClick={() => handleSubmit(handleSubmitForm)}
+          >
+            Adicionar
+          </Button>
+        </div>
       </form>
     </Drawer>
   );

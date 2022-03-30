@@ -8,6 +8,7 @@ export * from './icon';
 export * from './illustration-login';
 export * from './illustration-subscribe';
 export * from './paper';
+export * from './select';
 export * from './sidebar-drawer';
 export * from './tooltip';
 export * from './typography';
