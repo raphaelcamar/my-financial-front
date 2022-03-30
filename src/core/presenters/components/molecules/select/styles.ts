@@ -51,6 +51,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     height: 15,
   },
 
+  selected: {
+    background: theme.palette.grey[200],
+  },
+
   optionsContainer: {
     background: theme.palette.background.paper,
     border: `1px solid ${theme.palette.primary.main}`,
@@ -71,6 +75,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   openOptions: {
+    zIndex: 1000,
     transform: 'scale(1)',
     transformOrigin: 'top',
   },

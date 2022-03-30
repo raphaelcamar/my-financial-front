@@ -4,3 +4,4 @@ export * from './button';
 export * from './icon-button';
 export * from './icon-sidebar-action';
 export * from './input';
+export * from './select';
