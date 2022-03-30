@@ -13,6 +13,9 @@ interface ISelectOption {
   value?: string;
 }
 
+// TODO put this component in molecules
+// TODO create a input for validate fields. Separating from the input
+
 interface ISelectProps {
   label: string;
   items: ISelectOption[];
