@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Drawer } from '@/core/presenters/components/organisms';
 import { Button, Input, ISelectOption, Select } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
 import { Transaction, TypeTopic, TypeTransaction } from '@/transaction/domain/entities';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
+import { InputMask } from '@/core/presenters/components/molecules/input-mask';
 
 interface IDrawerAddTransaction {
   openModal: boolean;
@@ -52,10 +53,13 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
     handleSubmit,
     setValue,
     watch,
+    control,
     formState: { errors },
   } = useForm<Partial<Transaction>>({ resolver: yupResolver(CreateTransactionSchema) });
 
   const onSubmit = data => console.log(data);
+
+  console.log(watch('billedAt'));
 
   const handleChangeSelect = (type: any, item: ISelectOption) => {
     setValue(type, item.value as TypeTopic, {
@@ -63,6 +67,11 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
       shouldDirty: true,
       shouldTouch: true,
     });
+  };
+
+  const handleChaneInput = (fc, value) => {
+    console.log(value);
+    console.log(fc);
   };
 
   return (
@@ -90,11 +99,32 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
           messageValidator={errors?.type?.message}
         />
 
-        <Input
+        {/* <Input
           label="Data"
           {...register('billedAt')}
           validator={!!errors?.billedAt}
           messageValidator={errors?.billedAt?.message}
+        /> */}
+
+        <Controller
+          control={control}
+          name="billedAt"
+          render={({ field: { onChange, value, name, ref } }) => (
+            <InputMask
+              validator={!!errors?.billedAt}
+              messageValidator={errors?.billedAt?.message}
+              label="Data"
+              mask="date"
+              onChange={e => onChange(e)}
+            />
+          )}
+        />
+        <InputMask
+          mask="date"
+          label="Data"
+          messageValidator={errors?.billedAt?.message}
+          validator={!!errors?.billedAt}
+          onChange={e => console.log(e.target.value)}
         />
         <Input
           label="Valor"
