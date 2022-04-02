@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { SnackbarProvider } from 'notistack';
 import { ThemeProvider } from '@/core/presenters/contexts/theme';
 import './global.css';
 import { AccessAndAuthProvider } from '@/access-and-auth/presenters/contexts';
@@ -13,16 +14,18 @@ import { TransactionProvider } from '@/transaction/presenters/contexts';
 ReactDOM.render(
   <ThemeProvider>
     <BrowserRouter>
-      <AccessAndAuthProvider>
-        <AccessAndAuthRoutes />
-        <PrivateRoute>
-          <Container>
-            <TransactionProvider>
-              <TransactionRoutes />
-            </TransactionProvider>
-          </Container>
-        </PrivateRoute>
-      </AccessAndAuthProvider>
+      <SnackbarProvider>
+        <AccessAndAuthProvider>
+          <AccessAndAuthRoutes />
+          <PrivateRoute>
+            <Container>
+              <TransactionProvider>
+                <TransactionRoutes />
+              </TransactionProvider>
+            </Container>
+          </PrivateRoute>
+        </AccessAndAuthProvider>
+      </SnackbarProvider>
     </BrowserRouter>
   </ThemeProvider>,
   document.getElementById('main')

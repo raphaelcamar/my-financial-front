@@ -14,4 +14,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'flex-end',
     gap: 16,
   },
+
+  submitButton: {
+    width: '100%',
+  },
+
+  progress: {
+    marginRight: 4,
+  },
 }));
