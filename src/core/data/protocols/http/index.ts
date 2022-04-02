@@ -1,2 +1,2 @@
-export * from './post-client';
+export * from './request-client';
 export * from './response';
