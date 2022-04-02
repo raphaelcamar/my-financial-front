@@ -1,4 +1,4 @@
-export const dateMask = (e: React.ChangeEvent<HTMLInputElement>) => {
+export const date = (e: React.ChangeEvent<HTMLInputElement>): React.ChangeEvent<HTMLInputElement> => {
   e.target.maxLength = 10;
   let { value } = e.target;
 
@@ -9,6 +9,18 @@ export const dateMask = (e: React.ChangeEvent<HTMLInputElement>) => {
     value = value.replace(/(\d{4})(\d)/, '$1/$2');
     e.target.value = value;
   }
+
+  return e;
+};
+
+export const currency = (e: React.ChangeEvent<HTMLInputElement>): React.ChangeEvent<HTMLInputElement> => {
+  let { value } = e.target;
+
+  value = value.replace(/\D/g, '');
+  value = value.replace(/(\d)(\d{2})$/, '$1,$2');
+  value = value.replace(/(?=(\d{3})+(\D))\B/g, '.');
+
+  e.target.value = value;
 
   return e;
 };
