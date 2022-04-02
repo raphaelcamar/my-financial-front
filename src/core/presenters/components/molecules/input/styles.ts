@@ -36,7 +36,7 @@ export const useStylesProvider = (colorFocus: string) => {
 
     messageValidator: {
       color: theme.palette.error.main,
-      fontSize: 14,
+      fontSize: '14px !important',
     },
 
     invisible: {

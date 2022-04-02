@@ -17,6 +17,7 @@ export const Button: React.FC<IButtonProps> = ({
   variant = 'fullfiled',
   children,
   icon,
+  className,
   ...props
 }) => {
   const classes = useStyles();
@@ -29,7 +30,7 @@ export const Button: React.FC<IButtonProps> = ({
     fullfiled: theme.palette.grey[100],
   };
   return (
-    <button className={clsx(classes.container, classes[variant], classes[size])} {...props}>
+    <button className={clsx(classes.container, classes[variant], classes[size], className)} {...props}>
       <div className={classes.wrapper}>
         {icon && (
           <div className={classes.icon}>

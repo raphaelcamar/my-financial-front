@@ -17,7 +17,7 @@ export const Drawer: React.FC<IDrawer> = ({ children, text, onClose, onSubmit, .
     <MuiDrawer {...props} className={classes.container}>
       <div className={clsx(classes.drawerHeader, text && classes.spacing)}>
         {text && <Typography variant="body1">{text}</Typography>}
-        <IconButton icon="close" onClick={onClose} size="large" />
+        <IconButton icon="close" type="button" onClick={onClose} size="large" />
       </div>
       <div>{children}</div>
     </MuiDrawer>

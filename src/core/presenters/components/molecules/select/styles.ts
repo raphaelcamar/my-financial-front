@@ -71,7 +71,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   messageValidator: {
     color: theme.palette.error.main,
-    fontSize: 14,
+    fontSize: '14px !important',
   },
 
   openOptions: {
