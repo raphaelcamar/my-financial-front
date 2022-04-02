@@ -1,4 +1,4 @@
-import { CacheRepository, localStorageKey } from '@/access-and-auth/data/protocols';
+import { CacheRepository, localStorageKey } from '@/core/data/protocols';
 
 export class LocalStorageRepository<T> implements CacheRepository<T> {
   set(key: localStorageKey, value: object): void {

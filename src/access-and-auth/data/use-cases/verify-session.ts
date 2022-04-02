@@ -1,4 +1,4 @@
-import { CacheRepository } from '@/access-and-auth/data/protocols';
+import { CacheRepository } from '@/core/data/protocols';
 
 export class VerifySession<T> {
   constructor(private cacheRepository: CacheRepository<T>) {}
