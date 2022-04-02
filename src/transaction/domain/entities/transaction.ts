@@ -10,7 +10,7 @@ export class Transaction {
   anotation?: string;
   type: TypeTransaction;
   updatedAt?: Date | string;
-  value: number;
+  cost: number;
   topic: TypeTopic;
 
   constructor(transaction: Transaction.Data) {
@@ -22,7 +22,7 @@ export class Transaction {
     this.anotation = transaction.anotation;
     this.type = transaction.type;
     this.updatedAt = transaction.updatedAt;
-    this.value = transaction.value;
+    this.cost = transaction.cost;
     this.topic = transaction.topic;
   }
 }
@@ -36,7 +36,7 @@ export namespace Transaction {
     anotation?: string;
     type: TypeTransaction;
     updatedAt?: Date;
-    value: number;
+    cost: number;
     topic: TypeTopic;
   }
 }
