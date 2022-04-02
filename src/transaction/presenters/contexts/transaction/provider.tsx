@@ -4,7 +4,7 @@ import { TransactionContext } from './context';
 import { initialState, reducer } from './reducers';
 import { TransactionRepositoryData } from '@/transaction/infra/http';
 import { CreateTransaction } from '@/transaction/data/use-cases';
-import { fetchCreateTransaction } from './action';
+import { fetchCreateTransaction } from './actions';
 
 export const TransactionProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
