@@ -82,7 +82,24 @@ export const main = createTheme({
       '800': '#05603A',
       '900': '#054F31',
     },
+
+    info: {
+      main: '#2E90FA',
+      light: '#B2DDFF',
+      dark: '#1849A9',
+      '50': '#EFF8FF',
+      '100': '#D1E9FF',
+      '200': '#B2DDFF',
+      '300': '#84CAFF',
+      '400': '#53B1FD',
+      '500': '#2E90FA',
+      '600': '#1570EF',
+      '700': '#175CD3',
+      '800': '#1849A9',
+      '900': '#194185',
+    },
   },
+
   components: {
     MuiTypography: {
       defaultProps: {
