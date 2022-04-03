@@ -16,12 +16,11 @@ export class Transaction {
   constructor(transaction: Transaction.Data) {
     this._id = transaction._id;
     this.userId = transaction.userId;
-    this.billedAt = transaction.billedAt;
+    this.billedAt = transaction.billedAt.toISOString();
     this.createdAt = transaction.billedAt.toISOString();
-    this.createdAt = transaction.createdAt;
     this.anotation = transaction.anotation;
     this.type = transaction.type;
-    this.updatedAt = transaction.updatedAt;
+    this.updatedAt = transaction.updatedAt.toISOString();
     this.cost = transaction.cost;
     this.topic = transaction.topic;
   }
@@ -37,6 +36,18 @@ export namespace Transaction {
     type: TypeTransaction;
     updatedAt?: Date;
     cost: number;
+    topic: TypeTopic;
+  }
+
+  export interface Response {
+    _id?: string;
+    userId: string;
+    billedAt: Date;
+    createdAt?: Date;
+    anotation?: string;
+    type: TypeTransaction;
+    updatedAt?: Date;
+    value: number;
     topic: TypeTopic;
   }
 }

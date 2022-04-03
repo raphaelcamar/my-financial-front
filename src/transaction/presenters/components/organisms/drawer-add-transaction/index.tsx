@@ -45,7 +45,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
     }
   };
 
-  const handleChangeSelect = (type: any, item: ISelectOption) => {
+  const handleChangeSelect = (type, item: ISelectOption) => {
     setValue(type, item.value as TypeTopic, {
       shouldValidate: true,
       shouldDirty: true,
@@ -114,7 +114,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
         />
 
         <div className={classes.buttons}>
-          <Button variant="outlined" size="large" onClick={() => setOpenModal(false)}>
+          <Button variant="outlined" size="large" type="button" onClick={() => setOpenModal(false)}>
             Cancelar
           </Button>
           <Button

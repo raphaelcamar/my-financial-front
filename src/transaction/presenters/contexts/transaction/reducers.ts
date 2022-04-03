@@ -2,7 +2,7 @@
 import { ActionTypes, CREATE_TRANSACTION, InitialState } from './types';
 
 export const initialState: InitialState = {
-  transactions: undefined,
+  transactions: [],
 };
 // eslint-disable-next-line consistent-return
 export function reducer(state = initialState, action: ActionTypes): InitialState {
