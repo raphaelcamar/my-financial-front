@@ -115,6 +115,7 @@ export const main = createTheme({
       color: '#4A4A4A',
     },
     body1: {
+      fontSize: 14,
       color: '#667085',
     },
     h2: {
