@@ -15,5 +15,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     padding: '10px 18px',
     background: theme.palette.primary.main,
     borderRadius: 12,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 }));

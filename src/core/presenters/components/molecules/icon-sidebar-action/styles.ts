@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: theme.shadows[2],
     borderRadius: '50%',
     padding: '18px 16px',
-    position: 'absolute',
+    position: 'fixed',
     left: '0px',
     marginTop: 32,
     marginLeft: `calc(${SIZES.width}px - 18px)`,
