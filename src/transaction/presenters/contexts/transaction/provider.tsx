@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { Transaction } from '@/transaction/domain/entities';
+import { Transaction } from '@/transaction/domain';
 import { TransactionContext } from './context';
 import { initialState, reducer } from './reducers';
 import { TransactionRepositoryData } from '@/transaction/infra';

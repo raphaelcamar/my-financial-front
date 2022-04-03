@@ -1,4 +1,4 @@
-import { Transaction } from '@/transaction/domain/entities';
+import { Transaction } from '@/transaction/domain';
 import { CREATE_TRANSACTION, ActionTypes } from './types';
 
 export function fetchCreateTransaction(payload: Transaction): ActionTypes {

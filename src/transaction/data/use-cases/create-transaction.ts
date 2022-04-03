@@ -1,4 +1,4 @@
-import { Transaction } from '@/transaction/domain/entities';
+import { Transaction } from '@/transaction/domain';
 import { TransactionRepository } from '@/transaction/data/protocols';
 
 export class CreateTransaction {

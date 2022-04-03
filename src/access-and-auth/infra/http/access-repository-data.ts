@@ -1,5 +1,5 @@
 import { AccessRepository } from '@/access-and-auth/data/protocols/access-repository';
-import { User } from '@/access-and-auth/domain/entities';
+import { User } from '@/access-and-auth/domain';
 import { RequestHttpRepository } from '@/core/infra';
 
 export class AccessRepositoryData implements AccessRepository {

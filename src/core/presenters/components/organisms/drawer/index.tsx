@@ -8,10 +8,9 @@ import { Button, IconButton } from '@/core/presenters/components/molecules';
 interface IDrawer extends DrawerProps {
   text?: string;
   onClose: () => void;
-  onSubmit?: () => void;
 }
 
-export const Drawer: React.FC<IDrawer> = ({ children, text, onClose, onSubmit, ...props }) => {
+export const Drawer: React.FC<IDrawer> = ({ children, text, onClose, ...props }) => {
   const classes = useStyles();
   return (
     <MuiDrawer {...props} className={classes.container}>

@@ -1,4 +1,4 @@
-import { Transaction } from '@/transaction/domain/entities';
+import { Transaction } from '@/transaction/domain';
 
 export const CREATE_TRANSACTION = 'CREATE_TRANSACTION';
 

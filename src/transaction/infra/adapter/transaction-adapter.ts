@@ -1,5 +1,5 @@
 import { RequestAdapter } from '@/core/data';
-import { Transaction } from '@/transaction/domain/entities';
+import { Transaction } from '@/transaction/domain';
 
 export class TransactionAdapter implements RequestAdapter {
   request(base: Transaction): Transaction.Response {

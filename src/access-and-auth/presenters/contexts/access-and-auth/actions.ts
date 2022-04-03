@@ -1,4 +1,4 @@
-import { User } from '@/access-and-auth/domain/entities';
+import { User } from '@/access-and-auth/domain';
 import { ActionTypes, USER_AUTHORIZED } from './types';
 
 export function fetchUserAuth(payload: User): ActionTypes {

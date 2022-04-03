@@ -1,4 +1,4 @@
-import { User } from '@/access-and-auth/domain/entities';
+import { User } from '@/access-and-auth/domain';
 
 export interface AccessRepository {
   login: (login: User.Login) => Promise<User.Data>;

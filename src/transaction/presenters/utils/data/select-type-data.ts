@@ -1,4 +1,4 @@
-import { TypeTransaction } from '@/transaction/domain/entities';
+import { TypeTransaction } from '@/transaction/domain';
 
 type transactionTypeItem = {
   text: string;

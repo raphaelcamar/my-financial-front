@@ -1,6 +1,6 @@
 import { RequestHttpRepository } from '@/core/infra';
 import { TransactionRepository } from '@/transaction/data';
-import { Transaction } from '@/transaction/domain/entities';
+import { Transaction } from '@/transaction/domain';
 import { TransactionAdapter } from '@/transaction/infra/adapter';
 
 export class TransactionRepositoryData implements TransactionRepository {

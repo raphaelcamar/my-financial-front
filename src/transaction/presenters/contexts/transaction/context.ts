@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { Transaction } from '@/transaction/domain/entities';
+import { Transaction } from '@/transaction/domain';
 
 type PropsTransaction = {
   transactions: Transaction[];

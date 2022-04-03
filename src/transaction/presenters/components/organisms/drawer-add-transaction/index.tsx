@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import { Drawer } from '@/core/presenters/components/organisms';
 import { Button, Input, ISelectOption, Select } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
-import { Transaction, TypeTopic } from '@/transaction/domain/entities';
+import { Transaction, TypeTopic } from '@/transaction/domain';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
 import { InputMask } from '@/core/presenters/components/molecules/input-mask';
 import { items, typeItems } from '@/transaction/presenters/utils/data/';
