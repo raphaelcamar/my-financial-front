@@ -11,6 +11,8 @@ export * from './line-arrow-up-icon';
 export * from './logo-icon';
 export * from './logo-small-icon';
 export * from './mail-icon';
+export * from './mini-arrow-down-icon';
+export * from './mini-arrow-up-icon';
 export * from './person-icon';
 export * from './question-mark-rounded-icon';
 export * from './search-icon';

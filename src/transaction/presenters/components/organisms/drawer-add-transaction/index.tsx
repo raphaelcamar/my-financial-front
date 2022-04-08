@@ -27,6 +27,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
     register,
     handleSubmit,
     setValue,
+    reset,
     control,
     formState: { errors },
   } = useForm<Partial<Transaction>>({ resolver: yupResolver(CreateTransactionSchema) });
@@ -38,6 +39,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
       enqueueSnackbar('Transação criada com sucesso!', {
         variant: 'success',
       });
+      reset();
     } catch (err) {
       enqueueSnackbar('Não foi possível criar a transação. Tente novamente mais tarde', { variant: 'error' });
     } finally {

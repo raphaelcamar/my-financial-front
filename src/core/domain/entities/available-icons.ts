@@ -12,6 +12,8 @@ export type AvailableIcons =
   | 'logo'
   | 'logoSmall'
   | 'mail'
+  | 'miniArrowDown'
+  | 'miniArrowUp'
   | 'person'
   | 'questionMarkRounded'
   | 'search'
