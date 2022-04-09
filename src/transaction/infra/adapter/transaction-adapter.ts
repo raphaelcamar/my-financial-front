@@ -6,10 +6,10 @@ export class TransactionAdapter implements RequestAdapter {
     const adaptee: Transaction.Response = {
       ...base,
       value: base.cost,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      billedAt: new Date(base.billedAt).toISOString(),
-      amount: base.total,
+      createdAt: null,
+      updatedAt: null,
+      billedAt: String(new Date(base.billedAt)),
+      amount: base.total / 100,
     };
 
     delete adaptee.createdAt;

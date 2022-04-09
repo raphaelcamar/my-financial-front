@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useStyles } from './styles';
-import { FilterAddTable } from '@/transaction/presenters/components/atoms';
-import { DrawerAddTransaction } from '@/transaction/presenters/components/organisms';
 import { TableData } from '@/core/presenters/components/organisms/table/table-data';
 import { Chip, TableCell, TableRow, Typography } from '@/core/presenters/components/atoms';
 
@@ -31,7 +29,6 @@ const tableHead = [
 
 export const TableContainer: React.FC = () => {
   const classes = useStyles();
-  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const { getTransactions, transactions } = useTransactionContext();
 
@@ -41,7 +38,6 @@ export const TableContainer: React.FC = () => {
 
   return (
     <div className={classes.container}>
-      <FilterAddTable setOpenModal={() => setOpenModal(true)} buttonText="adicionar" />
       <TableData dataTitles={tableHead}>
         {transactions.map(transaction => (
           <TableRow>
@@ -70,8 +66,6 @@ export const TableContainer: React.FC = () => {
           </TableRow>
         ))}
       </TableData>
-
-      <DrawerAddTransaction openModal={openModal} setOpenModal={setOpenModal} />
     </div>
   );
 };
