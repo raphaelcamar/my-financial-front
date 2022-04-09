@@ -21,6 +21,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   spacing: {
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: 12,
     '& .MuiTypography-body1': {
       fontWeight: 500,
       fontSize: 18,

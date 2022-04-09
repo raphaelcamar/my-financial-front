@@ -5,6 +5,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
   container: {
     display: 'flex',
     justifyContent: 'space-between',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      gap: 8,
+    },
   },
 
   filterSearch: {
