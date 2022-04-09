@@ -6,9 +6,10 @@ export class TransactionAdapter implements RequestAdapter {
     const adaptee: Transaction.Response = {
       ...base,
       value: base.cost,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      billedAt: new Date(base.billedAt),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      billedAt: new Date(base.billedAt).toISOString(),
+      amount: base.total,
     };
 
     delete adaptee.createdAt;
@@ -21,6 +22,10 @@ export class TransactionAdapter implements RequestAdapter {
     const adaptee: Transaction.Data = {
       ...base,
       cost: base.value,
+      total: base.amount,
+      billedAt: new Date(base.billedAt),
+      createdAt: new Date(base.createdAt),
+      updatedAt: new Date(base.updatedAt),
     };
 
     return new Transaction(adaptee);

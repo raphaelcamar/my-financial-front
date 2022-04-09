@@ -4,6 +4,7 @@ import { Transaction } from '@/transaction/domain';
 type PropsTransaction = {
   transactions: Transaction[];
   createTransaction: (transaction: Transaction) => Promise<void>;
+  getTransactions: () => Promise<void>;
 };
 
 export const TransactionContext = createContext<PropsTransaction>({} as PropsTransaction);

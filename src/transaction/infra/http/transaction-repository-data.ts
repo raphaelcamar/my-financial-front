@@ -24,7 +24,7 @@ export class TransactionRepositoryData implements TransactionRepository {
   async getTransactions(): Promise<Transaction[]> {
     const request = new RequestHttpRepository<unknown, Transaction.Response[]>();
 
-    const httpResponse = await request.post({
+    const httpResponse = await request.get({
       url: 'transaction',
     });
 

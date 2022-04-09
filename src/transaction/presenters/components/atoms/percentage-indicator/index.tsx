@@ -1,18 +1,17 @@
 import React from 'react';
 import { useTheme } from '@mui/material';
 import clsx from 'clsx';
-import { AvailableIcons } from '@/core/domain';
 import { useStyles } from './styles';
 import { Icon, Typography } from '@/core/presenters/components/atoms';
+import { TypeTransaction } from '@/transaction/domain';
 
 interface IPercentageIndicator {
-  type: string; // TODO when create, switch for typeTransaction
-  icon: AvailableIcons;
+  type: TypeTransaction;
   text: string;
   iconWithText?: boolean;
 }
 
-export const PercentageIndicator: React.FC<IPercentageIndicator> = ({ icon, text, type, iconWithText }) => {
+export const PercentageIndicator: React.FC<IPercentageIndicator> = ({ text, type, iconWithText }) => {
   const classes = useStyles(type);
   const theme = useTheme();
 
@@ -20,10 +19,10 @@ export const PercentageIndicator: React.FC<IPercentageIndicator> = ({ icon, text
 
   return (
     <div className={classes.container}>
-      <button type="button" className={clsx(classes.button, iconWithText && classes.iconWithText)}>
+      <div className={clsx(classes.button, iconWithText && classes.iconWithText)}>
         {iconWithText && <Typography variant="body1">{text}</Typography>}
-        <Icon icon="lineArrowUp" color={color} />
-      </button>
+        <Icon icon={type === 'SPENT' ? 'lineArrowDown' : 'lineArrowUp'} color={color} />
+      </div>
       {!iconWithText && <Typography variant="body1">{text}</Typography>}
     </div>
   );

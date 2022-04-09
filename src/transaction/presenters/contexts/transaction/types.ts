@@ -1,6 +1,7 @@
 import { Transaction } from '@/transaction/domain';
 
 export const CREATE_TRANSACTION = 'CREATE_TRANSACTION';
+export const GET_TRANSACTIONS = 'GET_TRANSACTIONS';
 
 export type InitialState = {
   transactions: Transaction[];
@@ -11,4 +12,9 @@ type CreateTransaction = {
   payload: Transaction;
 };
 
-export type ActionTypes = CreateTransaction;
+type GetTransaction = {
+  type: typeof GET_TRANSACTIONS;
+  payload: Transaction[];
+};
+
+export type ActionTypes = CreateTransaction | GetTransaction;

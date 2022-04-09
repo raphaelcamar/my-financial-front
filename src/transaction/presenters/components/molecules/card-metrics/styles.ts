@@ -58,5 +58,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     alignItems: 'center',
     gap: 8,
+
+    '& .MuiTypography-body1': {
+      color: `${theme.palette.grey[400]} !important`,
+    },
   },
 }));
