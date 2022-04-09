@@ -41,7 +41,7 @@ export const TableContainer: React.FC = () => {
 
   return (
     <div className={classes.container}>
-      {/* <FilterAddTable setOpenModal={() => setOpenModal(true)} buttonText="adicionar" /> */}
+      <FilterAddTable setOpenModal={() => setOpenModal(true)} buttonText="adicionar" />
       <TableData dataTitles={tableHead}>
         {transactions.map(transaction => (
           <TableRow>

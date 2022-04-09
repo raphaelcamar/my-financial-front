@@ -45,7 +45,7 @@ export const Input: React.FC<InputProps> = ({
           {icon && <Icon icon={icon || 'person'} color={colorValidate} />}
           <input onChange={onChange} className={classes.input} id={label} type="text" {...inputProps} />
           {iconEnd && (
-            <div role="button" onClick={onClickIconEnd} tabIndex={0}>
+            <div className={classes.button} role="button" onClick={onClickIconEnd} tabIndex={0}>
               <Icon icon={iconEnd} color={colorValidate} />
             </div>
           )}

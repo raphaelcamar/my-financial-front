@@ -3,6 +3,15 @@ import { Theme } from '@mui/material/styles';
 
 export const useStylesProvider = (colorFocus: string) => {
   const useStyles = makeStyles((theme: Theme) => ({
+    button: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      '&:hover': {
+        cursor: 'pointer',
+      },
+    },
+
     container: {
       display: 'flex',
       flexDirection: 'column',
