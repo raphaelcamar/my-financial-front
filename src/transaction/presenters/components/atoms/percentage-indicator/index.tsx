@@ -12,10 +12,11 @@ interface IPercentageIndicator {
 }
 
 export const PercentageIndicator: React.FC<IPercentageIndicator> = ({ text, type, iconWithText }) => {
-  const classes = useStyles(type);
   const theme = useTheme();
 
   const color = type === 'ENTRANCE' ? theme.palette.success[500] : theme.palette.error[500];
+
+  const classes = useStyles(type);
 
   return (
     <div className={classes.container}>

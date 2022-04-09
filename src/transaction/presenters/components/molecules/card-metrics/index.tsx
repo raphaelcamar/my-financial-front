@@ -29,7 +29,7 @@ export const CardMetrics: React.FC<ICardMetrics> = ({
       <div className={clsx(classes.container, !withBorder && classes.withoutBorder, lastChild && classes.lastChild)}>
         {withBorder && <div className={classes.line} />}
         <Typography variant="body1">{title}</Typography>
-        <Typography variant="h4">{formatCurrency(value)}</Typography>
+        <Typography variant="h5">{formatCurrency(value)}</Typography>
         <div className={classes.indicatorTexts}>
           <PercentageIndicator text={percentage} type={type} />
           <Typography variant="body1">vs mês anterior</Typography>

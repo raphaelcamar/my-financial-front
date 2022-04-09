@@ -1,7 +1,8 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
+import { TypeTransaction } from '@/transaction/domain';
 
-export const useStyles = (type: string /* Switch for typeTransaction when done */) => {
+export const useStyles = (type: TypeTransaction) => {
   const styles = makeStyles((theme: Theme) => ({
     button: {
       background: type === 'ENTRANCE' ? theme.palette.success[100] : theme.palette.error[100],
@@ -22,7 +23,7 @@ export const useStyles = (type: string /* Switch for typeTransaction when done *
       alignItems: 'center',
 
       '& .MuiTypography-body1': {
-        color: type === 'ENTRANCE' ? theme.palette.success[500] : theme.palette.error[500],
+        color: `${type === 'ENTRANCE' ? theme.palette.success[500] : theme.palette.error[500]} !important`,
       },
 
       [theme.breakpoints.down('sm')]: {

@@ -17,7 +17,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       paddingTop: 12,
     },
 
-    '& .MuiTypography-h4': {
+    '& .MuiTypography-h5': {
       fontWeight: 700,
       color: theme.palette.grey[500],
     },

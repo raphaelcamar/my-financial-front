@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useStyles } from './styles';
 import { TableData } from '@/core/presenters/components/organisms/table/table-data';
 import { Chip, TableCell, TableRow, Typography } from '@/core/presenters/components/atoms';
@@ -41,27 +41,27 @@ export const TableContainer: React.FC = () => {
       <TableData dataTitles={tableHead}>
         {transactions.map(transaction => (
           <TableRow>
-            <TableCell>
+            <TableCell width={10}>
               <Chip color="primary">
-                <Typography variant="body1">{formatTopic(transaction?.topic)}</Typography>
+                <Typography variant="body1">{formatTopic(transaction?.topic) || '-'}</Typography>
               </Chip>
             </TableCell>
-            <TableCell>
+            <TableCell width={350}>
               <Typography variant="body1">{transaction?.anotation}</Typography>
             </TableCell>
-            <TableCell>
-              <Typography variant="body1">{formatDate(transaction?.billedAt as string)}</Typography>
+            <TableCell width={20}>
+              <Typography variant="body1">{formatDate(String(transaction?.billedAt)) || '-'}</Typography>
             </TableCell>
-            <TableCell>
+            <TableCell width={10}>
               <Chip color={transaction?.type === 'ENTRANCE' ? 'success' : 'error'}>
-                <Typography variant="body1">{formatType(transaction?.type)}</Typography>
+                <Typography variant="body1">{formatType(transaction?.type) || '-'}</Typography>
               </Chip>
             </TableCell>
-            <TableCell>
-              <Typography variant="body1">{formatCurrency(transaction?.cost)}</Typography>
+            <TableCell width={10}>
+              <Typography variant="body1">{formatCurrency(transaction?.cost) || '-'}</Typography>
             </TableCell>
-            <TableCell>
-              <Typography variant="body1">{formatCurrency(transaction.total)}</Typography>
+            <TableCell width={10}>
+              <Typography variant="body1">{formatCurrency(transaction.total) || '-'}</Typography>
             </TableCell>
           </TableRow>
         ))}
