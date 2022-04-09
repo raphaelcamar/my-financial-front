@@ -5,11 +5,11 @@ export type TypeTopic = 'FOOD' | 'TRANSPORT' | 'HEALTH' | 'OTHER';
 export class Transaction {
   _id?: string;
   userId: string;
-  billedAt: Date | string;
-  createdAt?: Date | string;
+  billedAt: Date;
+  createdAt?: Date;
   anotation?: string;
   type: TypeTransaction;
-  updatedAt?: Date | string;
+  updatedAt?: Date;
   cost: number;
   total?: number;
   topic: TypeTopic;
@@ -17,11 +17,11 @@ export class Transaction {
   constructor(transaction: Transaction.Data) {
     this._id = transaction._id;
     this.userId = transaction.userId;
-    this.billedAt = transaction.billedAt.toISOString();
-    this.createdAt = transaction.createdAt.toISOString();
+    this.billedAt = new Date(transaction.billedAt);
+    this.createdAt = new Date(transaction.createdAt);
     this.anotation = transaction.anotation;
     this.type = transaction.type;
-    this.updatedAt = transaction.updatedAt.toISOString();
+    this.updatedAt = new Date(transaction.updatedAt);
     this.cost = transaction.cost;
     this.topic = transaction.topic;
     this.total = transaction.total;
@@ -32,11 +32,11 @@ export namespace Transaction {
   export interface Data {
     _id?: string;
     userId: string;
-    billedAt: Date;
-    createdAt?: Date;
+    billedAt: string | Date;
+    createdAt?: string | Date;
     anotation?: string;
     type: TypeTransaction;
-    updatedAt?: Date;
+    updatedAt?: string | Date;
     cost: number;
     topic: TypeTopic;
     total: number;

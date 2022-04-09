@@ -9,7 +9,7 @@ export type InitialState = {
 
 type CreateTransaction = {
   type: typeof CREATE_TRANSACTION;
-  payload: Transaction;
+  payload: Transaction[];
 };
 
 type GetTransaction = {

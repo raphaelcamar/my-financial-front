@@ -15,9 +15,9 @@ export const TransactionProvider: React.FC = ({ children }) => {
 
     const useCase = new CreateTransaction(transactionData, transactionRepository);
 
-    const transaction = await useCase.execute();
+    const transactions = await useCase.execute();
 
-    dispatch(fetchCreateTransaction(transaction));
+    dispatch(fetchCreateTransaction(transactions));
   };
 
   const getTransactions = async (): Promise<void> => {

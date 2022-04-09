@@ -10,7 +10,7 @@ export function reducer(state = initialState, action: ActionTypes): InitialState
     case CREATE_TRANSACTION:
       return {
         ...state,
-        transactions: [action.payload, ...state.transactions],
+        transactions: action.payload,
       };
     case GET_TRANSACTIONS:
       return {
