@@ -99,7 +99,7 @@ export const Subscribe: React.FC = () => {
             icon="key"
           />
           <Button size="large" variant="fullfiled" disabled={loading} type="submit">
-            {loading ? <CircularProgress size={25} color="primary" /> : 'Login'}
+            {loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}
           </Button>
           {errorMessage && <div className={classes.messageValidator}>{errorMessage}</div>}
         </form>

@@ -39,9 +39,11 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
       enqueueSnackbar('Transação criada com sucesso!', {
         variant: 'success',
       });
-      reset();
+      // reset();
     } catch (err) {
-      enqueueSnackbar('Não foi possível criar a transação. Tente novamente mais tarde', { variant: 'error' });
+      enqueueSnackbar(err?.message || 'Não foi possível criar a transação. Tente novamente mais tarde', {
+        variant: 'error',
+      });
     } finally {
       setLoading(false);
     }
