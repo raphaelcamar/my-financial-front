@@ -10,33 +10,45 @@ import { fetchUserAuth } from './actions';
 export const AccessAndAuthProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const verifyUserAuth = (): User => {
-    const localStorageRepository = new LocalStorageRepository<User>();
-    const useCase = new VerifySession<User>(localStorageRepository);
+  const verifyUserAuth = async (): Promise<User> => {
+    const localStorageRepository = new LocalStorageRepository();
+    const accessRepository = new AccessRepositoryData();
+
+    const useCase = new VerifySession(localStorageRepository, accessRepository);
     const user = useCase.execute();
+
     return user;
   };
 
   useEffect(() => {
-    const user = verifyUserAuth();
-    if (user) dispatch(fetchUserAuth(user));
+    async function verify() {
+      try {
+        const user = await verifyUserAuth();
+        if (user) dispatch(fetchUserAuth(user));
+      } catch (err) {
+        dispatch(fetchUserAuth(null));
+      }
+    }
+    verify();
   }, []);
 
   const userAuth = async (loginData: User.Login): Promise<void> => {
     const accessRepository = new AccessRepositoryData();
-    const localStorageRepository = new LocalStorageRepository<User>();
-    const useCase = new AuthenticateUser(accessRepository, localStorageRepository, loginData);
+    const localStorageRepository = new LocalStorageRepository();
 
+    const useCase = new AuthenticateUser(accessRepository, localStorageRepository, loginData);
     const user = await useCase.execute();
+
     dispatch(fetchUserAuth(user));
   };
 
   const newUser = async (subscribeData: User.Subscribe): Promise<void> => {
     const accessRepository = new AccessRepositoryData();
     const localStorageRepository = new LocalStorageRepository();
-    const useCase = new CreateUser(accessRepository, localStorageRepository, subscribeData);
 
+    const useCase = new CreateUser(accessRepository, localStorageRepository, subscribeData);
     const user = await useCase.execute();
+
     dispatch(fetchUserAuth(user));
   };
 

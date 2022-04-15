@@ -6,10 +6,10 @@ import './global.css';
 import { AccessAndAuthProvider } from '@/access-and-auth/presenters/contexts';
 import { AccessAndAuthRoutes } from '@/access-and-auth/presenters/routes';
 import { TransactionRoutes } from '@/transaction/presenters/routes';
-import { PrivateRoute } from '@/core/presenters/proxies';
 import { Container } from '@/core/presenters/components/organisms';
 import { TransactionProvider } from '@/transaction/presenters/contexts';
 import { NotistackProvider } from '@/core/presenters/contexts';
+import { PrivateRoute } from '@/core/presenters/proxies';
 
 ReactDOM.render(
   <ThemeProvider>

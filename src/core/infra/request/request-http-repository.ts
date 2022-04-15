@@ -2,7 +2,7 @@ import { api, LocalStorageRepository } from '@/core/infra';
 import { HttpClient, HttpPostParams, HttpResponse } from '@/core/data/protocols';
 
 export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
-  private token = new LocalStorageRepository<string>();
+  private token = new LocalStorageRepository();
 
   async get(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
     const httpResponse = await api.get(params.url, {

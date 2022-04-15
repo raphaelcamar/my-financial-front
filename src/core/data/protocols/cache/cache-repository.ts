@@ -1,7 +1,7 @@
 export type localStorageKey = '@user' | '@token';
 
-export interface CacheRepository<T> {
+export interface CacheRepository {
   clean: (key: localStorageKey) => void;
   set: (key: localStorageKey, value: object | string) => void;
-  get: (key: localStorageKey) => T;
+  get: <T>(key: localStorageKey) => T;
 }

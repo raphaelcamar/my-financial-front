@@ -2,6 +2,10 @@ import { AccessRepository } from '@/access-and-auth/data/protocols/access-reposi
 import { User } from '@/access-and-auth/domain';
 import { RequestHttpRepository } from '@/core/infra';
 
+type BodyRequestToken = {
+  token: string;
+};
+
 export class AccessRepositoryData implements AccessRepository {
   async login(bodyLogin: User.Login): Promise<User> {
     const request = new RequestHttpRepository<User.Login, User>();
@@ -20,6 +24,19 @@ export class AccessRepositoryData implements AccessRepository {
     const httpResponse = await request.post({
       url: 'user/create',
       body: bodyLogin,
+    });
+
+    return httpResponse.body;
+  }
+
+  async verifyAccessToken(tokenId: string): Promise<User> {
+    const request = new RequestHttpRepository<BodyRequestToken, User>();
+
+    const httpResponse = await request.post({
+      url: 'user/verify',
+      body: {
+        token: tokenId,
+      },
     });
 
     return httpResponse.body;

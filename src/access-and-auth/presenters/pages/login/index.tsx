@@ -19,12 +19,12 @@ export const Login: React.FC = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>(null);
-  const { userAuth, verifyUserAuth } = useAccessAndAuthContext();
+  const { userAuth, user } = useAccessAndAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (verifyUserAuth()) navigate('/transacoes');
-  }, []);
+    if (user) navigate('/transacoes');
+  }, [user]);
 
   const {
     register,

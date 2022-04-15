@@ -1,14 +1,17 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 import { Navigate } from './navigate';
 
 export const PrivateRoute: React.FC = ({ children }) => {
-  const { verifyUserAuth } = useAccessAndAuthContext();
+  const { user } = useAccessAndAuthContext();
+  const location = useLocation();
 
   const verifyUser = () => {
-    const user = verifyUserAuth();
-    if (!user) return <Navigate to="/login" />;
-
+    if (!user) {
+      if (location.pathname !== '/subscribe') return <Navigate to="/login" state={{ from: location }} replace />;
+      return null;
+    }
     return children;
   };
 

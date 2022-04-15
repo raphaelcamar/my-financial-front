@@ -1,11 +1,11 @@
 import { CacheRepository, localStorageKey } from '@/core/data/protocols';
 
-export class LocalStorageRepository<T> implements CacheRepository<T> {
+export class LocalStorageRepository implements CacheRepository {
   set(key: localStorageKey, value: object): void {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  get(key: localStorageKey): T {
+  get<T>(key: localStorageKey): T {
     const cache: T = JSON.parse(localStorage.getItem(key));
     return cache;
   }

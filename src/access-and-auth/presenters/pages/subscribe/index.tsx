@@ -15,12 +15,12 @@ export const Subscribe: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>(null);
   const [loading, setLoading] = useState(false);
 
-  const { newUser, verifyUserAuth } = useAccessAndAuthContext();
+  const { newUser, user } = useAccessAndAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (verifyUserAuth()) navigate('/transacoes');
-  }, []);
+    if (user) navigate('/transacoes');
+  }, [user]);
 
   const {
     register,

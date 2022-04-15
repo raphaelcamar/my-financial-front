@@ -5,7 +5,7 @@ type PropsAccessAndAuthContext = {
   user: User;
   userAuth: (body: User.Login) => Promise<void>;
   newUser: (body: User.Subscribe) => Promise<void>;
-  verifyUserAuth: () => User;
+  verifyUserAuth: () => Promise<User>;
 };
 
 export const AccessAndAuthContext = createContext<PropsAccessAndAuthContext>({} as PropsAccessAndAuthContext);

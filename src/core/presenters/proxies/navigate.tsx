@@ -7,7 +7,7 @@ export const Navigate: React.FC<NavigateProps> = ({ to, replace, state }) => {
 
   useEffect(() => {
     navigate(to, { replace, state });
-  }, [navigate, to, replace, state]);
+  }, []);
 
   return null;
 };
