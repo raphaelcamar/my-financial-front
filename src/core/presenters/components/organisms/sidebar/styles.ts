@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     padding: 24,
     position: 'fixed',
     height: '100vh',
-    borderRight: `2px solid ${theme.palette.primary[100]}`,
+    borderRight: `1px solid ${theme.palette.primary[100]}`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,

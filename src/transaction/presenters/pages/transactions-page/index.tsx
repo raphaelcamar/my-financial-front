@@ -6,7 +6,6 @@ import { Grid } from '@/core/presenters/components/atoms';
 import { FilterAddTable } from '@/transaction/presenters/components/atoms';
 
 export const TransactionsPage: React.FC = () => {
-  const classes = useStyles();
   const [openModal, setOpenModal] = useState<boolean>(false);
   return (
     <Grid container spacing={3}>

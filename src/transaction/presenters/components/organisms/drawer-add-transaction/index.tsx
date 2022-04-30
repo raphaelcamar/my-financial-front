@@ -27,7 +27,6 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
     register,
     handleSubmit,
     setValue,
-    reset,
     control,
     formState: { errors },
   } = useForm<Partial<Transaction>>({ resolver: yupResolver(CreateTransactionSchema) });

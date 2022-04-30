@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "isolatedModules": false,
     "target": "es6",
     "lib": [ "dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -11,7 +12,6 @@
     "moduleResolution": "node",
     "jsx": "react",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "strictNullChecks": false,
     "rootDir": "./src",
     "baseUrl": ".",
