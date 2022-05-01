@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material';
-import clsx from 'clsx';
 import { Icon, Typography } from '@/core/presenters/components/atoms';
 import { useStyles } from './styles';
 

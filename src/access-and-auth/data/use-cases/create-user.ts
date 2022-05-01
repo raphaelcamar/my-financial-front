@@ -12,13 +12,14 @@ export class CreateUser {
   async execute(): Promise<User> {
     const userLogged = await this.accessRepository.subscribe(this.subscribeData);
     if (userLogged) {
+      const token = userLogged?.token;
       delete userLogged.token;
 
       this.cacheRepository.clean('@user');
       this.cacheRepository.clean('@token');
 
       this.cacheRepository.set('@user', userLogged);
-      this.cacheRepository.set('@token', userLogged.token);
+      this.cacheRepository.set('@token', token);
     }
 
     return userLogged;

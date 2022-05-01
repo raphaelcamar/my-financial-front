@@ -5,7 +5,7 @@ import { ThemeProvider as MuiTheme, Theme } from '@mui/material/styles';
 import { main, dark } from './themes';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const THEMES: any = {
+const THEMES = {
   main,
   dark,
 };
