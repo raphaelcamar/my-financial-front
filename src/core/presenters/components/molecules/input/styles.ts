@@ -25,7 +25,7 @@ export const useStylesProvider = (colorFocus: string) => {
       height: '100%',
       background: 'none !important',
       fontSize: 16,
-      padding: '12px 12px',
+      padding: '8px 12px',
       '&::placeholder': {
         color: theme.palette.grey[500],
         fontSize: 16,

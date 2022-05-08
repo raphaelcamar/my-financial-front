@@ -30,10 +30,14 @@ export const Button: React.FC<IButtonProps> = ({
     fullfiled: theme.palette.grey[100],
   };
   return (
-    <button className={clsx(classes.container, classes[variant], classes[size], className)} {...props}>
+    <button
+      data-testid="styled-button"
+      className={clsx(classes.container, classes[variant], classes[size], className)}
+      {...props}
+    >
       <div className={classes.wrapper}>
         {icon && (
-          <div className={classes.icon}>
+          <div className={classes.icon} data-testid="icon-button">
             <Icon icon={icon} color={getIconStyle[variant]} />
           </div>
         )}
