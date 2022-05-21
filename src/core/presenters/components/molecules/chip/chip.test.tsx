@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { Chip } from '@/core/presenters/components/atoms';
+import { Chip } from '@/core/presenters/components/molecules';
 import { ProvideTheme } from '@/core/tests/mocks';
 import '@testing-library/jest-dom';
 import { main as theme } from '@/core/presenters/contexts/theme/themes/main';
@@ -43,7 +43,6 @@ describe('Chip unit test', () => {
     render(ProvideTheme(<Chip color="warning">Teste</Chip>));
 
     const chip = screen.getByTestId('chip');
-
     const linkElement = screen.getByText(/Teste/i);
 
     expect(chip).toBeInTheDocument();
@@ -55,7 +54,6 @@ describe('Chip unit test', () => {
     render(ProvideTheme(<Chip color="warning">Teste</Chip>));
 
     const chip = screen.getByTestId('chip');
-
     const linkElement = screen.getByText(/Teste/i);
 
     expect(chip).toBeInTheDocument();

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useStyles } from './styles';
 import { TableData } from '@/core/presenters/components/organisms/table/table-data';
-import { Chip, TableCell, TableRow, Typography } from '@/core/presenters/components/atoms';
+import { TableCell, TableRow, Typography } from '@/core/presenters/components/atoms';
+import { Chip } from '@/core/presenters/components/molecules';
 
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { formatCurrency, formatTopic, formatType, formatDate } from '@/core/presenters/utils';
