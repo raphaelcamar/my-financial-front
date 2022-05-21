@@ -5,7 +5,7 @@ import { SIZES } from '@/core/domain';
 export const useStyles = makeStyles((theme: Theme) => ({
   content: {
     flexGrow: 1,
-    padding: 48,
+    padding: '28px 48px',
     background: theme.palette.grey[50],
     minHeight: '100vh',
     transition: theme.transitions.create('margin', {

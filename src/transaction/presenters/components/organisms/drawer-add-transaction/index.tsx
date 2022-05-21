@@ -5,10 +5,10 @@ import { useSnackbar } from 'notistack';
 import { Drawer } from '@/core/presenters/components/organisms';
 import { Button, Input, ISelectOption, Select } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
-import { Transaction, TypeTopic } from '@/transaction/domain';
+import { Transaction, TypeTopic, TypeTransaction } from '@/transaction/domain';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
 import { InputMask } from '@/core/presenters/components/molecules/input-mask';
-import { items, typeItems } from '@/transaction/presenters/utils/data/';
+import { entranceItems, spentItems, typeItems } from '@/transaction/presenters/utils/data/';
 import { CircularProgress } from '@/core/presenters/components/atoms';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 
@@ -22,6 +22,8 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
   const [loading, setLoading] = useState<boolean>(false);
   const { createTransaction } = useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
+  const [selectType, setSelectType] = useState<ISelectOption>(null);
+  const [selectTopic, setSelectTopic] = useState<ISelectOption>(null);
 
   const {
     register,
@@ -48,12 +50,21 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
     }
   };
 
-  const handleChangeSelect = (type, item: ISelectOption) => {
-    setValue(type, item.value as TypeTopic, {
-      shouldValidate: true,
-      shouldDirty: true,
-      shouldTouch: true,
+  const handleChangeSelectType = (item: ISelectOption) => {
+    setSelectType({
+      text: item.text,
+      value: item.value as string,
     });
+    setSelectTopic(null);
+    setValue('type', item.value as TypeTransaction);
+  };
+
+  const handleChangeSelectTopic = (item: ISelectOption) => {
+    setSelectTopic({
+      text: item.text,
+      value: item.value as string,
+    });
+    setValue('topic', item.value as TypeTopic);
   };
 
   return (
@@ -66,19 +77,23 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
     >
       <form className={classes.bodyContent} onSubmit={handleSubmit(onSubmit)}>
         <Select
-          label="Tópico"
-          items={items}
-          onChange={item => handleChangeSelect('topic', item)}
-          validator={!!errors?.topic}
-          messageValidator={errors?.topic?.message}
+          labelFor="type"
+          selected={selectType}
+          label="Tipo da transação"
+          items={typeItems}
+          onChange={item => handleChangeSelectType(item)}
+          validator={!!errors?.type}
+          messageValidator={errors?.type?.message}
         />
 
         <Select
-          label="Tipo da transação"
-          items={typeItems}
-          onChange={item => handleChangeSelect('type', item)}
-          validator={!!errors?.type}
-          messageValidator={errors?.type?.message}
+          labelFor="topic"
+          label="Tópico"
+          selected={selectTopic}
+          items={selectType?.value === 'SPENT' ? spentItems : entranceItems}
+          onChange={item => handleChangeSelectTopic(item)}
+          validator={!!errors?.topic}
+          messageValidator={errors?.topic?.message}
         />
 
         <Controller

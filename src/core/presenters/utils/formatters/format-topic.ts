@@ -10,6 +10,8 @@ export const formatTopic = (topic: TypeTopic): string => {
       return 'Outro';
     case 'TRANSPORT':
       return 'Transporte';
+    case 'SALARY':
+      return 'Salário';
     default:
       return '-';
   }

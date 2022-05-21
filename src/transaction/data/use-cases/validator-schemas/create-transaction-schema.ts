@@ -18,7 +18,7 @@ const verifyValue = (value: string, originalValue: string): number => {
 export const CreateTransactionSchema = yup.object({
   topic: yup
     .string()
-    .oneOf(['FOOD', 'TRANSPORT', 'HEALTH', 'OTHER'], 'Deve informar algumas das opções')
+    .oneOf(['FOOD', 'TRANSPORT', 'HEALTH', 'SALARY', 'OTHER'], 'Deve informar algumas das opções')
     .required('Deve informar um tópico')
     .nullable(),
 

@@ -42,9 +42,7 @@ export const TableContainer: React.FC = () => {
         {transactions.map(transaction => (
           <TableRow>
             <TableCell width={10}>
-              <Chip color="primary">
-                <Typography variant="body1">{formatTopic(transaction?.topic) || '-'}</Typography>
-              </Chip>
+              <Chip color="primary">{formatTopic(transaction?.topic) || '-'}</Chip>
             </TableCell>
             <TableCell width={350}>
               <Typography variant="body1">{transaction?.anotation}</Typography>

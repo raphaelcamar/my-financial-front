@@ -5,7 +5,7 @@ type transactionTopicItem = {
   value: TypeTopic;
 };
 
-export const items: transactionTopicItem[] = [
+export const spentItems: transactionTopicItem[] = [
   {
     text: 'Alimentação',
     value: 'FOOD',
@@ -17,6 +17,17 @@ export const items: transactionTopicItem[] = [
   {
     text: 'Saúde',
     value: 'HEALTH',
+  },
+  {
+    text: 'Outro',
+    value: 'OTHER',
+  },
+];
+
+export const entranceItems: transactionTopicItem[] = [
+  {
+    text: 'Salário',
+    value: 'SALARY',
   },
   {
     text: 'Outro',

@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 import { Navigate } from './navigate';
+import { availableRoutes } from '@/core/presenters/utils';
 
 export const PrivateRoute: React.FC = ({ children }) => {
   const { user } = useAccessAndAuthContext();
@@ -9,7 +10,8 @@ export const PrivateRoute: React.FC = ({ children }) => {
 
   const verifyUser = () => {
     if (!user) {
-      if (location.pathname !== '/subscribe') return <Navigate to="/login" state={{ from: location }} replace />;
+      if (!availableRoutes.includes(location.pathname))
+        return <Navigate to="/login" state={{ from: location }} replace />;
       return null;
     }
     return children;

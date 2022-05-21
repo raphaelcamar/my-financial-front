@@ -15,7 +15,9 @@ export interface ISelectOption {
 interface ISelectProps {
   label: string;
   items: ISelectOption[];
+  selected: ISelectOption;
   validator?: boolean;
+  labelFor?: string;
   messageValidator?: string;
   withoutValidator?: boolean;
   onChange: (option: ISelectOption) => void;
@@ -24,18 +26,18 @@ interface ISelectProps {
 export const Select: React.FC<ISelectProps> = ({
   items,
   label,
-  validator,
   messageValidator,
+  selected,
+  labelFor,
+  validator,
   withoutValidator,
   onChange,
 }) => {
   const classes = useStyles();
-  const [selected, setSelected] = useState<ISelectOption>(null);
   const [open, setOpen] = useState<boolean>(false);
   const theme = useTheme();
 
   const handleSelectOption = (option: ISelectOption) => {
-    setSelected(option);
     onChange(option);
     setOpen(false);
   };
@@ -44,7 +46,7 @@ export const Select: React.FC<ISelectProps> = ({
     <ClickAwayListener onClickAway={() => setOpen(false)}>
       <div>
         <div className={classes.wrapperContainer}>
-          <label htmlFor="select">{label}</label>
+          <label htmlFor={labelFor}>{label}</label>
           <button
             id="select"
             type="button"

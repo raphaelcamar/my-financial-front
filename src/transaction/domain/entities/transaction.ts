@@ -1,6 +1,6 @@
 export type TypeTransaction = 'ENTRANCE' | 'SPENT' | 'RECURRENT';
 
-export type TypeTopic = 'FOOD' | 'TRANSPORT' | 'HEALTH' | 'OTHER';
+export type TypeTopic = 'FOOD' | 'TRANSPORT' | 'HEALTH' | 'OTHER' | 'SALARY';
 
 export class Transaction {
   _id?: string;
