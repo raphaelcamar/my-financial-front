@@ -9,6 +9,8 @@ import { useStyles } from './styles';
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'error' | 'outlined' | 'outlinedError' | 'fullfiled';
   size?: 'normal' | 'large';
+  color?: string;
+  background?: string;
   icon?: AvailableIcons;
 }
 
@@ -17,6 +19,8 @@ export const Button: React.FC<IButtonProps> = ({
   variant = 'fullfiled',
   children,
   icon,
+  color,
+  background,
   className,
   ...props
 }) => {
@@ -32,8 +36,9 @@ export const Button: React.FC<IButtonProps> = ({
   return (
     <button
       data-testid="styled-button"
-      className={clsx(classes.container, classes[variant], classes[size], className)}
       {...props}
+      style={{ background, color }}
+      className={clsx(classes.container, classes[variant], classes[size], className)}
     >
       <div className={classes.wrapper}>
         {icon && (

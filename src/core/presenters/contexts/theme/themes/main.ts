@@ -52,7 +52,7 @@ export const main = createTheme({
 
     background: {
       paper: '#F9FAFB',
-      default: '#FFFFFF',
+      default: '#FAFAFA',
     },
     grey: {
       '50': '#F9FAFB',
@@ -115,7 +115,7 @@ export const main = createTheme({
       color: '#4A4A4A',
     },
     body1: {
-      fontSize: 14,
+      fontSize: 16,
       color: '#667085',
     },
     h2: {

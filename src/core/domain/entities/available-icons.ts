@@ -3,9 +3,11 @@ export type AvailableIcons =
   | 'arrowDown'
   | 'bell'
   | 'bellBall'
+  | 'circle'
   | 'close'
   | 'dashboard'
   | 'filter'
+  | 'google'
   | 'key'
   | 'lineArrowDown'
   | 'lineArrowUp'
@@ -17,4 +19,5 @@ export type AvailableIcons =
   | 'person'
   | 'questionMarkRounded'
   | 'search'
+  | 'square'
   | 'transaction';

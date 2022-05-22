@@ -38,8 +38,9 @@ export const useStylesProvider = (colorFocus: string) => {
       flexDirection: 'row',
       alignItems: 'center',
       padding: '0 18px',
-      gap: 40,
-      borderRadius: 15,
+      // gap: 40,
+      height: 46,
+      borderRadius: 12,
       transition: `.${theme.transitions.duration.enteringScreen} ${theme.transitions.easing.sharp}`,
     },
 
