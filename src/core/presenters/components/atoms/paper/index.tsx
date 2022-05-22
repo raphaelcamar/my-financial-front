@@ -9,7 +9,7 @@ interface IPaper extends React.HTMLAttributes<HTMLDivElement> {
 export const Paper: React.FC<IPaper> = ({ density, children, className, ...props }) => {
   const classes = useStyles();
   return (
-    <div {...props} className={clsx(classes.container, classes[density], className)}>
+    <div data-testid="paper" {...props} className={clsx(classes.container, classes[density], className)}>
       {children}
     </div>
   );

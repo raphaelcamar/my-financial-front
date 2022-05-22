@@ -10,5 +10,4 @@ export * from './illustration-subscribe';
 export * from './paper';
 export * from './sidebar-drawer';
 export * from './table-components';
-export * from './tooltip';
 export * from './typography';
