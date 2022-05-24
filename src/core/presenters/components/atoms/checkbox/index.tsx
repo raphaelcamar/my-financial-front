@@ -6,7 +6,7 @@ export type StyledCheckboxProps = CheckboxProps & {
   props?: CheckboxProps;
 };
 
-export const StyledCheckbox: React.FC<StyledCheckboxProps> = ({ label, props }) => (
+export const StyledCheckbox: React.FC<StyledCheckboxProps> = ({ label, ...props }) => (
   <>
     {label ? (
       <FormGroup>

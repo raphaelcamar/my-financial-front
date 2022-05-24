@@ -25,7 +25,9 @@ export namespace User {
     token: string;
   }
 
-  export type Login = Pick<User, 'email' | 'password'>;
+  export type Login = {
+    rememberMe?: boolean;
+  } & Pick<User, 'email' | 'password'>;
 
   export type Subscribe = Pick<User, 'email' | 'password' | 'lastname' | 'name'>;
 }
