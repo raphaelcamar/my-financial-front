@@ -12,7 +12,7 @@ export const TransactionsPage: React.FC = () => {
       <Grid item md={9} sm={12} xs={12}>
         <Grid container spacing={3}>
           <Grid item md={12}>
-            <Metrics />
+            {/* <Metrics /> */}
           </Grid>
           <Grid item md={12}>
             <FilterAddTable setOpenModal={() => setOpenModal(true)} buttonText="adicionar" />
@@ -24,7 +24,7 @@ export const TransactionsPage: React.FC = () => {
         </Grid>
       </Grid>
       <Grid item md={3}>
-        <div style={{ minHeight: '100vh' }}>Fechamento dos últimos meses</div>
+        {/* <div style={{ minHeight: '100vh' }}>Fechamento dos últimos meses</div> */}
       </Grid>
     </Grid>
   );
