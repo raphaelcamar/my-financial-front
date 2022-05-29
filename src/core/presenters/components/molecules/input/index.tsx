@@ -5,7 +5,7 @@ import { ClickAwayListener, Icon, Typography } from '@/core/presenters/component
 import { AvailableIcons } from '@/core/domain';
 import { useStylesProvider } from './styles';
 
-export type InputProps = {
+export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
@@ -30,6 +30,7 @@ export const Input: React.FC<InputProps> = ({
   iconEnd,
   onClickIconEnd,
   withoutValidator,
+  ...props
 }) => {
   const theme = useTheme();
   const [focused, setFocused] = useState(theme.palette.grey[400]);
@@ -43,7 +44,7 @@ export const Input: React.FC<InputProps> = ({
         <label htmlFor={label}>{label}</label>
         <div className={classes.containerInput} onFocusCapture={() => setFocused(theme.palette.primary.main)}>
           {icon && <Icon icon={icon || 'person'} color={colorValidate} />}
-          <input onChange={onChange} className={classes.input} id={label} type="text" {...inputProps} />
+          <input onChange={onChange} className={classes.input} id={label} type="text" {...inputProps} {...props} />
           {iconEnd && (
             <div className={classes.button} role="button" onClick={onClickIconEnd} tabIndex={0}>
               <Icon icon={iconEnd} color={colorValidate} />
@@ -64,3 +65,5 @@ export const Input: React.FC<InputProps> = ({
     </ClickAwayListener>
   );
 };
+
+export const MemoizedInput = React.memo(Input);

@@ -3,7 +3,7 @@ import { StyledCheckbox, TextLink } from '@/core/presenters/components/atoms';
 import { useStyles } from './styles';
 
 interface IRememberForgotContainer {
-  value: boolean;
+  value?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

@@ -15,6 +15,8 @@ export class AuthenticateUser {
       this.cacheRepository.clean('@user');
       this.cacheRepository.clean('@token');
 
+      delete userLogged?.password;
+
       this.cacheRepository.set('@user', userLogged);
       this.cacheRepository.set('@token', userLogged.token);
     }

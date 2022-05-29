@@ -19,6 +19,7 @@ export class VerifySession {
     this.cacheRepository.set('@token', user.token);
 
     delete user.token;
+    delete user?.password;
 
     this.cacheRepository.set('@user', user);
 
