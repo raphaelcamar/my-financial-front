@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTheme } from '@mui/material';
+import { useSnackbar } from 'notistack';
 import { Button } from '@/core/presenters/components/molecules';
 import { Input } from '@/core/presenters/components/molecules/input';
 import {
@@ -26,6 +27,7 @@ export const LoginForm: React.FC = () => {
   const { messageFields, validate, isFormValid } = useValidationForm<User.Login>(formLogin, loginSchemaValidator());
 
   const { userAuth } = useAccessAndAuthContext();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleChangeFormLogin = useCallback(
     (key: string, value: string | boolean) => {
@@ -46,7 +48,9 @@ export const LoginForm: React.FC = () => {
         setLoading(true);
         await userAuth(formLogin);
       } catch (err) {
-        setErrorMessage(err?.message || 'Não foi possível fazer o login. Tente novamente mais tarde');
+        enqueueSnackbar(err?.message || 'Não foi possível fazer o login. Tente novamente mais tarde', {
+          variant: 'error',
+        });
       } finally {
         setLoading(false);
       }
