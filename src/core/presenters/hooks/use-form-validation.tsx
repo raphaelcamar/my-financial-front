@@ -32,7 +32,7 @@ export function useValidationForm<T>(fields: T, validators: FieldValidation[]): 
   const isFormValid = (): boolean => {
     const isValid = Object?.keys(fields).find(field => messageFields?.[field]?.message !== null);
 
-    return !!isValid;
+    return !Boolean(isValid);
   };
 
   const validateField = (field: keyof T, value: string): void => {
