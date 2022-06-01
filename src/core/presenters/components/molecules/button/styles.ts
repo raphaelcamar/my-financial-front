@@ -15,6 +15,11 @@ export const useStyles = makeStyles((theme: Theme) =>
       '&:focus': {
         transform: 'scale(0.9)',
       },
+
+      '&:disabled': {
+        background: theme.palette.grey[300],
+        color: theme.palette.grey[700],
+      },
     },
 
     error: {

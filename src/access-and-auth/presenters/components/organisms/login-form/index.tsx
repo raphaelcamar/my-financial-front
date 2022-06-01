@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTheme } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { Button } from '@/core/presenters/components/molecules';
@@ -13,46 +13,28 @@ import { useStyles } from './styles';
 import { CircularProgress, Icon } from '@/core/presenters/components/atoms';
 import { User } from '@/access-and-auth/domain';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
-import { useValidationForm } from '@/core/presenters/hooks';
+import { UseFormValidation } from '@/core/presenters/hooks';
 import { loginSchemaValidator } from '@/access-and-auth/data';
 
 export const LoginForm: React.FC = () => {
   const classes = useStyles();
   const theme = useTheme();
-
-  const [formLogin, setFormLogin] = useState<User.Login>({ email: '', password: '', rememberMe: true });
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const { messageFields, validate, isFormValid } = useValidationForm<User.Login>(formLogin, loginSchemaValidator());
-
   const { userAuth } = useAccessAndAuthContext();
   const { enqueueSnackbar } = useSnackbar();
+  const { messageFields, onChange, isValid, onSubmit } = UseFormValidation<User.Login>(loginSchemaValidator());
 
-  const handleChangeFormLogin = useCallback(
-    (key: string, value: string | boolean) => {
-      setFormLogin({
-        ...formLogin,
-        [key]: value,
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleSubmit = async (e: User.Login): Promise<void> => {
+    try {
+      setLoading(true);
+      await userAuth(e);
+    } catch (err) {
+      enqueueSnackbar(err?.message || 'Não foi possível fazer o login. Tente novamente mais tarde', {
+        variant: 'error',
       });
-    },
-    [formLogin]
-  );
-
-  const handleSubmit = async (e): Promise<void> => {
-    e.preventDefault();
-    validate();
-
-    if (isFormValid()) {
-      try {
-        setLoading(true);
-        await userAuth(formLogin);
-      } catch (err) {
-        enqueueSnackbar(err?.message || 'Não foi possível fazer o login. Tente novamente mais tarde', {
-          variant: 'error',
-        });
-      } finally {
-        setLoading(false);
-      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -60,13 +42,13 @@ export const LoginForm: React.FC = () => {
     <div className={classes.login}>
       <HeaderLogin />
       <div className={classes.wrapper}>
-        <form className={classes.container} onSubmit={e => handleSubmit(e)}>
+        <form className={classes.container} onSubmit={e => onSubmit(e, handleSubmit)}>
           <AuthTitle title="Bem vindo de volta" description="Seja bem vindo de volta! Entre com suas credenciais." />
           <Input
             icon="person"
             label="Email"
-            value={formLogin?.email}
-            onChange={e => handleChangeFormLogin('email', e.target.value)}
+            name="email"
+            onChange={onChange}
             validator={!!messageFields?.email?.message}
             messageValidator={messageFields?.email?.message}
           />
@@ -74,16 +56,13 @@ export const LoginForm: React.FC = () => {
             icon="key"
             label="Senha"
             type="password"
-            value={formLogin?.password}
+            name="password"
             validator={!!messageFields?.password?.message}
             messageValidator={messageFields?.password?.message}
-            onChange={e => handleChangeFormLogin('password', e.target.value)}
+            onChange={onChange}
           />
-          <RemeberForgotContainer
-            value={formLogin?.rememberMe}
-            onChange={e => handleChangeFormLogin('rememberMe', e.target.checked)}
-          />
-          <Button className={classes.button}>
+          <RemeberForgotContainer name="rememberMe" onChange={onChange} />
+          <Button className={classes.button} disabled={!isValid}>
             {loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}
           </Button>
           <Button
