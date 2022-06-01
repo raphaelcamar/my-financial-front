@@ -20,6 +20,12 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
     return user;
   };
 
+  const verifyInCache = (): boolean => {
+    const localStorageRepository = new LocalStorageRepository();
+    const user = localStorageRepository.get<User>('@user');
+    return Boolean(user);
+  };
+
   useEffect(() => {
     async function verify() {
       try {
@@ -53,7 +59,7 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
   };
 
   return (
-    <AccessAndAuthContext.Provider value={{ user: state.user, userAuth, newUser, verifyUserAuth }}>
+    <AccessAndAuthContext.Provider value={{ user: state.user, userAuth, newUser, verifyUserAuth, verifyInCache }}>
       {children}
     </AccessAndAuthContext.Provider>
   );

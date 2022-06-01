@@ -9,14 +9,16 @@ import { TransactionRoutes } from '@/transaction/presenters/routes';
 import { Container } from '@/core/presenters/components/organisms';
 import { TransactionProvider } from '@/transaction/presenters/contexts';
 import { NotistackProvider } from '@/core/presenters/contexts';
-import { PrivateRoute } from '@/core/presenters/proxies';
+import { PrivateRoute, PublicRoute } from '@/core/presenters/proxies';
 
 ReactDOM.render(
   <ThemeProvider>
     <BrowserRouter>
       <NotistackProvider>
         <AccessAndAuthProvider>
-          <AccessAndAuthRoutes />
+          <PublicRoute>
+            <AccessAndAuthRoutes />
+          </PublicRoute>
           <PrivateRoute>
             <Container>
               <TransactionProvider>

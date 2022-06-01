@@ -22,7 +22,6 @@ export const LoginForm: React.FC = () => {
 
   const [formLogin, setFormLogin] = useState<User.Login>({ email: '', password: '', rememberMe: true });
   const [loading, setLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>(null);
 
   const { messageFields, validate, isFormValid } = useValidationForm<User.Login>(formLogin, loginSchemaValidator());
 
@@ -103,7 +102,6 @@ export const LoginForm: React.FC = () => {
           <div className={classes.link}>
             <RedirectLink question="Não possui conta?" link="Inscreva-se!" to="/subscribe" />
           </div>
-          {errorMessage && errorMessage}
         </form>
       </div>
     </div>

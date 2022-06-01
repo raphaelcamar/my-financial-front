@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 import { useState } from 'react';
 import { FieldValidation } from '@/core/data';
 import { ValidationComposite } from '@/core/validation';
@@ -17,7 +18,6 @@ interface IFormHook<T> {
 
 export function useValidationForm<T>(fields: T, validators: FieldValidation[]): IFormHook<T> {
   const [messageFields, setMessageFields] = useState<FormFields<T>>(null);
-  const [listener, setListener] = useState<boolean>(false);
 
   const validate = () => {
     const composite = new ValidationComposite([...validators]);
