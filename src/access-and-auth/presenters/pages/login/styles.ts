@@ -6,8 +6,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     background: theme.palette.background.default,
     display: 'flex',
     flexDirection: 'row',
-    height: '100vh',
-    overflowX: 'hidden',
+    height: '100%',
     width: '100%',
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
@@ -16,12 +15,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   form: {
     width: '40%',
+    height: '100%',
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
   },
 
   figure: {
+    position: 'fixed',
+    left: '40%',
+    height: '100vh',
     width: '60%',
     [theme.breakpoints.down('md')]: {
       display: 'none',
