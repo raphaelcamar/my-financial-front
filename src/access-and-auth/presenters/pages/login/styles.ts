@@ -15,7 +15,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   form: {
     width: '40%',
-    height: '100%',
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
