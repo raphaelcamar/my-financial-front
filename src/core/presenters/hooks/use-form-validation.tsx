@@ -52,6 +52,7 @@ export function UseFormValidation<T>(validators: FieldValidation[]): IFormHook<T
     }
   };
 
+  // TODO make validation if is a checkbox type and get the checked option
   const onChange = useCallback(
     (input: React.ChangeEvent<HTMLInputElement>) => {
       const value = input?.target?.value;

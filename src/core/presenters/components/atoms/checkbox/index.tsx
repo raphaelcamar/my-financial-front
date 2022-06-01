@@ -2,7 +2,7 @@ import React from 'react';
 import { FormControlLabel, FormGroup, Checkbox, CheckboxProps } from '@mui/material';
 
 export type StyledCheckboxProps = CheckboxProps & {
-  label: string;
+  label?: string;
   props?: CheckboxProps;
 };
 
