@@ -5,7 +5,7 @@ import { useStyles } from './styles';
 import { AvailableIcons } from '@/core/domain';
 
 interface IFigure {
-  type: 'quare' | 'circle';
+  type: 'square' | 'circle';
 }
 
 export const Figure: React.FC<IFigure> = ({ type }) => {

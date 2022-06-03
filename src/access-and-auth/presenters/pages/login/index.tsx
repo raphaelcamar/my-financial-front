@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStyles } from './styles';
-import { LoginForm } from '@/access-and-auth/presenters/components/organisms/login-form';
+import { LoginForm } from '@/access-and-auth/presenters/components/organisms';
 import { Figure } from '@/access-and-auth/presenters/components/atoms';
 
 export const Login: React.FC = () => {

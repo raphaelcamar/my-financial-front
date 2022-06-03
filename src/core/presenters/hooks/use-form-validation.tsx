@@ -73,22 +73,27 @@ export function UseFormValidation<T>(validators: FieldValidation[]): IFormHook<T
     return values as T;
   };
 
-  const isFormValid = (): void => {
+  const isFormValid = (): string[] => {
     const composite = new ValidationComposite([...validators]);
     const messages = {};
-    Object.keys(ref.current).forEach(field => {
+    const filtered = Object.keys(ref.current).filter(field => {
       const message = composite.validate(field, ref.current?.[field]);
       messages[field] = { message };
+      return message;
     });
 
     setListener(true);
+
     setMessageFields(messages as FormFields<T>);
+
+    return filtered;
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>, fn: (values: T) => void) => {
     e.preventDefault();
-    isFormValid();
-    if (!isValid) return null;
+    const hasErrors = isFormValid();
+
+    if (hasErrors?.length > 0) return null;
 
     return fn(getFieldValues());
   };
