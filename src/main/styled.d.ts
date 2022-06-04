@@ -44,7 +44,7 @@ export type ColorProps = {
   error: VariantProps;
   warning: VariantProps;
   background: BackgroundProps;
-  grey: VariantProps;
+  grey: Omit<VariantProps, 'light' | 'dark' | 'main'>;
   success: VariantProps;
   info: VariantProps;
 };
