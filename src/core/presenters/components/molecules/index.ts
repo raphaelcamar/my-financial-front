@@ -5,4 +5,5 @@ export * from './chip';
 export * from './icon-button';
 export * from './icon-sidebar-action';
 export * from './input';
+export * from './new-input';
 export * from './select';
