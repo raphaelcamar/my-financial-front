@@ -1,4 +1,6 @@
-export const mainTheme = {
+import { DefaultTheme } from 'styled-components';
+
+export const mainTheme: DefaultTheme = {
   palette: {
     primary: {
       light: '#AFB0ED',

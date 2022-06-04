@@ -12,3 +12,4 @@ export * from './sidebar-drawer';
 export * from './table-components';
 export * from './text-link';
 export * from './typography';
+export * from './helper-text';

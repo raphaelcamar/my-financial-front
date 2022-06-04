@@ -1,5 +1,22 @@
-import styled from 'styled-components';
-import { IInputNew } from '.';
+import styled, { css, DefaultTheme } from 'styled-components';
+import { Variants, CssInputVariants } from '@/core/domain/styles';
+
+const variantStyles = (theme: DefaultTheme, disabled?: boolean, variant: Variants = 'primary') =>
+  disabled
+    ? css`
+        border: 1px solid ${theme.palette.grey[300]};
+      `
+    : {
+        primary: css`
+          border: 1px solid ${theme.palette.grey[400]};
+        `,
+        error: css`
+          border: 1px solid ${theme.palette.error.main};
+        `,
+        success: css`
+          border: 1px solid ${theme.palette.success.main};
+        `,
+      }[variant];
 
 export const BaseInput = styled.input`
   all: unset;
@@ -24,9 +41,9 @@ export const BaseInput = styled.input`
   }
 `;
 
-export const ContainerInput = styled.div<IInputNew>`
+export const ContainerInput = styled.div<CssInputVariants>`
   height: 46px;
-  border: 1px solid ${props => (props.disabled ? props.theme.palette.grey[300] : props.theme.palette.grey[400])};
+  ${({ disabled, theme, variant }) => variantStyles(theme, disabled, variant)};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -34,7 +51,12 @@ export const ContainerInput = styled.div<IInputNew>`
   border-radius: 12px;
   transition: all ease-out 0.3s;
   &:focus-within {
-    border: 1px solid
-      ${props => (props?.variant ? props.theme.palette?.[props.variant]?.main : props.theme.palette?.primary.main)};
+    ${({ disabled, theme, variant }) => variantStyles(theme, disabled, variant)}
   }
+`;
+
+export const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
