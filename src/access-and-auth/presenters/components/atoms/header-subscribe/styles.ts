@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 36,
+    gap: 8,
 
     '& .MuiTypography-h1': {
       fontSize: 36,

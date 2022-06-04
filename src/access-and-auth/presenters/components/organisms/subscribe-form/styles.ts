@@ -22,4 +22,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
   button: {
     height: '48px !important',
   },
+
+  question: {
+    textAlign: 'center',
+  },
 }));

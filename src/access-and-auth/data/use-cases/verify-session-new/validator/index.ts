@@ -9,9 +9,9 @@ export const loginSchemaValidator = (): FieldValidation[] => {
 };
 
 export const subscribeSchemaValidator = (): FieldValidation[] => {
+  const name = ValidationBuilder.field('name').required().build();
+  const lastname = ValidationBuilder.field('lastname').required().build();
   const email = ValidationBuilder.field('email').email().required().build();
-  const name = ValidationBuilder.field('email').required().build();
-  const lastname = ValidationBuilder.field('email').required().build();
   const password = ValidationBuilder.field('password').required().build();
 
   return [...name, ...lastname, ...email, ...password];
