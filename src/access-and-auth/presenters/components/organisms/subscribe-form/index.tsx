@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { HeaderSubscribe, RedirectLink } from '@/access-and-auth/presenters/components/atoms';
+import { LogoName, HeaderSubscribe, RedirectLink } from '@/access-and-auth/presenters/components/atoms';
 import { useStyles } from './styles';
 import { Button, Input } from '@/core/presenters/components/molecules';
 import { CircularProgress, Icon } from '@/core/presenters/components/atoms';
@@ -46,6 +46,7 @@ export const SubscribeForm: React.FC = () => {
 
   return (
     <div className={classes.container}>
+      <LogoName />
       <HeaderSubscribe />
       <form className={classes.form} onSubmit={handleSubmit(handleSubmitForm)}>
         <Input

@@ -126,7 +126,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
 
         <Input
           label="Anotação"
-          inputProps={{ ...register('anotation') }}
+          {...register('anotation')}
           validator={!!errors?.anotation}
           messageValidator={errors?.anotation?.message}
         />

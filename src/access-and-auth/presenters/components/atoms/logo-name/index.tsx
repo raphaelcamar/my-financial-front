@@ -3,7 +3,7 @@ import React from 'react';
 import { Icon, Typography } from '@/core/presenters/components/atoms';
 import { useStyles } from './styles';
 
-export const HeaderLogin: React.FC = () => {
+export const LogoName: React.FC = () => {
   const classes = useStyles();
   const theme = useTheme();
   return (

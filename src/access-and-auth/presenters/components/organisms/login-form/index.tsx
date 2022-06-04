@@ -5,7 +5,7 @@ import { Button } from '@/core/presenters/components/molecules';
 import { Input } from '@/core/presenters/components/molecules/input';
 import {
   AuthTitle,
-  HeaderLogin,
+  LogoName,
   RemeberForgotContainer,
   RedirectLink,
 } from '@/access-and-auth/presenters/components/atoms';
@@ -40,7 +40,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <div className={classes.login}>
-      <HeaderLogin />
+      <LogoName />
       <div className={classes.wrapper}>
         <form className={classes.container} onSubmit={e => onSubmit(e, handleSubmit)}>
           <AuthTitle title="Bem vindo de volta" description="Seja bem vindo de volta! Entre com suas credenciais." />
