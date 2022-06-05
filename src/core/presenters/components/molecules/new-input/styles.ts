@@ -9,6 +9,9 @@ const variantStyles = (theme: DefaultTheme, disabled?: boolean, variant: Variant
     : {
         primary: css`
           border: 1px solid ${theme.palette.grey[400]};
+          &:focus-within {
+            border: 1px solid ${theme.palette.primary.main};
+          }
         `,
         error: css`
           border: 1px solid ${theme.palette.error.main};
@@ -50,9 +53,6 @@ export const ContainerInput = styled.div<CssInputVariants>`
   padding: 0 18px;
   border-radius: 12px;
   transition: all ease-out 0.3s;
-  &:focus-within {
-    ${({ disabled, theme, variant }) => variantStyles(theme, disabled, variant)}
-  }
 `;
 
 export const Root = styled.div`

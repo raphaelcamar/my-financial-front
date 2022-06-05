@@ -16,7 +16,7 @@ export const InputNew: React.FC<IInputNew> = ({ label, helperText, error, action
   return (
     <Root>
       <label htmlFor={label}>{label}</label>
-      <ContainerInput variant={variant} disabled={props.disabled}>
+      <ContainerInput data-testid="input-root" variant={variant} disabled={props.disabled}>
         {actionEnd && actionEnd}
         <BaseInput id={label} {...props} />
         {actionStart && actionStart}
