@@ -15,7 +15,7 @@ export const AddIcon: React.FC<Icon> = ({ color, dataTestId }) => {
     >
       <path
         d="M5.05422 9V5M5.05422 5V1M5.05422 5H9.10843M5.05422 5H1"
-        stroke={color || theme.palette.primary.main}
+        stroke={color || theme.palette.grey[400]}
         strokeWidth="2"
         strokeLinecap="round"
       />
