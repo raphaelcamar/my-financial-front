@@ -50,40 +50,40 @@ export const SubscribeForm: React.FC = () => {
       <HeaderSubscribe />
       <form className={classes.form} onSubmit={handleSubmit(handleSubmitForm)}>
         <Input
-          icon="person"
+          actionStart={<Icon icon="person" />}
           label="Nome"
           name="name"
           {...register('name')}
-          validator={!!errors?.name?.message}
-          messageValidator={errors?.name?.message}
+          error={!!errors?.name?.message}
+          helperText={errors?.name?.message}
         />
 
         <Input
-          icon="person"
+          actionStart={<Icon icon="person" />}
           label="Sobrenome"
           name="lastname"
           {...register('lastname')}
-          validator={!!errors?.lastname?.message}
-          messageValidator={errors?.lastname?.message}
+          error={!!errors?.lastname?.message}
+          helperText={errors?.lastname?.message}
         />
 
         <Input
-          icon="mail"
+          actionStart={<Icon icon="mail" />}
           label="Email"
           name="email"
           {...register('email')}
-          validator={!!errors?.email?.message}
-          messageValidator={errors?.email?.message}
+          error={!!errors?.email?.message}
+          helperText={errors?.email?.message}
         />
 
         <Input
-          icon="key"
+          actionStart={<Icon icon="key" />}
           label="Senha"
           name="password"
           type="password"
           {...register('password')}
-          validator={!!errors?.password?.message}
-          messageValidator={errors?.password?.message}
+          error={!!errors?.password?.message}
+          helperText={errors?.password?.message}
         />
 
         <Button className={classes.button}>{loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}</Button>

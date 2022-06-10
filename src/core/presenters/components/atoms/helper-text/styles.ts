@@ -18,7 +18,7 @@ const variantHelperStyles = (
       `
     : {
         primary: css`
-          color: ${theme.palette.primary[400]};
+          color: ${theme.palette.grey[500]};
         `,
         error: css`
           color: ${theme.palette.error.main};
@@ -29,6 +29,6 @@ const variantHelperStyles = (
       }[variant];
 
 export const Root = styled.span<CssInputType>`
-  font-size: 12px;
+  font-size: 14px;
   ${({ disabled, theme, variant }) => variantHelperStyles(theme, disabled, variant)}
 `;

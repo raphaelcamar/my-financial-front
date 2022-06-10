@@ -12,7 +12,6 @@ export const RemeberForgotContainer: React.FC<IRememberForgotContainer> = ({ onC
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <StyledCheckbox label="Lembre-se de mim" value={value} onChange={e => onChange(e)} {...props} />
       <TextLink to="/recover">Esqueceu sua senha?</TextLink>
     </div>
   );

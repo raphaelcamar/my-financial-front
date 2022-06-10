@@ -3,13 +3,13 @@ import '@testing-library/jest-dom';
 import { screen, render } from '@testing-library/react';
 import { mainTheme as theme } from '@/core/presenters/contexts/styled-theme/themes/main';
 import { StyledThemeProvider } from '@/core/presenters/contexts';
-import { InputNew } from '.';
+import { Input } from '.';
 
 describe('Input integration tests', () => {
   test('Should be able to render input, helper text, and the label', () => {
     const { getByText } = render(
       <StyledThemeProvider>
-        <InputNew label="Label-test" error={false} helperText="helper text" />
+        <Input label="Label-test" error={false} helperText="helper text" />
       </StyledThemeProvider>
     );
 
@@ -23,7 +23,7 @@ describe('Input integration tests', () => {
   test('Should be able to render input with error variant', () => {
     render(
       <StyledThemeProvider>
-        <InputNew value="value test" label="Label-test" error />
+        <Input value="value test" label="Label-test" error />
       </StyledThemeProvider>
     );
 
@@ -36,7 +36,7 @@ describe('Input integration tests', () => {
   test('Should be able to render a disabled input', () => {
     const { container } = render(
       <StyledThemeProvider>
-        <InputNew value="value test" label="Label-test" disabled />
+        <Input value="value test" label="Label-test" disabled />
       </StyledThemeProvider>
     );
 

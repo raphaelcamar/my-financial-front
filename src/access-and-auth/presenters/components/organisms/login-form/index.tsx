@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { useTheme } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { Button } from '@/core/presenters/components/molecules';
-import { Input } from '@/core/presenters/components/molecules/input';
-import {
-  AuthTitle,
-  LogoName,
-  RemeberForgotContainer,
-  RedirectLink,
-} from '@/access-and-auth/presenters/components/atoms';
+import { Button, Input } from '@/core/presenters/components/molecules';
+
+import { AuthTitle, LogoName, RedirectLink } from '@/access-and-auth/presenters/components/atoms';
 import { useStyles } from './styles';
-import { CircularProgress, Icon } from '@/core/presenters/components/atoms';
+import { CircularProgress, Icon, TextLink } from '@/core/presenters/components/atoms';
 import { User } from '@/access-and-auth/domain';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 import { UseFormValidation } from '@/core/presenters/hooks';
@@ -45,26 +40,28 @@ export const LoginForm: React.FC = () => {
         <form className={classes.container} onSubmit={e => onSubmit(e, handleSubmit)}>
           <AuthTitle title="Bem vindo de volta" description="Seja bem vindo de volta! Entre com suas credenciais." />
           <Input
-            icon="person"
+            actionStart={<Icon icon="person" />}
             label="Email"
             name="email"
             onChange={onChange}
-            validator={!!messageFields?.email?.message}
-            messageValidator={messageFields?.email?.message}
+            error={!!messageFields?.email?.message}
+            helperText={messageFields?.email?.message}
           />
           <Input
-            icon="key"
+            actionStart={<Icon icon="key" />}
             label="Senha"
             type="password"
             name="password"
-            validator={!!messageFields?.password?.message}
-            messageValidator={messageFields?.password?.message}
+            error={!!messageFields?.password?.message}
+            helperText={messageFields?.password?.message}
             onChange={onChange}
           />
-          <RemeberForgotContainer name="rememberMe" onChange={onChange} />
+          <TextLink to="/recover">Esqueceu sua senha?</TextLink>
+
           <Button className={classes.button} disabled={!isValid}>
             {loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}
           </Button>
+
           <Button
             onClick={() => {
               // TODO

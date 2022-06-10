@@ -1,10 +1,10 @@
 import React from 'react';
-import { Input, InputProps } from '@/core/presenters/components/molecules';
+import { Input, IInput } from '@/core/presenters/components/molecules';
 import { currency, date } from '@/core/presenters/utils/input-masks';
 
 type AvailableMasks = 'date' | 'currency';
 
-interface IInputMask extends InputProps {
+interface IInputMask extends IInput {
   validator: boolean;
   messageValidator: string;
   mask: AvailableMasks;
@@ -22,12 +22,5 @@ export const InputMask: React.FC<IInputMask> = ({ validator, messageValidator, l
     const maskedInput = availableMasks[mask](e);
     onChange(maskedInput);
   };
-  return (
-    <Input
-      label={label}
-      messageValidator={messageValidator}
-      validator={validator}
-      onChange={e => handleChangeInput(e)}
-    />
-  );
+  return <Input label={label} helperText={messageValidator} error={validator} onChange={e => handleChangeInput(e)} />;
 };
