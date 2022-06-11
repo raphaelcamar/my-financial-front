@@ -1,4 +1,13 @@
 import { DefaultTheme } from 'styled-components';
+import { BreakpointTypes } from '@/main/styled';
+
+const breakpoints: BreakpointTypes = {
+  xs: 200,
+  sm: 600,
+  md: 960,
+  lg: 1280,
+  xl: 1920,
+};
 
 export const mainTheme: DefaultTheme = {
   palette: {
@@ -132,5 +141,9 @@ export const mainTheme: DefaultTheme = {
       800: 800,
       900: 900,
     },
+  },
+  breapoints: {
+    up: key => `min-width: ${breakpoints[key]}px`,
+    down: key => `max-width: ${breakpoints[key]}px`,
   },
 };

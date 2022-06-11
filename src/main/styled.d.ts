@@ -23,6 +23,19 @@ export type BackgroundProps = {
   default: string;
 };
 
+export type BreakpointTypes = {
+  xs: number;
+  sm: number;
+  md: number;
+  lg: number;
+  xl: number;
+};
+
+export type FunctionBreakpointTypes = {
+  up: (breakpoint: keyof BreakpointTypes) => string;
+  down: (breakpoint: keyof BreakpointTypes) => string;
+};
+
 export type FontSizeProps = {
   xsmall: string;
   small: string;
@@ -79,5 +92,6 @@ declare module 'styled-components' {
     palette: ColorProps;
     fonts: string[];
     font: FontProps;
+    breapoints: FunctionBreakpointTypes;
   }
 }
