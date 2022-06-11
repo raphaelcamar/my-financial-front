@@ -2,50 +2,77 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { screen, render } from '@testing-library/react';
 import { Button } from './index';
-import { ProvideTheme } from '@/core/tests/mocks';
-import { main as theme } from '@/core/presenters/contexts/theme/themes/main';
+import { ProvideStyledTheme } from '@/core/tests/mocks';
+
+import { mainTheme as theme } from '@/core/presenters/contexts/styled-theme/themes/main';
 
 describe('Button Unit test', () => {
-  test('Should be able to render a Button with error variant', () => {
-    render(ProvideTheme(<Button variant="error" />));
+  test('Should be able to render a Button with primary variant and outlined styleType', () => {
+    render(
+      ProvideStyledTheme(
+        <Button variant="primary" styleType="outlined">
+          Test
+        </Button>
+      )
+    );
+
+    const button = screen.getByTestId('styled-button');
+    expect(button).toHaveStyle(`background: transparent`);
+    expect(button).toHaveStyle(`color: ${theme.palette.primary.main}`);
+    expect(button).toHaveStyle(`border: 1px solid ${theme.palette.primary.main}`);
+  });
+
+  test('Should be able to render a Button with error variant and fullfiled styleType', () => {
+    render(
+      ProvideStyledTheme(
+        <Button variant="error" styleType="fullfiled">
+          Test
+        </Button>
+      )
+    );
 
     const button = screen.getByTestId('styled-button');
     expect(button).toHaveStyle(`background: ${theme.palette.error.main}`);
     expect(button).toHaveStyle(`color: ${theme.palette.grey[100]}`);
   });
 
-  test('Should be able to render a Button with outlined variant', () => {
-    render(ProvideTheme(<Button variant="outlined" />));
+  test('Should be able to render a Button with success variant and glass styleType', () => {
+    render(
+      ProvideStyledTheme(
+        <Button variant="success" styleType="glass">
+          Test
+        </Button>
+      )
+    );
 
     const button = screen.getByTestId('styled-button');
-
-    expect(button).toHaveStyle(`background: ${theme.palette.background.paper}`);
-    expect(button).toHaveStyle(`color: ${theme.palette.primary.main}`);
-    expect(button).toHaveStyle(`border: 2px solid ${theme.palette.primary.main}`);
+    expect(button).toHaveStyle(`background: ${theme.palette.grey[100]}`);
+    expect(button).toHaveStyle(`color: ${theme.palette.success.main}`);
   });
 
-  test('Should be able to render a Button with fullfiled variant', () => {
-    render(ProvideTheme(<Button variant="fullfiled" />));
+  test('Should be able to render a Button with black text color if the shade is below of 500', () => {
+    render(
+      ProvideStyledTheme(
+        <Button variant="success" styleType="fullfiled" shade={400}>
+          Test
+        </Button>
+      )
+    );
 
     const button = screen.getByTestId('styled-button');
-
-    expect(button).toHaveStyle(`background: ${theme.palette.primary.main}`);
+    expect(button).toHaveStyle(`color: ${theme.font.color.primary}`);
   });
 
-  test('Should be able to render a Button with outlinedError variant', () => {
-    render(ProvideTheme(<Button variant="outlinedError" />));
+  test('Should be able to render a Button with white text color if the shade is above of 500', () => {
+    render(
+      ProvideStyledTheme(
+        <Button variant="success" styleType="fullfiled" shade={500}>
+          Test
+        </Button>
+      )
+    );
 
     const button = screen.getByTestId('styled-button');
-
-    expect(button).toHaveStyle(`background: ${theme.palette.background.paper}`);
-    expect(button).toHaveStyle(`color: ${theme.palette.error.main}`);
-    expect(button).toHaveStyle(`border: 2px solid ${theme.palette.error.main}`);
-  });
-
-  test('Should not be able to render a icon if the props contains a icon', () => {
-    render(ProvideTheme(<Button variant="outlinedError" />));
-    const iconButton = screen.queryByTestId('icon-button');
-
-    expect(iconButton).not.toBeInTheDocument();
+    expect(button).toHaveStyle(`color: ${theme.palette.grey[100]}`);
   });
 });

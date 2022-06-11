@@ -38,7 +38,8 @@ const getVariantStyles = (
         `,
         glass: css`
           background: ${theme.palette.grey[100]};
-          color: ${theme.font.color.primary};
+          color: ${theme.palette[variant][500]};
+          font-weight: 700;
         `,
       }[styleType];
 
