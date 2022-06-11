@@ -5,6 +5,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   headerLogin: {
     display: 'flex',
     gap: 18,
+    alignItems: 'center',
 
     '& .MuiTypography-body1': {
       fontSize: 24,

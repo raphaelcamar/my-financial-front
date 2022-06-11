@@ -11,8 +11,12 @@ export const AuthTitle: React.FC<IAuthTitle> = ({ title, description }) => {
   const classes = useStyles();
   return (
     <div className={classes.wrapperHeader}>
-      <Typography variant="h2">{title}</Typography>
-      <Typography variant="body1">{description}</Typography>
+      <Typography type="h1" size="xxxlarge" weight={700}>
+        {title}
+      </Typography>
+      <Typography type="p" color="grey" size="normal">
+        {description}
+      </Typography>
     </div>
   );
 };

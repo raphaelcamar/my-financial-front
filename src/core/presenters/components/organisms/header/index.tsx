@@ -10,7 +10,9 @@ export const Header: React.FC<IHheaderProps> = ({ title }) => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <Typography variant="h4">{title}</Typography>
+      <Typography type="h1" size="xxxlarge">
+        {title}
+      </Typography>
     </div>
   );
 };

@@ -21,8 +21,8 @@ export const ButtonMenu: React.FC<IButtonMenu> = ({ children, icon = 'key', isAc
     >
       <div className={classes.wrapper}>
         <div className={classes.titleIcon}>
-          <Icon icon={icon} color={toggle ? theme.palette.grey[50] : theme.palette.grey[500]} />
-          <Typography variant="body1">{children}</Typography>
+          <Icon icon={icon} color={toggle ? theme.palette.grey[50] : null} />
+          <Typography color={toggle ? 'white' : 'grey'}>{children}</Typography>
         </div>
         {isAccordion && (
           <div className={classes.icon}>

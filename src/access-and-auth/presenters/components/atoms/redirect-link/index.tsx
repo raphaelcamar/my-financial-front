@@ -8,7 +8,7 @@ interface IRedirectLink {
 }
 
 export const RedirectLink: React.FC<IRedirectLink> = ({ question, link, to }) => (
-  <Typography variant="body1">
+  <Typography size="small" color="grey">
     {question}
     <TextLink to={to}>{link}</TextLink>
   </Typography>

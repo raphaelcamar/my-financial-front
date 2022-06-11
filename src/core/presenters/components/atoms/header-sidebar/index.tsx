@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material';
+import clsx from 'clsx';
 import { Icon, Typography } from '@/core/presenters/components/atoms';
 import { useStyles } from './styles';
 
@@ -25,11 +26,13 @@ export const HeaderSidebar: React.FC<IHeaderSidebar> = ({ open }) => {
   }, [open]);
 
   return (
-    <div className={classes.header}>
-      <div className={classes.logo}>
-        <Icon icon="logoSmall" color={theme.palette.grey[50]} />
-      </div>
-      {openTitle && <Typography variant="h6">My Financial</Typography>}
+    <div className={clsx(classes.header, !openTitle && classes.center)}>
+      <Icon icon="logo" color={theme.palette.primary.main} />
+      {openTitle && (
+        <Typography type="h6" size="xxlarge" color="primary">
+          My Financial
+        </Typography>
+      )}
     </div>
   );
 };

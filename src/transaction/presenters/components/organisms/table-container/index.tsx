@@ -46,21 +46,29 @@ export const TableContainer: React.FC = () => {
               <Chip color="primary">{formatTopic(transaction?.topic) || '-'}</Chip>
             </TableCell>
             <TableCell width={350}>
-              <Typography variant="body1">{transaction?.anotation}</Typography>
+              <Typography size="small" color="grey">
+                {transaction?.anotation}
+              </Typography>
             </TableCell>
             <TableCell width={20}>
-              <Typography variant="body1">{formatDate(String(transaction?.billedAt)) || '-'}</Typography>
+              <Typography size="small" color="grey">
+                {formatDate(String(transaction?.billedAt)) || '-'}
+              </Typography>
             </TableCell>
             <TableCell width={10}>
               <Chip color={transaction?.type === 'ENTRANCE' ? 'success' : 'error'}>
-                <Typography variant="body1">{formatType(transaction?.type) || '-'}</Typography>
+                {formatType(transaction?.type) || '-'}
               </Chip>
             </TableCell>
             <TableCell width={10}>
-              <Typography variant="body1">{formatCurrency(transaction?.cost) || '-'}</Typography>
+              <Typography size="small" color="grey">
+                {formatCurrency(transaction?.cost) || '-'}
+              </Typography>
             </TableCell>
             <TableCell width={10}>
-              <Typography variant="body1">{formatCurrency(transaction.total) || '-'}</Typography>
+              <Typography size="small" color="grey">
+                {formatCurrency(transaction.total) || '-'}
+              </Typography>
             </TableCell>
           </TableRow>
         ))}

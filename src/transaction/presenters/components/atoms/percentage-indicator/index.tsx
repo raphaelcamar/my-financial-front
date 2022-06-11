@@ -21,10 +21,10 @@ export const PercentageIndicator: React.FC<IPercentageIndicator> = ({ text, type
   return (
     <div className={classes.container}>
       <div className={clsx(classes.button, iconWithText && classes.iconWithText)}>
-        {iconWithText && <Typography variant="body1">{text}</Typography>}
+        {iconWithText && <Typography type="span">{text}</Typography>}
         <Icon icon={type === 'SPENT' ? 'lineArrowDown' : 'lineArrowUp'} color={color} />
       </div>
-      {!iconWithText && <Typography variant="body1">{text}</Typography>}
+      {!iconWithText && <Typography type="span">{text}</Typography>}
     </div>
   );
 };

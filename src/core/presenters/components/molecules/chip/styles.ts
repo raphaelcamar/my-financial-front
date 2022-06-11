@@ -1,19 +1,9 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
-import { ColorProps } from '.';
+import styled from 'styled-components';
+import { IChip } from '.';
 
-export const useStyles = (color: ColorProps, width?: number) => {
-  const styles = makeStyles((theme: Theme) => ({
-    container: {
-      width: width || 77,
-      background: theme.palette[color][100],
-      borderRadius: 4,
-      '& .MuiTypography-body1': {
-        color: theme.palette[color][500],
-        textAlign: 'center',
-      },
-    },
-  }));
-
-  return styles();
-};
+export const ContainerChip = styled.div<IChip>`
+  width: ${({ width }) => (width ? `${width}px` : '77px')};
+  background: ${({ color, theme }) => theme.palette[color][100]};
+  border-radius: 4px;
+  text-align: center;
+`;

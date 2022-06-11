@@ -9,7 +9,9 @@ export const LogoName: React.FC = () => {
   return (
     <div className={classes.headerLogin}>
       <Icon icon="logo" color={theme.palette.primary.main} />
-      <Typography variant="body1">My financial</Typography>
+      <Typography type="p" color="primary" size="xxlarge">
+        My financial
+      </Typography>
     </div>
   );
 };

@@ -16,10 +16,7 @@ export type VariantProps = {
   '900': string;
 };
 
-export type FontColorProps = {
-  primary: string;
-  secondary: string;
-};
+export type Shade = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
 
 export type BackgroundProps = {
   paper: string;
@@ -27,16 +24,25 @@ export type BackgroundProps = {
 };
 
 export type FontSizeProps = {
-  small: number;
-  medium: number;
-  large: number;
-  title: number;
-  subtitle: number;
+  xsmall: string;
+  small: string;
+  normal: string;
+  large: string;
+  xlarge: string;
+  xxlarge: string;
+  xxxlarge: string;
 };
 
-export type FontProps = {
-  size: FontSizeProps;
-  color: FontColorProps;
+export type FontWeightProps = {
+  100: number;
+  200: number;
+  300: number;
+  400: number;
+  500: number;
+  600: number;
+  700: number;
+  800: number;
+  900: number;
 };
 
 export type ColorProps = {
@@ -47,6 +53,25 @@ export type ColorProps = {
   grey: Omit<VariantProps, 'light' | 'dark' | 'main'>;
   success: VariantProps;
   info: VariantProps;
+};
+
+export type FontColorProps = {
+  primary: string;
+  error: string;
+  warning: string;
+  grey: string;
+  success: string;
+  info: string;
+  default: string;
+  secondary: string;
+  white: string;
+};
+
+export type FontProps = {
+  size: FontSizeProps;
+  color: FontColorProps;
+  size: FontSizeProps;
+  weight: FontWeightProps;
 };
 
 declare module 'styled-components' {

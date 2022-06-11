@@ -75,10 +75,7 @@ export const Select: React.FC<ISelectProps> = ({
             ))}
           </div>
           {validator ? (
-            <Typography
-              color={validator ? theme.palette.error.main : theme.palette.grey[400]}
-              className={classes.messageValidator}
-            >
+            <Typography color={validator ? 'error' : 'grey'} size="small">
               {messageValidator || ''}
             </Typography>
           ) : (

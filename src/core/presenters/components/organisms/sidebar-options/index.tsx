@@ -15,6 +15,7 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, open
   const classes = useStyles();
   const theme = useTheme();
   const location = useLocation();
+
   return (
     <>
       {sidebarOptions.map(item =>
@@ -32,7 +33,9 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, open
                           color={location.pathname === item.path && theme.palette.grey[50]}
                         />
                       )}
-                      <Typography variant="body1">{accordionItem.title}</Typography>
+                      <Typography color={location.pathname === item.path ? 'white' : 'default'}>
+                        {accordionItem.title}
+                      </Typography>
                     </div>
                   </ButtonLinkMenu>
                 ))}
@@ -49,7 +52,9 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, open
                     color={location.pathname === item.path && theme.palette.grey[50]}
                   />
                 )}
-                {open && <Typography variant="body1">{item.title}</Typography>}
+                {open && (
+                  <Typography color={location.pathname === item.path ? 'white' : 'default'}>{item.title}</Typography>
+                )}
               </div>
             </ButtonLinkMenu>
           </div>

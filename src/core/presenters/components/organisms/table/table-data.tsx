@@ -37,7 +37,7 @@ export const TableData: React.FC<ITableData> = ({ dataTitles, children }) => {
             {dataTitles?.map(dataTitle => (
               <TableCell size="medium" className={classes.root}>
                 <div className={classes.container}>
-                  <Typography variant="body1">{dataTitle.title}</Typography>
+                  <Typography size="small">{dataTitle.title}</Typography>
                   {dataTitle?.sorteable && (
                     <div className={classes.wrapperIcons}>
                       <Icon icon="miniArrowUp" />

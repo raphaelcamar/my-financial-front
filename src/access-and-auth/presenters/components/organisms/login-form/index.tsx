@@ -56,7 +56,7 @@ export const LoginForm: React.FC = () => {
           />
           <TextLink to="/recover">Esqueceu sua senha?</TextLink>
 
-          <Button disabled={!isValid} variant="primary" styleType="fullfiled" shade={500}>
+          <Button disabled={!isValid} variant="primary" styleType="fullfiled" shade={800}>
             {loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}
           </Button>
           <Button
@@ -66,7 +66,7 @@ export const LoginForm: React.FC = () => {
             type="button"
             className={classes.button}
             variant="grey"
-            shade={200}
+            shade={100}
           >
             <Icon icon="google" />
             Entre com o google

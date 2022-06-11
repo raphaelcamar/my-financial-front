@@ -1,10 +1,12 @@
 import styled, { css, DefaultTheme } from 'styled-components';
-import { ButtonVariant, ShadeButton, StyleType } from '@/core/domain/styles';
+import { ButtonVariant, StyleType } from '@/core/domain/styles';
+
+import { Shade } from '@/main/styled';
 
 type ButtonType = {
   variant?: ButtonVariant;
   styleType?: StyleType;
-  shade?: ShadeButton;
+  shade?: Shade;
 };
 
 const getVariantStyles = (
@@ -12,7 +14,7 @@ const getVariantStyles = (
   disabled?: boolean,
   styleType: StyleType = 'fullfiled',
   variant: ButtonVariant = 'primary',
-  shade: ShadeButton = 500
+  shade: Shade = 500
 ) =>
   disabled
     ? css`
@@ -34,12 +36,19 @@ const getVariantStyles = (
         fullfiled: css`
           background: ${theme.palette[variant][shade]};
           border: none;
-          color: ${shade < 500 ? theme.font.color.primary : ''};
+          color: ${shade < 500 ? theme.font.color.grey : ''};
+          &:hover {
+            background: ${theme.palette[variant][shade + 200 > 900 ? 700 : shade + 200]};
+          }
         `,
         glass: css`
           background: ${theme.palette.grey[100]};
           color: ${theme.palette[variant][500]};
           font-weight: 700;
+
+          &:hover {
+            background: ${theme.palette.grey[200]};
+          }
         `,
       }[styleType];
 
