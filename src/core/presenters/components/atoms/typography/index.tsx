@@ -13,5 +13,7 @@ interface ITypography {
 }
 
 export const Typography: React.FC<ITypography> = ({ children, ...props }) => (
-  <TypographyStyle {...props}>{children}</TypographyStyle>
+  <TypographyStyle data-testid="typography" {...props}>
+    {children}
+  </TypographyStyle>
 );
