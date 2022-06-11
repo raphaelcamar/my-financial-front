@@ -24,7 +24,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   button: {
-    height: '48px !important',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    justifyContent: 'center',
   },
 
   link: {

@@ -1,65 +1,64 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles, createStyles } from '@mui/styles';
+import styled, { css, DefaultTheme } from 'styled-components';
+import { ButtonVariant, ShadeButton, StyleType } from '@/core/domain/styles';
 
-export const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      borderRadius: 8,
-      color: theme.palette.grey[100],
-      fontSize: 14,
-      padding: '8px',
-      border: 'none',
-      transition: 'all ease .08s',
-      cursor: 'pointer',
+type ButtonType = {
+  variant?: ButtonVariant;
+  styleType?: StyleType;
+  shade?: ShadeButton;
+};
 
-      '&:focus': {
-        transform: 'scale(0.9)',
-      },
+const getVariantStyles = (
+  theme: DefaultTheme,
+  disabled?: boolean,
+  styleType: StyleType = 'fullfiled',
+  variant: ButtonVariant = 'primary',
+  shade: ShadeButton = 500
+) =>
+  disabled
+    ? css`
+        background-color: ${theme.palette.grey[300]};
+        color: ${theme.palette.grey[600]};
+        transition: none;
+        cursor: inherit;
+        &:active {
+          transform: none;
+        }
+      `
+    : {
+        outlined: css`
+          background: transparent;
+          border: 1px solid ${theme.palette[variant][shade]};
+          color: ${theme.palette[variant][shade]};
+          font-weight: 500;
+        `,
+        fullfiled: css`
+          background: ${theme.palette[variant][shade]};
+          border: none;
+          color: ${shade < 500 ? theme.font.color.primary : ''};
+        `,
+        glass: css`
+          background: ${theme.palette.grey[100]};
+          color: ${theme.font.color.primary};
+        `,
+      }[styleType];
 
-      '&:disabled': {
-        background: theme.palette.grey[300],
-        color: theme.palette.grey[700],
-      },
-    },
+export const ButtonStyle = styled.button<ButtonType>`
+  border-radius: 12px;
+  color: ${({ theme }) => theme.palette.grey[100]};
+  height: 46px;
+  font-size: 14px;
+  padding: 0px 8px;
+  border: none;
+  transition: all ease 0.08s;
+  cursor: pointer;
 
-    error: {
-      background: theme.palette.error.main,
-      color: theme.palette.grey[100],
-    },
+  &:active {
+    transform: scale(0.9);
+  }
 
-    outlined: {
-      background: theme.palette.background.paper,
-      color: theme.palette.primary.main,
-      border: `2px solid ${theme.palette.primary.main}`,
-    },
-
-    outlinedError: {
-      background: theme.palette.background.paper,
-      color: theme.palette.error.main,
-      border: `2px solid ${theme.palette.error.main}`,
-    },
-
-    fullfiled: {
-      background: theme.palette.primary.main,
-    },
-
-    large: {
-      padding: '16px 24px',
-      fontSize: 16,
-    },
-
-    icon: {
-      marginLeft: 12,
-    },
-
-    wrapper: {
-      display: 'flex',
-      flexDirection: 'row',
-      gap: 16,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-
-    normal: {},
-  })
-);
+  &:disabled {
+    background: ${({ theme }) => theme.palette.grey[300]};
+    color: ${({ theme }) => theme.palette.grey[700]};
+  }
+  ${({ theme, styleType, variant, shade, disabled }) => getVariantStyles(theme, disabled, styleType, variant, shade)}
+`;

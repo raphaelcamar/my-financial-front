@@ -14,7 +14,6 @@ import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 
 export const SubscribeForm: React.FC = () => {
   const classes = useStyles();
-  const theme = useTheme();
   const { newUser } = useAccessAndAuthContext();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ export const SubscribeForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<User.Subscribe>({
     resolver: yupResolver(UserSubscribeValidatorSchema),
   });
@@ -86,7 +85,9 @@ export const SubscribeForm: React.FC = () => {
           helperText={errors?.password?.message}
         />
 
-        <Button className={classes.button}>{loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}</Button>
+        <Button variant="primary" styleType="fullfiled" shade={500}>
+          {loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}
+        </Button>
       </form>
 
       <Button
@@ -94,10 +95,9 @@ export const SubscribeForm: React.FC = () => {
           // TODO
         }}
         type="button"
+        variant="grey"
+        shade={200}
         className={classes.button}
-        variant="fullfiled"
-        color="#4A4A4A"
-        background={theme.palette.grey[200]}
       >
         <Icon icon="google" />
         Inscreva-se com o google

@@ -20,7 +20,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   button: {
-    height: '48px !important',
+    display: 'flex',
+    justifyContent: 'center',
+    gap: 8,
+    alignItems: 'center',
   },
 
   question: {

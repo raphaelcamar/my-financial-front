@@ -3,7 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSnackbar } from 'notistack';
 import { Drawer } from '@/core/presenters/components/organisms';
-import { Button, Input, ISelectOption, Select } from '@/core/presenters/components/molecules';
+import { Input, Button, ISelectOption, Select } from '@/core/presenters/components/molecules';
 import { useStyles } from './styles';
 import { Transaction, TypeTopic, TypeTransaction } from '@/transaction/domain';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
@@ -132,13 +132,12 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
         />
 
         <div className={classes.buttons}>
-          <Button variant="outlined" size="large" type="button" onClick={() => setOpenModal(false)}>
+          <Button variant="primary" styleType="outlined" type="button" onClick={() => setOpenModal(false)}>
             Cancelar
           </Button>
           <Button
             type="submit"
-            variant="fullfiled"
-            size="large"
+            variant="primary"
             onClick={() => handleSubmit(onSubmit)}
             className={classes.submitButton}
           >

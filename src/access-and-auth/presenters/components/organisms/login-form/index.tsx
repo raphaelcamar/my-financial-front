@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useTheme } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { Button, Input } from '@/core/presenters/components/molecules';
+import { Input, Button } from '@/core/presenters/components/molecules';
 
 import { AuthTitle, LogoName, RedirectLink } from '@/access-and-auth/presenters/components/atoms';
 import { useStyles } from './styles';
@@ -13,7 +12,6 @@ import { loginSchemaValidator } from '@/access-and-auth/data';
 
 export const LoginForm: React.FC = () => {
   const classes = useStyles();
-  const theme = useTheme();
   const { userAuth } = useAccessAndAuthContext();
   const { enqueueSnackbar } = useSnackbar();
   const { messageFields, onChange, isValid, onSubmit } = UseFormValidation<User.Login>(loginSchemaValidator());
@@ -58,19 +56,17 @@ export const LoginForm: React.FC = () => {
           />
           <TextLink to="/recover">Esqueceu sua senha?</TextLink>
 
-          <Button className={classes.button} disabled={!isValid}>
+          <Button disabled={!isValid} variant="primary" styleType="fullfiled" shade={500}>
             {loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}
           </Button>
-
           <Button
             onClick={() => {
               // TODO
             }}
             type="button"
             className={classes.button}
-            variant="fullfiled"
-            color="#4A4A4A"
-            background={theme.palette.grey[200]}
+            variant="grey"
+            shade={200}
           >
             <Icon icon="google" />
             Entre com o google

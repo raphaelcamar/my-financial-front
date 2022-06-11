@@ -48,11 +48,4 @@ describe('Button Unit test', () => {
 
     expect(iconButton).not.toBeInTheDocument();
   });
-
-  test('Should be able to render a icon if the props contains a icon', () => {
-    render(ProvideTheme(<Button variant="outlinedError" icon="bellBall" />));
-    const iconButton = screen.queryByTestId('icon-button');
-
-    expect(iconButton).toBeTruthy();
-  });
 });
