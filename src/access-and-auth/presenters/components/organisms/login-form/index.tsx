@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { Input, Button } from '@/core/presenters/components/molecules';
 
-import { AuthTitle, LogoName, RedirectLink } from '@/access-and-auth/presenters/components/atoms';
-import { useStyles } from './styles';
+import {
+  AuthTitle,
+  LogoName,
+  RedirectLink,
+  WrapperForm,
+  GoogleButton,
+} from '@/access-and-auth/presenters/components/atoms';
+import { Container, Wrapper, Center } from './styles';
 import { CircularProgress, Icon, TextLink } from '@/core/presenters/components/atoms';
 import { User } from '@/access-and-auth/domain';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
@@ -11,7 +17,6 @@ import { UseFormValidation } from '@/core/presenters/hooks';
 import { loginSchemaValidator } from '@/access-and-auth/data';
 
 export const LoginForm: React.FC = () => {
-  const classes = useStyles();
   const { userAuth } = useAccessAndAuthContext();
   const { enqueueSnackbar } = useSnackbar();
   const { messageFields, onChange, isValid, onSubmit } = UseFormValidation<User.Login>(loginSchemaValidator());
@@ -32,10 +37,10 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className={classes.login}>
+    <WrapperForm>
       <LogoName />
-      <div className={classes.wrapper}>
-        <form className={classes.container} onSubmit={e => onSubmit(e, handleSubmit)}>
+      <Wrapper>
+        <Container onSubmit={e => onSubmit(e, handleSubmit)}>
           <AuthTitle title="Bem vindo de volta" description="Seja bem vindo de volta! Entre com suas credenciais." />
           <Input
             actionStart={<Icon icon="person" />}
@@ -59,23 +64,12 @@ export const LoginForm: React.FC = () => {
           <Button disabled={!isValid} variant="primary" styleType="fullfiled" shade={800}>
             {loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}
           </Button>
-          <Button
-            onClick={() => {
-              // TODO
-            }}
-            type="button"
-            className={classes.button}
-            variant="grey"
-            shade={100}
-          >
-            <Icon icon="google" />
-            Entre com o google
-          </Button>
-          <div className={classes.link}>
+          <GoogleButton>Entre com o Google</GoogleButton>
+          <Center>
             <RedirectLink question="Não possui conta?" link="Inscreva-se!" to="/subscribe" />
-          </div>
-        </form>
-      </div>
-    </div>
+          </Center>
+        </Container>
+      </Wrapper>
+    </WrapperForm>
   );
 };

@@ -1,32 +1,17 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled from 'styled-components';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    padding: '52px 86px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 36,
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+`;
 
-    [theme.breakpoints.down('md')]: {
-      padding: '36px 52px',
-    },
-  },
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
 
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 24,
-  },
-
-  button: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: 8,
-    alignItems: 'center',
-  },
-
-  question: {
-    textAlign: 'center',
-  },
-}));
+export const Center = styled.div`
+  text-align: center;
+`;

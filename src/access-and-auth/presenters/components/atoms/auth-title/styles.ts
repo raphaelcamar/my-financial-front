@@ -1,19 +1,11 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled from 'styled-components';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  wrapperHeader: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 4,
+export const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 
-    '& .MuiTypograhpy-body1': {
-      fontSize: 18,
-      fontWeight: 400,
-    },
-
-    [theme.breakpoints.down('md')]: {
-      textAlign: 'center',
-    },
-  },
-}));
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    text-align: center;
+  }
+`;

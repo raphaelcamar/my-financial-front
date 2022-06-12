@@ -4,7 +4,7 @@ import { ButtonVariant, StyleType } from '@/core/domain/styles';
 import { Shade } from '@/main/styled';
 import { ButtonStyle } from './styles';
 
-interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: ButtonVariant;
   styleType?: StyleType;

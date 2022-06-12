@@ -92,6 +92,6 @@ declare module 'styled-components' {
     palette: ColorProps;
     fonts: string[];
     font: FontProps;
-    breapoints: FunctionBreakpointTypes;
+    breakpoints: FunctionBreakpointTypes;
   }
 }

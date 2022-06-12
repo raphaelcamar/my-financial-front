@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { useTheme } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { LogoName, HeaderSubscribe, RedirectLink } from '@/access-and-auth/presenters/components/atoms';
-import { useStyles } from './styles';
+import {
+  LogoName,
+  RedirectLink,
+  AuthTitle,
+  WrapperForm,
+  GoogleButton,
+} from '@/access-and-auth/presenters/components/atoms';
+import { Container, Center, Form } from './styles';
 import { Button, Input } from '@/core/presenters/components/molecules';
 import { CircularProgress, Icon } from '@/core/presenters/components/atoms';
 import { User } from '@/access-and-auth/domain';
@@ -13,7 +18,6 @@ import { UserSubscribeValidatorSchema } from '@/access-and-auth/data';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 
 export const SubscribeForm: React.FC = () => {
-  const classes = useStyles();
   const { newUser } = useAccessAndAuthContext();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
@@ -21,7 +25,7 @@ export const SubscribeForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<User.Subscribe>({
     resolver: yupResolver(UserSubscribeValidatorSchema),
   });
@@ -44,67 +48,58 @@ export const SubscribeForm: React.FC = () => {
   };
 
   return (
-    <div className={classes.container}>
-      <LogoName />
-      <HeaderSubscribe />
-      <form className={classes.form} onSubmit={handleSubmit(handleSubmitForm)}>
-        <Input
-          actionStart={<Icon icon="person" />}
-          label="Nome"
-          name="name"
-          {...register('name')}
-          error={!!errors?.name?.message}
-          helperText={errors?.name?.message}
-        />
+    <WrapperForm>
+      <Container>
+        <LogoName />
+        <AuthTitle title="Bem vindo!" description="Cadastre-se e comece a ter uma vida mais organizada" />
+        <Form onSubmit={handleSubmit(handleSubmitForm)}>
+          <Input
+            actionStart={<Icon icon="person" />}
+            label="Nome"
+            name="name"
+            {...register('name')}
+            error={!!errors?.name?.message}
+            helperText={errors?.name?.message}
+          />
 
-        <Input
-          actionStart={<Icon icon="person" />}
-          label="Sobrenome"
-          name="lastname"
-          {...register('lastname')}
-          error={!!errors?.lastname?.message}
-          helperText={errors?.lastname?.message}
-        />
+          <Input
+            actionStart={<Icon icon="person" />}
+            label="Sobrenome"
+            name="lastname"
+            {...register('lastname')}
+            error={!!errors?.lastname?.message}
+            helperText={errors?.lastname?.message}
+          />
 
-        <Input
-          actionStart={<Icon icon="mail" />}
-          label="Email"
-          name="email"
-          {...register('email')}
-          error={!!errors?.email?.message}
-          helperText={errors?.email?.message}
-        />
+          <Input
+            actionStart={<Icon icon="mail" />}
+            label="Email"
+            name="email"
+            {...register('email')}
+            error={!!errors?.email?.message}
+            helperText={errors?.email?.message}
+          />
 
-        <Input
-          actionStart={<Icon icon="key" />}
-          label="Senha"
-          name="password"
-          type="password"
-          {...register('password')}
-          error={!!errors?.password?.message}
-          helperText={errors?.password?.message}
-        />
+          <Input
+            actionStart={<Icon icon="key" />}
+            label="Senha"
+            name="password"
+            type="password"
+            {...register('password')}
+            error={!!errors?.password?.message}
+            helperText={errors?.password?.message}
+          />
 
-        <Button variant="primary" styleType="fullfiled" shade={500}>
-          {loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}
-        </Button>
-      </form>
+          <Button variant="primary" styleType="fullfiled" shade={500}>
+            {loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}
+          </Button>
+        </Form>
 
-      <Button
-        onClick={() => {
-          // TODO
-        }}
-        type="button"
-        variant="grey"
-        shade={200}
-        className={classes.button}
-      >
-        <Icon icon="google" />
-        Inscreva-se com o google
-      </Button>
-      <div className={classes.question}>
-        <RedirectLink question="Já possui conta?" link="Faça login" to="/login" />
-      </div>
-    </div>
+        <GoogleButton>Inscreva-se com o google</GoogleButton>
+        <Center>
+          <RedirectLink question="Já possui conta?" link="Faça login" to="/login" />
+        </Center>
+      </Container>
+    </WrapperForm>
   );
 };

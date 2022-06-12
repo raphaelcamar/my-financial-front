@@ -1,36 +1,18 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled from 'styled-components';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  login: {
-    padding: '52px 86px',
+export const Container = styled.form`
+  display: flex;
+  gap: 36px;
+  padding-top: 64px;
+  height: 100%;
+  flex-direction: column;
+`;
 
-    [theme.breakpoints.down('md')]: {
-      padding: '36px 52px',
-    },
-  },
+export const Wrapper = styled.div`
+  height: 100%;
+  width: 100%;
+`;
 
-  container: {
-    display: 'flex',
-    gap: 36,
-    paddingTop: 64,
-    height: '100%',
-    flexDirection: 'column',
-  },
-
-  wrapper: {
-    height: '100%',
-    width: '100%',
-  },
-
-  button: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 8,
-    justifyContent: 'center',
-  },
-
-  link: {
-    textAlign: 'center',
-  },
-}));
+export const Center = styled.div`
+  text-align: center;
+`;

@@ -53,14 +53,14 @@ describe('Button Unit test', () => {
   test('Should be able to render a Button with black text color if the shade is below of 500', () => {
     render(
       ProvideStyledTheme(
-        <Button variant="success" styleType="fullfiled" shade={400}>
+        <Button variant="success" styleType="fullfiled" shade={300}>
           Test
         </Button>
       )
     );
 
     const button = screen.getByTestId('styled-button');
-    expect(button).toHaveStyle(`color: ${theme.font.color.primary}`);
+    expect(button).toHaveStyle(`color: ${theme.font.color.grey}`);
   });
 
   test('Should be able to render a Button with white text color if the shade is above of 500', () => {

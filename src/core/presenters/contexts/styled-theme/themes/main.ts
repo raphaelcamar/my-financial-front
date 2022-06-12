@@ -142,7 +142,7 @@ export const mainTheme: DefaultTheme = {
       900: 900,
     },
   },
-  breapoints: {
+  breakpoints: {
     up: key => `min-width: ${breakpoints[key]}px`,
     down: key => `max-width: ${breakpoints[key]}px`,
   },

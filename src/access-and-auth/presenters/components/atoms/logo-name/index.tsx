@@ -1,17 +1,17 @@
-import { useTheme } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import { Icon, Typography } from '@/core/presenters/components/atoms';
-import { useStyles } from './styles';
+import { Root } from './styles';
 
 export const LogoName: React.FC = () => {
-  const classes = useStyles();
-  const theme = useTheme();
+  const theme = useContext(ThemeContext);
+
   return (
-    <div className={classes.headerLogin}>
+    <Root>
       <Icon icon="logo" color={theme.palette.primary.main} />
       <Typography type="p" color="primary" size="xxlarge">
         My financial
       </Typography>
-    </div>
+    </Root>
   );
 };
