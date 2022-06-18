@@ -5,7 +5,8 @@ import { initialState, reducer } from './reducers';
 import { User } from '@/access-and-auth/domain';
 import { LocalStorageRepository } from '@/core/infra/cache';
 import { AuthenticateUser, CreateUser, VerifySession, SendRecoverPasswordEmail } from '@/access-and-auth/data';
-import { fetchUserAuth } from './actions';
+import { fetchUserAuth, fetchTokenPasswordRecover } from './actions';
+import { createUuid } from '@/core/presenters/utils';
 
 export const AccessAndAuthProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -63,6 +64,10 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
     const useCase = new SendRecoverPasswordEmail(accessRepository, email);
 
     await useCase.execute();
+
+    const uuid = createUuid();
+
+    fetchTokenPasswordRecover(uuid);
   };
 
   return (
