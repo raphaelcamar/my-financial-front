@@ -1,1 +1,1 @@
-export const availableRoutes = ['/subscribe'];
+export const availableRoutes = ['/cadastro'];

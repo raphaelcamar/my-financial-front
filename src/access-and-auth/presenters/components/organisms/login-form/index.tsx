@@ -59,14 +59,14 @@ export const LoginForm: React.FC = () => {
             helperText={messageFields?.password?.message}
             onChange={onChange}
           />
-          <TextLink to="/recover">Esqueceu sua senha?</TextLink>
+          <TextLink to="/recuperar-senha">Esqueceu sua senha?</TextLink>
 
-          <Button disabled={!isValid} variant="primary" styleType="fullfiled" shade={800}>
-            {loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}
+          <Button disabled={!isValid} loading={loading}>
+            Login
           </Button>
           <GoogleButton>Entre com o Google</GoogleButton>
           <Center>
-            <RedirectLink question="Não possui conta?" link="Inscreva-se!" to="/subscribe" />
+            <RedirectLink question="Não possui conta?" link="Inscreva-se!" to="/cadastro" />
           </Center>
         </Container>
       </Wrapper>

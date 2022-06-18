@@ -90,8 +90,8 @@ export const SubscribeForm: React.FC = () => {
             helperText={errors?.password?.message}
           />
 
-          <Button variant="primary" styleType="fullfiled" shade={500}>
-            {loading ? <CircularProgress size={25} color="inherit" /> : 'Login'}
+          <Button variant="primary" styleType="fullfiled" shade={500} loading={loading}>
+            Login
           </Button>
         </Form>
 
