@@ -4,7 +4,7 @@ import { AccessAndAuthContext } from './context';
 import { initialState, reducer } from './reducers';
 import { User } from '@/access-and-auth/domain';
 import { LocalStorageRepository } from '@/core/infra/cache';
-import { AuthenticateUser, CreateUser, VerifySession } from '@/access-and-auth/data';
+import { AuthenticateUser, CreateUser, VerifySession, SendRecoverPasswordEmail } from '@/access-and-auth/data';
 import { fetchUserAuth } from './actions';
 
 export const AccessAndAuthProvider: React.FC = ({ children }) => {
@@ -58,8 +58,17 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
     dispatch(fetchUserAuth(user));
   };
 
+  const recoverPassworSendEmail = async (email: string): Promise<void> => {
+    const accessRepository = new AccessRepositoryData();
+    const useCase = new SendRecoverPasswordEmail(accessRepository, email);
+
+    await useCase.execute();
+  };
+
   return (
-    <AccessAndAuthContext.Provider value={{ user: state.user, userAuth, newUser, verifyUserAuth, verifyInCache }}>
+    <AccessAndAuthContext.Provider
+      value={{ user: state.user, userAuth, newUser, verifyUserAuth, verifyInCache, recoverPassworSendEmail }}
+    >
       {children}
     </AccessAndAuthContext.Provider>
   );

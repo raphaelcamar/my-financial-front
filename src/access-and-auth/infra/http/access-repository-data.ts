@@ -41,4 +41,14 @@ export class AccessRepositoryData implements AccessRepository {
 
     return httpResponse.body;
   }
+
+  async sendRecoverPasswordEmail(email: string): Promise<void> {
+    const request = new RequestHttpRepository<Pick<User.Login, 'email'>, void>();
+    await request.post({
+      url: 'user/password-recover',
+      body: {
+        email,
+      },
+    });
+  }
 }

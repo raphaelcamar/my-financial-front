@@ -1,19 +1,9 @@
 import React from 'react';
-import { useStyles } from './styles';
 import { LoginForm } from '@/access-and-auth/presenters/components/organisms';
-import { Figure } from '@/access-and-auth/presenters/components/atoms';
+import { WrapperFigureForm } from '../../components/molecules';
 
-export const Login: React.FC = () => {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <div className={classes.form}>
-        <LoginForm />
-      </div>
-      <div className={classes.figure}>
-        <Figure type="circle" />
-      </div>
-    </div>
-  );
-};
+export const Login: React.FC = () => (
+  <WrapperFigureForm side="left" figureType="circle">
+    <LoginForm />
+  </WrapperFigureForm>
+);

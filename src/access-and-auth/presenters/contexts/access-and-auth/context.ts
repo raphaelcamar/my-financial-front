@@ -7,6 +7,7 @@ type PropsAccessAndAuthContext = {
   newUser: (body: User.Subscribe) => Promise<void>;
   verifyUserAuth: () => Promise<User>;
   verifyInCache: () => boolean;
+  recoverPassworSendEmail: (email: string) => Promise<void>;
 };
 
 export const AccessAndAuthContext = createContext<PropsAccessAndAuthContext>({} as PropsAccessAndAuthContext);
