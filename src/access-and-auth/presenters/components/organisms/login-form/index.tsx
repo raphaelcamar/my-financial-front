@@ -10,7 +10,7 @@ import {
   GoogleButton,
 } from '@/access-and-auth/presenters/components/atoms';
 import { Container, Wrapper, Center } from './styles';
-import { CircularProgress, Icon, TextLink } from '@/core/presenters/components/atoms';
+import { Icon, TextLink } from '@/core/presenters/components/atoms';
 import { User } from '@/access-and-auth/domain';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 import { UseFormValidation } from '@/core/presenters/hooks';

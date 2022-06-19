@@ -3,6 +3,7 @@ import { User } from '@/access-and-auth/domain';
 
 type PropsAccessAndAuthContext = {
   user: User;
+  passwordToken: string;
   userAuth: (body: User.Login) => Promise<void>;
   newUser: (body: User.Subscribe) => Promise<void>;
   verifyUserAuth: () => Promise<User>;

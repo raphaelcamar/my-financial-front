@@ -64,15 +64,19 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
     const useCase = new SendRecoverPasswordEmail(accessRepository, email);
 
     await useCase.execute();
-
-    const uuid = createUuid();
-
-    fetchTokenPasswordRecover(uuid);
   };
 
   return (
     <AccessAndAuthContext.Provider
-      value={{ user: state.user, userAuth, newUser, verifyUserAuth, verifyInCache, recoverPassworSendEmail }}
+      value={{
+        user: state.user,
+        passwordToken: state.passwordToken,
+        userAuth,
+        newUser,
+        verifyUserAuth,
+        verifyInCache,
+        recoverPassworSendEmail,
+      }}
     >
       {children}
     </AccessAndAuthContext.Provider>

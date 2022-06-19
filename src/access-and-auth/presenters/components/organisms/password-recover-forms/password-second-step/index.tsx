@@ -1,0 +1,106 @@
+/* eslint-disable no-useless-return */
+/* eslint-disable no-multi-assign */
+import React, { InputHTMLAttributes, useEffect, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useSnackbar } from 'notistack';
+import { Typography } from '@/core/presenters/components/atoms';
+
+import { ContainerForm, WrapperMessage, WrapperInputPin } from './styles';
+import { InputPin } from '@/access-and-auth/presenters/components/atoms/input-pin';
+import { Button } from '@/core/presenters/components/molecules';
+
+interface IPasswordSecondStep {
+  handleChangeSecondStep?: () => void;
+}
+
+export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChangeSecondStep }) => {
+  const inputRefs = useRef<HTMLInputElement[]>([]);
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [pinValue, setPinValue] = useState<string[]>([]);
+  const [error, setError] = useState<string>(null);
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const changePinFocus = (index: number): void => {
+    const ref = inputRefs.current[index];
+    if (ref) {
+      ref.focus();
+    }
+  };
+
+  useEffect(() => {
+    changePinFocus(0);
+  }, []);
+
+  const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      if (pinValue.length > 0) {
+        pinValue.forEach(field => {});
+      }
+      //   handleChangeSecondStep();
+    } catch (err) {
+      enqueueSnackbar(err?.message || 'Algo aconteceu. Tente novamente depois', {
+        variant: 'error',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signRef = (el: HTMLInputElement, index: number): void => {
+    if (el) {
+      inputRefs.current[index] = el;
+    }
+  };
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>, position: number): void => {
+    const { value } = e.target;
+    const arr = pinValue;
+    arr[position] = value;
+
+    if (value) {
+      setPinValue(arr);
+      changePinFocus(position + 1);
+    } else {
+      changePinFocus(position);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, position: number): void => {
+    const keyboardKeyCode = e.nativeEvent.code;
+
+    if (keyboardKeyCode !== 'Backspace') {
+      return;
+    }
+
+    if (!pinValue[position]) {
+      changePinFocus(position - 1);
+    }
+  };
+
+  return (
+    <ContainerForm onSubmit={e => handleSubmitForm(e)}>
+      <WrapperMessage>
+        <Typography type="h1" size="xxxlarge" weight={700}>
+          Informe o código
+        </Typography>
+        <Typography size="large">Informe o código enviado para seu E-mail</Typography>
+      </WrapperMessage>
+      <WrapperInputPin>
+        {Array.from({ length: 6 }, (_, index) => (
+          <InputPin
+            value={pinValue[index]}
+            onKeyDown={e => handleKeyDown(e, index)}
+            onChange={event => handleChangeInput(event, index)}
+            ref={el => signRef(el, index)}
+          />
+        ))}
+      </WrapperInputPin>
+      <div>{error && error}</div>
+      <Button loading={loading}>Enviar</Button>
+    </ContainerForm>
+  );
+};

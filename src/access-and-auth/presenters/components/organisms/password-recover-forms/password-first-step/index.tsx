@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router';
 import { Button, Input } from '@/core/presenters/components/molecules';
 import { ContainerForm, WrapperMessage } from './styles';
 import { Typography } from '@/core/presenters/components/atoms';
@@ -11,7 +12,11 @@ import { RecoverPasswordValidator } from '@/access-and-auth/data';
 
 type DataForm = Pick<User.Login, 'email'>;
 
-export const PasswordFirstStep: React.FC = () => {
+interface IPasswordFirstStep {
+  handleChangeStep: () => void;
+}
+
+export const PasswordFirstStep: React.FC<IPasswordFirstStep> = ({ handleChangeStep }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const { enqueueSnackbar } = useSnackbar();
   const { recoverPassworSendEmail } = useAccessAndAuthContext();
@@ -27,7 +32,8 @@ export const PasswordFirstStep: React.FC = () => {
   const handleSubmitForm = async (data: DataForm) => {
     try {
       setLoading(true);
-      await recoverPassworSendEmail(data.email);
+      // await recoverPassworSendEmail(data.email);
+      handleChangeStep();
     } catch (err) {
       enqueueSnackbar(err?.message || 'Aconteceu algo. Tente novamente depois', {
         variant: 'error',
