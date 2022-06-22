@@ -1,13 +1,14 @@
 /* eslint-disable no-useless-return */
 /* eslint-disable no-multi-assign */
-import React, { InputHTMLAttributes, useEffect, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { Typography } from '@/core/presenters/components/atoms';
 
-import { ContainerForm, WrapperMessage, WrapperInputPin } from './styles';
+import { ContainerForm, WrapperMessage, WrapperInputPin, WrapperError } from './styles';
 import { InputPin } from '@/access-and-auth/presenters/components/atoms/input-pin';
 import { Button } from '@/core/presenters/components/molecules';
+import { CodeRecoverValidator } from '@/access-and-auth/data';
+import { ValidationComposite } from '@/core/validation';
 
 interface IPasswordSecondStep {
   handleChangeSecondStep?: () => void;
@@ -17,7 +18,7 @@ export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChange
   const inputRefs = useRef<HTMLInputElement[]>([]);
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [pinValue, setPinValue] = useState<string[]>([]);
+  const [pinValue, setPinValue] = useState<string[]>(new Array(5).fill(''));
   const [error, setError] = useState<string>(null);
 
   const { enqueueSnackbar } = useSnackbar();
@@ -37,10 +38,12 @@ export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChange
     e.preventDefault();
     try {
       setLoading(true);
-      if (pinValue.length > 0) {
-        pinValue.forEach(field => {});
+      const result = new ValidationComposite(CodeRecoverValidator());
+      const message = result.validate('code', pinValue.join(''));
+      setError(message);
+      if (!message) {
+        handleChangeSecondStep();
       }
-      //   handleChangeSecondStep();
     } catch (err) {
       enqueueSnackbar(err?.message || 'Algo aconteceu. Tente novamente depois', {
         variant: 'error',
@@ -92,14 +95,13 @@ export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChange
       <WrapperInputPin>
         {Array.from({ length: 6 }, (_, index) => (
           <InputPin
-            value={pinValue[index]}
             onKeyDown={e => handleKeyDown(e, index)}
             onChange={event => handleChangeInput(event, index)}
             ref={el => signRef(el, index)}
           />
         ))}
       </WrapperInputPin>
-      <div>{error && error}</div>
+      {error && <WrapperError>{error}</WrapperError>}
       <Button loading={loading}>Enviar</Button>
     </ContainerForm>
   );

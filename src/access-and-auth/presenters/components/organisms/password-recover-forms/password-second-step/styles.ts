@@ -22,3 +22,7 @@ export const WrapperInputPin = styled.div`
   gap: 16px;
   flex-wrap: wrap;
 `;
+
+export const WrapperError = styled.div`
+  color: ${({ theme }) => theme.palette.error[600]};
+`;

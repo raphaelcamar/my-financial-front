@@ -4,6 +4,7 @@ import {
   MinLengthValidation,
   RequiredFieldValidation,
   MaxLengthValidation,
+  NumberValidation,
 } from '@/core/data';
 
 export class ValidationBuilder {
@@ -30,6 +31,11 @@ export class ValidationBuilder {
 
   maxLength(length: number): ValidationBuilder {
     this.validations.push(new MaxLengthValidation(this.fieldName, length));
+    return this;
+  }
+
+  number(): ValidationBuilder {
+    this.validations.push(new NumberValidation(this.fieldName));
     return this;
   }
 

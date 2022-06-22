@@ -1,1 +1,1 @@
-export const availableRoutes = ['/cadastro'];
+export const availableRoutes = ['/cadastro', '/recuperar-senha', 'recuperar-senha/codigo'];
