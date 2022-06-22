@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import { Typography } from '@/core/presenters/components/atoms';
 
 import { ContainerForm, WrapperMessage, WrapperInputPin, WrapperError } from './styles';
-import { InputPin } from '@/access-and-auth/presenters/components/atoms/input-pin';
+import { InputPin, Countdown } from '@/access-and-auth/presenters/components/atoms';
 import { Button } from '@/core/presenters/components/molecules';
 import { CodeRecoverValidator } from '@/access-and-auth/data';
 import { ValidationComposite } from '@/core/validation';
@@ -84,6 +84,10 @@ export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChange
     }
   };
 
+  const handleSendNewCode = () => {
+    // TODO send new code
+  };
+
   return (
     <ContainerForm onSubmit={e => handleSubmitForm(e)}>
       <WrapperMessage>
@@ -92,6 +96,7 @@ export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChange
         </Typography>
         <Typography size="large">Informe o código enviado para seu E-mail</Typography>
       </WrapperMessage>
+      <Countdown reset={() => handleSendNewCode()} />
       <WrapperInputPin>
         {Array.from({ length: 6 }, (_, index) => (
           <InputPin
