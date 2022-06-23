@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { TypographyStyle } from '@/core/presenters/components/atoms/typography/styles';
 import { THREE_MINUTES } from '.';
 import { getRestPercentage } from '@/access-and-auth/presenters/utils';
@@ -8,10 +8,17 @@ type Test = {
   width: number;
 };
 
+const FadeInAnimation = keyframes`  
+  from { width: 0%; }
+  to { width: 100%; }
+`;
+
+// TODO fix it
 export const CountdownWrapper = styled.div<Test>`
   width: ${({ width }) => `${getRestPercentage(THREE_MINUTES, width)}%`};
+  animation-name: ${FadeInAnimation};
+  transition: all linear 0.3s;
   height: 100%;
-  transition: width ease 0.3s;
   border-radius: 8px;
   background: ${({ theme }) => theme.palette.primary.main};
 `;

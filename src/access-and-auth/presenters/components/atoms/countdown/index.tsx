@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import React, { useEffect, useState } from 'react';
 import { CountdownWrapper, Container, StyledTypography, Options, StyledButton } from './styles';
 import { formatMillisecondsToMinutes } from '@/access-and-auth/presenters/utils';
@@ -14,10 +15,12 @@ export const Countdown: React.FC<ICountdown> = ({ reset }) => {
   const disableButton = countdown !== 0;
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCountdown(countdown - 1000);
-    }, 1000);
-    return () => clearInterval(intervalId);
+    if (countdown >= 1000) {
+      const intervalId = setInterval(() => {
+        setCountdown(countdown - 1000);
+      }, 1000);
+      return () => clearInterval(intervalId);
+    }
   }, [countdown]);
 
   const resetCountdown = () => {
