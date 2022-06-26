@@ -22,3 +22,14 @@ export const Container = styled.div<SidebarType>`
   border-right: 1px solid ${({ theme }) => theme.palette.primary[100]};
   ${({ open }) => transitateWidth(open)}
 `;
+
+export const WrapperSidebar = styled.div<SidebarType>`
+  ${({ open }) =>
+    open
+      ? css`
+          width: ${SIZES.width};
+        `
+      : css`
+          width: 80px;
+        `}
+`;

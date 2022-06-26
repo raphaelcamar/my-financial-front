@@ -11,6 +11,5 @@ export * from './illustration-subscribe';
 export * from './input-base';
 export * from './typography';
 export * from './paper';
-export * from './sidebar-drawer';
 export * from './table-components';
 export * from './text-link';
