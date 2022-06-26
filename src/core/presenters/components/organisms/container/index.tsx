@@ -1,15 +1,12 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import clsx from 'clsx';
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Sidebar, Header } from '@/core/presenters/components/organisms';
 import { IconSidebarAction } from '@/core/presenters/components/molecules';
-import { useStyles } from './styles';
+import { Content } from './styles';
 import { SidebarData } from '@/core/presenters/utils';
+import { TransactionProvider } from '@/transaction/presenters/contexts';
 
-export const Container: React.FC = ({ children }) => {
-  const classes = useStyles();
+export const Container: React.FC = () => {
   const [open, setOpen] = useState<boolean>(true);
   const { pathname } = useLocation();
 
@@ -19,17 +16,13 @@ export const Container: React.FC = ({ children }) => {
   };
 
   return (
-    <div>
+    <TransactionProvider>
       <IconSidebarAction open={open} onClick={() => setOpen(!open)} />
       <Sidebar open={open} />
-      <div
-        className={clsx(classes.content, {
-          [classes.contentShift]: !open,
-        })}
-      >
+      <Content open={open}>
         <Header title={getTitle()} />
-        {children}
-      </div>
-    </div>
+        <Outlet />
+      </Content>
+    </TransactionProvider>
   );
 };

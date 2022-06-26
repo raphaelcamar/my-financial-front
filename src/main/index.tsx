@@ -7,10 +7,9 @@ import './global.css';
 import { AccessAndAuthProvider } from '@/access-and-auth/presenters/contexts';
 import { AccessAndAuthRoutes } from '@/access-and-auth/presenters/routes';
 import { TransactionRoutes } from '@/transaction/presenters/routes';
-import { Container } from '@/core/presenters/components/organisms';
-import { TransactionProvider } from '@/transaction/presenters/contexts';
 
 import { PrivateRoute, PublicRoute } from '@/core/presenters/proxies';
+import { CoreRoutes } from '@/core/presenters/routes';
 
 ReactDOM.render(
   <ThemeProvider>
@@ -22,11 +21,7 @@ ReactDOM.render(
               <AccessAndAuthRoutes />
             </PublicRoute>
             <PrivateRoute>
-              <Container>
-                <TransactionProvider>
-                  <TransactionRoutes />
-                </TransactionProvider>
-              </Container>
+              <CoreRoutes>{TransactionRoutes}</CoreRoutes>
             </PrivateRoute>
           </AccessAndAuthProvider>
         </NotistackProvider>
