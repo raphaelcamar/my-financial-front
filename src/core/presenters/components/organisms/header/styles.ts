@@ -1,10 +1,7 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled from 'styled-components';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-}));
+export const ContainerHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
