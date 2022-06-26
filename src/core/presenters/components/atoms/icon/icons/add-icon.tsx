@@ -1,9 +1,10 @@
-import { useTheme } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import { Icon } from '@/core/domain';
 
 export const AddIcon: React.FC<Icon> = ({ color, dataTestId }) => {
-  const theme = useTheme();
+  const theme = useContext(ThemeContext);
+
   return (
     <svg
       data-testid={dataTestId || 'icon'}

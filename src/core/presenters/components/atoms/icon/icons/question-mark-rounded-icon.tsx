@@ -1,10 +1,10 @@
-import { useTheme } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 
+import { ThemeContext } from 'styled-components';
 import { Icon } from '@/core/domain';
 
 export const QuestionMarkRoundedIcon: React.FC<Icon> = ({ color }) => {
-  const theme = useTheme();
+  const theme = useContext(ThemeContext);
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

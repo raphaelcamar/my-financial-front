@@ -1,9 +1,9 @@
-import { useTheme } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import { Icon } from '@/core/domain';
 
 export const LineArrowDownIcon: React.FC<Icon> = ({ color }) => {
-  const theme = useTheme();
+  const theme = useContext(ThemeContext);
   return (
     <svg width="12" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
