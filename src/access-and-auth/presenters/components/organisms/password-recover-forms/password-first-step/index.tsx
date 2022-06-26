@@ -32,7 +32,7 @@ export const PasswordFirstStep: React.FC<IPasswordFirstStep> = ({ handleChangeSt
   const handleSubmitForm = async (data: DataForm) => {
     try {
       setLoading(true);
-      // await recoverPassworSendEmail(data.email);
+      await recoverPassworSendEmail(data.email);
       handleChangeStep();
     } catch (err) {
       enqueueSnackbar(err?.message || 'Aconteceu algo. Tente novamente depois', {

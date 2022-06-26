@@ -12,7 +12,8 @@ import {
   KeyIcon,
   LineArrowDownIcon,
   LineArrowUpIcon,
-  LogoIcon,
+  CloseEyeIcon,
+  OpenEyeIconIcon,
   LogoNewIcon,
   LogoSmallIcon,
   MailIcon,
@@ -55,6 +56,8 @@ export const Icon: React.FC<IconProps> = ({ icon, color }) => {
     search: <SearchIcon dataTestId="search" color={color && color} />,
     square: <SquareIcon dataTestId="square" color={color && color} />,
     transaction: <TransactionIcon dataTestId="transaction" color={color && color} />,
+    closeEye: <CloseEyeIcon color={color && color} />,
+    openEye: <OpenEyeIconIcon color={color && color} />,
   };
 
   return getIcon[icon];

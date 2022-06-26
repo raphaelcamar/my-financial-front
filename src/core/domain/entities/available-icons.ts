@@ -20,4 +20,6 @@ export type AvailableIcons =
   | 'questionMarkRounded'
   | 'search'
   | 'square'
-  | 'transaction';
+  | 'transaction'
+  | 'closeEye'
+  | 'openEye';

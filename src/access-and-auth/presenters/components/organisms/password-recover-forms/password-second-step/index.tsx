@@ -9,18 +9,20 @@ import { InputPin, Countdown } from '@/access-and-auth/presenters/components/ato
 import { Button } from '@/core/presenters/components/molecules';
 import { CodeRecoverValidator } from '@/access-and-auth/data';
 import { ValidationComposite } from '@/core/validation';
+import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 
 interface IPasswordSecondStep {
-  handleChangeSecondStep?: () => void;
+  handleChangeStep?: () => void;
 }
 
-export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChangeSecondStep }) => {
+export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChangeStep }) => {
   const inputRefs = useRef<HTMLInputElement[]>([]);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [pinValue, setPinValue] = useState<string[]>(new Array(5).fill(''));
   const [error, setError] = useState<string>(null);
 
+  const { sendCodeRecover } = useAccessAndAuthContext();
   const { enqueueSnackbar } = useSnackbar();
 
   const changePinFocus = (index: number): void => {
@@ -42,7 +44,9 @@ export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChange
       const message = result.validate('code', pinValue.join(''));
       setError(message);
       if (!message) {
-        handleChangeSecondStep();
+        await sendCodeRecover(pinValue.join(''));
+
+        handleChangeStep();
       }
     } catch (err) {
       enqueueSnackbar(err?.message || 'Algo aconteceu. Tente novamente depois', {

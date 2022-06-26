@@ -13,7 +13,6 @@ const FadeInAnimation = keyframes`
   to { width: 100%; }
 `;
 
-// TODO fix it
 export const CountdownWrapper = styled.div<Test>`
   width: ${({ width }) => `${getRestPercentage(THREE_MINUTES, width)}%`};
   animation-name: ${FadeInAnimation};

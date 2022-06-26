@@ -11,3 +11,12 @@ export const CodeRecoverValidator = (): FieldValidation[] => {
 
   return [...code];
 };
+
+export const RecoverPasswordSendPassword = yup.object({
+  password: yup.string().min(6, 'Deve possuir ao menos 6 caracteres').required('Informe a nova senha'),
+  confirm_password: yup
+    .string()
+    .min(6, 'Deve possuir ao menos 6 caracteres')
+    .oneOf([yup.ref('password'), null], 'As senhas não coincidem')
+    .required('Informe a nova senha'),
+});

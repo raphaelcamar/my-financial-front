@@ -1,9 +1,9 @@
 /* eslint-disable default-param-last */
-import { ActionTypes, InitialState, USER_AUTHORIZED, TOKEN_PASSWORD_RECOVER } from './types';
+import { ActionTypes, InitialState, USER_AUTHORIZED, EMAIL_PASSWORD_RECOVER } from './types';
 
 export const initialState: InitialState = {
   user: undefined,
-  passwordToken: undefined,
+  emailPasswordRecover: undefined,
 };
 
 // eslint-disable-next-line consistent-return
@@ -15,10 +15,10 @@ export function reducer(state = initialState, action: ActionTypes): InitialState
         user: action.payload,
       };
 
-    case TOKEN_PASSWORD_RECOVER:
+    case EMAIL_PASSWORD_RECOVER:
       return {
         ...state,
-        passwordToken: action.payload,
+        emailPasswordRecover: action.payload,
       };
   }
 }

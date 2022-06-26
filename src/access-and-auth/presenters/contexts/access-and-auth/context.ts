@@ -9,6 +9,8 @@ type PropsAccessAndAuthContext = {
   verifyUserAuth: () => Promise<User>;
   verifyInCache: () => boolean;
   recoverPassworSendEmail: (email: string) => Promise<void>;
+  sendNewPassword: (password: string) => Promise<void>;
+  sendCodeRecover: (code: string) => Promise<void>;
 };
 
 export const AccessAndAuthContext = createContext<PropsAccessAndAuthContext>({} as PropsAccessAndAuthContext);

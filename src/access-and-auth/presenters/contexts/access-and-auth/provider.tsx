@@ -4,9 +4,15 @@ import { AccessAndAuthContext } from './context';
 import { initialState, reducer } from './reducers';
 import { User } from '@/access-and-auth/domain';
 import { LocalStorageRepository } from '@/core/infra/cache';
-import { AuthenticateUser, CreateUser, VerifySession, SendRecoverPasswordEmail } from '@/access-and-auth/data';
-import { fetchUserAuth, fetchTokenPasswordRecover } from './actions';
-import { createUuid } from '@/core/presenters/utils';
+import {
+  AuthenticateUser,
+  CreateUser,
+  VerifySession,
+  SendRecoverPasswordEmail,
+  SendNewPasswordRecover,
+  SendCodePassowrdRecover,
+} from '@/access-and-auth/data';
+import { fetchUserAuth, fetchEmailPasswordRecover } from './actions';
 
 export const AccessAndAuthProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -63,6 +69,21 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
     const accessRepository = new AccessRepositoryData();
     const useCase = new SendRecoverPasswordEmail(accessRepository, email);
 
+    dispatch(fetchEmailPasswordRecover(email));
+
+    await useCase.execute();
+  };
+
+  const sendCodeRecover = async (code: string): Promise<void> => {
+    const accessRepository = new AccessRepositoryData();
+    const useCase = new SendCodePassowrdRecover(accessRepository, state.emailPasswordRecover, code);
+
+    await useCase.execute();
+  };
+
+  const sendNewPassword = async (password: string): Promise<void> => {
+    const accessRepository = new AccessRepositoryData();
+    const useCase = new SendNewPasswordRecover(accessRepository, password, state?.emailPasswordRecover);
     await useCase.execute();
   };
 
@@ -70,12 +91,14 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
     <AccessAndAuthContext.Provider
       value={{
         user: state.user,
-        passwordToken: state.passwordToken,
+        passwordToken: state.emailPasswordRecover,
         userAuth,
         newUser,
         verifyUserAuth,
         verifyInCache,
         recoverPassworSendEmail,
+        sendNewPassword,
+        sendCodeRecover,
       }}
     >
       {children}

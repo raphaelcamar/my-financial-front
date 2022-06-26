@@ -34,4 +34,19 @@ export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
       body: httpResponse.data,
     };
   }
+
+  async put(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
+    const httpResponse = await api.put(`/${params.url}`, params.body, {
+      headers: !params.headers
+        ? {
+            Authorization: `Bearer ${this.token.get('@token')}`,
+          }
+        : params.headers,
+    });
+
+    return {
+      statusCode: httpResponse.status,
+      body: httpResponse.data,
+    };
+  }
 }

@@ -1,11 +1,11 @@
 import { User } from '@/access-and-auth/domain';
 
 export const USER_AUTHORIZED = 'USER_AUTHORIZED';
-export const TOKEN_PASSWORD_RECOVER = 'TOKEN_PASSWORD_RECOVER';
+export const EMAIL_PASSWORD_RECOVER = 'EMAIL_PASSWORD_RECOVER';
 
 export type InitialState = {
   user: User;
-  passwordToken: string;
+  emailPasswordRecover: string;
 };
 
 type UserAuthorized = {
@@ -13,9 +13,9 @@ type UserAuthorized = {
   payload: User;
 };
 
-type TokenPasswordRecover = {
-  type: typeof TOKEN_PASSWORD_RECOVER;
+type EmailPasswordRecover = {
+  type: typeof EMAIL_PASSWORD_RECOVER;
   payload: string;
 };
 
-export type ActionTypes = UserAuthorized | TokenPasswordRecover;
+export type ActionTypes = UserAuthorized | EmailPasswordRecover;

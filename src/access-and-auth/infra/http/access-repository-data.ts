@@ -51,4 +51,30 @@ export class AccessRepositoryData implements AccessRepository {
       },
     });
   }
+
+  async sendNewPasswordRecover(password: string, email: string): Promise<void> {
+    const request = new RequestHttpRepository<Pick<User, 'password' | 'email'>, void>();
+
+    await request.put({
+      url: 'user/update',
+      body: {
+        email,
+        password,
+      },
+    });
+
+    return null;
+  }
+
+  async sendCodePasswordRecover(code: string, email: string): Promise<void> {
+    const request = new RequestHttpRepository<any, void>();
+
+    await request.post({
+      url: 'user/verify-code',
+      body: {
+        email,
+        code,
+      },
+    });
+  }
 }

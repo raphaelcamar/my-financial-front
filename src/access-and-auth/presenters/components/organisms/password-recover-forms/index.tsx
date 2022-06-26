@@ -3,11 +3,12 @@ import { LogoName, WrapperForm } from '@/access-and-auth/presenters/components/a
 import { Wrapper, FadeIn } from './styles';
 import { PasswordFirstStep } from './password-first-step';
 import { PasswordSecondStep } from './password-second-step';
+import { PasswordThirdStep } from './password-thrid-step';
 
 type Steps = 'FIRST_STEP' | 'SECOND_STEP' | 'THIRD_STEP';
 
 export const PasswordRecoverForm: React.FC = () => {
-  const [step, setStep] = useState<Steps>('SECOND_STEP');
+  const [step, setStep] = useState<Steps>('FIRST_STEP');
 
   return (
     <WrapperForm>
@@ -21,10 +22,14 @@ export const PasswordRecoverForm: React.FC = () => {
         )}
         {step === 'SECOND_STEP' && (
           <FadeIn>
-            <PasswordSecondStep />
+            <PasswordSecondStep handleChangeStep={() => setStep('THIRD_STEP')} />
           </FadeIn>
         )}
-        {step === 'THIRD_STEP' && <div />}
+        {step === 'THIRD_STEP' && (
+          <FadeIn>
+            <PasswordThirdStep />
+          </FadeIn>
+        )}
       </Wrapper>
     </WrapperForm>
   );
