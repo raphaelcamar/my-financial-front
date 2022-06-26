@@ -1,25 +1,24 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled, { css } from 'styled-components';
 import { SIZES } from '@/core/domain';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  content: {
-    flexGrow: 1,
-    padding: '28px 48px',
-    background: theme.palette.grey[50],
-    minHeight: '100vh',
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: SIZES.width,
-  },
+type ContainerContentType = {
+  open: boolean;
+};
 
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: SIZES.marginLeft,
-  },
-}));
+const transitateWidth = (open: boolean) =>
+  open
+    ? css`
+        transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+      `
+    : css`
+        transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+      `;
+
+export const Content = styled.div<ContainerContentType>`
+  flex-grow: 1;
+  padding: 28px 48px;
+  background: ${({ theme }) => theme.palette.grey[50]};
+  min-height: 100vh;
+  ${({ open }) => transitateWidth(open)}
+  margin-left: ${({ open }) => (open ? SIZES.width : SIZES.marginLeft)}px;
+`;
