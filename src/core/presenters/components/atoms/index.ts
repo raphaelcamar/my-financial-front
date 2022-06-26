@@ -6,8 +6,6 @@ export * from './grid';
 export * from './header-sidebar';
 export * from './helper-text';
 export * from './icon';
-export * from './illustration-login';
-export * from './illustration-subscribe';
 export * from './input-base';
 export * from './typography';
 export * from './paper';

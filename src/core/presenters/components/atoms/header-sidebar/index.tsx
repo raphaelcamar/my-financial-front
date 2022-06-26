@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useTheme } from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
+import { ThemeContext } from 'styled-components';
 import { Icon, Typography } from '@/core/presenters/components/atoms';
 import { Header } from './styles';
 
@@ -8,7 +8,8 @@ interface IHeaderSidebar {
 }
 
 export const HeaderSidebar: React.FC<IHeaderSidebar> = ({ open }) => {
-  const theme = useTheme();
+  const theme = useContext(ThemeContext);
+
   const [openTitle, setOpenTitle] = useState<boolean>(open);
 
   useEffect(() => {

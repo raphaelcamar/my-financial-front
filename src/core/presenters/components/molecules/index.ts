@@ -1,4 +1,4 @@
-export * from './button-link-menu';
+export * from './accordion-item';
 export * from './button-menu';
 export * from './chip';
 export * from './icon-button';

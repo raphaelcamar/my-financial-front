@@ -1,30 +1,32 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled from 'styled-components';
+import { TypographyStyle } from '@/core/presenters/components/atoms/typography/styles';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  line: {
-    borderLeft: `1px solid ${theme.palette.grey[500]}`,
-    margin: '8px 0px 8px 16px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 4,
-    paddingLeft: 12,
-  },
+export const ItemSidebar = styled.div`
+  margin-bottom: 16px;
+`;
 
-  wrapperIconText: {
-    display: 'flex',
-    gap: 16,
-    alignItems: 'center',
-    [theme.breakpoints.down('md')]: {
-      '& .MuiTypography-body1': {
-        display: 'none !important',
-      },
-      display: 'flex',
-      justifyContent: 'center',
-    },
-  },
+export const WrapperIconText = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
 
-  accordion: {
-    marginBottom: '16px !important',
-  },
-}));
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    display: flex;
+    justify-content: center;
+  }
+`;
+
+export const StyledTypography = styled(TypographyStyle)`
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    display: none;
+  }
+`;
+
+export const Line = styled.div`
+  border-left: 1px solid ${({ theme }) => theme.palette.grey[50]};
+  margin: 8px 0px 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 12px;
+`;
