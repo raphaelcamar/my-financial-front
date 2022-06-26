@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material';
-import clsx from 'clsx';
 import { Icon, Typography } from '@/core/presenters/components/atoms';
-import { useStyles } from './styles';
+import { Header } from './styles';
 
 interface IHeaderSidebar {
   open: boolean;
@@ -10,7 +9,6 @@ interface IHeaderSidebar {
 
 export const HeaderSidebar: React.FC<IHeaderSidebar> = ({ open }) => {
   const theme = useTheme();
-  const classes = useStyles();
   const [openTitle, setOpenTitle] = useState<boolean>(open);
 
   useEffect(() => {
@@ -26,13 +24,13 @@ export const HeaderSidebar: React.FC<IHeaderSidebar> = ({ open }) => {
   }, [open]);
 
   return (
-    <div className={clsx(classes.header, !openTitle && classes.center)}>
+    <Header open={open}>
       <Icon icon="logo" color={theme.palette.primary.main} />
       {openTitle && (
         <Typography type="h6" size="xxlarge" color="primary">
           My Financial
         </Typography>
       )}
-    </div>
+    </Header>
   );
 };
