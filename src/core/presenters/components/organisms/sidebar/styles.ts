@@ -1,25 +1,24 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled, { css } from 'styled-components';
 import { SIZES } from '@/core/domain';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    width: SIZES.width,
-    padding: 24,
-    position: 'fixed',
-    height: '100vh',
-    borderRight: `1px solid ${theme.palette.primary[100]}`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
+type SidebarType = {
+  open: boolean;
+};
 
-  closed: {
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    width: SIZES.marginLeft,
-  },
-}));
+const transitateWidth = (open: boolean) =>
+  open
+    ? css`
+        transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+      `
+    : css`
+        transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+      `;
+
+export const Container = styled.div<SidebarType>`
+  width: ${({ open }) => (open ? SIZES.width : SIZES.marginLeft)}px;
+  padding: 24px;
+  position: fixed;
+  height: 100vh;
+  border-right: 1px solid ${({ theme }) => theme.palette.primary[100]};
+  ${({ open }) => transitateWidth(open)}
+`;
