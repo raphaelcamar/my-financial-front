@@ -1,6 +1,9 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled from 'styled-components';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  container: {},
-}));
+export const StyledTable = styled.table`
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 750px;
+`;

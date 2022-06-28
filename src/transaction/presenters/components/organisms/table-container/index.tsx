@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useStyles } from './styles';
 import { TableData } from '@/core/presenters/components/organisms/table/table-data';
-import { TableCell, TableRow, Typography } from '@/core/presenters/components/atoms';
+import { Td, Tr, Typography } from '@/core/presenters/components/atoms';
 import { Chip } from '@/core/presenters/components/molecules';
 
 import { useTransactionContext } from '@/transaction/presenters/contexts';
@@ -10,21 +10,27 @@ import { formatCurrency, formatTopic, formatType, formatDate } from '@/core/pres
 const tableHead = [
   {
     title: 'Tópico',
+    sorteable: true,
   },
   {
     title: 'Anotação',
+    sorteable: true,
   },
   {
     title: 'Data',
+    sorteable: true,
   },
   {
     title: 'Tipo',
+    sorteable: true,
   },
   {
     title: 'Valor',
+    sorteable: true,
   },
   {
     title: 'Total',
+    sorteable: true,
   },
 ];
 
@@ -41,36 +47,36 @@ export const TableContainer: React.FC = () => {
     <div className={classes.container}>
       <TableData dataTitles={tableHead}>
         {transactions.map(transaction => (
-          <TableRow>
-            <TableCell width={10}>
+          <Tr>
+            <Td width={10}>
               <Chip color="primary">{formatTopic(transaction?.topic) || '-'}</Chip>
-            </TableCell>
-            <TableCell width={350}>
+            </Td>
+            <Td width={350}>
               <Typography size="small" color="grey">
                 {transaction?.anotation}
               </Typography>
-            </TableCell>
-            <TableCell width={20}>
+            </Td>
+            <Td width={20}>
               <Typography size="small" color="grey">
                 {formatDate(String(transaction?.billedAt)) || '-'}
               </Typography>
-            </TableCell>
-            <TableCell width={10}>
+            </Td>
+            <Td width={10}>
               <Chip color={transaction?.type === 'ENTRANCE' ? 'success' : 'error'}>
                 {formatType(transaction?.type) || '-'}
               </Chip>
-            </TableCell>
-            <TableCell width={10}>
+            </Td>
+            <Td width={10}>
               <Typography size="small" color="grey">
                 {formatCurrency(transaction?.cost) || '-'}
               </Typography>
-            </TableCell>
-            <TableCell width={10}>
+            </Td>
+            <Td width={10}>
               <Typography size="small" color="grey">
                 {formatCurrency(transaction.total) || '-'}
               </Typography>
-            </TableCell>
-          </TableRow>
+            </Td>
+          </Tr>
         ))}
       </TableData>
     </div>

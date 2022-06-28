@@ -1,56 +1,37 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
-import { useTheme } from '@mui/material';
-import {
-  TableHead,
-  TableCell,
-  TableHeader,
-  TableRow,
-  Grid,
-  Table,
-  TableContainer,
-  TableBody,
-  Typography,
-} from '../../atoms';
-import { useStyles } from './styles';
-import { Icon } from '@/core/presenters/components/atoms';
+import React from 'react';
+import { Typography, Icon, TableContainer, Table, Tbody, THead, Th } from '@/core/presenters/components/atoms';
+import { TitleGroup, WrapperIcons } from './styles';
 
 type TableHeadProps = {
   sorteable?: boolean;
   title: string;
+  onClick?: () => void;
 };
 
 interface ITableData {
   dataTitles?: TableHeadProps[];
 }
 
-export const TableData: React.FC<ITableData> = ({ dataTitles, children }) => {
-  const classes = useStyles();
-
-  const theme = useTheme();
-
-  return (
-    <TableContainer className={classes.tableContainer}>
-      <Table sx={{ minWidth: 750 }}>
-        <TableHead className={classes.tableHead} role="grid" aria-colcount={5}>
-          <TableRow>
-            {dataTitles?.map(dataTitle => (
-              <TableCell size="medium" className={classes.root}>
-                <div className={classes.container}>
-                  <Typography size="small">{dataTitle.title}</Typography>
-                  {dataTitle?.sorteable && (
-                    <div className={classes.wrapperIcons}>
-                      <Icon icon="miniArrowUp" />
-                      <Icon icon="miniArrowDown" />
-                    </div>
-                  )}
-                </div>
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>{children}</TableBody>
-      </Table>
-    </TableContainer>
-  );
-};
+export const TableData: React.FC<ITableData> = ({ dataTitles, children }) => (
+  <TableContainer>
+    <Table>
+      <THead>
+        {dataTitles?.map(dataTitle => (
+          <Th onClick={() => dataTitle?.onClick()}>
+            <TitleGroup>
+              <Typography size="small">{dataTitle.title}</Typography>
+              {dataTitle?.sorteable && (
+                <WrapperIcons>
+                  <Icon icon="miniArrowUp" />
+                  <Icon icon="miniArrowDown" />
+                </WrapperIcons>
+              )}
+            </TitleGroup>
+          </Th>
+        ))}
+      </THead>
+      <Tbody>{children}</Tbody>
+    </Table>
+  </TableContainer>
+);

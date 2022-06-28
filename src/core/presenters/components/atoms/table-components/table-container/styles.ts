@@ -1,6 +1,9 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled from 'styled-components';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  container: {},
-}));
+export const Container = styled.div`
+  width: 100%;
+  max-height: 500px;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  border-radius: 16px;
+  overflow-x: auto;
+`;
