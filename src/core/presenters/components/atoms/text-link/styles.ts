@@ -1,16 +1,14 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  link: {
-    color: theme.palette.primary.main,
-    marginLeft: 8,
-    textDecoration: 'none',
-    fontSize: 16,
-    fontWeight: 400,
-    '&:hover': {
-      textDecoration: 'underline',
-      cursor: 'pointer',
-    },
-  },
-}));
+export const StyledLink = styled(Link)`
+  color: ${({ theme }) => theme.palette.primary.main};
+  margin-left: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
