@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from 'styled-components';
+import React from 'react';
 import { Icon } from '@/core/domain';
+import { useThemeContext } from '@/core/presenters/contexts/styled-theme/themes/provider';
 
 export const AddIcon: React.FC<Icon> = ({ color, dataTestId }) => {
-  const theme = useContext(ThemeContext);
+  const theme = useThemeContext();
 
   return (
     <svg

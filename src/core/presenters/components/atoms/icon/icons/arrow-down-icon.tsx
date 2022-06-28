@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from 'styled-components';
+import React from 'react';
 import { Icon } from '@/core/domain';
+import { useThemeContext } from '@/core/presenters/contexts/styled-theme/themes/provider';
 
 export const ArrowDownIcon: React.FC<Icon> = ({ color }) => {
-  const theme = useContext(ThemeContext);
+  const theme = useThemeContext();
 
   return (
     <svg width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">

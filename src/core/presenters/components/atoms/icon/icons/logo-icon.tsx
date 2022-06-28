@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from 'styled-components';
+import React from 'react';
 import { Icon } from '@/core/domain';
+import { useThemeContext } from '@/core/presenters/contexts/styled-theme/themes/provider';
 
 export const LogoIcon: React.FC<Icon> = ({ color }) => {
-  const theme = useContext(ThemeContext);
+  const theme = useThemeContext();
 
   return (
     <svg width="28" height="48" viewBox="0 0 28 48" fill="none" xmlns="http://www.w3.org/2000/svg">

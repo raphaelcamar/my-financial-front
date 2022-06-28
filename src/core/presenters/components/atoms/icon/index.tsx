@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import {
   AddIcon,
   ArrowDownIcon,
@@ -26,38 +27,43 @@ import {
   TransactionIcon,
 } from '@/core/presenters/components/atoms/icon/icons';
 import { AvailableIcons } from '@/core/domain';
+import { ColorProps, VariantProps } from '@/main/styled';
 
 export type IconProps = {
   icon: AvailableIcons;
-  color?: string;
+  color?: keyof ColorProps;
+  shade?: keyof VariantProps;
 };
 
-export const Icon: React.FC<IconProps> = ({ icon, color }) => {
+export const Icon: React.FC<IconProps> = ({ icon, color, shade }) => {
+  const theme = useContext(ThemeContext);
+  const iconColor = theme.palette?.[color]?.[shade];
+
   const getIcon = {
-    add: <AddIcon dataTestId="add" color={color && color} />,
-    arrowDown: <ArrowDownIcon dataTestId="arrowDown" color={color && color} />,
-    bell: <BellIcon dataTestId="bell" color={color && color} />,
-    bellBall: <BellBallIcon dataTestId="bellBall" color={color && color} />,
-    circle: <CircleIcon dataTestId="circle" color={color && color} />,
-    close: <CloseIcon dataTestId="close" color={color && color} />,
-    dashboard: <DashboardIcon dataTestId="dashboard" color={color && color} />,
-    filter: <FilterIcon dataTestId="filter" color={color && color} />,
-    google: <GoogleIcon dataTestId="google" color={color && color} />,
-    key: <KeyIcon dataTestId="key" color={color && color} />,
-    lineArrowDown: <LineArrowDownIcon dataTestId="lineArrowDown" color={color && color} />,
-    lineArrowUp: <LineArrowUpIcon dataTestId="lineArrowUp" color={color && color} />,
-    logo: <LogoNewIcon dataTestId="logo" color={color && color} />,
-    logoSmall: <LogoSmallIcon dataTestId="logoSmall" color={color && color} />,
-    mail: <MailIcon dataTestId="mail" color={color && color} />,
-    miniArrowDown: <MiniArrowDownIcon dataTestId="miniArrowDown" color={color && color} />,
-    miniArrowUp: <MiniArrowUpIcon dataTestId="miniArrowUp" color={color && color} />,
-    person: <PersonIcon dataTestId="person" color={color && color} />,
-    questionMarkRounded: <QuestionMarkRoundedIcon dataTestId="questionMarkRounded" color={color && color} />,
-    search: <SearchIcon dataTestId="search" color={color && color} />,
-    square: <SquareIcon dataTestId="square" color={color && color} />,
-    transaction: <TransactionIcon dataTestId="transaction" color={color && color} />,
-    closeEye: <CloseEyeIcon color={color && color} />,
-    openEye: <OpenEyeIconIcon color={color && color} />,
+    add: <AddIcon dataTestId="add" color={iconColor && iconColor} />,
+    arrowDown: <ArrowDownIcon dataTestId="arrowDown" color={iconColor && iconColor} />,
+    bell: <BellIcon dataTestId="bell" color={iconColor && iconColor} />,
+    bellBall: <BellBallIcon dataTestId="bellBall" color={iconColor && iconColor} />,
+    circle: <CircleIcon dataTestId="circle" color={iconColor && iconColor} />,
+    close: <CloseIcon dataTestId="close" color={iconColor && iconColor} />,
+    dashboard: <DashboardIcon dataTestId="dashboard" color={iconColor && iconColor} />,
+    filter: <FilterIcon dataTestId="filter" color={iconColor} />,
+    google: <GoogleIcon dataTestId="google" color={iconColor} />,
+    key: <KeyIcon dataTestId="key" color={iconColor} />,
+    lineArrowDown: <LineArrowDownIcon dataTestId="lineArrowDown" color={iconColor} />,
+    lineArrowUp: <LineArrowUpIcon dataTestId="lineArrowUp" color={iconColor} />,
+    logo: <LogoNewIcon dataTestId="logo" color={iconColor} />,
+    logoSmall: <LogoSmallIcon dataTestId="logoSmall" color={iconColor} />,
+    mail: <MailIcon dataTestId="mail" color={iconColor} />,
+    miniArrowDown: <MiniArrowDownIcon dataTestId="miniArrowDown" color={iconColor} />,
+    miniArrowUp: <MiniArrowUpIcon dataTestId="miniArrowUp" color={iconColor} />,
+    person: <PersonIcon dataTestId="person" color={iconColor} />,
+    questionMarkRounded: <QuestionMarkRoundedIcon dataTestId="questionMarkRounded" color={iconColor} />,
+    search: <SearchIcon dataTestId="search" color={iconColor} />,
+    square: <SquareIcon dataTestId="square" color={iconColor} />,
+    transaction: <TransactionIcon dataTestId="transaction" color={iconColor} />,
+    closeEye: <CloseEyeIcon color={iconColor} />,
+    openEye: <OpenEyeIconIcon color={iconColor} />,
   };
 
   return getIcon[icon];
