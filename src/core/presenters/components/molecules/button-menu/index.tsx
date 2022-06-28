@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AccordionSummary as MuiAccordionSummary, AccordionSummaryProps, useTheme } from '@mui/material';
+import { AccordionSummary as MuiAccordionSummary, AccordionSummaryProps } from '@mui/material';
 import clsx from 'clsx';
 import { useStyles } from './styles';
 import { AvailableIcons } from '@/core/domain';
@@ -13,7 +13,6 @@ interface IButtonMenu extends AccordionSummaryProps {
 export const ButtonMenu: React.FC<IButtonMenu> = ({ children, icon = 'key', isAccordion }) => {
   const [toggle, setToggle] = useState(false);
   const classes = useStyles(toggle);
-  const theme = useTheme();
   return (
     <MuiAccordionSummary
       className={clsx(classes.container, toggle && classes.selected)}
@@ -21,12 +20,12 @@ export const ButtonMenu: React.FC<IButtonMenu> = ({ children, icon = 'key', isAc
     >
       <div className={classes.wrapper}>
         <div className={classes.titleIcon}>
-          <Icon icon={icon} color={toggle ? theme.palette.grey[50] : null} />
+          <Icon icon={icon} color={toggle ? 'grey' : null} shade={toggle ? '50' : null} />
           <Typography color={toggle ? 'white' : 'grey'}>{children}</Typography>
         </div>
         {isAccordion && (
           <div className={classes.icon}>
-            <Icon icon="arrowDown" color={toggle ? theme.palette.grey[50] : theme.palette.grey[500]} />
+            <Icon icon="arrowDown" color="grey" shade={toggle ? '50' : '500'} />
           </div>
         )}
       </div>

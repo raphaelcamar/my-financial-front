@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { ThemeContext } from 'styled-components';
 import { AvailableIcons, ISidebaroption } from '@/core/domain';
 import { ItemSidebar, StyledTypography, WrapperIconText } from './styles';
 import { Icon } from '@/core/presenters/components/atoms';
@@ -12,7 +11,6 @@ interface ISidebarOptions {
 }
 
 export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, open }) => {
-  const theme = useContext(ThemeContext);
   const location = useLocation();
 
   return (
@@ -24,7 +22,8 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, open
               {item.icon && (
                 <Icon
                   icon={item.icon as AvailableIcons}
-                  color={location.pathname === item.path && theme.palette.grey[50]}
+                  color={location.pathname === item.path ? 'grey' : null}
+                  shade={location.pathname === item.path ? '50' : null}
                 />
               )}
               {open && (
