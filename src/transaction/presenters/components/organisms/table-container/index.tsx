@@ -1,42 +1,14 @@
 import React, { useEffect } from 'react';
-import { useStyles } from './styles';
-import { TableData } from '@/core/presenters/components/organisms/table/table-data';
+import { Container } from './styles';
+import { TableData } from '@/core/presenters/components/organisms';
 import { Td, Tr, Typography } from '@/core/presenters/components/atoms';
 import { Chip } from '@/core/presenters/components/molecules';
 
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { formatCurrency, formatTopic, formatType, formatDate } from '@/core/presenters/utils';
-
-const tableHead = [
-  {
-    title: 'Tópico',
-    sorteable: true,
-  },
-  {
-    title: 'Anotação',
-    sorteable: true,
-  },
-  {
-    title: 'Data',
-    sorteable: true,
-  },
-  {
-    title: 'Tipo',
-    sorteable: true,
-  },
-  {
-    title: 'Valor',
-    sorteable: true,
-  },
-  {
-    title: 'Total',
-    sorteable: true,
-  },
-];
+import { tableHeaderData } from '@/transaction/presenters/utils/data';
 
 export const TableContainer: React.FC = () => {
-  const classes = useStyles();
-
   const { getTransactions, transactions } = useTransactionContext();
 
   useEffect(() => {
@@ -44,8 +16,8 @@ export const TableContainer: React.FC = () => {
   }, []);
 
   return (
-    <div className={classes.container}>
-      <TableData dataTitles={tableHead}>
+    <Container>
+      <TableData dataTitles={tableHeaderData}>
         {transactions.map(transaction => (
           <Tr>
             <Td width={10}>
@@ -79,6 +51,6 @@ export const TableContainer: React.FC = () => {
           </Tr>
         ))}
       </TableData>
-    </div>
+    </Container>
   );
 };

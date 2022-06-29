@@ -1,18 +1,19 @@
-import { IconButtonProps, IconButton as MuiIconButton } from '@mui/material';
 import React from 'react';
 import { AvailableIcons } from '@/core/domain';
-import { Icon } from '@/core/presenters/components/atoms';
-import { useStyles } from './styles';
+import { Icon, IconProps } from '@/core/presenters/components/atoms';
+import { Container } from './styles';
+import { ColorProps, VariantProps } from '@/main/styled';
 
-interface IIconButton extends IconButtonProps {
-  icon: AvailableIcons;
+export interface IIconButton extends React.HTMLAttributes<HTMLDivElement> {
+  icon?: AvailableIcons;
+  color: keyof ColorProps;
+  shade: keyof VariantProps;
+  iconProps?: Omit<IconProps, 'icon'>;
+  onClick: () => void;
 }
 
-export const IconButton: React.FC<IIconButton> = ({ icon, ...props }) => {
-  const classes = useStyles();
-  return (
-    <MuiIconButton color="primary" {...props} className={classes.container}>
-      <Icon icon={icon} />
-    </MuiIconButton>
-  );
-};
+export const IconButton: React.FC<IIconButton> = ({ icon, color = 'primary', onClick, shade = '500', iconProps }) => (
+  <Container color={color} shade={shade} onClick={onClick}>
+    <Icon icon={icon} {...iconProps} />
+  </Container>
+);

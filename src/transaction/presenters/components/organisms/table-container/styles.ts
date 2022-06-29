@@ -1,10 +1,7 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled from 'styled-components';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 24,
-  },
-}));
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24;
+`;

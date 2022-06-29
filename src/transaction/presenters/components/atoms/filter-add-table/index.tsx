@@ -14,7 +14,16 @@ export const FilterAddTable: React.FC<IFilterAddTable> = ({ setOpenModal, button
       {/* <Input placeholder="Pesquise por nome, tópico ou descrição" iconEnd="search" withoutValidator /> */}
       <div className={classes.filterSearch}>
         <div>
-          <IconButton icon="filter" size="large" />
+          <IconButton
+            icon="filter"
+            color="grey"
+            shade="50"
+            iconProps={{
+              color: 'primary',
+              shade: 'main',
+            }}
+            onClick={() => null}
+          />
         </div>
         <div>
           <Button variant="primary" type="submit" onClick={setOpenModal}>
