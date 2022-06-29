@@ -1,5 +1,3 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
 import { SnackbarProvider } from 'notistack';
 import styled from 'styled-components';
 
