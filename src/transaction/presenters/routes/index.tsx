@@ -1,8 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { OverviewPage, TransactionsPage } from '@/transaction/presenters/pages';
+import { TransactionsPage } from '@/transaction/presenters/pages';
 
-export const TransactionRoutes = [
-  <Route path="/" element={<OverviewPage />} />,
-  <Route path="/transacoes" element={<TransactionsPage />} />,
-];
+export const TransactionRoutes = [<Route path="/transacoes" element={<TransactionsPage />} />];
