@@ -3,7 +3,7 @@ import React from 'react';
 import { Typography, Icon, TableContainer, Table, Tbody, THead, Th } from '@/core/presenters/components/atoms';
 import { TitleGroup, WrapperIcons } from './styles';
 
-type TableHeadProps = {
+export type TableHeadProps = {
   sorteable?: boolean;
   title: string;
   onClick?: () => void;

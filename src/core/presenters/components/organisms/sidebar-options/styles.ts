@@ -17,9 +17,9 @@ export const WrapperIconText = styled.div`
 `;
 
 export const StyledTypography = styled(TypographyStyle)`
-  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+  /* TODO @media (${({ theme }) => theme.breakpoints.down('md')}) {
     display: none;
-  }
+  } */
 `;
 
 export const Line = styled.div`
