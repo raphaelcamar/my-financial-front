@@ -1,25 +1,24 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled from 'styled-components';
+import { Button } from '@/core/presenters/components/molecules';
+import { CircularProgress } from '@/core/presenters/components/atoms';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  bodyContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 24,
-    marginBottom: 28,
-  },
+export const BodyContent = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 28px;
+`;
 
-  buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    gap: 16,
-  },
+export const Buttons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+`;
 
-  submitButton: {
-    width: '100%',
-  },
+export const SubmitButton = styled(Button)`
+  width: 100%;
+`;
 
-  progress: {
-    marginRight: 4,
-  },
-}));
+export const Progress = styled(CircularProgress)`
+  margin-right: 4px;
+`;

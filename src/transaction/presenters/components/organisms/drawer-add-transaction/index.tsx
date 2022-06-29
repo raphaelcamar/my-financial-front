@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useSnackbar } from 'notistack';
 import { Drawer } from '@/core/presenters/components/organisms';
 import { Input, Button, Select } from '@/core/presenters/components/molecules';
-import { useStyles } from './styles';
+import { BodyContent, Buttons, Progress, SubmitButton } from './styles';
 import { Transaction, TypeTopic, TypeTransaction } from '@/transaction/domain';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
 import { InputMask } from '@/core/presenters/components/molecules/input-mask';
@@ -24,7 +24,6 @@ interface IFormType extends Omit<Transaction, 'topic' | 'type'> {
 }
 
 export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModal, setOpenModal }) => {
-  const classes = useStyles();
   const [loading, setLoading] = useState<boolean>(false);
   const { createTransaction } = useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
@@ -62,7 +61,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
       open={openModal}
       onClose={() => setOpenModal(false)}
     >
-      <form className={classes.bodyContent} onSubmit={handleSubmit(onSubmit)}>
+      <BodyContent onSubmit={handleSubmit(onSubmit)}>
         <Select
           placeholder="Selecione o tipo"
           name="type"
@@ -120,20 +119,15 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
           helperText={errors?.anotation?.message}
         />
 
-        <div className={classes.buttons}>
+        <Buttons>
           <Button variant="primary" styleType="outlined" type="button" onClick={() => setOpenModal(false)}>
             Cancelar
           </Button>
-          <Button
-            type="submit"
-            variant="primary"
-            onClick={() => handleSubmit(onSubmit)}
-            className={classes.submitButton}
-          >
-            {loading && <CircularProgress size={20} color="inherit" className={classes.progress} />}Adicionar
-          </Button>
-        </div>
-      </form>
+          <SubmitButton type="submit" variant="primary" onClick={() => handleSubmit(onSubmit)}>
+            {loading && <Progress size={20} color="inherit" />}Adicionar
+          </SubmitButton>
+        </Buttons>
+      </BodyContent>
     </Drawer>
   );
 };
