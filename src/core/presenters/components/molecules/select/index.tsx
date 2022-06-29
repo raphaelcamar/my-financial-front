@@ -51,7 +51,7 @@ export const Select = forwardRef<HTMLInputElement, ISelectProps>(
               </WrapperIcon>
             }
           />
-          <OptionsContainer open={open} error={error}>
+          <OptionsContainer onBlur={() => setOpen(false)} open={open} error={error}>
             {items.map(option => (
               <Option
                 selected={value?.value === option?.value}

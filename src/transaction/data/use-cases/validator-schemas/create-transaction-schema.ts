@@ -15,12 +15,20 @@ const verifyValue = (value: string, originalValue: string): number => {
   return Number(withoutpoints);
 };
 
-export const CreateTransactionSchema = yup.object({
-  topic: yup
+const TypeSchema = yup.object({
+  value: yup.string().oneOf(['SPENT', 'ENTRANCE']).required('Deve informar um tipo').nullable(),
+});
+
+const TopicSchema = yup.object({
+  value: yup
     .string()
     .oneOf(['FOOD', 'TRANSPORT', 'HEALTH', 'SALARY', 'OTHER'], 'Deve informar algumas das opções')
     .required('Deve informar um tópico')
     .nullable(),
+});
+
+export const CreateTransactionSchema = yup.object({
+  topic: TopicSchema,
 
   cost: yup
     .number()
@@ -37,7 +45,7 @@ export const CreateTransactionSchema = yup.object({
     .required('Deve informar uma data')
     .nullable(),
 
-  type: yup.string().oneOf(['SPENT', 'ENTRANCE']).required('Deve informar um tipo').nullable(),
+  type: TypeSchema,
 
   anotation: yup.string().max(100).nullable().required('Deve informar uma anotação'),
 });

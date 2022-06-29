@@ -68,6 +68,8 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
         <Select
           placeholder="Selecione o tipo"
           name="type"
+          helperText={errors?.type?.value?.message}
+          error={!!errors?.type?.value?.message}
           setValue={setValue}
           value={watch('type')}
           label="Tipo da transação"
@@ -79,6 +81,8 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
           name="topic"
           setValue={setValue}
           label="Tópico"
+          helperText={errors?.topic?.value?.message}
+          error={!!errors?.topic?.value?.message}
           value={watch('topic')}
           items={watch('type')?.value === 'SPENT' ? spentItems : entranceItems}
         />
