@@ -1,17 +1,22 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
+import { SnackbarProvider } from 'notistack';
+import styled from 'styled-components';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  variantSuccess: {
-    backgroundColor: `${theme.palette.success.main} !important`,
-  },
-  variantError: {
-    backgroundColor: `${theme.palette.error.main} !important`,
-  },
-  variantInfo: {
-    backgroundColor: `${theme.palette.info.main} !important`,
-  },
-  variantWarning: {
-    backgroundColor: `${theme.palette.warning.main} !important`,
-  },
-}));
+export const SnackbarProv = styled(SnackbarProvider)`
+  &.SnackbarItem-variantSuccess {
+    background: ${({ theme }) => theme.palette.success.main} !important;
+  }
+
+  &.SnackbarItem-variantError {
+    background: ${({ theme }) => theme.palette.error.main} !important;
+  }
+
+  &.SnackbarItem-variantInfo {
+    background: ${({ theme }) => theme.palette.info.main} !important;
+  }
+
+  &.SnackbarItem-variantWarning {
+    background: ${({ theme }) => theme.palette.warning.main} !important;
+  }
+`;
