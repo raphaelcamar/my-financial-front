@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router';
 import { Icon, Typography } from '@/core/presenters/components/atoms';
 import { Root } from './styles';

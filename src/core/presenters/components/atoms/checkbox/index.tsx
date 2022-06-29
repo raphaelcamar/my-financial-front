@@ -1,19 +1,14 @@
-import React from 'react';
-import { FormControlLabel, FormGroup, Checkbox, CheckboxProps } from '@mui/material';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { InputHTMLAttributes } from 'react';
+import { Container } from './styles';
 
-export type StyledCheckboxProps = CheckboxProps & {
+export interface IStyledCheckbox extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  props?: CheckboxProps;
-};
+}
 
-export const StyledCheckbox: React.FC<StyledCheckboxProps> = ({ label, ...props }) => (
+export const StyledCheckbox: React.FC<IStyledCheckbox> = ({ label, ...props }) => (
   <>
-    {label ? (
-      <FormGroup>
-        <FormControlLabel control={<Checkbox {...props} />} label={label} />
-      </FormGroup>
-    ) : (
-      <Checkbox {...props} />
-    )}
+    <label htmlFor={label}>{label}</label>
+    <Container id={label} type="checkbox" {...props} />
   </>
 );
