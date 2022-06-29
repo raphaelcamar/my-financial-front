@@ -1,93 +1,73 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled, { css } from 'styled-components';
+import { Input, IInput } from '@/core/presenters/components/molecules/input';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    height: 40,
-    border: `1px solid ${theme.palette.grey[400]}`,
-    borderRadius: 15,
-    width: '100%',
-    background: theme.palette.background.paper,
-    margin: '8px 0',
+type StyledInputProps = IInput & {
+  open?: boolean;
+};
 
-    '&:focus': {
-      borderColor: theme.palette.primary.main,
-    },
-  },
+type SelectType = {
+  open?: boolean;
+  error?: boolean;
+  selected?: boolean;
+};
 
-  error: {
-    borderColor: theme.palette.error.main,
-  },
+export const Container = styled.div`
+  position: relative;
+`;
 
-  icon: {
-    transform: 'rotate(0deg)',
-    transition: 'all ease .1s',
-  },
+export const StyledInput = styled(Input)<StyledInputProps>`
+  cursor: pointer;
+`;
 
-  wrapperContainer: {
-    position: 'relative',
-  },
+export const WrapperIcon = styled.div<SelectType>`
+  ${({ open }) =>
+    open
+      ? css`
+          transform: rotate(0deg);
+        `
+      : css`
+          transform: rotate(-180deg);
+        `}
+  transition: all ease 0.1s;
+`;
 
-  wrapper: {
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 16,
-  },
+export const OptionsContainer = styled.div<SelectType>`
+  background: ${({ theme }) => theme.palette.background.paper};
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%); // theme.shadows[1]
+  position: absolute;
+  width: 100%;
+  ${({ open, error }) =>
+    open
+      ? css`
+          z-index: 1000;
+          max-height: 1000px;
+          border: 1px solid ${({ theme }) => (error ? theme.palette.error.main : theme.palette.primary.main)};
+          border-top: none;
+          transition: max-height 0.25s ease-in;
+          top: 70px;
+        `
+      : css`
+          max-height: 0px;
+          visibility: hidden;
+          overflow: hidden;
+          border: none;
+        `};
+`;
 
-  open: {
-    borderRadius: '15px 15px 0 0',
-    borderBottom: 'none',
-    borderColor: theme.palette.primary.main,
-  },
+export const Option = styled.div<SelectType>`
+  padding: 8px;
+  margin: 8px;
+  border-radius: 8px;
+  &:hover {
+    cursor: pointer;
+    background: ${({ theme }) => theme.palette.grey[200]};
+  }
 
-  openShevron: {
-    transition: 'all ease .1s',
-    transform: 'rotate(-180deg)',
-  },
-
-  invisible: {
-    height: 15,
-  },
-
-  selected: {
-    background: theme.palette.grey[200],
-  },
-
-  optionsContainer: {
-    background: theme.palette.background.paper,
-    border: `1px solid ${theme.palette.primary.main}`,
-    borderRadius: '0 0 15px 15px',
-    borderTop: 'none',
-    boxShadow: theme.shadows[1],
-    position: 'absolute',
-    top: 70,
-    transform: 'scale(0)',
-    transformOrigin: 'top',
-    transition: 'transform 0.1s ease 0s',
-    width: '100%',
-  },
-
-  messageValidator: {
-    color: theme.palette.error.main,
-    fontSize: '14px !important',
-  },
-
-  openOptions: {
-    zIndex: 1000,
-    transform: 'scale(1)',
-    transformOrigin: 'top',
-  },
-
-  option: {
-    padding: '8px',
-    margin: 8,
-    borderRadius: 8,
-
-    '&:hover': {
-      cursor: 'pointer',
-      background: theme.palette.grey[200],
-    },
-  },
-}));
+  ${({ theme, selected }) =>
+    selected
+      ? css`
+          background: ${theme.palette.grey[200]};
+        `
+      : ''}
+`;

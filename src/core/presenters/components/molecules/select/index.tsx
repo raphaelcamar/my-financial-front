@@ -1,88 +1,69 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { ClickAwayListener, useTheme } from '@mui/material';
-import clsx from 'clsx';
-import React, { useState } from 'react';
-import { Icon, Typography } from '@/core/presenters/components/atoms';
-import { useStyles } from './styles';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { forwardRef, useState } from 'react';
+import { Icon } from '@/core/presenters/components/atoms';
+import { StyledInput, WrapperIcon, Container, OptionsContainer, Option } from './styles';
+import { TypeTransaction } from '@/transaction/domain';
+import { SelectType } from '@/core/domain';
 
 export interface ISelectOption {
   text?: string;
-  value?: string;
+  value?: TypeTransaction;
 }
 
 interface ISelectProps {
   label: string;
-  items: ISelectOption[];
-  selected: ISelectOption;
-  validator?: boolean;
-  labelFor?: string;
-  messageValidator?: string;
-  withoutValidator?: boolean;
-  onChange: (option: ISelectOption) => void;
+  items: SelectType<any>[];
+  helperText?: string;
+  error?: boolean;
+  name: string;
+  value: SelectType<any>;
+  setValue?: (name: string, option: ISelectOption) => void;
+  placeholder?: string;
 }
 
-export const Select: React.FC<ISelectProps> = ({
-  items,
-  label,
-  messageValidator,
-  selected,
-  labelFor,
-  validator,
-  withoutValidator,
-  onChange,
-}) => {
-  const classes = useStyles();
-  const [open, setOpen] = useState<boolean>(false);
-  const theme = useTheme();
+export const Select = forwardRef<HTMLInputElement, ISelectProps>(
+  ({ label, items, helperText, error, name, value, placeholder, setValue }, ref) => {
+    const [open, setOpen] = useState<boolean>(false);
 
-  const handleSelectOption = (option: ISelectOption) => {
-    onChange(option);
-    setOpen(false);
-  };
+    const handleSelectOption = (option: SelectType<any>) => {
+      setOpen(false);
+      setValue(name, option);
+    };
 
-  return (
-    <ClickAwayListener onClickAway={() => setOpen(false)}>
+    return (
       <div>
-        <div className={classes.wrapperContainer}>
-          <label htmlFor={labelFor}>{label}</label>
-          <button
-            id="select"
-            type="button"
-            className={clsx(classes.container, open && classes.open, validator && classes.error)}
+        <Container>
+          <StyledInput
+            ref={ref}
+            noBottomRadius={open}
+            open={open}
+            helperText={helperText}
+            error={error}
+            label={label}
+            readOnly
+            placeholder={placeholder}
+            value={value?.text}
             onClick={() => setOpen(!open)}
-          >
-            <div className={classes.wrapper}>
-              <div>
-                <Typography>{selected?.text || 'Selecione'}</Typography>
-              </div>
-              <div className={clsx(classes.icon, open && classes.openShevron)}>
+            actionEnd={
+              <WrapperIcon open={open}>
                 <Icon icon="arrowDown" />
-              </div>
-            </div>
-          </button>
-
-          <div className={clsx(classes.optionsContainer, open && classes.openOptions)}>
+              </WrapperIcon>
+            }
+          />
+          <OptionsContainer open={open} error={error}>
             {items.map(option => (
-              <div
-                className={clsx(classes.option, selected?.value === option?.value && classes.selected)}
+              <Option
+                selected={value?.value === option?.value}
                 key={option.value}
                 onClick={() => handleSelectOption(option)}
               >
                 {option.text}
-              </div>
+              </Option>
             ))}
-          </div>
-          {validator ? (
-            <Typography color={validator ? 'error' : 'grey'} size="small">
-              {messageValidator || ''}
-            </Typography>
-          ) : (
-            <>{!withoutValidator && <div className={classes.invisible} />}</>
-          )}
-        </div>
+          </OptionsContainer>
+        </Container>
       </div>
-    </ClickAwayListener>
-  );
-};
+    );
+  }
+);

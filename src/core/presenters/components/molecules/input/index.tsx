@@ -9,15 +9,21 @@ export interface IInput extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
   actionEnd?: ReactNode;
   actionStart?: ReactNode;
+  noBottomRadius?: boolean;
 }
 
 export const Input = forwardRef<HTMLInputElement, IInput>(
-  ({ label, helperText, error, actionEnd, actionStart, ...props }, ref) => {
+  ({ label, helperText, error, actionEnd, actionStart, noBottomRadius, ...props }, ref) => {
     const variant = error ? 'error' : 'primary';
     return (
       <Root>
         <label htmlFor={label}>{label}</label>
-        <ContainerInput data-testid="input-root" variant={variant} disabled={props.disabled}>
+        <ContainerInput
+          noBottomRadius={noBottomRadius}
+          data-testid="input-root"
+          variant={variant}
+          disabled={props.disabled}
+        >
           {actionStart && actionStart}
           <InputBase id={label} {...props} ref={ref} />
           {actionEnd && actionEnd}

@@ -1,6 +1,10 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 import { Variants, CssInputVariants } from '@/core/domain/styles';
 
+type ContainerInputType = CssInputVariants & {
+  noBottomRadius?: boolean;
+};
+
 const variantStyles = (theme: DefaultTheme, disabled?: boolean, variant: Variants = 'primary') =>
   disabled
     ? css`
@@ -21,7 +25,7 @@ const variantStyles = (theme: DefaultTheme, disabled?: boolean, variant: Variant
         `,
       }[variant];
 
-export const ContainerInput = styled.div<CssInputVariants>`
+export const ContainerInput = styled.div<ContainerInputType>`
   height: 46px;
   ${({ disabled, theme, variant }) => variantStyles(theme, disabled, variant)};
   display: flex;
@@ -29,7 +33,14 @@ export const ContainerInput = styled.div<CssInputVariants>`
   align-items: center;
   gap: 8px;
   padding: 0 12px;
-  border-radius: 12px;
+  ${({ noBottomRadius }) =>
+    noBottomRadius
+      ? css`
+          border-radius: 12px 12px 0 0;
+        `
+      : css`
+          border-radius: 12px;
+        `}
   transition: all ease-out 0.3s;
 `;
 

@@ -1,11 +1,7 @@
+import { SelectType } from '@/core/domain';
 import { TypeTopic } from '@/transaction/domain';
 
-type transactionTopicItem = {
-  text: string;
-  value: TypeTopic;
-};
-
-export const spentItems: transactionTopicItem[] = [
+export const spentItems: SelectType<TypeTopic>[] = [
   {
     text: 'Alimentação',
     value: 'FOOD',
@@ -24,7 +20,7 @@ export const spentItems: transactionTopicItem[] = [
   },
 ];
 
-export const entranceItems: transactionTopicItem[] = [
+export const entranceItems: SelectType<TypeTopic>[] = [
   {
     text: 'Salário',
     value: 'SALARY',
