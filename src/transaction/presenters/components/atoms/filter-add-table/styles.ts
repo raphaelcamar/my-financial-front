@@ -1,19 +1,17 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import styled from 'styled-components';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    [theme.breakpoints.down('md')]: {
-      flexDirection: 'column',
-      gap: 8,
-    },
-  },
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
 
-  filterSearch: {
-    display: 'flex',
-    gap: 16,
-    alignItems: 'center',
-  },
-}));
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    flex-direction: column;
+    gap: 8px;
+  }
+`;
+
+export const FilterSearch = styled.div`
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+`;
