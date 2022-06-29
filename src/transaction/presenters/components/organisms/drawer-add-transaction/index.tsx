@@ -59,8 +59,6 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
   return (
     <Drawer
       text="Cadastre uma transação preenchendo os dados abaixo"
-      onSubmit={() => handleSubmit(onSubmit)}
-      anchor="right"
       open={openModal}
       onClose={() => setOpenModal(false)}
     >

@@ -1,21 +1,23 @@
 import React from 'react';
-import { Drawer as MuiDrawer, DrawerProps } from '@mui/material';
-import clsx from 'clsx';
-import { useStyles } from './styles';
+import { Container, DrawerWrapper, DrawerHeader } from './styles';
 import { Typography } from '@/core/presenters/components/atoms';
 import { IconButton } from '@/core/presenters/components/molecules';
 
-interface IDrawer extends DrawerProps {
+interface IDrawer {
+  open: boolean;
   text?: string;
   onClose: () => void;
 }
 
-export const Drawer: React.FC<IDrawer> = ({ children, text, onClose, ...props }) => {
-  const classes = useStyles();
-  return (
-    <MuiDrawer {...props} className={classes.container}>
-      <div className={clsx(classes.drawerHeader, text && classes.spacing)}>
-        {text && <Typography>{text}</Typography>}
+export const Drawer: React.FC<IDrawer> = ({ children, text, onClose, open }) => (
+  <Container open={open}>
+    <DrawerWrapper open={open}>
+      <DrawerHeader>
+        {text && (
+          <Typography weight={500} size="large">
+            {text}
+          </Typography>
+        )}
         <IconButton
           icon="close"
           color="primary"
@@ -23,8 +25,8 @@ export const Drawer: React.FC<IDrawer> = ({ children, text, onClose, ...props })
           iconProps={{ color: 'grey', shade: '50' }}
           onClick={onClose}
         />
-      </div>
+      </DrawerHeader>
       <div>{children}</div>
-    </MuiDrawer>
-  );
-};
+    </DrawerWrapper>
+  </Container>
+);
