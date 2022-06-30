@@ -25,6 +25,8 @@ import {
   SearchIcon,
   SquareIcon,
   TransactionIcon,
+  CloseDrawerMobileIcon,
+  OpenDrawerMobileIcon,
 } from '@/core/presenters/components/atoms/icon/icons';
 import { AvailableIcons } from '@/core/domain';
 import { ColorProps, VariantProps } from '@/main/styled';
@@ -64,6 +66,8 @@ export const Icon: React.FC<IconProps> = ({ icon, color, shade }) => {
     transaction: <TransactionIcon dataTestId="transaction" color={iconColor} />,
     closeEye: <CloseEyeIcon color={iconColor} />,
     openEye: <OpenEyeIconIcon color={iconColor} />,
+    closeDrawerMobile: <CloseDrawerMobileIcon color={iconColor} />,
+    openDrawerMobile: <OpenDrawerMobileIcon color={iconColor} />,
   };
 
   return getIcon[icon];

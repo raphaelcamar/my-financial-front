@@ -1,31 +1,27 @@
-import React from 'react';
-import { Container, DrawerWrapper, DrawerHeader } from './styles';
-import { Typography } from '@/core/presenters/components/atoms';
-import { IconButton } from '@/core/presenters/components/molecules';
+import React, { ReactNode } from 'react';
+import { Container, DrawerWrapper } from './styles';
 
 interface IDrawer {
   open: boolean;
-  text?: string;
-  onClose: () => void;
+  side?: 'left' | 'right';
+  actionTop?: ReactNode;
+  fullWidth?: boolean;
+  noRadius?: boolean;
+  widthSize?: string;
 }
 
-export const Drawer: React.FC<IDrawer> = ({ children, text, onClose, open }) => (
+export const Drawer: React.FC<IDrawer> = ({
+  children,
+  fullWidth,
+  open,
+  side = 'right',
+  actionTop,
+  noRadius,
+  widthSize,
+}) => (
   <Container open={open}>
-    <DrawerWrapper open={open}>
-      <DrawerHeader>
-        {text && (
-          <Typography weight={500} size="large">
-            {text}
-          </Typography>
-        )}
-        <IconButton
-          icon="close"
-          color="primary"
-          shade="500"
-          iconProps={{ color: 'grey', shade: '50' }}
-          onClick={onClose}
-        />
-      </DrawerHeader>
+    <DrawerWrapper widthSize={widthSize} noRadius={noRadius} open={open} side={side} fullWidth={fullWidth}>
+      {actionTop}
       <div>{children}</div>
     </DrawerWrapper>
   </Container>

@@ -22,4 +22,6 @@ export type AvailableIcons =
   | 'square'
   | 'transaction'
   | 'closeEye'
-  | 'openEye';
+  | 'openEye'
+  | 'closeDrawerMobile'
+  | 'openDrawerMobile';

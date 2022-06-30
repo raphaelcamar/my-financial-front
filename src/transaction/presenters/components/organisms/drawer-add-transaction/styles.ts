@@ -22,3 +22,11 @@ export const SubmitButton = styled(Button)`
 export const Progress = styled(CircularProgress)`
   margin-right: 4px;
 `;
+
+export const DrawerHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+`;

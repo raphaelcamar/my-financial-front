@@ -2,15 +2,30 @@ import styled, { css } from 'styled-components';
 
 type DrawerType = {
   open?: boolean;
+  side?: 'left' | 'right';
+  fullWidth?: boolean;
+  noRadius?: boolean;
+  widthSize?: string;
 };
 
-export const DrawerHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 48px;
-`;
+export const getSideDrawer = (side: 'left' | 'right', open: boolean, fullWidth?: boolean) => {
+  if (open) {
+    return side === 'left'
+      ? css`
+          left: ${fullWidth ? '0' : '24px'};
+        `
+      : css`
+          right: ${fullWidth ? '0' : '24px'};
+        `;
+  }
+  return side === 'left'
+    ? css`
+        left: 0;
+      `
+    : css`
+        right: 0;
+      `;
+};
 
 export const Container = styled.div<DrawerType>`
   position: fixed;
@@ -32,21 +47,15 @@ export const GhostDiv = styled.div`
 
 export const DrawerWrapper = styled.div<DrawerType>`
   transition: all 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  height: 90vh;
-  max-width: 505px;
+  height: ${({ fullWidth }) => (fullWidth ? '100vh' : '90vh')};
+  max-width: ${({ fullWidth }) => (fullWidth ? '505px' : '')};
+  width: ${({ widthSize }) => widthSize || 'auto'};
   position: absolute;
-  ${({ open }) =>
-    open
-      ? css`
-          right: 24px;
-        `
-      : css`
-          right: 0;
-        `}
+  ${({ open, side, fullWidth }) => getSideDrawer(side, open, fullWidth)}
 
-  padding: 28px 36px;
-  min-width: 504px;
-  margin-top: 48px;
-  border-radius: 16px;
+  padding: ${({ fullWidth }) => (fullWidth ? '12px 24px' : '28px 36px;')};
+  /* min-width: ${({ fullWidth }) => (fullWidth ? '0' : '504px')}; */
+  margin-top: ${({ fullWidth }) => (fullWidth ? '0' : '48px')};
+  border-radius: ${({ noRadius }) => (noRadius ? '0' : '16px')};
   background: ${({ theme }) => theme.palette.background.paper};
 `;

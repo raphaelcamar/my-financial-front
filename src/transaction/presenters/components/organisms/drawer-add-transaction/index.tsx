@@ -3,14 +3,15 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSnackbar } from 'notistack';
 import { Drawer } from '@/core/presenters/components/organisms';
-import { Input, Button, Select } from '@/core/presenters/components/molecules';
-import { BodyContent, Buttons, Progress, SubmitButton } from './styles';
+import { Input, Button, Select, IconButton } from '@/core/presenters/components/molecules';
+import { BodyContent, Buttons, Progress, SubmitButton, DrawerHeader } from './styles';
 import { Transaction, TypeTopic, TypeTransaction } from '@/transaction/domain';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
 import { InputMask } from '@/core/presenters/components/molecules/input-mask';
 import { entranceItems, spentItems, typeItems } from '@/transaction/presenters/utils/data/';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { SelectType } from '@/core/domain';
+import { Typography } from '@/core/presenters/components/atoms';
 
 interface IDrawerAddTransaction {
   openModal: boolean;
@@ -56,9 +57,21 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
 
   return (
     <Drawer
-      text="Cadastre uma transação preenchendo os dados abaixo"
+      actionTop={
+        <DrawerHeader>
+          <Typography weight={500} size="large">
+            Cadastre uma transação preenchendo os dados abaixo
+          </Typography>
+          <IconButton
+            icon="close"
+            color="primary"
+            shade="500"
+            iconProps={{ color: 'grey', shade: '50' }}
+            onClick={() => setOpenModal(false)}
+          />
+        </DrawerHeader>
+      }
       open={openModal}
-      onClose={() => setOpenModal(false)}
     >
       <BodyContent onSubmit={handleSubmit(onSubmit)}>
         <Select
