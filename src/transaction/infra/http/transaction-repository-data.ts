@@ -21,11 +21,13 @@ export class TransactionRepositoryData implements TransactionRepository {
     return responseBody;
   }
 
-  async getTransactions(): Promise<Transaction[]> {
+  async getTransactions(filter?: number): Promise<Transaction[]> {
     const request = new RequestHttpRepository<unknown, Transaction.Response[]>();
 
+    const url = filter ? `transaction&=month${filter}` : 'transaction';
+
     const httpResponse = await request.get({
-      url: 'transaction',
+      url,
     });
 
     const adapter = new TransactionAdapter();
