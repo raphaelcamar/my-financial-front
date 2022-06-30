@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ISidebaroption } from '@/core/domain';
 import { ItemSidebar, WrapperItemAccordion } from './styles';
-import { SidebarOption } from '@/core/presenters/components/molecules';
-import { Accordion } from '../../atoms';
+import { SidebarOption, SidebarAccordion } from '@/core/presenters/components/molecules';
 
 interface ISidebarOptions {
   sidebarOptions: ISidebaroption[];
@@ -18,7 +17,7 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, side
     <>
       {sidebarOptions.map(item =>
         item?.isAccordion ? (
-          <Accordion
+          <SidebarAccordion
             open={accordion}
             setOpen={setAccordion}
             sidebarOpen={sidebarOpen}
@@ -36,7 +35,7 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, side
                 />
               ))}
             </WrapperItemAccordion>
-          </Accordion>
+          </SidebarAccordion>
         ) : (
           <ItemSidebar>
             <SidebarOption

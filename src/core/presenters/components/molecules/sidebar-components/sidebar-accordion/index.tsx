@@ -1,10 +1,9 @@
 import React from 'react';
 import { Children, Wrapper, AccordionHeader, Container, WrapperIcon } from './styles';
 import { AvailableIcons } from '@/core/domain';
-import { Icon } from '../icon';
-import { Typography } from '../typography';
+import { Typography, Icon } from '@/core/presenters/components/atoms';
 
-interface IAccordion {
+interface ISidebarAccordion {
   titleAccordion: string;
   icon: AvailableIcons;
   sidebarOpen: boolean;
@@ -12,7 +11,14 @@ interface IAccordion {
   setOpen: (open?: boolean) => void;
 }
 
-export const Accordion: React.FC<IAccordion> = ({ children, titleAccordion, icon, sidebarOpen, open, setOpen }) => (
+export const SidebarAccordion: React.FC<ISidebarAccordion> = ({
+  children,
+  titleAccordion,
+  icon,
+  sidebarOpen,
+  open,
+  setOpen,
+}) => (
   <Wrapper onClick={() => setOpen(!open)} open={open}>
     <Container open={open} sidebarOpen={sidebarOpen}>
       <AccordionHeader>

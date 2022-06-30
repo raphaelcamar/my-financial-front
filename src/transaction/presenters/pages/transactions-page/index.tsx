@@ -20,7 +20,7 @@ export const TransactionsPage: React.FC = () => {
           <DrawerAddTransaction openModal={openModal} setOpenModal={setOpenModal} />
           <TableContainer />
         </Space>
-        {/* <div>Últimas movimentações</div> */}
+        <div>Últimas movimentações</div>
       </SecondLine>
     </Container>
   );

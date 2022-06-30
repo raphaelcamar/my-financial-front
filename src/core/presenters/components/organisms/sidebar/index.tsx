@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Container, WrapperSidebar } from './styles';
-import { HeaderSidebar } from '@/core/presenters/components/atoms';
+import { HeaderSidebar } from '@/core/presenters/components/molecules';
 import { SidebarOptions } from '@/core/presenters/components/organisms';
 import { SidebarData } from '@/core/presenters/utils/sidebar-data';
 
