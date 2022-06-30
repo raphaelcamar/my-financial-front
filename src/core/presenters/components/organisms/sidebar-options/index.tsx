@@ -1,40 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { AvailableIcons, ISidebaroption } from '@/core/domain';
-import { ItemSidebar, StyledTypography, WrapperIconText } from './styles';
-import { Icon } from '@/core/presenters/components/atoms';
-import { AccordionItem } from '@/core/presenters/components/molecules';
+import { ISidebaroption } from '@/core/domain';
+import { ItemSidebar, WrapperItemAccordion } from './styles';
+import { SidebarOption } from '@/core/presenters/components/molecules';
+import { Accordion } from '../../atoms';
 
 interface ISidebarOptions {
   sidebarOptions: ISidebaroption[];
-  open: boolean;
+  sidebarOpen: boolean;
 }
 
-export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, open }) => {
+export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, sidebarOpen }) => {
   const location = useLocation();
+  const [accordion, setAccordion] = useState(false);
 
   return (
     <>
-      {sidebarOptions.map(item => (
-        <ItemSidebar>
-          <AccordionItem path={item.path} selected={location.pathname === item.path}>
-            <WrapperIconText>
-              {item.icon && (
-                <Icon
-                  icon={item.icon as AvailableIcons}
-                  color={location.pathname === item.path ? 'grey' : null}
-                  shade={location.pathname === item.path ? '50' : null}
+      {sidebarOptions.map(item =>
+        item?.isAccordion ? (
+          <Accordion
+            open={accordion}
+            setOpen={setAccordion}
+            sidebarOpen={sidebarOpen}
+            icon={item?.icon}
+            titleAccordion={item?.title}
+          >
+            <WrapperItemAccordion open={sidebarOpen}>
+              {item?.accordionItems?.map(accordionItem => (
+                <SidebarOption
+                  accordionOpen={accordion}
+                  sidebarOpen={sidebarOpen}
+                  item={accordionItem}
+                  path={accordionItem.path}
+                  selected={location.pathname === accordionItem.path}
                 />
-              )}
-              {open && (
-                <StyledTypography color={location.pathname === item.path ? 'white' : 'default'}>
-                  {item.title}
-                </StyledTypography>
-              )}
-            </WrapperIconText>
-          </AccordionItem>
-        </ItemSidebar>
-      ))}
+              ))}
+            </WrapperItemAccordion>
+          </Accordion>
+        ) : (
+          <ItemSidebar>
+            <SidebarOption
+              withFullRadius
+              sidebarOpen={sidebarOpen}
+              path={item.path}
+              selected={location.pathname === item.path}
+              item={item}
+            />
+          </ItemSidebar>
+        )
+      )}
     </>
   );
 };

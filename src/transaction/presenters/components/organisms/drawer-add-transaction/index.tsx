@@ -9,7 +9,6 @@ import { Transaction, TypeTopic, TypeTransaction } from '@/transaction/domain';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
 import { InputMask } from '@/core/presenters/components/molecules/input-mask';
 import { entranceItems, spentItems, typeItems } from '@/transaction/presenters/utils/data/';
-import { CircularProgress } from '@/core/presenters/components/atoms';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { SelectType } from '@/core/domain';
 

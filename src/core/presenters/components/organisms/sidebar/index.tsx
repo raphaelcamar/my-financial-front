@@ -13,7 +13,7 @@ export const Sidebar: React.FC<ISidebarProps> = ({ open }) => (
   <WrapperSidebar open={open}>
     <Container open={open}>
       <HeaderSidebar open={open} />
-      <SidebarOptions open={open} sidebarOptions={SidebarData} />
+      <SidebarOptions sidebarOpen={open} sidebarOptions={SidebarData} />
     </Container>
   </WrapperSidebar>
 );

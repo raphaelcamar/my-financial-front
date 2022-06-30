@@ -1,4 +1,4 @@
-export * from './accordion-item';
+export * from './sidebar-option';
 export * from './button-menu';
 export * from './chip';
 export * from './icon-button';

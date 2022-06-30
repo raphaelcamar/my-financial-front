@@ -1,25 +1,11 @@
-import styled from 'styled-components';
-import { TypographyStyle } from '@/core/presenters/components/atoms/typography/styles';
+import styled, { css } from 'styled-components';
+
+type SidebarOptionsType = {
+  open?: boolean;
+};
 
 export const ItemSidebar = styled.div`
   margin-bottom: 16px;
-`;
-
-export const WrapperIconText = styled.div`
-  display: flex;
-  gap: 16px;
-  align-items: center;
-
-  @media (${({ theme }) => theme.breakpoints.down('md')}) {
-    display: flex;
-    justify-content: center;
-  }
-`;
-
-export const StyledTypography = styled(TypographyStyle)`
-  /* TODO @media (${({ theme }) => theme.breakpoints.down('md')}) {
-    display: none;
-  } */
 `;
 
 export const Line = styled.div`
@@ -29,4 +15,21 @@ export const Line = styled.div`
   flex-direction: column;
   gap: 4px;
   padding-left: 12px;
+`;
+
+export const WrapperItemAccordion = styled.div<SidebarOptionsType>`
+  border-left: 1px solid ${({ theme }) => theme.palette.grey[300]};
+  margin: 8px 0px 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 8px;
+
+  ${({ open }) =>
+    !open &&
+    css`
+      margin: 0;
+      padding-left: 0;
+      border: none;
+    `}
 `;

@@ -5,16 +5,16 @@ import { useThemeContext } from '@/core/presenters/contexts/styled-theme/themes/
 export const TransactionIcon: React.FC<Icon> = ({ color }) => {
   const theme = useThemeContext();
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
-        d="M1 11C1 5 5.39 1 10.806 1C15.209 1 18.76 3.335 20 7M21 11C21 17 16.61 21 11.194 21C6.792 21 3.24 18.665 2 15L21 11Z"
+        d="M1 9C1 4.2 4.512 1 8.8448 1C12.3672 1 15.208 2.868 16.2 5.8M17 9C17 13.8 13.488 17 9.1552 17C5.6336 17 2.792 15.132 1.8 12.2L17 9Z"
         stroke={color || theme.palette.grey[400]}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M16 6L20 7L21 3M6 16L2 15L1 19L6 16Z"
+        d="M13 5.0001L16.2 5.8001L17 2.6001M5 13.0001L1.8 12.2001L1 15.4001L5 13.0001Z"
         stroke={color || theme.palette.grey[400]}
         strokeWidth="2"
         strokeLinecap="round"

@@ -13,17 +13,16 @@ export const SidebarData: ISidebaroption[] = [
     path: '/transacoes',
     title: 'Transações',
   },
-  // {
-  //   isAccordion: true,
-  //   icon: 'transation',
-  //   path: '/transacoes',
-  //   title: 'accordion',
-  //   accordionItems: [
-  //     {
-  //       icon: 'person',
-  //       path: '/transacoes',
-  //       title: 'minha conta',
-  //     },
-  //   ],
-  // },
+  {
+    isAccordion: true,
+    icon: 'transaction',
+    title: 'accordion',
+    accordionItems: [
+      {
+        icon: 'person',
+        path: '/minha-conta',
+        title: 'minha conta',
+      },
+    ],
+  },
 ];
