@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { Icon } from '@/core/presenters/components/atoms';
 import { StyledInput, WrapperIcon, Container, OptionsContainer, Option } from './styles';
 import { TypeTransaction } from '@/transaction/domain';
@@ -18,18 +18,23 @@ interface ISelectProps {
   error?: boolean;
   name: string;
   value: SelectType<any>;
-  setValue?: (name: string, option: ISelectOption) => void;
+  defaultValue?: ISelectOption;
+  setValue?: (name: string, option: any) => void;
   placeholder?: string;
 }
 
 export const Select = forwardRef<HTMLInputElement, ISelectProps>(
-  ({ label, items, helperText, error, name, value, placeholder, setValue }, ref) => {
+  ({ label, items, helperText, error, name, value, placeholder, setValue, defaultValue }, ref) => {
     const [open, setOpen] = useState<boolean>(false);
 
     const handleSelectOption = (option: SelectType<any>) => {
       setOpen(false);
       setValue(name, option);
     };
+
+    useEffect(() => {
+      handleSelectOption(defaultValue as SelectType<any>);
+    }, []);
 
     return (
       <div>

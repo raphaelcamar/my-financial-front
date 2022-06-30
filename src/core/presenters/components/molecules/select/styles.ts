@@ -41,7 +41,7 @@ export const OptionsContainer = styled.div<SelectType>`
     open
       ? css`
           z-index: 1000;
-          max-height: 1000px;
+          height: auto;
           border: 1px solid ${({ theme }) => (error ? theme.palette.error.main : theme.palette.primary.main)};
           border-top: none;
           transition: max-height 0.25s ease-in;

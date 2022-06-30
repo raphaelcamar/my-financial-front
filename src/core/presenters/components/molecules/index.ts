@@ -5,3 +5,4 @@ export * from './icon-button';
 export * from './input';
 export * from './button';
 export * from './select';
+export * from './wrapper-loader';
