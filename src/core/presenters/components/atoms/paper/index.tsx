@@ -8,7 +8,7 @@ export interface IPaper extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Paper: React.FC<IPaper> = ({ density, children, ...props }) => (
-  <PaperContainer density={density} {...props}>
+  <PaperContainer data-testid="paper" density={density} {...props}>
     {children}
   </PaperContainer>
 );
