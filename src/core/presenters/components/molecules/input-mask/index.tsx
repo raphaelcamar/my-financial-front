@@ -17,10 +17,18 @@ const availableMasks = {
   currency,
 };
 
-export const InputMask: React.FC<IInputMask> = ({ validator, messageValidator, label, onChange, mask }) => {
+export const InputMask: React.FC<IInputMask> = ({ validator, messageValidator, label, onChange, mask, ...props }) => {
   const handleChangeInput = (e: any): void => {
     const maskedInput = availableMasks[mask](e);
     onChange(maskedInput);
   };
-  return <Input label={label} helperText={messageValidator} error={validator} onChange={e => handleChangeInput(e)} />;
+  return (
+    <Input
+      label={label}
+      helperText={messageValidator}
+      error={validator}
+      onChange={e => handleChangeInput(e)}
+      {...props}
+    />
+  );
 };

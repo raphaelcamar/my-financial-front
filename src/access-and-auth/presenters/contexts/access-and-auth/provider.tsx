@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
+import { useNavigate } from 'react-router';
 import { AccessRepositoryData } from '@/access-and-auth/infra';
 import { AccessAndAuthContext } from './context';
 import { initialState, reducer } from './reducers';
@@ -16,6 +17,7 @@ import { fetchUserAuth, fetchEmailPasswordRecover } from './actions';
 
 export const AccessAndAuthProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const navigate = useNavigate();
 
   const verifyUserAuth = async (): Promise<User> => {
     const localStorageRepository = new LocalStorageRepository();
@@ -39,6 +41,8 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
         const user = await verifyUserAuth();
         if (user) dispatch(fetchUserAuth(user));
       } catch (err) {
+        if (err?.tokenExpired) navigate('/login', { replace: true });
+
         dispatch(fetchUserAuth(null));
       }
     }

@@ -4,7 +4,7 @@ import { Transaction } from '@/transaction/domain';
 import { TransactionAdapter } from '@/transaction/infra/adapter';
 
 export class TransactionRepositoryData implements TransactionRepository {
-  async create(transaction: Transaction): Promise<Transaction[]> {
+  async create(transaction: Transaction.Data): Promise<Transaction[]> {
     const request = new RequestHttpRepository<Transaction.Response, Transaction.Response[]>();
 
     const adapter = new TransactionAdapter();

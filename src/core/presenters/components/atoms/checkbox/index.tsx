@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { InputHTMLAttributes } from 'react';
-import { Container } from './styles';
+import { Wrapper } from './styles';
 
-export interface IStyledCheckbox extends InputHTMLAttributes<HTMLInputElement> {
+export interface ICheckbox extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
 
-export const StyledCheckbox: React.FC<IStyledCheckbox> = ({ label, ...props }) => (
-  <>
+export const Checkbox: React.FC<ICheckbox> = ({ label, ...props }) => (
+  <Wrapper>
     <label htmlFor={label}>{label}</label>
-    <Container id={label} type="checkbox" {...props} />
-  </>
+    <input id={label} type="checkbox" {...props} />
+  </Wrapper>
 );

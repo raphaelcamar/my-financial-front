@@ -11,7 +11,7 @@ export const TransactionProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [transactionLoader, setTransactionLoader] = useState<boolean>(false);
 
-  const createTransaction = async (transactionData: Transaction): Promise<void> => {
+  const createTransaction = async (transactionData: Transaction.Data): Promise<void> => {
     const transactionRepository = new TransactionRepositoryData();
 
     const useCase = new CreateTransaction(transactionData, transactionRepository);

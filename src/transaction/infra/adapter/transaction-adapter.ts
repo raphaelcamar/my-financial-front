@@ -3,13 +3,13 @@ import { RequestAdapter } from '@/core/data';
 import { Transaction } from '@/transaction/domain';
 
 export class TransactionAdapter implements RequestAdapter {
-  request(base: Transaction): Transaction.Response {
+  request(base: Transaction.Data): Transaction.Response {
     const adaptee: Transaction.Response = {
       ...base,
       value: base.cost / 100,
       createdAt: null,
       updatedAt: null,
-      billedAt: parse(base.billedAt as unknown as string, 'dd/MM/yyyy', new Date()).toISOString(),
+      billedAt: parse(base.billedAt as string, 'dd/MM/yyyy', new Date()).toISOString(),
       amount: base.total,
     };
 

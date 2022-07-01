@@ -4,7 +4,7 @@ import { Transaction } from '@/transaction/domain';
 type PropsTransaction = {
   transactions: Transaction[];
   transactionLoader: boolean;
-  createTransaction: (transaction: Transaction) => Promise<void>;
+  createTransaction: (transaction: Transaction.Data) => Promise<void>;
   getTransactions: (filter?: number) => Promise<void>;
 };
 

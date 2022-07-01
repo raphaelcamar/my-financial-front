@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSnackbar } from 'notistack';
+import { format } from 'date-fns';
 import { Drawer } from '@/core/presenters/components/organisms';
 import { Input, Button, Select, IconButton } from '@/core/presenters/components/molecules';
 import { BodyContent, Buttons, Progress, SubmitButton, DrawerHeader } from './styles';
@@ -11,14 +12,14 @@ import { InputMask } from '@/core/presenters/components/molecules/input-mask';
 import { entranceItems, spentItems, typeItems } from '@/transaction/presenters/utils/data/';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { SelectType } from '@/core/domain';
-import { Typography } from '@/core/presenters/components/atoms';
+import { Checkbox, Typography } from '@/core/presenters/components/atoms';
 
 interface IDrawerAddTransaction {
   openModal: boolean;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface IFormType extends Omit<Transaction, 'topic' | 'type'> {
+interface IFormType extends Omit<Transaction.Data, 'topic' | 'type'> {
   topic: SelectType<TypeTopic>;
   type: SelectType<TypeTransaction>;
 }
@@ -37,8 +38,16 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
     formState: { errors },
   } = useForm<Partial<IFormType>>({ resolver: yupResolver(CreateTransactionSchema) });
 
+  const handleChangeActualDay = value => {
+    if (value) {
+      setValue('billedAt', format(new Date(), 'dd/MM/yyyy'));
+    } else {
+      setValue('billedAt', '');
+    }
+  };
+
   const onSubmit = async (data: IFormType) => {
-    const transaction: Transaction = { ...data, topic: data?.topic.value, type: data?.type.value };
+    const transaction: Transaction.Data = { ...data, topic: data?.topic.value, type: data?.type.value };
     try {
       setLoading(true);
       await createTransaction(transaction);
@@ -99,16 +108,18 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
         <Controller
           control={control}
           name="billedAt"
-          render={({ field: { onChange } }) => (
+          render={({ field: { value, onChange } }) => (
             <InputMask
               validator={!!errors?.billedAt}
               messageValidator={errors?.billedAt?.message}
               label="Data"
               mask="date"
+              value={value as string}
               onChange={e => onChange(e)}
             />
           )}
         />
+        <Checkbox label="Dia de hoje" onChange={e => handleChangeActualDay(e.target.checked)} />
 
         <Controller
           control={control}
