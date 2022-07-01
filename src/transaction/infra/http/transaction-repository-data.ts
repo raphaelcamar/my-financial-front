@@ -24,7 +24,7 @@ export class TransactionRepositoryData implements TransactionRepository {
   async getTransactions(filter?: number): Promise<Transaction[]> {
     const request = new RequestHttpRepository<unknown, Transaction.Response[]>();
 
-    const url = filter ? `transaction&=month${filter}` : 'transaction';
+    const url = filter ? `transaction?month=${filter}` : 'transaction';
 
     const httpResponse = await request.get({
       url,

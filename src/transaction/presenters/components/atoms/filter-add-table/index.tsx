@@ -17,6 +17,7 @@ export const FilterAddTable: React.FC<IFilterAddTable> = ({ setOpenModal, button
 
   const { getTransactions } = useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
+  const [selectValue, setSelectValue] = useState<number>(null);
 
   const month = getMonth(new Date());
   const currentMonth = getMonthByIndex(month);
@@ -32,7 +33,7 @@ export const FilterAddTable: React.FC<IFilterAddTable> = ({ setOpenModal, button
 
   const getTransactionByMonth = async () => {
     try {
-      await getTransactions(watch('filterMonth')?.value);
+      await getTransactions(selectValue);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Aconteceu alguma coisa. Tente novamente depois', { variant: 'error' });
     }
@@ -40,6 +41,11 @@ export const FilterAddTable: React.FC<IFilterAddTable> = ({ setOpenModal, button
 
   useEffect(() => {
     getTransactionByMonth();
+  }, [selectValue]);
+
+  useEffect(() => {
+    const filter = watch('filterMonth')?.value;
+    if (filter !== selectValue) setSelectValue(filter);
   }, [watch('filterMonth')]);
 
   return (

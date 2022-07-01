@@ -33,7 +33,9 @@ export const Select = forwardRef<HTMLInputElement, ISelectProps>(
     };
 
     useEffect(() => {
-      handleSelectOption(defaultValue as SelectType<any>);
+      if (defaultValue) {
+        handleSelectOption(defaultValue as SelectType<any>);
+      }
     }, []);
 
     return (
