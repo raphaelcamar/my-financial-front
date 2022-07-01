@@ -54,4 +54,9 @@ export namespace Transaction {
     topic: TypeTopic;
     amount: number;
   }
+
+  export interface Filter {
+    start?: string | Date;
+    limit?: string | Date;
+  }
 }

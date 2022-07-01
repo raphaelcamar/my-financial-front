@@ -1,18 +1,35 @@
 import React, { useEffect } from 'react';
+import {
+  monthStartDate,
+  formatCurrency,
+  formatTopic,
+  formatType,
+  formatDate,
+  formatDateBR,
+} from '@/core/presenters/utils';
 import { Container } from './styles';
 import { TableData } from '@/core/presenters/components/organisms';
 import { Td, Tr, Typography } from '@/core/presenters/components/atoms';
 import { Chip, WrapperLoader } from '@/core/presenters/components/molecules';
 
 import { useTransactionContext } from '@/transaction/presenters/contexts';
-import { formatCurrency, formatTopic, formatType, formatDate } from '@/core/presenters/utils';
+
 import { tableHeaderData } from '@/transaction/presenters/utils/data';
+import { Transaction } from '@/transaction/domain';
 
 export const TableContainer: React.FC = () => {
   const { getTransactions, transactions, transactionLoader } = useTransactionContext();
 
+  const getTransactionsActualDate = async () => {
+    const start = formatDate(monthStartDate(new Date()), 'dd/MM/yyyy');
+    const limit = formatDate(new Date(), 'dd/MM/yyyy');
+    const filter: Transaction.Filter = { limit, start };
+
+    await getTransactions(filter);
+  };
+
   useEffect(() => {
-    getTransactions();
+    getTransactionsActualDate();
   }, []);
 
   return (
@@ -31,7 +48,7 @@ export const TableContainer: React.FC = () => {
               </Td>
               <Td width={20}>
                 <Typography size="small" color="grey">
-                  {formatDate(String(transaction?.billedAt)) || '-'}
+                  {formatDateBR(String(transaction?.billedAt)) || '-'}
                 </Typography>
               </Td>
               <Td width={10}>

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { getMonth } from 'date-fns';
-import { useForm } from 'react-hook-form';
+import React, { useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
-import { Button, IconButton, ISelectOption, Select } from '@/core/presenters/components/molecules';
-import { Container, FilterSearch } from './styles';
-import { getMonthByIndex, filterTableData } from '@/transaction/presenters/utils/data';
+import { formatDate, monthStartDate } from '@/core/presenters/utils';
+import { Container, WrapperButton, StyledButton, StyledInputMask, ModalAddButton } from './styles';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
+import { InputMask } from '@/core/presenters/components/molecules/input-mask';
+import { Transaction } from '@/transaction/domain';
 
 interface IFilterAddTable {
   setOpenModal: () => void;
@@ -13,70 +13,69 @@ interface IFilterAddTable {
 }
 
 export const FilterAddTable: React.FC<IFilterAddTable> = ({ setOpenModal, buttonText }) => {
-  const { setValue, watch, reset } = useForm();
+  const { reset, handleSubmit, control } = useForm<Transaction.Filter>();
 
   const { getTransactions } = useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
-  const [selectValue, setSelectValue] = useState<number>(null);
-
-  const month = getMonth(new Date());
-  const currentMonth = getMonthByIndex(month);
-
-  const defaultValue = {
-    value: String(currentMonth.index),
-    text: String(currentMonth.month),
-  };
 
   useEffect(() => {
-    reset({ filterMonth: defaultValue });
+    const start = formatDate(monthStartDate(new Date()), 'dd/MM/yyyy');
+    const limit = formatDate(new Date(), 'dd/MM/yyyy');
+
+    reset({ start, limit });
   }, []);
 
-  const getTransactionByMonth = async () => {
+  const handleSubmitForm = async (data: Transaction.Filter) => {
     try {
-      await getTransactions(selectValue);
+      await getTransactions(data);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Aconteceu alguma coisa. Tente novamente depois', { variant: 'error' });
     }
   };
 
-  useEffect(() => {
-    getTransactionByMonth();
-  }, [selectValue]);
-
-  useEffect(() => {
-    const filter = watch('filterMonth')?.value;
-    if (filter !== selectValue) setSelectValue(filter);
-  }, [watch('filterMonth')]);
-
   return (
-    <Container>
-      <Select
-        label="Filtre pelo mês"
-        items={filterTableData(month)}
-        name="filterMonth"
-        defaultValue={defaultValue as ISelectOption}
-        setValue={setValue}
-        value={watch('filterMonth')}
-      />
-      <FilterSearch>
-        <div>
-          <IconButton
-            icon="filter"
-            color="grey"
-            shade="50"
-            iconProps={{
-              color: 'primary',
-              shade: 'main',
-            }}
-            onClick={() => null}
+    <>
+      <Container onSubmit={handleSubmit(handleSubmitForm)}>
+        <StyledInputMask>
+          <Controller
+            control={control}
+            name="start"
+            render={({ field: { value, onChange } }) => (
+              <InputMask
+                validator={false}
+                messageValidator=""
+                label="Início"
+                mask="date"
+                value={value as string}
+                onChange={e => onChange(e)}
+              />
+            )}
           />
-        </div>
-        <div>
-          <Button variant="primary" type="submit" onClick={setOpenModal}>
-            {buttonText}
-          </Button>
-        </div>
-      </FilterSearch>
-    </Container>
+        </StyledInputMask>
+
+        <StyledInputMask>
+          <Controller
+            control={control}
+            name="limit"
+            render={({ field: { value, onChange } }) => (
+              <InputMask
+                validator={false}
+                messageValidator=""
+                label="Fim"
+                mask="date"
+                value={value as string}
+                onChange={e => onChange(e)}
+              />
+            )}
+          />
+        </StyledInputMask>
+        <WrapperButton>
+          <StyledButton type="submit">Enviar</StyledButton>
+        </WrapperButton>
+        <ModalAddButton variant="primary" type="button" onClick={setOpenModal}>
+          {buttonText}
+        </ModalAddButton>
+      </Container>
+    </>
   );
 };

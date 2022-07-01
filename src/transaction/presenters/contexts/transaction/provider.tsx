@@ -5,7 +5,7 @@ import { TransactionContext } from './context';
 import { initialState, reducer } from './reducers';
 import { TransactionRepositoryData } from '@/transaction/infra';
 import { CreateTransaction, GetTransactions } from '@/transaction/data/use-cases';
-import { fetchCreateTransaction, fetchGetTransactions } from './actions';
+import { fetchCreateTransaction, fetchFilterTransaction, fetchGetTransactions } from './actions';
 
 export const TransactionProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -16,12 +16,16 @@ export const TransactionProvider: React.FC = ({ children }) => {
 
     const useCase = new CreateTransaction(transactionData, transactionRepository);
 
-    const transactions = await useCase.execute();
+    await useCase.execute();
 
-    dispatch(fetchCreateTransaction(transactions));
+    const getTransactions = new GetTransactions(transactionRepository, state.filter);
+
+    const result = await getTransactions.execute();
+
+    dispatch(fetchCreateTransaction(result));
   };
 
-  const getTransactions = async (filter?: number): Promise<void> => {
+  const getTransactions = async (filter: Transaction.Filter): Promise<void> => {
     setTransactionLoader(true);
     const transactionRepository = new TransactionRepositoryData();
 
@@ -30,6 +34,7 @@ export const TransactionProvider: React.FC = ({ children }) => {
     const transactions = await useCase.execute();
 
     dispatch(fetchGetTransactions(transactions));
+    dispatch(fetchFilterTransaction(filter));
     setTransactionLoader(false);
   };
 
