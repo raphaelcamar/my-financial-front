@@ -1,9 +1,9 @@
-import { isValid, parse } from 'date-fns';
 import * as yup from 'yup';
+import { isValidDate, parseDate } from '@/core/presenters/utils';
 
 const verifyDate = (value: string, originalValue: string): string => {
-  const dateParse = parse(originalValue, 'dd/MM/yyyy', new Date());
-  if (!isValid(dateParse)) return '';
+  const dateParse = parseDate(originalValue, 'dd/MM/yyyy');
+  if (!isValidDate(dateParse)) return '';
 
   return originalValue;
 };

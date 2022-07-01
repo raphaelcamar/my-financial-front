@@ -1,4 +1,4 @@
-import { parse } from 'date-fns';
+import { parseDate } from '@/core/presenters/utils';
 import { RequestAdapter } from '@/core/data';
 import { Transaction } from '@/transaction/domain';
 
@@ -9,7 +9,7 @@ export class TransactionAdapter implements RequestAdapter {
       value: base.cost / 100,
       createdAt: null,
       updatedAt: null,
-      billedAt: parse(base.billedAt as string, 'dd/MM/yyyy', new Date()).toISOString(),
+      billedAt: parseDate(base.billedAt as string, 'dd/MM/yyyy').toISOString(),
       amount: base.total,
     };
 

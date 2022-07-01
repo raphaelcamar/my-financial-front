@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSnackbar } from 'notistack';
-import { format } from 'date-fns';
+import { formatDate } from '@/core/presenters/utils';
 import { Drawer } from '@/core/presenters/components/organisms';
 import { Input, Button, Select, IconButton } from '@/core/presenters/components/molecules';
 import { BodyContent, Buttons, Progress, SubmitButton, DrawerHeader } from './styles';
@@ -40,7 +40,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
 
   const handleChangeActualDay = value => {
     if (value) {
-      setValue('billedAt', format(new Date(), 'dd/MM/yyyy'));
+      setValue('billedAt', formatDate(new Date(), 'dd/MM/yyyy'));
     } else {
       setValue('billedAt', '');
     }
