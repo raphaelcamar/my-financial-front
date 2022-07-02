@@ -7,7 +7,6 @@ interface ISidebarOption {
   onClick?: () => void;
   selected?: boolean;
   path?: string;
-  icon?: AvailableIcons;
   item?: ISidebaroption;
   sidebarOpen: boolean;
   accordionOpen?: boolean;
@@ -19,7 +18,6 @@ export const SidebarOption: React.FC<ISidebarOption> = ({
   path,
   selected,
   sidebarOpen,
-  icon,
   item,
   accordionOpen,
   withFullRadius,
@@ -55,11 +53,10 @@ export const SidebarOption: React.FC<ISidebarOption> = ({
       accordionOpen={accordionOpen}
       withFullRadius={withFullRadius}
     >
-      {icon && <Icon icon={icon} />}
       <WrapperIconText accordionOpen={accordionOpen}>
         {item.icon && (
           <WrapperIcon selected={selected} accordionOpen={accordionOpen} open={sidebarOpen}>
-            <Icon icon={item.icon as AvailableIcons} color={state.color} shade={state.shade} />
+            <Icon icon={item.icon as AvailableIcons} color={state.color} shade={state.shade} size={16} />
           </WrapperIcon>
         )}
         {sidebarOpen && <Typography color={selected ? 'white' : 'default'}>{item.title}</Typography>}

@@ -16,7 +16,7 @@ const getShadowDensity = (density: Density) =>
 
 export const PaperContainer = styled.div<IPaper>`
   border-radius: 12px;
-  padding: 16px 12px;
+  padding: 24px;
   background: ${({ theme }) => theme.palette.grey[50]};
   ${({ density }) => getShadowDensity(density)}
 `;

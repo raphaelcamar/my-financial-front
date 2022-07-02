@@ -7,10 +7,10 @@ import {
   formatDate,
   formatDateBR,
 } from '@/core/presenters/utils';
-import { Container, WrapperActionTableButtons } from './styles';
+import { Container, WrapperActionTableButtons, ActionButtons, StyledButton } from './styles';
 import { TableData } from '@/core/presenters/components/organisms';
 import { Modal, Td, Tr, Typography } from '@/core/presenters/components/atoms';
-import { Chip, IconButton, WrapperLoader } from '@/core/presenters/components/molecules';
+import { Button, Chip, IconButton, WrapperLoader } from '@/core/presenters/components/molecules';
 
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 
@@ -37,7 +37,15 @@ export const TableContainer: React.FC = () => {
   return (
     <WrapperLoader loading={transactionLoader} sizeLoading={35}>
       <Modal closeModal={() => setOpenModal(false)} open={openModal} title="Deseja excluir a transação?">
-        asdasd
+        {/* <Typography></Typography> */}
+        <ActionButtons>
+          <StyledButton styleType="outlined" variant="grey">
+            Cancelar
+          </StyledButton>
+          <StyledButton styleType="fullfiled" variant="error">
+            Excluir
+          </StyledButton>
+        </ActionButtons>
       </Modal>
       <Container>
         <TableData dataTitles={tableHeaderData}>
@@ -64,11 +72,6 @@ export const TableContainer: React.FC = () => {
               <Td width={10}>
                 <Typography size="small" color="grey">
                   {formatCurrency(transaction?.cost) || '-'}
-                </Typography>
-              </Td>
-              <Td width={10}>
-                <Typography size="small" color="grey">
-                  {formatCurrency(transaction.total) || '-'}
                 </Typography>
               </Td>
               <Td width={10}>

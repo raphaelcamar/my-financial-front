@@ -21,9 +21,6 @@ export const tableHeaderData: TableHeadProps[] = [
     title: 'Valor',
   },
   {
-    title: 'Total',
-  },
-  {
     title: 'Ações',
   },
 ];

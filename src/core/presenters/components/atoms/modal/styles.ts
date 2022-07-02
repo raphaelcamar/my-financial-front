@@ -30,4 +30,5 @@ export const ModalHeader = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 8px;
+  margin-bottom: 24px;
 `;
