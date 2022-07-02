@@ -10,4 +10,6 @@ export type HttpPostParams<T> = {
 export interface HttpClient<T, R> {
   post(params: HttpPostParams<T>): Promise<HttpResponse<R>>;
   get(params: HttpPostParams<T>): Promise<HttpResponse<R>>;
+  put(params: HttpPostParams<T>): Promise<HttpResponse<R>>;
+  delete(params: HttpPostParams<T>): Promise<HttpResponse<R>>;
 }

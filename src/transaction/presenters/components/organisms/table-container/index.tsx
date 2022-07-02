@@ -1,4 +1,6 @@
+/* eslint-disable no-promise-executor-return */
 import React, { useEffect, useState } from 'react';
+import { useSnackbar } from 'notistack';
 import {
   monthStartDate,
   formatCurrency,
@@ -7,20 +9,23 @@ import {
   formatDate,
   formatDateBR,
 } from '@/core/presenters/utils';
-import { Container, WrapperActionTableButtons, ActionButtons, StyledButton } from './styles';
+import { Container, WrapperActionTableButtons } from './styles';
 import { TableData } from '@/core/presenters/components/organisms';
-import { Modal, Td, Tr, Typography } from '@/core/presenters/components/atoms';
-import { Button, Chip, IconButton, WrapperLoader } from '@/core/presenters/components/molecules';
+import { Td, Tr, Typography } from '@/core/presenters/components/atoms';
+import { Chip, IconButton, WrapperLoader } from '@/core/presenters/components/molecules';
 
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 
 import { tableHeaderData } from '@/transaction/presenters/utils/data';
+import { ModalDeleteTransaction } from '@/transaction/presenters/components/atoms';
 import { Transaction } from '@/transaction/domain';
 
 export const TableContainer: React.FC = () => {
-  const { getTransactions, transactions, transactionLoader } = useTransactionContext();
+  const { getTransactions, deleteTransaction, transactions, transactionLoader } = useTransactionContext();
+  const { enqueueSnackbar } = useSnackbar();
 
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [deleteData, setDeleteData] = useState<Transaction.Data>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const getTransactionsActualDate = async () => {
     const start = formatDate(monthStartDate(new Date()), 'dd/MM/yyyy');
@@ -34,22 +39,36 @@ export const TableContainer: React.FC = () => {
     getTransactionsActualDate();
   }, []);
 
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      await deleteTransaction(deleteData?._id);
+
+      enqueueSnackbar('Transação deletada com sucesso!', {
+        variant: 'success',
+      });
+    } catch (err) {
+      enqueueSnackbar(err?.message || 'Não foi possível excluir a transação. Tente novamente depois', {
+        variant: 'error',
+      });
+    } finally {
+      setLoading(false);
+      setDeleteData(null);
+    }
+  };
+
   return (
     <WrapperLoader loading={transactionLoader} sizeLoading={35}>
-      <Modal closeModal={() => setOpenModal(false)} open={openModal} title="Deseja excluir a transação?">
-        {/* <Typography></Typography> */}
-        <ActionButtons>
-          <StyledButton styleType="outlined" variant="grey">
-            Cancelar
-          </StyledButton>
-          <StyledButton styleType="fullfiled" variant="error">
-            Excluir
-          </StyledButton>
-        </ActionButtons>
-      </Modal>
+      <ModalDeleteTransaction
+        loading={loading}
+        data={deleteData}
+        openModal={!!deleteData}
+        onClose={() => setDeleteData(null)}
+        onSubmit={() => handleSubmit()}
+      />
       <Container>
         <TableData dataTitles={tableHeaderData}>
-          {transactions.map(transaction => (
+          {transactions?.map(transaction => (
             <Tr>
               <Td width={10}>
                 <Chip color="primary">{formatTopic(transaction?.topic) || '-'}</Chip>
@@ -61,7 +80,7 @@ export const TableContainer: React.FC = () => {
               </Td>
               <Td width={20}>
                 <Typography size="small" color="grey">
-                  {formatDateBR(String(transaction?.billedAt)) || '-'}
+                  {transaction?.billedAt ? formatDateBR(String(transaction?.billedAt)) : '-'}
                 </Typography>
               </Td>
               <Td width={10}>
@@ -85,7 +104,7 @@ export const TableContainer: React.FC = () => {
                     iconProps={{ color: 'grey', shade: '50', size: 10 }}
                   />
                   <IconButton
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => setDeleteData(transaction)}
                     icon="trash"
                     color="error"
                     shade="500"

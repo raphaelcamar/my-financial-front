@@ -6,6 +6,7 @@ type PropsTransaction = {
   transactionLoader: boolean;
   createTransaction: (transaction: Transaction.Data) => Promise<void>;
   getTransactions: (filter?: Transaction.Filter) => Promise<void>;
+  deleteTransaction: (transaction: string) => Promise<void>;
 };
 
 export const TransactionContext = createContext<PropsTransaction>({} as PropsTransaction);

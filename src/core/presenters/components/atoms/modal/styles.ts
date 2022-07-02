@@ -29,6 +29,6 @@ export const ModalHeader = styled.div`
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 24px;
   margin-bottom: 24px;
 `;

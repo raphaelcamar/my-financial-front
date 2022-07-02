@@ -49,4 +49,20 @@ export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
       body: httpResponse.data,
     };
   }
+
+  async delete(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
+    const httpResponse = await api.delete(`/${params.url}`, {
+      headers: !params.headers
+        ? {
+            Authorization: `Bearer ${this.token.get('@token')}`,
+          }
+        : params.headers,
+      data: params.body,
+    });
+
+    return {
+      statusCode: httpResponse.status,
+      body: httpResponse.data,
+    };
+  }
 }

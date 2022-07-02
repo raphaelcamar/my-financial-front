@@ -39,7 +39,7 @@ export namespace Transaction {
     updatedAt?: string | Date;
     cost: number;
     topic: TypeTopic;
-    total: number;
+    total?: number;
   }
 
   export interface Response {

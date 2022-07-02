@@ -1,11 +1,15 @@
-/* eslint-disable no-use-before-define */
 import React, { useReducer, useState } from 'react';
 import { Transaction } from '@/transaction/domain';
 import { TransactionContext } from './context';
 import { initialState, reducer } from './reducers';
 import { TransactionRepositoryData } from '@/transaction/infra';
-import { CreateTransaction, GetTransactions } from '@/transaction/data/use-cases';
-import { fetchCreateTransaction, fetchFilterTransaction, fetchGetTransactions } from './actions';
+import { CreateTransaction, GetTransactions, DeleteTransaction } from '@/transaction/data/use-cases';
+import {
+  fetchCreateTransaction,
+  fetchDeleteTransaction,
+  fetchFilterTransaction,
+  fetchGetTransactions,
+} from './actions';
 
 export const TransactionProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -38,9 +42,23 @@ export const TransactionProvider: React.FC = ({ children }) => {
     setTransactionLoader(false);
   };
 
+  const deleteTransaction = async (transactionId: string): Promise<void> => {
+    const transactionRepository = new TransactionRepositoryData();
+
+    const useCase = new DeleteTransaction(transactionRepository, transactionId);
+    await useCase.execute();
+    dispatch(fetchDeleteTransaction(transactionId));
+  };
+
   return (
     <TransactionContext.Provider
-      value={{ transactionLoader, createTransaction, getTransactions, transactions: state.transactions }}
+      value={{
+        transactionLoader,
+        createTransaction,
+        getTransactions,
+        deleteTransaction,
+        transactions: state.transactions,
+      }}
     >
       {children}
     </TransactionContext.Provider>

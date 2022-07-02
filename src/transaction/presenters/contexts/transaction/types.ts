@@ -3,6 +3,7 @@ import { Transaction } from '@/transaction/domain';
 export const CREATE_TRANSACTION = 'CREATE_TRANSACTION';
 export const GET_TRANSACTIONS = 'GET_TRANSACTIONS';
 export const FILTER_TRANSACTION = 'FILTER_TRANSACTION';
+export const DELETE_TRANSACTION = 'DELETE_TRANSACTION';
 
 export type InitialState = {
   transactions: Transaction[];
@@ -23,4 +24,9 @@ type GetTransaction = {
   payload: Transaction[];
 };
 
-export type ActionTypes = CreateTransaction | GetTransaction | FilterTransaction;
+type DeleteTransaction = {
+  type: typeof DELETE_TRANSACTION;
+  payload: string;
+};
+
+export type ActionTypes = CreateTransaction | GetTransaction | FilterTransaction | DeleteTransaction;
