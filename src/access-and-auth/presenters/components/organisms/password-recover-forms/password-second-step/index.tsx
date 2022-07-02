@@ -22,7 +22,7 @@ export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChange
   const [pinValue, setPinValue] = useState<string[]>(new Array(5).fill(''));
   const [error, setError] = useState<string>(null);
 
-  const { sendCodeRecover } = useAccessAndAuthContext();
+  const { sendCodeRecover, recoverPassworSendEmail, passwordToken } = useAccessAndAuthContext();
   const { enqueueSnackbar } = useSnackbar();
 
   const changePinFocus = (index: number): void => {
@@ -88,8 +88,8 @@ export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChange
     }
   };
 
-  const handleSendNewCode = () => {
-    // TODO send new code
+  const handleSendNewCode = async () => {
+    await recoverPassworSendEmail(passwordToken);
   };
 
   return (
