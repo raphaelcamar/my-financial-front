@@ -4,6 +4,6 @@ export class DeleteTransaction {
   constructor(private transactionRepository: TransactionRepository, private transactionId: string) {}
 
   async execute() {
-    this.transactionRepository.deleteTransacion(this.transactionId);
+    await this.transactionRepository.deleteTransacion(this.transactionId);
   }
 }
