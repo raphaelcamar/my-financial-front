@@ -16,7 +16,7 @@ const transitateWidth = (open: boolean) =>
 
 export const Content = styled.div<ContainerContentType>`
   flex-grow: 1;
-  padding: 28px 48px;
+  padding: 28px 36px;
   background: ${({ theme }) => theme.palette.grey[50]};
   min-height: 100vh;
   ${({ open }) => transitateWidth(open)}

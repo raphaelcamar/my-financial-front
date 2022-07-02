@@ -51,4 +51,9 @@ export const StyledButton = styled(Button)`
 export const ModalAddButton = styled(Button)`
   min-width: 250px;
   margin-bottom: 8px;
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    width: 100%;
+    min-height: 46px;
+    margin-bottom: 0;
+  }
 `;

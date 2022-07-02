@@ -9,11 +9,19 @@ export interface IIconButton extends React.HTMLAttributes<HTMLDivElement> {
   color: keyof ColorProps;
   shade: keyof VariantProps;
   iconProps?: Omit<IconProps, 'icon'>;
+  padding?: [number, number];
   onClick: () => void;
 }
 
-export const IconButton: React.FC<IIconButton> = ({ icon, color = 'primary', onClick, shade = '500', iconProps }) => (
-  <Container color={color} shade={shade} onClick={onClick}>
+export const IconButton: React.FC<IIconButton> = ({
+  icon,
+  color = 'primary',
+  onClick,
+  shade = '500',
+  iconProps,
+  padding,
+}) => (
+  <Container padding={padding} color={color} shade={shade} onClick={onClick}>
     <Icon icon={icon} {...iconProps} />
   </Container>
 );

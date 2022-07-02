@@ -24,4 +24,6 @@ export type AvailableIcons =
   | 'closeEye'
   | 'openEye'
   | 'closeDrawerMobile'
-  | 'openDrawerMobile';
+  | 'openDrawerMobile'
+  | 'pen'
+  | 'trash';

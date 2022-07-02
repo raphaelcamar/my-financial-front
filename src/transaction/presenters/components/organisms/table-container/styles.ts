@@ -5,3 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 24;
 `;
+
+export const WrapperActionTableButtons = styled.div`
+  display: flex;
+  gap: 8px;
+`;

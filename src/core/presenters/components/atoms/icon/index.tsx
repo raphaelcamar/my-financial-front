@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
+import { WrapperIcon } from './styles';
 import {
   AddIcon,
   ArrowDownIcon,
@@ -27,6 +28,8 @@ import {
   TransactionIcon,
   CloseDrawerMobileIcon,
   OpenDrawerMobileIcon,
+  PenIcon,
+  TrashIcon,
 } from '@/core/presenters/components/atoms/icon/icons';
 import { AvailableIcons } from '@/core/domain';
 import { ColorProps, VariantProps } from '@/main/styled';
@@ -35,40 +38,43 @@ export type IconProps = {
   icon: AvailableIcons;
   color?: keyof ColorProps;
   shade?: keyof VariantProps;
+  size?: number;
 };
 
-export const Icon: React.FC<IconProps> = ({ icon, color, shade }) => {
+export const Icon: React.FC<IconProps> = ({ icon, color, shade, size }) => {
   const theme = useContext(ThemeContext);
   const iconColor = theme.palette?.[color]?.[shade];
 
   const getIcon = {
-    add: <AddIcon dataTestId="add" color={iconColor && iconColor} />,
-    arrowDown: <ArrowDownIcon dataTestId="arrowDown" color={iconColor && iconColor} />,
-    bell: <BellIcon dataTestId="bell" color={iconColor && iconColor} />,
-    bellBall: <BellBallIcon dataTestId="bellBall" color={iconColor && iconColor} />,
-    circle: <CircleIcon dataTestId="circle" color={iconColor && iconColor} />,
-    close: <CloseIcon dataTestId="close" color={iconColor && iconColor} />,
-    dashboard: <DashboardIcon dataTestId="dashboard" color={iconColor && iconColor} />,
-    filter: <FilterIcon dataTestId="filter" color={iconColor} />,
-    google: <GoogleIcon dataTestId="google" color={iconColor} />,
-    key: <KeyIcon dataTestId="key" color={iconColor} />,
-    lineArrowDown: <LineArrowDownIcon dataTestId="lineArrowDown" color={iconColor} />,
-    lineArrowUp: <LineArrowUpIcon dataTestId="lineArrowUp" color={iconColor} />,
-    logo: <LogoNewIcon dataTestId="logo" color={iconColor} />,
-    logoSmall: <LogoSmallIcon dataTestId="logoSmall" color={iconColor} />,
-    mail: <MailIcon dataTestId="mail" color={iconColor} />,
-    miniArrowDown: <MiniArrowDownIcon dataTestId="miniArrowDown" color={iconColor} />,
-    miniArrowUp: <MiniArrowUpIcon dataTestId="miniArrowUp" color={iconColor} />,
-    person: <PersonIcon dataTestId="person" color={iconColor} />,
-    questionMarkRounded: <QuestionMarkRoundedIcon dataTestId="questionMarkRounded" color={iconColor} />,
-    search: <SearchIcon dataTestId="search" color={iconColor} />,
-    square: <SquareIcon dataTestId="square" color={iconColor} />,
-    transaction: <TransactionIcon dataTestId="transaction" color={iconColor} />,
+    add: <AddIcon color={iconColor && iconColor} />,
+    arrowDown: <ArrowDownIcon color={iconColor && iconColor} />,
+    bell: <BellIcon color={iconColor && iconColor} />,
+    bellBall: <BellBallIcon color={iconColor && iconColor} />,
+    circle: <CircleIcon color={iconColor && iconColor} />,
+    close: <CloseIcon color={iconColor && iconColor} />,
+    dashboard: <DashboardIcon color={iconColor && iconColor} />,
+    filter: <FilterIcon color={iconColor} />,
+    google: <GoogleIcon color={iconColor} />,
+    key: <KeyIcon color={iconColor} />,
+    lineArrowDown: <LineArrowDownIcon color={iconColor} />,
+    lineArrowUp: <LineArrowUpIcon color={iconColor} />,
+    logo: <LogoNewIcon color={iconColor} />,
+    logoSmall: <LogoSmallIcon color={iconColor} />,
+    mail: <MailIcon color={iconColor} />,
+    miniArrowDown: <MiniArrowDownIcon color={iconColor} />,
+    miniArrowUp: <MiniArrowUpIcon color={iconColor} />,
+    person: <PersonIcon color={iconColor} />,
+    questionMarkRounded: <QuestionMarkRoundedIcon color={iconColor} />,
+    search: <SearchIcon color={iconColor} />,
+    square: <SquareIcon color={iconColor} />,
+    transaction: <TransactionIcon color={iconColor} />,
     closeEye: <CloseEyeIcon color={iconColor} />,
     openEye: <OpenEyeIconIcon color={iconColor} />,
     closeDrawerMobile: <CloseDrawerMobileIcon color={iconColor} />,
     openDrawerMobile: <OpenDrawerMobileIcon color={iconColor} />,
+    pen: <PenIcon color={iconColor} />,
+    trash: <TrashIcon color={iconColor} />,
   };
 
-  return getIcon[icon];
+  return <WrapperIcon size={size}>{getIcon[icon]}</WrapperIcon>;
 };

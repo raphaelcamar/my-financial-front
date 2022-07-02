@@ -4,6 +4,7 @@ import { ColorProps, VariantProps } from '@/main/styled';
 type ContainerType = {
   color: keyof ColorProps;
   shade: keyof VariantProps;
+  padding?: [number, number];
 };
 
 const getBackgroundColor = (color: keyof ColorProps, shade: keyof VariantProps) => css`
@@ -11,7 +12,14 @@ const getBackgroundColor = (color: keyof ColorProps, shade: keyof VariantProps) 
 `;
 
 export const Container = styled.div<ContainerType>`
-  padding: 12px;
+  ${({ padding }) =>
+    padding?.length > 0
+      ? css`
+          padding: ${padding?.[0]}px ${padding?.[1]}px;
+        `
+      : css`
+          padding: 12px;
+        `}
   border-radius: 50%;
   transition: all ease 0.2s;
   display: flex;

@@ -17,7 +17,7 @@ const changeWidth = (open?: boolean) =>
 export const Container = styled.div<SidebarType>`
   width: ${({ open }) => (open ? SIZES.width : SIZES.marginLeft)}px;
   padding: 24px;
-  padding: 12px ${({ open }) => (open ? 24 : 12)}px;
+  padding: 20px ${({ open }) => (open ? 24 : 12)}px;
   transition: all ease 0.3s;
   position: fixed;
   height: 100vh;

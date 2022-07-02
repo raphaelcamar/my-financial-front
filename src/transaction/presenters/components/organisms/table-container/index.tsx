@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   monthStartDate,
   formatCurrency,
@@ -7,10 +7,10 @@ import {
   formatDate,
   formatDateBR,
 } from '@/core/presenters/utils';
-import { Container } from './styles';
+import { Container, WrapperActionTableButtons } from './styles';
 import { TableData } from '@/core/presenters/components/organisms';
-import { Td, Tr, Typography } from '@/core/presenters/components/atoms';
-import { Chip, WrapperLoader } from '@/core/presenters/components/molecules';
+import { Modal, Td, Tr, Typography } from '@/core/presenters/components/atoms';
+import { Chip, IconButton, WrapperLoader } from '@/core/presenters/components/molecules';
 
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 
@@ -19,6 +19,8 @@ import { Transaction } from '@/transaction/domain';
 
 export const TableContainer: React.FC = () => {
   const { getTransactions, transactions, transactionLoader } = useTransactionContext();
+
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const getTransactionsActualDate = async () => {
     const start = formatDate(monthStartDate(new Date()), 'dd/MM/yyyy');
@@ -34,6 +36,9 @@ export const TableContainer: React.FC = () => {
 
   return (
     <WrapperLoader loading={transactionLoader} sizeLoading={35}>
+      <Modal closeModal={() => setOpenModal(false)} open={openModal} title="Deseja excluir a transação?">
+        asdasd
+      </Modal>
       <Container>
         <TableData dataTitles={tableHeaderData}>
           {transactions.map(transaction => (
@@ -65,6 +70,26 @@ export const TableContainer: React.FC = () => {
                 <Typography size="small" color="grey">
                   {formatCurrency(transaction.total) || '-'}
                 </Typography>
+              </Td>
+              <Td width={10}>
+                <WrapperActionTableButtons>
+                  <IconButton
+                    onClick={() => null}
+                    icon="pen"
+                    color="warning"
+                    shade="400"
+                    padding={[8, 9]}
+                    iconProps={{ color: 'grey', shade: '50', size: 10 }}
+                  />
+                  <IconButton
+                    onClick={() => setOpenModal(true)}
+                    icon="trash"
+                    color="error"
+                    shade="500"
+                    padding={[8, 9]}
+                    iconProps={{ color: 'grey', shade: '50', size: 10 }}
+                  />
+                </WrapperActionTableButtons>
               </Td>
             </Tr>
           ))}

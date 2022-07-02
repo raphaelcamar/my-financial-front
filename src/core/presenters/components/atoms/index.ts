@@ -8,3 +8,4 @@ export * from './typography';
 export * from './paper';
 export * from './table-components';
 export * from './text-link';
+export * from './modal';

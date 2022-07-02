@@ -23,4 +23,7 @@ export const tableHeaderData: TableHeadProps[] = [
   {
     title: 'Total',
   },
+  {
+    title: 'Ações',
+  },
 ];
