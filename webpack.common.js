@@ -2,10 +2,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
-  entry: './src/main/index.tsx',
+  entry: {
+    app: './src/main/index.tsx'
+  },
   output: {
     path: path.join(__dirname, 'public/js'),
     publicPath: '/public/js',
@@ -35,17 +37,24 @@ module.exports = {
       writeToDisk: true
     }
   },
+  optimization: {
+    minimizer: [
+    ]
+  },
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM'
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Production'
+    }),
     new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
     new Dotenv({
       safe: true,
-    })
+    }),
   ]
 }

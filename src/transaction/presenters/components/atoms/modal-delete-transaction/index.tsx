@@ -31,7 +31,7 @@ export const ModalDeleteTransaction: React.FC<IModalDeleteTransaction> = ({
         </Typography>
         <Chip color={data?.type === 'ENTRANCE' ? 'success' : 'error'}>{formatType(data?.type) || '-'}</Chip>
       </Information>
-      <Typography color={data?.type === 'ENTRANCE' ? 'success' : 'error'}>
+      <Typography weight={500} size="xlarge" color={data?.type === 'ENTRANCE' ? 'success' : 'error'}>
         {formatCurrency(data?.cost) || '-'}
       </Typography>
     </Wrapper>
