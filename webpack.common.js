@@ -4,6 +4,8 @@ const Dotenv = require('dotenv-webpack')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const envFile = './.env'
+
 module.exports = {
   entry: {
     app: './src/main/index.tsx'
@@ -54,6 +56,7 @@ module.exports = {
       process: 'process/browser',
     }),
     new Dotenv({
+      path: envFile,
       safe: true,
     }),
   ]
