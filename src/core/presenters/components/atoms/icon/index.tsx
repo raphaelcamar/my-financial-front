@@ -76,5 +76,9 @@ export const Icon: React.FC<IconProps> = ({ icon, color, shade, size }) => {
     trash: <TrashIcon color={iconColor} />,
   };
 
-  return <WrapperIcon size={size}>{getIcon[icon]}</WrapperIcon>;
+  return (
+    <WrapperIcon data-testid="icon" size={size}>
+      {getIcon[icon]}
+    </WrapperIcon>
+  );
 };
