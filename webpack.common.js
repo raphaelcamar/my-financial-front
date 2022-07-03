@@ -58,7 +58,7 @@ module.exports = {
     new Dotenv({
       path: envFile,
       safe: true,
-      systemvars
+      systemvars: true
     }),
   ]
 }
