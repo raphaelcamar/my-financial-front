@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { Chip } from '@/core/presenters/components/molecules';
-import { ProvideTheme } from '@/core/tests/mocks';
+import { ProvideStyledTheme } from '@/core/tests/mocks';
 import '@testing-library/jest-dom';
 import { main as theme } from '@/core/presenters/contexts/theme/themes/main';
 
 describe('Chip unit test', () => {
   test('Should be able to render the chip with the success variant', () => {
-    render(ProvideTheme(<Chip color="success">Teste</Chip>));
+    render(ProvideStyledTheme(<Chip color="success">Teste</Chip>));
 
     const chip = screen.getByTestId('chip');
     const linkElement = screen.getByText(/Teste/i);
@@ -18,7 +18,7 @@ describe('Chip unit test', () => {
   });
 
   test('Should be able to render the chip with the error variant', () => {
-    render(ProvideTheme(<Chip color="error">Teste</Chip>));
+    render(ProvideStyledTheme(<Chip color="error">Teste</Chip>));
 
     const chip = screen.getByTestId('chip');
     const linkElement = screen.getByText(/Teste/i);
@@ -29,7 +29,7 @@ describe('Chip unit test', () => {
   });
 
   test('Should be able to render the chip with the info variant', () => {
-    render(ProvideTheme(<Chip color="info">Teste</Chip>));
+    render(ProvideStyledTheme(<Chip color="info">Teste</Chip>));
 
     const chip = screen.getByTestId('chip');
     const linkElement = screen.getByText(/Teste/i);
@@ -40,7 +40,7 @@ describe('Chip unit test', () => {
   });
 
   test('Should be able to render the chip with the warning variant', () => {
-    render(ProvideTheme(<Chip color="warning">Teste</Chip>));
+    render(ProvideStyledTheme(<Chip color="warning">Teste</Chip>));
 
     const chip = screen.getByTestId('chip');
     const linkElement = screen.getByText(/Teste/i);
@@ -51,7 +51,7 @@ describe('Chip unit test', () => {
   });
 
   test('Should be able to render the chip and change the width', () => {
-    render(ProvideTheme(<Chip color="warning">Teste</Chip>));
+    render(ProvideStyledTheme(<Chip color="warning">Teste</Chip>));
 
     const chip = screen.getByTestId('chip');
     const linkElement = screen.getByText(/Teste/i);
