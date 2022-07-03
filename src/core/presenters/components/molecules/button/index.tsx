@@ -15,6 +15,6 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button: React.FC<IButtonProps> = ({ loading, children, ...props }) => (
   <ButtonStyle data-testid="styled-button" {...props}>
-    {loading ? <CircularProgress size={25} color="inherit" /> : children}
+    {loading ? <CircularProgress /> : children}
   </ButtonStyle>
 );

@@ -1,19 +1,18 @@
 import React, { ReactNode } from 'react';
-import { CircularProgress } from '../../atoms';
+import { CircularProgress, ICircularProgress } from '@/core/presenters/components/atoms';
 import { Wrapper, Loading } from './styles';
 
-interface IWrapperLoader {
+interface IWrapperLoader extends ICircularProgress {
   loading?: boolean;
   children: ReactNode;
-  sizeLoading?: number;
 }
 
-export const WrapperLoader: React.FC<IWrapperLoader> = ({ children, loading, sizeLoading = 25 }) => (
+export const WrapperLoader: React.FC<IWrapperLoader> = ({ children, loading, size = 20, color }) => (
   <Wrapper loading={loading}>
     {loading ? (
       <>
         <Loading>
-          <CircularProgress size={sizeLoading} />
+          <CircularProgress size={size} color={color} />
         </Loading>
         {children}
       </>
