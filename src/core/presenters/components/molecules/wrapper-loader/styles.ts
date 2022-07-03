@@ -7,11 +7,10 @@ type WrapperType = {
 export const Wrapper = styled.div<WrapperType>`
   width: 100%;
   height: 100%;
-  ${({ loading, theme }) =>
+  ${({ loading }) =>
     loading
       ? css`
           position: relative;
-          z-index: 1000;
         `
       : css`
           position: inherit;

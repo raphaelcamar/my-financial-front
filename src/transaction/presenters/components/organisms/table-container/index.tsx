@@ -59,7 +59,7 @@ export const TableContainer: React.FC = () => {
   };
 
   return (
-    <WrapperLoader loading={transactionLoader} sizeLoading={35}>
+    <WrapperLoader loading size={15} color="primary">
       <ModalDeleteTransaction
         loading={loading}
         data={deleteData}

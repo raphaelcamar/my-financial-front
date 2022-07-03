@@ -1,4 +1,3 @@
-export * from './button-menu';
 export * from './button';
 export * from './chip';
 export * from './icon-button';

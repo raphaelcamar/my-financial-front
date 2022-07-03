@@ -1,9 +1,9 @@
-import { useTheme } from '@mui/material';
 import React from 'react';
 import { Icon } from '@/core/domain';
+import { useThemeContext } from '@/core/presenters/contexts/styled-theme/themes/provider';
 
 export const TrashIcon: React.FC<Icon> = ({ color }) => {
-  const theme = useTheme();
+  const theme = useThemeContext();
   return (
     <svg width="9" height="12" viewBox="0 0 9 12" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

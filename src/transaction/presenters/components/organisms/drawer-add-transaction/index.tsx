@@ -147,7 +147,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
             Cancelar
           </Button>
           <SubmitButton type="submit" variant="primary" onClick={() => handleSubmit(onSubmit)}>
-            {loading && <Progress size={20} color="inherit" />}Adicionar
+            {loading ? <Progress /> : 'Adicionar'}
           </SubmitButton>
         </Buttons>
       </BodyContent>

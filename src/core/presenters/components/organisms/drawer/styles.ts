@@ -53,6 +53,8 @@ export const DrawerWrapper = styled.div<DrawerType>`
   position: absolute;
   ${({ open, side, fullWidth }) => getSideDrawer(side, open, fullWidth)}
 
+  overflow-y: auto;
+
   padding: ${({ fullWidth }) => (fullWidth ? '12px 24px' : '28px 36px;')};
   /* min-width: ${({ fullWidth }) => (fullWidth ? '0' : '504px')}; */
   margin-top: ${({ fullWidth }) => (fullWidth ? '0' : '48px')};

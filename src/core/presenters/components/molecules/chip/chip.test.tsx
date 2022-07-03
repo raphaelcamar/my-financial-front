@@ -3,7 +3,7 @@ import React from 'react';
 import { Chip } from '@/core/presenters/components/molecules';
 import { ProvideStyledTheme } from '@/core/tests/mocks';
 import '@testing-library/jest-dom';
-import { main as theme } from '@/core/presenters/contexts/theme/themes/main';
+import { mainTheme as theme } from '@/core/presenters/contexts/styled-theme/themes/main';
 
 describe('Chip unit test', () => {
   test('Should be able to render the chip with the success variant', () => {
