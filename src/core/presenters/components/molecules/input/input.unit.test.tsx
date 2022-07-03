@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { screen, render } from '@testing-library/react';
 import { mainTheme as theme } from '@/core/presenters/contexts/styled-theme/themes/main';
 import { StyledThemeProvider } from '@/core/presenters/contexts';
-import { Input } from '.';
+import { Input } from '@/core/presenters/components/molecules';
 
 describe('Input integration tests', () => {
   test('Should be able to render input, helper text, and the label', () => {
@@ -23,12 +23,13 @@ describe('Input integration tests', () => {
   test('Should be able to render input with error variant', () => {
     render(
       <StyledThemeProvider>
-        <Input value="value test" label="Label-test" error />
+        <Input value="value test" label="Label-test" onChange={() => null} error />
       </StyledThemeProvider>
     );
 
     const inputRoot = screen.getByTestId('input-root');
     const helperText = screen.getByTestId('helper-text');
+
     expect(inputRoot).toHaveStyle(`border: 1px solid ${theme.palette.error.main}`);
     expect(helperText).toBeInTheDocument();
   });
