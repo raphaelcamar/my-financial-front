@@ -11,7 +11,8 @@ const getBackgroundColor = (color: keyof ColorProps, shade: keyof VariantProps) 
   background: ${({ theme }) => theme.palette[color][shade]};
 `;
 
-export const Container = styled.div<ContainerType>`
+export const Container = styled.button<ContainerType>`
+  all: unset;
   ${({ padding }) =>
     padding?.length > 0
       ? css`
@@ -35,5 +36,15 @@ export const Container = styled.div<ContainerType>`
 
   &:active {
     transform: scale(0.9);
+  }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.palette.grey[300]};
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(1);
+    }
   }
 `;

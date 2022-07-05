@@ -4,6 +4,8 @@ type AccordionType = {
   open?: boolean;
   selected?: boolean;
   sidebarOpen?: boolean;
+  quantity?: number;
+  hasMatchedRoute?: boolean;
 };
 
 export const Container = styled.div<AccordionType>`
@@ -23,10 +25,12 @@ export const Container = styled.div<AccordionType>`
   align-items: center;
   cursor: pointer;
   &:hover {
-    background: ${({ theme, selected, open }) => (selected || open ? '' : theme.palette.primary[50])};
+    background: ${({ theme, selected, open, hasMatchedRoute }) =>
+      selected || open || hasMatchedRoute ? '' : theme.palette.primary[50]};
   }
 
-  background: ${({ theme, selected, open }) => (selected || open ? theme.palette.primary.main : '')};
+  background: ${({ theme, selected, open, hasMatchedRoute }) =>
+    selected || open || hasMatchedRoute ? theme.palette.primary.main : ''};
 `;
 
 export const Wrapper = styled.div<AccordionType>`
@@ -63,11 +67,11 @@ export const Children = styled.div<AccordionType>`
   min-height: 0px;
   height: 0px;
   transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  ${({ open }) =>
+  ${({ open, quantity }) =>
     open
       ? css`
           visibility: visible;
-          height: 64px;
+          height: calc(64px * ${quantity});
           overflow: auto;
           overflow-y: hidden;
         `

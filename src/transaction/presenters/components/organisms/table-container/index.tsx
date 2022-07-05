@@ -59,7 +59,7 @@ export const TableContainer: React.FC = () => {
   };
 
   return (
-    <WrapperLoader loading size={15} color="primary">
+    <WrapperLoader loading={transactionLoader} size={15} color="primary">
       <ModalDeleteTransaction
         loading={loading}
         data={deleteData}
@@ -97,6 +97,7 @@ export const TableContainer: React.FC = () => {
               <Td width={10}>
                 <WrapperActionTableButtons>
                   <IconButton
+                    disabled
                     onClick={() => null}
                     icon="pen"
                     color="warning"

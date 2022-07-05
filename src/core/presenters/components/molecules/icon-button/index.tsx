@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import { AvailableIcons } from '@/core/domain';
 import { Icon, IconProps } from '@/core/presenters/components/atoms';
 import { Container } from './styles';
 import { ColorProps, VariantProps } from '@/main/styled';
 
-export interface IIconButton extends React.HTMLAttributes<HTMLDivElement> {
+export interface IIconButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: AvailableIcons;
   color: keyof ColorProps;
   shade: keyof VariantProps;
   iconProps?: Omit<IconProps, 'icon'>;
   padding?: [number, number];
-  onClick: () => void;
 }
 
 export const IconButton: React.FC<IIconButton> = ({
@@ -20,8 +19,9 @@ export const IconButton: React.FC<IIconButton> = ({
   shade = '500',
   iconProps,
   padding,
+  ...props
 }) => (
-  <Container padding={padding} color={color} shade={shade} onClick={onClick}>
+  <Container padding={padding} color={color} shade={shade} onClick={onClick} {...props}>
     <Icon icon={icon} {...iconProps} />
   </Container>
 );

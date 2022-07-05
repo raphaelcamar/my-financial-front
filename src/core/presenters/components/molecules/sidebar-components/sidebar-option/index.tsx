@@ -11,6 +11,7 @@ interface ISidebarOption {
   sidebarOpen: boolean;
   accordionOpen?: boolean;
   withFullRadius?: boolean;
+  isLastItem?: boolean;
 }
 
 export const SidebarOption: React.FC<ISidebarOption> = ({
@@ -21,6 +22,7 @@ export const SidebarOption: React.FC<ISidebarOption> = ({
   item,
   accordionOpen,
   withFullRadius,
+  isLastItem,
 }) => {
   const [state, setState] = useState({ color: null, shade: null });
 
@@ -52,6 +54,7 @@ export const SidebarOption: React.FC<ISidebarOption> = ({
       onClick={onClick || null}
       accordionOpen={accordionOpen}
       withFullRadius={withFullRadius}
+      isLastItem={isLastItem}
     >
       <WrapperIconText accordionOpen={accordionOpen}>
         {item.icon && (

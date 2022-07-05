@@ -9,6 +9,8 @@ interface ISidebarAccordion {
   sidebarOpen: boolean;
   open: boolean;
   setOpen: (open?: boolean) => void;
+  quantity?: number;
+  hasMatchedRoute?: boolean;
 }
 
 export const SidebarAccordion: React.FC<ISidebarAccordion> = ({
@@ -18,19 +20,27 @@ export const SidebarAccordion: React.FC<ISidebarAccordion> = ({
   sidebarOpen,
   open,
   setOpen,
+  quantity,
+  hasMatchedRoute,
 }) => (
   <Wrapper onClick={() => setOpen(!open)} open={open}>
-    <Container open={open} sidebarOpen={sidebarOpen}>
+    <Container open={open} sidebarOpen={sidebarOpen} hasMatchedRoute={hasMatchedRoute}>
       <AccordionHeader>
-        <Icon icon={icon} color={open ? 'grey' : null} shade={open ? '50' : null} />
-        {sidebarOpen && <Typography color={open ? 'white' : 'grey'}>{titleAccordion}</Typography>}
+        <Icon
+          icon={icon}
+          color={open || hasMatchedRoute ? 'grey' : null}
+          shade={open || hasMatchedRoute ? '50' : null}
+        />
+        {sidebarOpen && <Typography color={open || hasMatchedRoute ? 'white' : 'grey'}>{titleAccordion}</Typography>}
       </AccordionHeader>
       {sidebarOpen && (
         <WrapperIcon open={open}>
-          <Icon icon="arrowDown" color="grey" shade={open ? '50' : '500'} />
+          <Icon icon="arrowDown" color="grey" shade={open || hasMatchedRoute ? '50' : '500'} />
         </WrapperIcon>
       )}
     </Container>
-    <Children open={open}>{children}</Children>
+    <Children open={open} quantity={quantity}>
+      {children}
+    </Children>
   </Wrapper>
 );

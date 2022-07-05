@@ -6,7 +6,8 @@ type WrapperIconType = {
 
 export const WrapperIcon = styled.div<WrapperIconType>`
   display: flex;
-  align-content: center;
+  align-items: center;
+  justify-content: center;
   ${({ size }) =>
     size
       ? css`

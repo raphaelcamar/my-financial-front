@@ -12,6 +12,9 @@ interface ISidebarOptions {
 export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, sidebarOpen }) => {
   const location = useLocation();
   const [accordion, setAccordion] = useState(false);
+  const { pathname } = useLocation();
+
+  const getMatchedRoute = (items: ISidebaroption[]): boolean => items?.some(item => item.path === pathname);
 
   return (
     <>
@@ -23,15 +26,18 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, side
             sidebarOpen={sidebarOpen}
             icon={item?.icon}
             titleAccordion={item?.title}
+            hasMatchedRoute={getMatchedRoute(item?.accordionItems)}
+            quantity={item?.accordionItems?.length}
           >
             <WrapperItemAccordion open={sidebarOpen}>
-              {item?.accordionItems?.map(accordionItem => (
+              {item?.accordionItems?.map((accordionItem, index) => (
                 <SidebarOption
                   accordionOpen={accordion}
                   sidebarOpen={sidebarOpen}
                   item={accordionItem}
                   path={accordionItem.path}
                   selected={location.pathname === accordionItem.path}
+                  isLastItem={item?.accordionItems.length === index + 1}
                 />
               ))}
             </WrapperItemAccordion>

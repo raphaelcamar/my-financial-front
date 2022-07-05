@@ -22,7 +22,6 @@ export const WrapperItemAccordion = styled.div<SidebarOptionsType>`
   margin: 8px 0px 8px 16px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
   padding-left: 8px;
 
   ${({ open }) =>

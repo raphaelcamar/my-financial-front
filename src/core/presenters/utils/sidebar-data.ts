@@ -19,8 +19,14 @@ export const SidebarData: ISidebaroption[] = [
     title: 'accordion',
     accordionItems: [
       {
-        icon: 'person',
-        path: '/transacoes',
+        icon: 'trash',
+        path: '/teste',
+        title: 'minha conta',
+      },
+
+      {
+        icon: 'pen',
+        path: '/teste-2',
         title: 'minha conta',
       },
     ],

@@ -7,6 +7,7 @@ type AccordionItemType = {
   accordionOpen?: boolean;
   open?: boolean;
   withFullRadius?: boolean;
+  isLastItem?: boolean;
 };
 
 const selectItemStyles = selected =>
@@ -18,13 +19,13 @@ const selectItemStyles = selected =>
     }
   `;
 
-const containerOpen = (open?: boolean) =>
+const containerOpen = (open?: boolean, isLastItem?: boolean) =>
   open
     ? css`
         border-radius: 8px;
       `
     : css`
-        border-radius: 0 0 8px 8px !important;
+        border-radius: ${isLastItem ? '0 0 8px 8px !important' : '0px 0px 0px 0px !important'};
         justify-content: center;
       `;
 
@@ -41,7 +42,7 @@ export const Container = styled(Link)<AccordionItemType>`
   }
   color: ${({ theme }) => theme.font.color.default};
   ${({ selected }) => selectItemStyles(selected)}
-  ${({ open }) => containerOpen(open)}
+  ${({ open, isLastItem }) => containerOpen(open, isLastItem)}
   ${({ withFullRadius }) =>
     withFullRadius &&
     css`
