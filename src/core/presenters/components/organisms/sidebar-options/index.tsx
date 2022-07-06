@@ -36,7 +36,7 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, side
                   sidebarOpen={sidebarOpen}
                   item={accordionItem}
                   path={accordionItem.path}
-                  selected={location.pathname === accordionItem.path}
+                  selected={location?.pathname === accordionItem.path}
                   isLastItem={item?.accordionItems.length === index + 1}
                 />
               ))}
@@ -48,7 +48,7 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, side
               withFullRadius
               sidebarOpen={sidebarOpen}
               path={item.path}
-              selected={location.pathname === item.path}
+              selected={location?.pathname === item.path}
               item={item}
             />
           </ItemSidebar>

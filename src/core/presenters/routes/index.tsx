@@ -1,8 +1,9 @@
-import React from 'react';
-import { RouteObject, useRoutes } from 'react-router';
+import React, { useEffect } from 'react';
+import { RouteObject, useLocation, useRoutes } from 'react-router';
 import { TransactionRoutes } from '@/transaction/presenters/routes';
 import { Container } from '@/core/presenters/components/organisms';
 import { AccessAndAuthRoutes } from '@/access-and-auth/presenters/routes';
+import { NotFoundPage } from '@/core/presenters/pages';
 
 export const RootRoutes: RouteObject[] = [
   ...AccessAndAuthRoutes,
@@ -14,7 +15,7 @@ export const RootRoutes: RouteObject[] = [
   },
   {
     path: '*',
-    element: <h1>Rota não encontrada</h1>,
+    element: <NotFoundPage />,
   },
 ];
 
