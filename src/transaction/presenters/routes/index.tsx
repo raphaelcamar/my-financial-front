@@ -1,9 +1,35 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { RouteObject, useRoutes } from 'react-router-dom';
 import { TransactionsPage, Test } from '@/transaction/presenters/pages';
+import { PrivateRoute } from '@/core/presenters/proxies';
 
-export const TransactionRoutes = [
-  <Route path="/transacoes" element={<TransactionsPage />} />,
-  <Route path="/teste" element={<Test />} />,
-  <Route path="/teste-2" element={<Test />} />,
+export const TransactionRoutes: RouteObject[] = [
+  {
+    path: '/transacoes',
+    element: (
+      <PrivateRoute>
+        <TransactionsPage />
+      </PrivateRoute>
+    ),
+  },
+
+  {
+    path: '/teste',
+    element: (
+      <PrivateRoute>
+        <Test />
+      </PrivateRoute>
+    ),
+  },
+
+  {
+    path: '/teste-2',
+    element: (
+      <PrivateRoute>
+        <Test />
+      </PrivateRoute>
+    ),
+  },
 ];
+
+export const TransactionRoutesComponent = (): React.ReactElement => useRoutes(TransactionRoutes);

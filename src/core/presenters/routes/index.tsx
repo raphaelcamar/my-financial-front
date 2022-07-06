@@ -1,11 +1,21 @@
 import React from 'react';
-import { Route, Routes } from 'react-router';
+import { RouteObject, useRoutes } from 'react-router';
+import { TransactionRoutes } from '@/transaction/presenters/routes';
 import { Container } from '@/core/presenters/components/organisms';
+import { AccessAndAuthRoutes } from '@/access-and-auth/presenters/routes';
 
-export const CoreRoutes: React.FC = ({ children }) => (
-  <Routes>
-    <Route path="/" element={<Container />}>
-      {children}
-    </Route>
-  </Routes>
-);
+export const RootRoutes: RouteObject[] = [
+  ...AccessAndAuthRoutes,
+  {
+    path: '/',
+    element: <Container />,
+    caseSensitive: true,
+    children: [...TransactionRoutes],
+  },
+  {
+    path: '*',
+    element: <h1>Rota não encontrada</h1>,
+  },
+];
+
+export const RootRoutesComponent = (): React.ReactElement => useRoutes(RootRoutes);

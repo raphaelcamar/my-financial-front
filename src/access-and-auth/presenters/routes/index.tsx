@@ -1,11 +1,22 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { RouteObject, useRoutes } from 'react-router-dom';
 import { Login, Subscribe, PasswordRecover } from '@/access-and-auth/presenters/pages';
 
-export const AccessAndAuthRoutes: React.FC = () => (
-  <Routes>
-    <Route path="/login" element={<Login />} />
-    <Route path="/cadastro" element={<Subscribe />} />
-    <Route path="/recuperar-senha" element={<PasswordRecover />} />
-  </Routes>
-);
+export const AccessAndAuthRoutes: RouteObject[] = [
+  {
+    path: '/login',
+    element: <Login />,
+  },
+
+  {
+    path: '/cadastro',
+    element: <Subscribe />,
+  },
+
+  {
+    path: '/recuperar-senha',
+    element: <PasswordRecover />,
+  },
+];
+
+export const AccessAndAuthRoutesComponent = (): React.ReactElement => useRoutes(AccessAndAuthRoutes);

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router';
 import { Input, Button } from '@/core/presenters/components/molecules';
 
 import {
@@ -20,6 +21,7 @@ import { UserLoginValidatorSchema } from '@/access-and-auth/data';
 export const LoginForm: React.FC = () => {
   const { userAuth } = useAccessAndAuthContext();
   const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -32,6 +34,7 @@ export const LoginForm: React.FC = () => {
     try {
       setLoading(true);
       await userAuth(e);
+      navigate('/transacoes');
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível fazer o login. Tente novamente mais tarde', {
         variant: 'error',
