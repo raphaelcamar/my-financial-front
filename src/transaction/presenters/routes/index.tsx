@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteObject, useRoutes } from 'react-router-dom';
-import { TransactionsPage, Test } from '@/transaction/presenters/pages';
+import { TransactionsPage, Test } from '@/transaction/ui/pages';
 import { PrivateRoute } from '@/core/presenters/proxies';
 
 export const TransactionRoutes: RouteObject[] = [

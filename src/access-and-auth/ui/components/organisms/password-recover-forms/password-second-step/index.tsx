@@ -4,7 +4,7 @@ import { Typography } from '@/core/presenters/components/atoms';
 import { ContainerForm, WrapperMessage, WrapperInputPin, WrapperError } from './styles';
 import { InputPin, Countdown } from '@/access-and-auth/ui/components/atoms';
 import { Button } from '@/core/presenters/components/molecules';
-import { usePasswordSecondStep } from '@/access-and-auth/presenters';
+import { usePasswordSecondStep } from './hook';
 
 interface IPasswordSecondStep {
   handleChangeStep?: () => void;

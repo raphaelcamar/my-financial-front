@@ -4,7 +4,7 @@ import { Input, Button } from '@/core/presenters/components/molecules';
 import { AuthTitle, LogoName, RedirectLink, WrapperForm } from '@/access-and-auth/ui/components/atoms';
 import { Container, Wrapper, Center } from './styles';
 import { Icon, TextLink } from '@/core/presenters/components/atoms';
-import { useLoginForm } from '@/access-and-auth/presenters/hooks';
+import { useLoginForm } from './hook';
 
 export const LoginForm: React.FC = () => {
   const { errors, loading, handleSubmit, onSubmit, register } = useLoginForm();

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Input } from '@/core/presenters/components/molecules';
 import { ContainerForm, WrapperMessage } from './styles';
 import { Typography } from '@/core/presenters/components/atoms';
-import { usePasswordFirstStep } from '@/access-and-auth/presenters/hooks/password-first-step';
+import { usePasswordFirstStep } from './hook';
 
 interface IPasswordFirstStep {
   handleChangeStep: () => void;

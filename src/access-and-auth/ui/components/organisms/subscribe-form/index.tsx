@@ -4,7 +4,7 @@ import { Container, Center, Form } from './styles';
 import { Button, Input } from '@/core/presenters/components/molecules';
 import { Icon } from '@/core/presenters/components/atoms';
 
-import { useSubscribeForm } from '@/access-and-auth/presenters';
+import { useSubscribeForm } from './hook';
 
 export const SubscribeForm: React.FC = () => {
   const { errors, handleSubmit, handleSubmitForm, loading, register } = useSubscribeForm();

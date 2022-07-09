@@ -3,7 +3,7 @@ import { Typography } from '@/core/presenters/components/atoms';
 import { WrapperMessage, Container, Inputs } from './styles';
 import { Button } from '@/core/presenters/components/molecules';
 import { InputPassword } from '@/core/presenters/components/organisms';
-import { usePasswordThirdStep } from '@/access-and-auth/presenters/hooks/';
+import { usePasswordThirdStep } from './hook';
 
 export const PasswordThirdStep: React.FC = () => {
   const { errors, loading, handleSubmit, onSubmit, register } = usePasswordThirdStep();

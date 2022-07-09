@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { FirstLine, SecondLine, Space, Container } from './styles';
-import { TableContainer, DrawerAddTransaction } from '@/transaction/presenters/components/organisms';
+import { TableContainer, DrawerAddTransaction } from '@/transaction/ui/components/organisms';
 
-import { FilterAddTable } from '@/transaction/presenters/components/atoms';
+import { FilterAddTable } from '@/transaction/ui/components/atoms';
 import { Transaction } from '@/transaction/domain';
 
 export const TransactionsPage: React.FC = () => {

@@ -10,7 +10,7 @@ import { BodyContent, Buttons, Progress, SubmitButton, DrawerHeader } from './st
 import { Transaction } from '@/transaction/domain';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
 import { InputMask } from '@/core/presenters/components/molecules/input-mask';
-import { entranceItems, spentItems, typeItems } from '@/transaction/presenters/utils/data/';
+import { entranceItems, spentItems, typeItems } from '@/transaction/utils/data';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { Checkbox, Typography } from '@/core/presenters/components/atoms';
 

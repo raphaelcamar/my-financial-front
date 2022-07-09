@@ -17,8 +17,8 @@ import { Chip, IconButton, WrapperLoader } from '@/core/presenters/components/mo
 
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 
-import { tableHeaderData } from '@/transaction/presenters/utils/data';
-import { ModalDeleteTransaction } from '@/transaction/presenters/components/atoms';
+import { tableHeaderData } from '@/transaction/utils/data';
+import { ModalDeleteTransaction } from '@/transaction/ui/components/atoms';
 import { Transaction } from '@/transaction/domain';
 
 interface ITableContainer {
