@@ -9,12 +9,12 @@ import { InputMask } from '@/core/presenters/components/molecules/input-mask';
 import { Transaction } from '@/transaction/domain';
 import { FilterTransactionSchema } from '@/transaction/data';
 
-interface IFilterAddTable {
+interface ITableActions {
   setOpenModal: () => void;
   buttonText: string;
 }
 
-export const FilterAddTable: React.FC<IFilterAddTable> = ({ setOpenModal, buttonText }) => {
+export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText }) => {
   const {
     reset,
     handleSubmit,

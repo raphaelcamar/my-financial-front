@@ -2,32 +2,35 @@
 /* eslint-disable no-promise-executor-return */
 import React, { useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
-import {
-  monthStartDate,
-  formatCurrency,
-  formatTopic,
-  formatType,
-  formatDate,
-  formatDateBR,
-} from '@/core/presenters/utils';
-import { Container, WrapperActionTableButtons } from './styles';
-import { TableData } from '@/core/presenters/components/organisms';
-import { Td, Tr, Typography } from '@/core/presenters/components/atoms';
-import { Chip, IconButton, WrapperLoader } from '@/core/presenters/components/molecules';
+import { formatDate, monthStartDate } from '@/core/presenters/utils';
+import { Container } from './styles';
+import { WrapperLoader } from '@/core/presenters/components/molecules';
 
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 
 import { tableHeaderData } from '@/transaction/utils/data';
-import { ModalDeleteTransaction } from '@/transaction/ui/components/atoms';
+import { ModalDeleteTransaction, TableActions } from '@/transaction/ui/components/atoms';
 import { Transaction } from '@/transaction/domain';
+import { TableTransaction, DrawerTransaction } from '@/transaction/ui/components/molecules';
 
-interface ITableContainer {
-  handleEdit?: (transaction: Transaction) => void;
-}
-
-export const TableContainer: React.FC<ITableContainer> = ({ handleEdit }) => {
+export const TableContainer: React.FC = () => {
   const { getTransactions, deleteTransaction, transactions, transactionLoader } = useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
+
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [typeForm, setTypeForm] = useState<'create' | 'update'>('create');
+  const [updateData, setUpdateData] = useState<Transaction>(null);
+
+  const handleEdit = (transaction: Transaction) => {
+    setTypeForm('update');
+    setUpdateData(transaction);
+    setOpenModal(true);
+  };
+
+  const closeModal = () => {
+    setOpenModal(false);
+    setUpdateData(null);
+  };
 
   const [deleteData, setDeleteData] = useState<Transaction.Data>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -63,65 +66,31 @@ export const TableContainer: React.FC<ITableContainer> = ({ handleEdit }) => {
   };
 
   return (
-    <WrapperLoader loading={transactionLoader} size={15} color="primary">
-      <ModalDeleteTransaction
-        loading={loading}
-        data={deleteData}
-        openModal={!!deleteData}
-        onClose={() => setDeleteData(null)}
-        onSubmit={() => handleSubmit()}
+    <>
+      <TableActions setOpenModal={() => setOpenModal(true)} buttonText="adicionar" />
+      <DrawerTransaction
+        type={typeForm}
+        openModal={openModal}
+        setOpenModal={() => closeModal()}
+        defaultValues={updateData}
       />
-      <Container>
-        <TableData dataTitles={tableHeaderData}>
-          {transactions?.map(transaction => (
-            <Tr>
-              <Td width={10}>
-                <Chip color="primary">{formatTopic(transaction?.topic) || '-'}</Chip>
-              </Td>
-              <Td width={350}>
-                <Typography size="small" color="grey">
-                  {transaction?.anotation}
-                </Typography>
-              </Td>
-              <Td width={20}>
-                <Typography size="small" color="grey">
-                  {transaction?.billedAt ? formatDateBR(String(transaction?.billedAt)) : '-'}
-                </Typography>
-              </Td>
-              <Td width={10}>
-                <Chip color={transaction?.type === 'ENTRANCE' ? 'success' : 'error'}>
-                  {formatType(transaction?.type) || '-'}
-                </Chip>
-              </Td>
-              <Td width={10}>
-                <Typography size="small" color="grey">
-                  {formatCurrency(transaction?.cost) || '-'}
-                </Typography>
-              </Td>
-              <Td width={10}>
-                <WrapperActionTableButtons>
-                  <IconButton
-                    onClick={() => handleEdit(transaction)}
-                    icon="pen"
-                    color="warning"
-                    shade="400"
-                    padding={[8, 9]}
-                    iconProps={{ color: 'grey', shade: '50', size: 10 }}
-                  />
-                  <IconButton
-                    onClick={() => setDeleteData(transaction)}
-                    icon="trash"
-                    color="error"
-                    shade="500"
-                    padding={[8, 9]}
-                    iconProps={{ color: 'grey', shade: '50', size: 10 }}
-                  />
-                </WrapperActionTableButtons>
-              </Td>
-            </Tr>
-          ))}
-        </TableData>
-      </Container>
-    </WrapperLoader>
+      <WrapperLoader loading={transactionLoader} size={15} color="primary">
+        <ModalDeleteTransaction
+          loading={loading}
+          data={deleteData}
+          openModal={!!deleteData}
+          onClose={() => setDeleteData(null)}
+          onSubmit={() => handleSubmit()}
+        />
+        <Container>
+          <TableTransaction
+            handleDelete={setDeleteData}
+            handleEdit={handleEdit}
+            tableHeaderData={tableHeaderData}
+            transactions={transactions}
+          />
+        </Container>
+      </WrapperLoader>
+    </>
   );
 };

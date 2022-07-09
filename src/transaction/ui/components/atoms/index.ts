@@ -1,2 +1,2 @@
-export * from './filter-add-table';
+export * from './table-actions';
 export * from './modal-delete-transaction';

@@ -14,19 +14,14 @@ import { entranceItems, spentItems, typeItems } from '@/transaction/utils/data';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { Checkbox, Typography } from '@/core/presenters/components/atoms';
 
-interface IDrawerAddTransaction {
+interface IDrawerTransaction {
   openModal: boolean;
   setOpenModal: () => void;
   type?: 'create' | 'update';
   defaultValues?: Transaction;
 }
 
-export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({
-  openModal,
-  setOpenModal,
-  type,
-  defaultValues,
-}) => {
+export const DrawerTransaction: React.FC<IDrawerTransaction> = ({ openModal, setOpenModal, type, defaultValues }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const { createTransaction, updateTransaction } = useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
