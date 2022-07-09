@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@/core/presenters/components/atoms';
+import { Typography } from '@/core/ui/components/atoms';
 import { Root } from './styles';
 
 export interface IAuthTitle {

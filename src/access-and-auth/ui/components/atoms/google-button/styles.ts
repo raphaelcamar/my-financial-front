@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from '@/core/presenters/components/molecules';
+import { Button } from '@/core/ui/components/molecules';
 
 export const StyledButton = styled(Button)`
   display: flex;

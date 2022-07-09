@@ -1,4 +1,4 @@
-import { parseDate } from '@/core/presenters/utils';
+import { parseDate } from '@/core/utils';
 import { RequestAdapter } from '@/core/data';
 import { Transaction } from '@/transaction/domain';
 

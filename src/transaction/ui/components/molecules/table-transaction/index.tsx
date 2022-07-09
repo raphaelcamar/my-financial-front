@@ -1,8 +1,8 @@
 import React from 'react';
-import { Td, Tr, Typography } from '@/core/presenters/components/atoms';
-import { Chip, IconButton } from '@/core/presenters/components/molecules';
-import { TableData, TableHeadProps } from '@/core/presenters/components/organisms';
-import { formatCurrency, formatDateBR, formatTopic, formatType } from '@/core/presenters/utils';
+import { Td, Tr, Typography } from '@/core/ui/components/atoms';
+import { Chip, IconButton } from '@/core/ui/components/molecules';
+import { TableData, TableHeadProps } from '@/core/ui/components/organisms';
+import { formatCurrency, formatDateBR, formatTopic, formatType } from '@/core/utils';
 import { WrapperActionTableButtons } from './styles';
 import { Transaction } from '@/transaction/domain';
 

@@ -1,8 +1,8 @@
 import styled, { keyframes } from 'styled-components';
-import { TypographyStyle } from '@/core/presenters/components/atoms/typography/styles';
+import { TypographyStyle } from '@/core/ui/components/atoms/typography/styles';
 import { THREE_MINUTES } from '.';
 import { getRestPercentage } from '@/access-and-auth/utils';
-import { Button } from '@/core/presenters/components/molecules';
+import { Button } from '@/core/ui/components/molecules';
 
 type Test = {
   width: number;

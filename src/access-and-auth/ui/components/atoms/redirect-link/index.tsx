@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextLink, Typography } from '@/core/presenters/components/atoms';
+import { TextLink, Typography } from '@/core/ui/components/atoms';
 
 interface IRedirectLink {
   question: string;

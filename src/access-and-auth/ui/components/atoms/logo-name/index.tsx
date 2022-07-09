@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { Icon, Typography } from '@/core/presenters/components/atoms';
+import { Icon, Typography } from '@/core/ui/components/atoms';
 import { Root } from './styles';
 
 export const LogoName: React.FC = () => {

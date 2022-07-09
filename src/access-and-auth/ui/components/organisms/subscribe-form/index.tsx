@@ -1,8 +1,8 @@
 import React from 'react';
 import { LogoName, RedirectLink, AuthTitle, WrapperForm, GoogleButton } from '@/access-and-auth/ui/components/atoms';
 import { Container, Center, Form } from './styles';
-import { Button, Input } from '@/core/presenters/components/molecules';
-import { Icon } from '@/core/presenters/components/atoms';
+import { Button, Input } from '@/core/ui/components/molecules';
+import { Icon } from '@/core/ui/components/atoms';
 
 import { useSubscribeForm } from './hook';
 

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Typography } from '@/core/presenters/components/atoms';
+import { Typography } from '@/core/ui/components/atoms';
 
 import { ContainerForm, WrapperMessage, WrapperInputPin, WrapperError } from './styles';
 import { InputPin, Countdown } from '@/access-and-auth/ui/components/atoms';
-import { Button } from '@/core/presenters/components/molecules';
+import { Button } from '@/core/ui/components/molecules';
 import { usePasswordSecondStep } from './hook';
 
 interface IPasswordSecondStep {

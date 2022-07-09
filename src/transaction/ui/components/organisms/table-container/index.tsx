@@ -2,9 +2,9 @@
 /* eslint-disable no-promise-executor-return */
 import React, { useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { formatDate, monthStartDate } from '@/core/presenters/utils';
+import { formatDate, monthStartDate } from '@/core/utils';
 import { Container } from './styles';
-import { WrapperLoader } from '@/core/presenters/components/molecules';
+import { WrapperLoader } from '@/core/ui/components/molecules';
 
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 

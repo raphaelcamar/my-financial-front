@@ -1,7 +1,7 @@
 import React from 'react';
-import { IButtonProps } from '@/core/presenters/components/molecules';
+import { IButtonProps } from '@/core/ui/components/molecules';
 import { StyledButton } from './styles';
-import { Icon } from '@/core/presenters/components/atoms';
+import { Icon } from '@/core/ui/components/atoms';
 
 type IGoogleButton = IButtonProps;
 

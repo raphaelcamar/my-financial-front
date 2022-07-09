@@ -1,9 +1,9 @@
 import React from 'react';
-import { Input, Button } from '@/core/presenters/components/molecules';
+import { Input, Button } from '@/core/ui/components/molecules';
 
 import { AuthTitle, LogoName, RedirectLink, WrapperForm } from '@/access-and-auth/ui/components/atoms';
 import { Container, Wrapper, Center } from './styles';
-import { Icon, TextLink } from '@/core/presenters/components/atoms';
+import { Icon, TextLink } from '@/core/ui/components/atoms';
 import { useLoginForm } from './hook';
 
 export const LoginForm: React.FC = () => {

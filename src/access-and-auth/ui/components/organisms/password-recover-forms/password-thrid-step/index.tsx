@@ -1,8 +1,8 @@
 import React from 'react';
-import { Typography } from '@/core/presenters/components/atoms';
+import { Typography } from '@/core/ui/components/atoms';
 import { WrapperMessage, Container, Inputs } from './styles';
-import { Button } from '@/core/presenters/components/molecules';
-import { InputPassword } from '@/core/presenters/components/organisms';
+import { Button } from '@/core/ui/components/molecules';
+import { InputPassword } from '@/core/ui/components/organisms';
 import { usePasswordThirdStep } from './hook';
 
 export const PasswordThirdStep: React.FC = () => {

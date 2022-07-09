@@ -1,9 +1,9 @@
 import React from 'react';
-import { Modal, Typography } from '@/core/presenters/components/atoms';
+import { Modal, Typography } from '@/core/ui/components/atoms';
 import { ActionButtons, StyledButton, Wrapper, Information } from './styles';
 import { Transaction } from '@/transaction/domain';
-import { Chip } from '@/core/presenters/components/molecules';
-import { formatCurrency, formatDateBR, formatType } from '@/core/presenters/utils';
+import { Chip } from '@/core/ui/components/molecules';
+import { formatCurrency, formatDateBR, formatType } from '@/core/utils';
 
 interface IModalDeleteTransaction {
   onClose: (data?: any) => void;

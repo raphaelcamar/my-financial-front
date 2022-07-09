@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { isValidDate, parseDate } from '@/core/presenters/utils';
+import { isValidDate, parseDate } from '@/core/utils';
 
 const verifyDate = (value: string, originalValue: string): string => {
   const dateParse = parseDate(originalValue, 'dd/MM/yyyy');

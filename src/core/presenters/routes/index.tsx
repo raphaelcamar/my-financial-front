@@ -1,9 +1,9 @@
 import React from 'react';
 import { RouteObject, useRoutes } from 'react-router';
 import { TransactionRoutes } from '@/transaction/presenters/routes';
-import { Container } from '@/core/presenters/components/organisms';
+import { Container } from '@/core/ui/components/organisms';
 import { AccessAndAuthRoutes } from '@/access-and-auth/presenters/routes';
-import { NotFoundPage } from '@/core/presenters/pages';
+import { NotFoundPage } from '@/core/ui/pages';
 
 export const RootRoutes: RouteObject[] = [
   ...AccessAndAuthRoutes,

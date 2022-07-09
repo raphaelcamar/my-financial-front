@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Button } from '@/core/presenters/components/molecules';
-import { CircularProgress } from '@/core/presenters/components/atoms';
+import { Button } from '@/core/ui/components/molecules';
+import { CircularProgress } from '@/core/ui/components/atoms';
 
 export const BodyContent = styled.form`
   display: flex;

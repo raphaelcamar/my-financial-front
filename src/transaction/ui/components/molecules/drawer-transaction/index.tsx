@@ -3,16 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSnackbar } from 'notistack';
-import { formatDate, formatDateBR } from '@/core/presenters/utils';
-import { Drawer } from '@/core/presenters/components/organisms';
-import { Input, Button, Select, IconButton } from '@/core/presenters/components/molecules';
+import { formatDate, formatDateBR } from '@/core/utils';
+import { Drawer } from '@/core/ui/components/organisms';
+import { Input, Button, Select, IconButton } from '@/core/ui/components/molecules';
 import { BodyContent, Buttons, Progress, SubmitButton, DrawerHeader } from './styles';
 import { Transaction } from '@/transaction/domain';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
-import { InputMask } from '@/core/presenters/components/molecules/input-mask';
+import { InputMask } from '@/core/ui/components/molecules/input-mask';
 import { entranceItems, spentItems, typeItems } from '@/transaction/utils/data';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
-import { Checkbox, Typography } from '@/core/presenters/components/atoms';
+import { Checkbox, Typography } from '@/core/ui/components/atoms';
 
 interface IDrawerTransaction {
   openModal: boolean;

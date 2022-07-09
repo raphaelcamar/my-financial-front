@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '@/core/presenters/components/atoms';
+import { Icon } from '@/core/ui/components/atoms';
 import { Root, Format, Blur } from './styles';
 import { AvailableIcons } from '@/core/domain';
 
