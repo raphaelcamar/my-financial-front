@@ -85,7 +85,7 @@ export const TableContainer: React.FC<ITableContainer> = ({ handleEdit }) => {
               </Td>
               <Td width={20}>
                 <Typography size="small" color="grey">
-                  {transaction?.billedAt ? formatDateBR(transaction?.billedAt.toString()) : '-'}
+                  {transaction?.billedAt ? formatDateBR(String(transaction?.billedAt)) : '-'}
                 </Typography>
               </Td>
               <Td width={10}>

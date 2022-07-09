@@ -41,16 +41,17 @@ export class TransactionRepositoryData implements TransactionRepository {
   }
 
   async updateTransaction(transaction: Transaction.Data): Promise<Transaction> {
-    const request = new RequestHttpRepository<Transaction.Data, Transaction.Response>();
-    const httpResponse = await request.put({
-      url: 'transaction/update',
-      body: transaction,
-    });
-
+    const request = new RequestHttpRepository<Transaction.Response, Transaction.Response>();
     const adapter = new TransactionAdapter();
 
-    const adaptee = adapter.response(httpResponse.body);
+    const adapteeRequest = adapter.request(transaction);
 
-    return adaptee;
+    const httpResponse = await request.put({
+      url: 'transaction/update',
+      body: adapteeRequest,
+    });
+
+    const adapteeResponse = adapter.response(httpResponse.body);
+    return adapteeResponse;
   }
 }

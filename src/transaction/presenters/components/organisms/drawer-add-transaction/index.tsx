@@ -16,7 +16,7 @@ import { Checkbox, Typography } from '@/core/presenters/components/atoms';
 
 interface IDrawerAddTransaction {
   openModal: boolean;
-  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenModal: () => void;
   type?: 'create' | 'update';
   defaultValues?: Transaction;
 }
@@ -50,7 +50,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({
   };
 
   useEffect(() => {
-    reset({ ...defaultValues });
+    reset({ ...defaultValues, billedAt: formatDateBR(defaultValues?.billedAt.toString()) });
   }, [defaultValues]);
 
   const onSubmit = async (data: Transaction.Data) => {
@@ -66,16 +66,20 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({
 
       // reset();
     } catch (err) {
-      enqueueSnackbar(err?.message || 'Não foi possível criar a transação. Tente novamente mais tarde', {
-        variant: 'error',
-      });
+      enqueueSnackbar(
+        err?.message ||
+          `Não foi possível ${type === 'create' ? 'criar' : 'alterar'} a transação. Tente novamente mais tarde`,
+        {
+          variant: 'error',
+        }
+      );
     } finally {
       setLoading(false);
     }
   };
 
   const handleCloseModal = () => {
-    setOpenModal(false);
+    setOpenModal();
     reset();
   };
 

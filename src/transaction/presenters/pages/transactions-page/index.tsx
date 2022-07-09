@@ -16,6 +16,11 @@ export const TransactionsPage: React.FC = () => {
     setOpenModal(true);
   };
 
+  const closeModal = () => {
+    setOpenModal(false);
+    setUpdateData(null);
+  };
+
   return (
     <Container>
       <FirstLine>
@@ -30,7 +35,7 @@ export const TransactionsPage: React.FC = () => {
           <DrawerAddTransaction
             type={typeForm}
             openModal={openModal}
-            setOpenModal={setOpenModal}
+            setOpenModal={() => closeModal()}
             defaultValues={updateData}
           />
           <TableContainer handleEdit={transaction => handleEdit(transaction)} />
