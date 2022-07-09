@@ -1,45 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { useSnackbar } from 'notistack';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import React from 'react';
 import { LogoName, RedirectLink, AuthTitle, WrapperForm, GoogleButton } from '@/access-and-auth/ui/components/atoms';
 import { Container, Center, Form } from './styles';
 import { Button, Input } from '@/core/presenters/components/molecules';
-import { CircularProgress, Icon } from '@/core/presenters/components/atoms';
-import { User } from '@/access-and-auth/domain';
-import { UserSubscribeValidatorSchema } from '@/access-and-auth/data';
-import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
+import { Icon } from '@/core/presenters/components/atoms';
+
+import { useSubscribeForm } from '@/access-and-auth/presenters';
 
 export const SubscribeForm: React.FC = () => {
-  const { newUser } = useAccessAndAuthContext();
-  const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<User.Subscribe>({
-    resolver: yupResolver(UserSubscribeValidatorSchema),
-  });
-
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const handleSubmitForm = async (data: User.Subscribe) => {
-    setLoading(true);
-
-    try {
-      await newUser(data);
-      navigate('/transacoes');
-    } catch (err) {
-      enqueueSnackbar(err?.message || 'Não foi possível fazer o cadastro. Tente novamente mais tarde', {
-        variant: 'error',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { errors, handleSubmit, handleSubmitForm, loading, register } = useSubscribeForm();
 
   return (
     <WrapperForm>

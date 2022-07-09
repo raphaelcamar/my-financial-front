@@ -1,50 +1,12 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useSnackbar } from 'notistack';
-import { useNavigate } from 'react-router';
+import React from 'react';
 import { Typography } from '@/core/presenters/components/atoms';
 import { WrapperMessage, Container, Inputs } from './styles';
 import { Button } from '@/core/presenters/components/molecules';
-import { RecoverPasswordSendPassword } from '@/access-and-auth/data';
-import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
 import { InputPassword } from '@/core/presenters/components/organisms';
-
-interface PasswordTwoSteps {
-  password: string;
-  confirm_password: string;
-}
+import { usePasswordThirdStep } from '@/access-and-auth/presenters/hooks/';
 
 export const PasswordThirdStep: React.FC = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate();
-
-  const { sendNewPassword } = useAccessAndAuthContext();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<PasswordTwoSteps>({ resolver: yupResolver(RecoverPasswordSendPassword) });
-
-  const onSubmit = async (data: PasswordTwoSteps) => {
-    try {
-      setLoading(true);
-      await sendNewPassword(data.password);
-
-      enqueueSnackbar('Senha alterada com sucesso! Você será redirecionado para o login', {
-        variant: 'success',
-      });
-      setTimeout(() => navigate('/login'), 3000);
-    } catch (err) {
-      enqueueSnackbar(err?.message || 'Não foi possível recuperar sua senha, tente novamente depois', {
-        variant: 'error',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { errors, loading, handleSubmit, onSubmit, register } = usePasswordThirdStep();
 
   return (
     <Container onSubmit={handleSubmit(onSubmit)}>

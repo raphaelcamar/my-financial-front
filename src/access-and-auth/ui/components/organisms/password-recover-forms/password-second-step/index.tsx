@@ -1,96 +1,30 @@
-/* eslint-disable no-useless-return */
-/* eslint-disable no-multi-assign */
-import React, { useEffect, useRef, useState } from 'react';
-import { useSnackbar } from 'notistack';
+import React, { useEffect } from 'react';
 import { Typography } from '@/core/presenters/components/atoms';
 
 import { ContainerForm, WrapperMessage, WrapperInputPin, WrapperError } from './styles';
 import { InputPin, Countdown } from '@/access-and-auth/ui/components/atoms';
 import { Button } from '@/core/presenters/components/molecules';
-import { CodeRecoverValidator } from '@/access-and-auth/data';
-import { ValidationComposite } from '@/core/validation';
-import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
+import { usePasswordSecondStep } from '@/access-and-auth/presenters';
 
 interface IPasswordSecondStep {
   handleChangeStep?: () => void;
 }
 
 export const PasswordSecondStep: React.FC<IPasswordSecondStep> = ({ handleChangeStep }) => {
-  const inputRefs = useRef<HTMLInputElement[]>([]);
-
-  const [loading, setLoading] = useState<boolean>(false);
-  const [pinValue, setPinValue] = useState<string[]>(new Array(5).fill(''));
-  const [error, setError] = useState<string>(null);
-
-  const { sendCodeRecover, recoverPassworSendEmail, passwordToken } = useAccessAndAuthContext();
-  const { enqueueSnackbar } = useSnackbar();
-
-  const changePinFocus = (index: number): void => {
-    const ref = inputRefs.current[index];
-    if (ref) {
-      ref.focus();
-    }
-  };
+  const {
+    error,
+    loading,
+    handleChangeInput,
+    changePinFocus,
+    handleKeyDown,
+    handleSendNewCode,
+    handleSubmitForm,
+    signRef,
+  } = usePasswordSecondStep(handleChangeStep);
 
   useEffect(() => {
     changePinFocus(0);
   }, []);
-
-  const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      const result = new ValidationComposite(CodeRecoverValidator());
-      const message = result.validate('code', pinValue.join(''));
-      setError(message);
-      if (!message) {
-        await sendCodeRecover(pinValue.join(''));
-
-        handleChangeStep();
-      }
-    } catch (err) {
-      enqueueSnackbar(err?.message || 'Algo aconteceu. Tente novamente depois', {
-        variant: 'error',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const signRef = (el: HTMLInputElement, index: number): void => {
-    if (el) {
-      inputRefs.current[index] = el;
-    }
-  };
-
-  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>, position: number): void => {
-    const { value } = e.target;
-    const arr = pinValue;
-    arr[position] = value;
-
-    if (value) {
-      setPinValue(arr);
-      changePinFocus(position + 1);
-    } else {
-      changePinFocus(position);
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, position: number): void => {
-    const keyboardKeyCode = e.nativeEvent.code;
-
-    if (keyboardKeyCode !== 'Backspace') {
-      return;
-    }
-
-    if (!pinValue[position]) {
-      changePinFocus(position - 1);
-    }
-  };
-
-  const handleSendNewCode = async () => {
-    await recoverPassworSendEmail(passwordToken);
-  };
 
   return (
     <ContainerForm onSubmit={e => handleSubmitForm(e)}>

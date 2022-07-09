@@ -1,42 +1,13 @@
-import React, { useState } from 'react';
-import { useSnackbar } from 'notistack';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate } from 'react-router';
+import React from 'react';
 import { Input, Button } from '@/core/presenters/components/molecules';
 
-import { AuthTitle, LogoName, RedirectLink, WrapperForm, GoogleButton } from '@/access-and-auth/ui/components/atoms';
+import { AuthTitle, LogoName, RedirectLink, WrapperForm } from '@/access-and-auth/ui/components/atoms';
 import { Container, Wrapper, Center } from './styles';
 import { Icon, TextLink } from '@/core/presenters/components/atoms';
-import { User } from '@/access-and-auth/domain';
-import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
-import { UserLoginValidatorSchema } from '@/access-and-auth/data';
+import { useLoginForm } from '@/access-and-auth/presenters/hooks';
 
 export const LoginForm: React.FC = () => {
-  const { userAuth } = useAccessAndAuthContext();
-  const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<User.Login>({ resolver: yupResolver(UserLoginValidatorSchema) });
-
-  const [loading, setLoading] = useState<boolean>(false);
-  const onSubmit = async (e: User.Login): Promise<void> => {
-    try {
-      setLoading(true);
-      await userAuth(e);
-      navigate('/transacoes');
-    } catch (err) {
-      enqueueSnackbar(err?.message || 'Não foi possível fazer o login. Tente novamente mais tarde', {
-        variant: 'error',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { errors, loading, handleSubmit, onSubmit, register } = useLoginForm();
 
   return (
     <WrapperForm>

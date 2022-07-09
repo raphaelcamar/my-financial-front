@@ -1,47 +1,15 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useSnackbar } from 'notistack';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate } from 'react-router';
+import React from 'react';
 import { Button, Input } from '@/core/presenters/components/molecules';
 import { ContainerForm, WrapperMessage } from './styles';
 import { Typography } from '@/core/presenters/components/atoms';
-import { User } from '@/access-and-auth/domain';
-import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
-import { RecoverPasswordValidator } from '@/access-and-auth/data';
-
-type DataForm = Pick<User.Login, 'email'>;
+import { usePasswordFirstStep } from '@/access-and-auth/presenters/hooks/password-first-step';
 
 interface IPasswordFirstStep {
   handleChangeStep: () => void;
 }
 
 export const PasswordFirstStep: React.FC<IPasswordFirstStep> = ({ handleChangeStep }) => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const { enqueueSnackbar } = useSnackbar();
-  const { recoverPassworSendEmail } = useAccessAndAuthContext();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<DataForm>({
-    resolver: yupResolver(RecoverPasswordValidator),
-  });
-
-  const handleSubmitForm = async (data: DataForm) => {
-    try {
-      setLoading(true);
-      await recoverPassworSendEmail(data.email);
-      handleChangeStep();
-    } catch (err) {
-      enqueueSnackbar(err?.message || 'Aconteceu algo. Tente novamente depois', {
-        variant: 'error',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { errors, handleSubmit, handleSubmitForm, loading, register } = usePasswordFirstStep(handleChangeStep);
 
   return (
     <ContainerForm onSubmit={handleSubmit(handleSubmitForm)}>
