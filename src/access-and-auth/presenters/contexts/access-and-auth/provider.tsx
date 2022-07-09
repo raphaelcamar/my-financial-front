@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import { useNavigate } from 'react-router';
+import { useSnackbar } from 'notistack';
 import { AccessRepositoryData } from '@/access-and-auth/infra';
 import { AccessAndAuthContext } from './context';
 import { initialState, reducer } from './reducers';
@@ -14,10 +15,12 @@ import {
   SendCodePassowrdRecover,
 } from '@/access-and-auth/data';
 import { fetchUserAuth, fetchEmailPasswordRecover } from './actions';
+import { HttpErrorStatusCode } from '@/core/data';
 
 export const AccessAndAuthProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   const verifyUserAuth = async (): Promise<User> => {
     const localStorageRepository = new LocalStorageRepository();
@@ -41,7 +44,16 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
         const user = await verifyUserAuth();
         if (user) dispatch(fetchUserAuth(user));
       } catch (err) {
-        if (err?.tokenExpired) navigate('/login', { replace: true });
+        if (err?.status === HttpErrorStatusCode.UNAUTHORIZED) {
+          navigate('/login', { replace: true });
+
+          const localStorageRepository = new LocalStorageRepository();
+          localStorageRepository.clearAll();
+
+          enqueueSnackbar('Sessão expirada. Faça login novamente para continuar', {
+            variant: 'info',
+          });
+        }
 
         dispatch(fetchUserAuth(null));
       }

@@ -15,8 +15,7 @@ export class CreateUser {
       const token = userLogged?.token;
       delete userLogged.token;
 
-      this.cacheRepository.clean('@user');
-      this.cacheRepository.clean('@token');
+      this.cacheRepository.clear('@user');
 
       this.cacheRepository.set('@user', userLogged);
       this.cacheRepository.set('@token', token);

@@ -13,8 +13,8 @@ export class VerifySession {
 
     const user = await this.accessRepository.verifyAccessToken(String(token));
 
-    this.cacheRepository.clean('@token');
-    this.cacheRepository.clean('@user');
+    this.cacheRepository.clear('@token');
+    this.cacheRepository.clear('@user');
 
     this.cacheRepository.set('@token', user.token);
 
