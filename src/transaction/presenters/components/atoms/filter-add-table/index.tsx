@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { formatDate, monthStartDate } from '@/core/presenters/utils';
 import { Container, WrapperButton, StyledButton, StyledInputMask, ModalAddButton } from './styles';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { InputMask } from '@/core/presenters/components/molecules/input-mask';
 import { Transaction } from '@/transaction/domain';
+import { FilterTransactionSchema } from '@/transaction/data';
 
 interface IFilterAddTable {
   setOpenModal: () => void;
@@ -13,7 +15,14 @@ interface IFilterAddTable {
 }
 
 export const FilterAddTable: React.FC<IFilterAddTable> = ({ setOpenModal, buttonText }) => {
-  const { reset, handleSubmit, control } = useForm<Transaction.Filter>();
+  const {
+    reset,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<Transaction.Filter>({
+    resolver: yupResolver(FilterTransactionSchema),
+  });
 
   const { getTransactions } = useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
@@ -42,8 +51,8 @@ export const FilterAddTable: React.FC<IFilterAddTable> = ({ setOpenModal, button
             name="start"
             render={({ field: { value, onChange } }) => (
               <InputMask
-                validator={false}
-                messageValidator=""
+                validator={!!errors?.start?.message}
+                messageValidator={errors?.start?.message}
                 label="Início"
                 mask="date"
                 value={value as string}
@@ -59,8 +68,8 @@ export const FilterAddTable: React.FC<IFilterAddTable> = ({ setOpenModal, button
             name="limit"
             render={({ field: { value, onChange } }) => (
               <InputMask
-                validator={false}
-                messageValidator=""
+                validator={!!errors?.limit?.message}
+                messageValidator={errors?.limit?.message}
                 label="Fim"
                 mask="date"
                 value={value as string}
@@ -70,7 +79,9 @@ export const FilterAddTable: React.FC<IFilterAddTable> = ({ setOpenModal, button
           />
         </StyledInputMask>
         <WrapperButton>
-          <StyledButton type="submit">Enviar</StyledButton>
+          <StyledButton type="submit" styleType="outlined">
+            Enviar
+          </StyledButton>
         </WrapperButton>
         <ModalAddButton variant="primary" type="button" onClick={setOpenModal}>
           {buttonText}

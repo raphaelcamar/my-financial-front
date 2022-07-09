@@ -30,7 +30,7 @@ export const Container = styled.div<AccordionType>`
   }
 
   background: ${({ theme, selected, open, hasMatchedRoute }) =>
-    selected || open || hasMatchedRoute ? theme.palette.primary.main : ''};
+    selected || open || hasMatchedRoute ? theme.palette.grey[200] : ''};
 `;
 
 export const Wrapper = styled.div<AccordionType>`

@@ -23,7 +23,7 @@ export const WrapperItemAccordion = styled.div<SidebarOptionsType>`
   display: flex;
   flex-direction: column;
   padding-left: 8px;
-  gap: ${({open}) => open ? '4px' : '0px'};
+  gap: ${({ open }) => (open ? '4px' : '0px')};
 
   ${({ open }) =>
     !open &&

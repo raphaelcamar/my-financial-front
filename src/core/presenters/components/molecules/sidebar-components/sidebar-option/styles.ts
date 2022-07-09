@@ -13,9 +13,9 @@ type AccordionItemType = {
 const selectItemStyles = selected =>
   selected &&
   css`
-    background: ${({ theme }) => theme.palette.primary.main};
+    background: ${({ theme }) => theme.palette.grey[200]};
     &:hover {
-      background: ${({ theme }) => theme.palette.primary.main};
+      background: ${({ theme }) => theme.palette.grey[200]};
     }
   `;
 
@@ -57,7 +57,7 @@ export const WrapperIcon = styled.div<AccordionItemType>`
     selected &&
     !open &&
     css`
-      background: ${theme.palette.grey[50]};
+      /* background: ${theme.palette.grey[50]}; */
       border-radius: 4px;
       padding: 12px;
     `}

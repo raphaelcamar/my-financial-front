@@ -28,14 +28,14 @@ export const SidebarAccordion: React.FC<ISidebarAccordion> = ({
       <AccordionHeader>
         <Icon
           icon={icon}
-          color={open || hasMatchedRoute ? 'grey' : null}
-          shade={open || hasMatchedRoute ? '50' : null}
+          color={open || hasMatchedRoute ? 'primary' : null}
+          shade={open || hasMatchedRoute ? 'main' : null}
         />
-        {sidebarOpen && <Typography color={open || hasMatchedRoute ? 'white' : 'grey'}>{titleAccordion}</Typography>}
+        {sidebarOpen && <Typography color={open || hasMatchedRoute ? 'primary' : 'grey'}>{titleAccordion}</Typography>}
       </AccordionHeader>
       {sidebarOpen && (
         <WrapperIcon open={open}>
-          <Icon icon="arrowDown" color="grey" shade={open || hasMatchedRoute ? '50' : '500'} />
+          <Icon icon="arrowDown" color={open || hasMatchedRoute ? 'primary' : 'grey'} shade="500" />
         </WrapperIcon>
       )}
     </Container>

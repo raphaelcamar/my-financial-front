@@ -30,8 +30,8 @@ export const SidebarOption: React.FC<ISidebarOption> = ({
     if (selected) {
       if (sidebarOpen) {
         setState({
-          color: 'grey',
-          shade: '50',
+          color: 'primary',
+          shade: 'main',
         });
       } else {
         setState({
@@ -62,7 +62,7 @@ export const SidebarOption: React.FC<ISidebarOption> = ({
             <Icon icon={item.icon as AvailableIcons} color={state.color} shade={state.shade} size={16} />
           </WrapperIcon>
         )}
-        {sidebarOpen && <Typography color={selected ? 'white' : 'default'}>{item.title}</Typography>}
+        {sidebarOpen && <Typography color={selected ? 'primary' : 'default'}>{item.title}</Typography>}
       </WrapperIconText>
     </Container>
   );
