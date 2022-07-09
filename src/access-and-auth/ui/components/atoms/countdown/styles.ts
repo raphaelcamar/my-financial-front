@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { TypographyStyle } from '@/core/presenters/components/atoms/typography/styles';
 import { THREE_MINUTES } from '.';
-import { getRestPercentage } from '@/access-and-auth/presenters/utils';
+import { getRestPercentage } from '@/access-and-auth/utils';
 import { Button } from '@/core/presenters/components/molecules';
 
 type Test = {

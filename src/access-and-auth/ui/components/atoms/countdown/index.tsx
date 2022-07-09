@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import React, { useEffect, useState } from 'react';
 import { CountdownWrapper, Container, StyledTypography, Options, StyledButton } from './styles';
-import { formatMillisecondsToMinutes } from '@/access-and-auth/presenters/utils';
+import { formatMillisecondsToMinutes } from '@/access-and-auth/utils';
 
 export const THREE_MINUTES = 1000 * 60 * 3; // 3 minutes
 
