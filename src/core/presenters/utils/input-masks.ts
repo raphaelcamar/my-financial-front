@@ -24,3 +24,14 @@ export const currency = (e: React.ChangeEvent<HTMLInputElement>): React.ChangeEv
 
   return e;
 };
+
+export const formatDateDefault = (inputValue: string): string => inputValue;
+
+export const formatCurrencyDefault = (inputValue: string | number): string => {
+  let value = String(inputValue);
+  value = value.replace(/\D/g, '');
+  value = value.replace(/(\d)(\d{2})$/, '$1,$2');
+  value = value.replace(/(?=(\d{3})+(\D))\B/g, '.');
+
+  return value;
+};

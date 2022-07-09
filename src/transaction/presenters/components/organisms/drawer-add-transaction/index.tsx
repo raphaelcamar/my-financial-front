@@ -1,32 +1,34 @@
-import React, { useState } from 'react';
+/* eslint-disable no-nested-ternary */
+import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSnackbar } from 'notistack';
-import { formatDate } from '@/core/presenters/utils';
+import { formatDate, formatDateBR } from '@/core/presenters/utils';
 import { Drawer } from '@/core/presenters/components/organisms';
 import { Input, Button, Select, IconButton } from '@/core/presenters/components/molecules';
 import { BodyContent, Buttons, Progress, SubmitButton, DrawerHeader } from './styles';
-import { Transaction, TypeTopic, TypeTransaction } from '@/transaction/domain';
+import { Transaction } from '@/transaction/domain';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
 import { InputMask } from '@/core/presenters/components/molecules/input-mask';
 import { entranceItems, spentItems, typeItems } from '@/transaction/presenters/utils/data/';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
-import { SelectType } from '@/core/domain';
 import { Checkbox, Typography } from '@/core/presenters/components/atoms';
 
 interface IDrawerAddTransaction {
   openModal: boolean;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  type?: 'create' | 'update';
+  defaultValues?: Transaction;
 }
 
-interface IFormType extends Omit<Transaction.Data, 'topic' | 'type'> {
-  topic: SelectType<TypeTopic>;
-  type: SelectType<TypeTransaction>;
-}
-
-export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModal, setOpenModal }) => {
+export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({
+  openModal,
+  setOpenModal,
+  type,
+  defaultValues,
+}) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const { createTransaction } = useTransactionContext();
+  const { createTransaction, updateTransaction } = useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
 
   const {
@@ -35,8 +37,9 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
     setValue,
     watch,
     control,
+    reset,
     formState: { errors },
-  } = useForm<Partial<IFormType>>({ resolver: yupResolver(CreateTransactionSchema) });
+  } = useForm<Transaction.Data>({ resolver: yupResolver(CreateTransactionSchema) });
 
   const handleChangeActualDay = value => {
     if (value) {
@@ -46,14 +49,21 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
     }
   };
 
-  const onSubmit = async (data: IFormType) => {
-    const transaction: Transaction.Data = { ...data, topic: data?.topic.value, type: data?.type.value };
+  useEffect(() => {
+    reset({ ...defaultValues });
+  }, [defaultValues]);
+
+  const onSubmit = async (data: Transaction.Data) => {
     try {
       setLoading(true);
-      await createTransaction(transaction);
+      const execute = type === 'create' ? createTransaction : updateTransaction;
+
+      await execute(data);
+
       enqueueSnackbar('Transação criada com sucesso!', {
         variant: 'success',
       });
+
       // reset();
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível criar a transação. Tente novamente mais tarde', {
@@ -62,6 +72,11 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    reset();
   };
 
   return (
@@ -76,7 +91,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
             color="primary"
             shade="500"
             iconProps={{ color: 'grey', shade: '50' }}
-            onClick={() => setOpenModal(false)}
+            onClick={() => handleCloseModal()}
           />
         </DrawerHeader>
       }
@@ -86,12 +101,13 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
         <Select
           placeholder="Selecione o tipo"
           name="type"
-          helperText={errors?.type?.value?.message}
-          error={!!errors?.type?.value?.message}
+          helperText={errors?.type?.message}
+          error={!!errors?.type?.message}
           setValue={setValue}
           value={watch('type')}
           label="Tipo da transação"
           items={typeItems}
+          defaultValue={defaultValues?.type}
         />
 
         <Select
@@ -99,10 +115,11 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
           name="topic"
           setValue={setValue}
           label="Tópico"
-          helperText={errors?.topic?.value?.message}
-          error={!!errors?.topic?.value?.message}
+          helperText={errors?.topic?.message}
+          error={!!errors?.topic?.message}
           value={watch('topic')}
-          items={watch('type')?.value === 'SPENT' ? spentItems : entranceItems}
+          items={watch('type') === 'SPENT' ? spentItems : entranceItems}
+          defaultValue={defaultValues?.topic}
         />
 
         <Controller
@@ -110,6 +127,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
           name="billedAt"
           render={({ field: { value, onChange } }) => (
             <InputMask
+              defaultValue={formatDateBR(defaultValues?.billedAt.toString())}
               validator={!!errors?.billedAt}
               messageValidator={errors?.billedAt?.message}
               label="Data"
@@ -126,6 +144,7 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
           name="cost"
           render={({ field: { onChange } }) => (
             <InputMask
+              defaultValue={String(defaultValues?.cost)}
               validator={!!errors?.cost}
               messageValidator={errors?.cost?.message}
               label="Valor"
@@ -139,15 +158,16 @@ export const DrawerAddTransaction: React.FC<IDrawerAddTransaction> = ({ openModa
           label="Anotação"
           {...register('anotation')}
           error={!!errors?.anotation}
+          defaultValue={defaultValues?.anotation}
           helperText={errors?.anotation?.message}
         />
 
         <Buttons>
-          <Button variant="primary" styleType="outlined" type="button" onClick={() => setOpenModal(false)}>
+          <Button variant="primary" styleType="outlined" type="button" onClick={() => handleCloseModal()}>
             Cancelar
           </Button>
           <SubmitButton type="submit" variant="primary" onClick={() => handleSubmit(onSubmit)}>
-            {loading ? <Progress /> : 'Adicionar'}
+            {loading ? <Progress /> : type === 'create' ? 'Adicionar' : 'Atualizar'}
           </SubmitButton>
         </Buttons>
       </BodyContent>

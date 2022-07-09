@@ -1,5 +1,12 @@
 import { Transaction } from '@/transaction/domain';
-import { CREATE_TRANSACTION, ActionTypes, GET_TRANSACTIONS, FILTER_TRANSACTION, DELETE_TRANSACTION } from './types';
+import {
+  CREATE_TRANSACTION,
+  ActionTypes,
+  GET_TRANSACTIONS,
+  FILTER_TRANSACTION,
+  DELETE_TRANSACTION,
+  UPDATE_TRANSACTION,
+} from './types';
 
 export function fetchCreateTransaction(payload: Transaction[]): ActionTypes {
   return { type: CREATE_TRANSACTION, payload };
@@ -13,6 +20,10 @@ export function fetchFilterTransaction(payload: Transaction.Filter): ActionTypes
   return { type: FILTER_TRANSACTION, payload };
 }
 
-export function fetchDeleteTransaction(payload: string): ActionTypes {
+export function fetchDeleteTransaction(payload: Transaction[]): ActionTypes {
   return { type: DELETE_TRANSACTION, payload };
+}
+
+export function fetchUpdateTransaction(payload: Transaction[]): ActionTypes {
+  return { type: UPDATE_TRANSACTION, payload };
 }

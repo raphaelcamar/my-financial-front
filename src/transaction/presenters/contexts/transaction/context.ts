@@ -5,6 +5,7 @@ type PropsTransaction = {
   transactions: Transaction[];
   transactionLoader: boolean;
   createTransaction: (transaction: Transaction.Data) => Promise<void>;
+  updateTransaction: (transaction: Transaction.Data) => Promise<void>;
   getTransactions: (filter?: Transaction.Filter) => Promise<void>;
   deleteTransaction: (transaction: string) => Promise<void>;
 };

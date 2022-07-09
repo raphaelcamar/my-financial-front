@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { RouteObject, useLocation, useRoutes } from 'react-router';
+import React from 'react';
+import { RouteObject, useRoutes } from 'react-router';
 import { TransactionRoutes } from '@/transaction/presenters/routes';
 import { Container } from '@/core/presenters/components/organisms';
 import { AccessAndAuthRoutes } from '@/access-and-auth/presenters/routes';

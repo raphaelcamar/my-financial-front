@@ -31,7 +31,7 @@ export const WrapperIcon = styled.div<SelectType>`
   transition: all ease 0.1s;
 `;
 
-export const OptionsContainer = styled.div<SelectType>`
+export const OptionsContainer = styled.ul<SelectType>`
   background: ${({ theme }) => theme.palette.background.paper};
   border-radius: 0 0 12px 12px;
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%); // theme.shadows[1]
@@ -55,7 +55,8 @@ export const OptionsContainer = styled.div<SelectType>`
         `};
 `;
 
-export const Option = styled.div<SelectType>`
+export const Option = styled.li<SelectType>`
+  list-style: none !important;
   padding: 8px;
   margin: 8px;
   border-radius: 8px;

@@ -21,7 +21,11 @@ import { tableHeaderData } from '@/transaction/presenters/utils/data';
 import { ModalDeleteTransaction } from '@/transaction/presenters/components/atoms';
 import { Transaction } from '@/transaction/domain';
 
-export const TableContainer: React.FC = () => {
+interface ITableContainer {
+  handleEdit?: (transaction: Transaction) => void;
+}
+
+export const TableContainer: React.FC<ITableContainer> = ({ handleEdit }) => {
   const { getTransactions, deleteTransaction, transactions, transactionLoader } = useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -81,7 +85,7 @@ export const TableContainer: React.FC = () => {
               </Td>
               <Td width={20}>
                 <Typography size="small" color="grey">
-                  {transaction?.billedAt ? formatDateBR(String(transaction?.billedAt)) : '-'}
+                  {transaction?.billedAt ? formatDateBR(transaction?.billedAt.toString()) : '-'}
                 </Typography>
               </Td>
               <Td width={10}>
@@ -97,8 +101,7 @@ export const TableContainer: React.FC = () => {
               <Td width={10}>
                 <WrapperActionTableButtons>
                   <IconButton
-                    disabled
-                    onClick={() => null}
+                    onClick={() => handleEdit(transaction)}
                     icon="pen"
                     color="warning"
                     shade="400"

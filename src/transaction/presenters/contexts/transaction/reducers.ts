@@ -6,6 +6,7 @@ import {
   FILTER_TRANSACTION,
   InitialState,
   DELETE_TRANSACTION,
+  UPDATE_TRANSACTION,
 } from './types';
 
 export const initialState: InitialState = {
@@ -34,7 +35,13 @@ export function reducer(state = initialState, action: ActionTypes): InitialState
     case DELETE_TRANSACTION:
       return {
         ...state,
-        transactions: state.transactions.filter(transaction => transaction._id !== action.payload),
+        transactions: action.payload,
+      };
+
+    case UPDATE_TRANSACTION:
+      return {
+        ...state,
+        transactions: action.payload,
       };
   }
 }

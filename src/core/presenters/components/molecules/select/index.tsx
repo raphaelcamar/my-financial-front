@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { forwardRef, useEffect, useState } from 'react';
@@ -17,8 +18,8 @@ interface ISelectProps {
   helperText?: string;
   error?: boolean;
   name: string;
-  value: SelectType<any>;
-  defaultValue?: ISelectOption;
+  value: string;
+  defaultValue?: string;
   setValue?: (name: string, option: any) => void;
   placeholder?: string;
 }
@@ -26,22 +27,66 @@ interface ISelectProps {
 export const Select = forwardRef<HTMLInputElement, ISelectProps>(
   ({ label, items, helperText, error, name, value, placeholder, setValue, defaultValue }, ref) => {
     const [open, setOpen] = useState<boolean>(false);
+    const [selectedOption, setSelectedOption] = useState<ISelectOption>(null);
 
-    const handleSelectOption = (option: SelectType<any>) => {
+    const handleSelectOption = (option: ISelectOption) => {
       setOpen(false);
-      setValue(name, option);
+      setValue(name, option.value);
+      setSelectedOption(option);
     };
 
     useEffect(() => {
       if (defaultValue) {
-        handleSelectOption(defaultValue as SelectType<any>);
+        const option = items?.find(item => item.value === defaultValue);
+        setSelectedOption(option || null);
       }
-    }, []);
+    }, [defaultValue]);
+
+    const handleListKeyDown = (e: React.KeyboardEvent<HTMLLIElement>, option: ISelectOption): void => {
+      switch (e.key) {
+        case ' ':
+        case 'SpaceBar':
+        case 'Enter':
+          e.preventDefault();
+          setSelectedOption(option);
+          break;
+        default:
+          break;
+      }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      switch (e.key) {
+        case 'Escape':
+          e.preventDefault();
+          setOpen(false);
+          break;
+        case 'Enter':
+          setOpen(!open);
+          e.preventDefault();
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          const prevItem = items?.findIndex(item => item.value === selectedOption?.value);
+          setSelectedOption(prevItem[-1] || items?.[0]);
+          break;
+        case 'ArrowDown':
+          e.preventDefault();
+          const nextItem = items?.findIndex(item => item.value === selectedOption?.value);
+          setSelectedOption(items[nextItem + 1] || items?.[0]);
+          break;
+        default:
+          break;
+      }
+    };
 
     return (
       <div>
         <Container>
           <StyledInput
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded={open}
             ref={ref}
             noBottomRadius={open}
             open={open}
@@ -49,8 +94,10 @@ export const Select = forwardRef<HTMLInputElement, ISelectProps>(
             error={error}
             label={label}
             readOnly
+            aria-activedescendant={selectedOption?.value}
             placeholder={placeholder}
-            value={value?.text}
+            value={selectedOption?.text}
+            onKeyDown={e => handleKeyDown(e)}
             onClick={() => setOpen(!open)}
             actionEnd={
               <WrapperIcon open={open}>
@@ -61,11 +108,16 @@ export const Select = forwardRef<HTMLInputElement, ISelectProps>(
           <OptionsContainer onBlur={() => setOpen(false)} open={open} error={error}>
             {items.map(option => (
               <Option
-                selected={value?.value === option?.value}
-                key={option.value}
+                id={option?.value}
+                tabIndex={0}
+                role="option"
+                onKeyDown={e => handleListKeyDown(e, option)}
+                aria-selected={selectedOption?.value === option?.value}
+                selected={selectedOption?.value === option?.value}
+                key={option?.value}
                 onClick={() => handleSelectOption(option)}
               >
-                {option.text}
+                {option?.text}
               </Option>
             ))}
           </OptionsContainer>
