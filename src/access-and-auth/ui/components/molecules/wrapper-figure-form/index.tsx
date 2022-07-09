@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Figure } from '@/access-and-auth/presenters/components/atoms';
+import { Figure } from '@/access-and-auth/ui/components/atoms';
 
 import { Figure as FigureStyle, Form, Root } from './styles';
 

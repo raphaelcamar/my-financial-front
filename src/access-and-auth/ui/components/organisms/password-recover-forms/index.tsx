@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LogoName, WrapperForm } from '@/access-and-auth/presenters/components/atoms';
+import { LogoName, WrapperForm } from '@/access-and-auth/ui/components/atoms';
 import { Wrapper, FadeIn } from './styles';
 import { PasswordFirstStep } from './password-first-step';
 import { PasswordSecondStep } from './password-second-step';

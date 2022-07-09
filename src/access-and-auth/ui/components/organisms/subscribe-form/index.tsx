@@ -3,13 +3,7 @@ import { useNavigate } from 'react-router';
 import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  LogoName,
-  RedirectLink,
-  AuthTitle,
-  WrapperForm,
-  GoogleButton,
-} from '@/access-and-auth/presenters/components/atoms';
+import { LogoName, RedirectLink, AuthTitle, WrapperForm, GoogleButton } from '@/access-and-auth/ui/components/atoms';
 import { Container, Center, Form } from './styles';
 import { Button, Input } from '@/core/presenters/components/molecules';
 import { CircularProgress, Icon } from '@/core/presenters/components/atoms';

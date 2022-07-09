@@ -1,6 +1,6 @@
 import React from 'react';
-import { LoginForm } from '@/access-and-auth/presenters/components/organisms';
-import { WrapperFigureForm } from '../../components/molecules';
+import { LoginForm } from '@/access-and-auth/ui/components/organisms';
+import { WrapperFigureForm } from '@/access-and-auth/ui/components/molecules';
 
 export const Login: React.FC = () => (
   <WrapperFigureForm side="left" figureType="circle">

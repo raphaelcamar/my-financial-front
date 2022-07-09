@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import { Typography } from '@/core/presenters/components/atoms';
 
 import { ContainerForm, WrapperMessage, WrapperInputPin, WrapperError } from './styles';
-import { InputPin, Countdown } from '@/access-and-auth/presenters/components/atoms';
+import { InputPin, Countdown } from '@/access-and-auth/ui/components/atoms';
 import { Button } from '@/core/presenters/components/molecules';
 import { CodeRecoverValidator } from '@/access-and-auth/data';
 import { ValidationComposite } from '@/core/validation';

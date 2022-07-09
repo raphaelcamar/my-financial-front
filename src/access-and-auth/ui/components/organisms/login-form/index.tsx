@@ -5,13 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router';
 import { Input, Button } from '@/core/presenters/components/molecules';
 
-import {
-  AuthTitle,
-  LogoName,
-  RedirectLink,
-  WrapperForm,
-  GoogleButton,
-} from '@/access-and-auth/presenters/components/atoms';
+import { AuthTitle, LogoName, RedirectLink, WrapperForm, GoogleButton } from '@/access-and-auth/ui/components/atoms';
 import { Container, Wrapper, Center } from './styles';
 import { Icon, TextLink } from '@/core/presenters/components/atoms';
 import { User } from '@/access-and-auth/domain';
