@@ -25,6 +25,6 @@ export const Container = styled.div<SidebarType>`
   transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
 `;
 
-export const WrapperSidebar = styled.div<SidebarType>`
+export const WrapperSidebar = styled.aside<SidebarType>`
   ${({ open }) => changeWidth(open)}
 `;

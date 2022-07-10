@@ -30,6 +30,11 @@ import {
   OpenDrawerMobileIcon,
   PenIcon,
   TrashIcon,
+  RecurrencyValueIcon,
+  ArrowLimitIcon,
+  MoneyBagIcon,
+  BalanceIcon,
+  WalletIcon,
 } from '@/core/ui/components/atoms/icon/icons';
 import { AvailableIcons } from '@/core/domain';
 import { ColorProps, VariantProps } from '@/main/styled';
@@ -48,10 +53,14 @@ export const Icon: React.FC<IconProps> = ({ icon, color, shade, size }) => {
   const getIcon = {
     add: <AddIcon color={iconColor && iconColor} />,
     arrowDown: <ArrowDownIcon color={iconColor && iconColor} />,
+    arrowLimit: <ArrowLimitIcon color={iconColor} />,
+    balance: <BalanceIcon color={iconColor} />,
     bell: <BellIcon color={iconColor && iconColor} />,
     bellBall: <BellBallIcon color={iconColor && iconColor} />,
     circle: <CircleIcon color={iconColor && iconColor} />,
     close: <CloseIcon color={iconColor && iconColor} />,
+    closeDrawerMobile: <CloseDrawerMobileIcon color={iconColor} />,
+    closeEye: <CloseEyeIcon color={iconColor} />,
     dashboard: <DashboardIcon color={iconColor && iconColor} />,
     filter: <FilterIcon color={iconColor} />,
     google: <GoogleIcon color={iconColor} />,
@@ -63,17 +72,18 @@ export const Icon: React.FC<IconProps> = ({ icon, color, shade, size }) => {
     mail: <MailIcon color={iconColor} />,
     miniArrowDown: <MiniArrowDownIcon color={iconColor} />,
     miniArrowUp: <MiniArrowUpIcon color={iconColor} />,
+    moneyBag: <MoneyBagIcon color={iconColor} />,
+    openDrawerMobile: <OpenDrawerMobileIcon color={iconColor} />,
+    openEye: <OpenEyeIconIcon color={iconColor} />,
+    pen: <PenIcon color={iconColor} />,
     person: <PersonIcon color={iconColor} />,
     questionMarkRounded: <QuestionMarkRoundedIcon color={iconColor} />,
+    recurrencyValue: <RecurrencyValueIcon color={iconColor} />,
     search: <SearchIcon color={iconColor} />,
     square: <SquareIcon color={iconColor} />,
     transaction: <TransactionIcon color={iconColor} />,
-    closeEye: <CloseEyeIcon color={iconColor} />,
-    openEye: <OpenEyeIconIcon color={iconColor} />,
-    closeDrawerMobile: <CloseDrawerMobileIcon color={iconColor} />,
-    openDrawerMobile: <OpenDrawerMobileIcon color={iconColor} />,
-    pen: <PenIcon color={iconColor} />,
     trash: <TrashIcon color={iconColor} />,
+    wallet: <WalletIcon color={iconColor} />,
   };
 
   return (

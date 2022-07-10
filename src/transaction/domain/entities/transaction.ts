@@ -59,4 +59,11 @@ export namespace Transaction {
     start?: string | Date;
     limit?: string | Date;
   }
+
+  // TODO getting a generic entity statistic, and get this better
+  export interface Statistic {
+    title: string;
+    description: string;
+    value: number;
+  }
 }

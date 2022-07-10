@@ -8,14 +8,21 @@ type TypographyProps = {
   size?: keyof FontSizeProps;
   weight?: keyof FontWeightProps;
   type?: TypographyTags;
+  ellipsis?: boolean;
 };
 
 export const TypographyStyle = styled.h1.attrs<TypographyProps>(({ type = 'p' }) => ({
   as: type,
 }))<TypographyProps>`
-  ${({ color = 'default', size = 'normal', weight = 400, theme }) => css`
+  ${({ color = 'default', size = 'normal', weight = 400, theme, ellipsis }) => css`
     font-size: ${theme.font.size[size]};
     color: ${theme.font.color[color]};
     font-weight: ${theme.font.weight[weight]};
+    ${ellipsis &&
+    css`
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    `}
   `}
 `;

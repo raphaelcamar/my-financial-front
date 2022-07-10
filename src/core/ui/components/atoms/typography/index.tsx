@@ -10,6 +10,7 @@ interface ITypography {
   weight?: keyof FontWeightProps;
   type?: TypographyTags;
   children: ReactNode;
+  ellipsis?: boolean;
 }
 
 export const Typography: React.FC<ITypography> = ({ children, ...props }) => (

@@ -15,19 +15,19 @@ export const SidebarData: ISidebaroption[] = [
   },
   {
     isAccordion: true,
-    icon: 'add',
-    title: 'accordion',
+    icon: 'person',
+    title: 'Perfil',
     accordionItems: [
       {
-        icon: 'trash',
-        path: '/teste',
-        title: 'minha conta',
+        icon: 'wallet',
+        path: '/minha-carteira',
+        title: 'Minha carteira',
       },
 
       {
-        icon: 'pen',
-        path: '/teste-2',
-        title: 'minha conta',
+        icon: 'person',
+        path: '/informacoes-pessoais',
+        title: 'Meus dados',
       },
     ],
   },

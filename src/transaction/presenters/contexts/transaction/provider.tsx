@@ -3,11 +3,18 @@ import { Transaction } from '@/transaction/domain';
 import { TransactionContext } from './context';
 import { initialState, reducer } from './reducers';
 import { TransactionRepositoryData } from '@/transaction/infra';
-import { CreateTransaction, GetTransactions, DeleteTransaction, UpdateTransaction } from '@/transaction/data/use-cases';
+import {
+  CreateTransaction,
+  GetTransactions,
+  DeleteTransaction,
+  UpdateTransaction,
+  GetTransactionStatistic,
+} from '@/transaction/data/use-cases';
 import {
   fetchCreateTransaction,
   fetchDeleteTransaction,
   fetchFilterTransaction,
+  fetchGetStatistics,
   fetchGetTransactions,
   fetchUpdateTransaction,
 } from './actions';
@@ -60,15 +67,28 @@ export const TransactionProvider: React.FC = ({ children }) => {
 
     dispatch(fetchUpdateTransaction(filteredTransactions));
   };
+
+  const getStatisticsByFilter = async () => {
+    const transactionRepository = new TransactionRepositoryData();
+
+    const useCase = new GetTransactionStatistic(transactionRepository, state.filter);
+    const statistics = await useCase.execute();
+
+    dispatch(fetchGetStatistics(statistics));
+  };
+
   return (
     <TransactionContext.Provider
       value={{
         transactionLoader,
+        filter: state.filter,
         transactions: state.transactions,
+        statistic: state.statistic,
         createTransaction,
         getTransactions,
         deleteTransaction,
         updateTransaction,
+        getStatisticsByFilter,
       }}
     >
       {children}

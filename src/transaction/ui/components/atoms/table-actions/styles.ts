@@ -45,7 +45,7 @@ export const StyledInputMask = styled.div`
 `;
 
 export const StyledButton = styled(Button)`
-  width: 50%;
+  width: 30%;
 `;
 
 export const ModalAddButton = styled(Button)`

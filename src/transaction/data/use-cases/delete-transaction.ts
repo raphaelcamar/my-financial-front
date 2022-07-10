@@ -9,7 +9,7 @@ export class DeleteTransaction {
   ) {}
 
   async execute() {
-    await this.transactionRepository.deleteTransacion(this.transactionId);
+    await this.transactionRepository.delete(this.transactionId);
     const filtered = this.transactions.filter(transaction => transaction._id !== this.transactionId);
 
     return filtered;

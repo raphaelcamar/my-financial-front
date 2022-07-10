@@ -6,6 +6,7 @@ import {
   FILTER_TRANSACTION,
   DELETE_TRANSACTION,
   UPDATE_TRANSACTION,
+  STATISTIC_TRANSACTION,
 } from './types';
 
 export function fetchCreateTransaction(payload: Transaction[]): ActionTypes {
@@ -26,4 +27,8 @@ export function fetchDeleteTransaction(payload: Transaction[]): ActionTypes {
 
 export function fetchUpdateTransaction(payload: Transaction[]): ActionTypes {
   return { type: UPDATE_TRANSACTION, payload };
+}
+
+export function fetchGetStatistics(payload: Transaction.Statistic): ActionTypes {
+  return { type: STATISTIC_TRANSACTION, payload };
 }

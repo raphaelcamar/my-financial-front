@@ -5,6 +5,7 @@ export const ContainerHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.palette.grey[200]};
+  margin-bottom: 28px;
 `;
 
 export const WrapperHamburguerBar = styled.div`

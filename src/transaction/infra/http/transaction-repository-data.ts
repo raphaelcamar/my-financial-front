@@ -19,7 +19,7 @@ export class TransactionRepositoryData implements TransactionRepository {
     return adapter.response(httpResponse.body);
   }
 
-  async getTransactions(query?: string): Promise<Transaction[]> {
+  async get(query?: string): Promise<Transaction[]> {
     const request = new RequestHttpRepository<unknown, Transaction.Response[]>();
     const httpResponse = await request.get({
       url: `transaction${query}`,
@@ -32,7 +32,7 @@ export class TransactionRepositoryData implements TransactionRepository {
     return adaptee;
   }
 
-  async deleteTransacion(transactionId: string): Promise<void> {
+  async delete(transactionId: string): Promise<void> {
     const request = new RequestHttpRepository<string, void>();
 
     await request.delete({
@@ -40,7 +40,7 @@ export class TransactionRepositoryData implements TransactionRepository {
     });
   }
 
-  async updateTransaction(transaction: Transaction.Data): Promise<Transaction> {
+  async update(transaction: Transaction.Data): Promise<Transaction> {
     const request = new RequestHttpRepository<Transaction.Response, Transaction.Response>();
     const adapter = new TransactionAdapter();
 
@@ -53,5 +53,16 @@ export class TransactionRepositoryData implements TransactionRepository {
 
     const adapteeResponse = adapter.response(httpResponse.body);
     return adapteeResponse;
+  }
+
+  async getStatistics(filter: Transaction.Filter): Promise<Transaction.Statistic> {
+    const request = new RequestHttpRepository<Transaction.Filter, any>();
+
+    const httpResponse = await request.get({
+      url: 'transaction/statistics',
+      body: filter,
+    });
+
+    return httpResponse.body;
   }
 }

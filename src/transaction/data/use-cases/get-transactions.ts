@@ -6,7 +6,7 @@ export class GetTransactions {
 
   async execute(): Promise<Transaction[]> {
     const query = this.mountFilter(this.filter);
-    const transaction = await this.transactionRepository.getTransactions(query);
+    const transaction = await this.transactionRepository.get(query);
 
     return transaction;
   }

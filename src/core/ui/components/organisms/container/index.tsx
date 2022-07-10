@@ -1,12 +1,9 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Sidebar, Header, Drawer, SidebarOptions } from '@/core/ui/components/organisms';
 import { SidebarAction } from '@/core/ui/components/molecules';
 import { Content, WrapperSidebar, WrapperDrawer, ContentDrawer, HeaderDrawer, IconWrapper } from './styles';
 import { SidebarData } from '@/core/utils';
-import { TransactionProvider } from '@/transaction/presenters/contexts';
 import { Icon, Typography } from '../../atoms';
 
 export const Container: React.FC = () => {
@@ -20,7 +17,7 @@ export const Container: React.FC = () => {
   };
 
   return (
-    <TransactionProvider>
+    <>
       <WrapperSidebar>
         <SidebarAction open={open} onClick={() => setOpen(!open)} />
         <Sidebar open={open} />
@@ -44,6 +41,6 @@ export const Container: React.FC = () => {
         <Header setOpenDrawer={setOpenDrawer} openDrawer={openDrawer} title={getTitle()} />
         <Outlet />
       </Content>
-    </TransactionProvider>
+    </>
   );
 };

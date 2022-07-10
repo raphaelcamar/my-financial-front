@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Density, IPaper } from '.';
+import { Density, IPaper, NoRadius } from '.';
 
 const getShadowDensity = (density: Density) =>
   ({
@@ -14,9 +14,30 @@ const getShadowDensity = (density: Density) =>
     `,
   }[density]);
 
+const getRadius = (noRadiusIn: NoRadius) =>
+  !noRadiusIn
+    ? css`
+        border-radius: 16px;
+      `
+    : {
+        left: css`
+          border-radius: 0px 16px 16px 0;
+        `,
+        right: css`
+          border-radius: 16px 0 0 16px;
+        `,
+        top: css`
+          border-radius: 0px 0px 16px 16px;
+        `,
+        bottom: css`
+          border-radius: 16px 16px 0px 0px;
+        `,
+      }[noRadiusIn];
+
 export const PaperContainer = styled.div<IPaper>`
-  border-radius: 12px;
+  ${({ noRadiusIn }) => getRadius(noRadiusIn)};
   padding: 24px;
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : '')};
   background: ${({ theme }) => theme.palette.grey[50]};
   ${({ density }) => getShadowDensity(density)}
 `;
