@@ -29,6 +29,7 @@ export type BreakpointTypes = {
   md: number;
   lg: number;
   xl: number;
+  xxl: number;
 };
 
 export type FunctionBreakpointTypes = {

@@ -6,7 +6,8 @@ const breakpoints: BreakpointTypes = {
   sm: 600,
   md: 960,
   lg: 1280,
-  xl: 1920,
+  xl: 1450,
+  xxl: 1920,
 };
 
 export const mainTheme: DefaultTheme = {

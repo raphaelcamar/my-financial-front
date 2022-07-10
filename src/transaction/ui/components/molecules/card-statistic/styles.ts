@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
 `;
 
 export const Content = styled.div`
@@ -18,6 +17,5 @@ export const Flag = styled.div`
 `;
 
 export const TextEllipsis = styled.div`
-  width: 100%;
-  flex: 1;
+  max-width: 99%;
 `;

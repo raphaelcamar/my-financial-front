@@ -20,9 +20,9 @@ export const TypographyStyle = styled.h1.attrs<TypographyProps>(({ type = 'p' })
     font-weight: ${theme.font.weight[weight]};
     ${ellipsis &&
     css`
-      text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
     `}
   `}
 `;

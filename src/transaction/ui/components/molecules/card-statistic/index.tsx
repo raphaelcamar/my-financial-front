@@ -19,9 +19,11 @@ export const CardStatistic: React.FC<ICardStatistic> = ({ title, price, descript
     <Paper density={1} noRadiusIn="right" fullWidth>
       <WrapperLoader loading={loading} size={10} color="primary">
         <Content>
-          <Typography weight={600} size="normal">
-            {title}
-          </Typography>
+          <TextEllipsis>
+            <Typography weight={600} size="normal" ellipsis>
+              {title}
+            </Typography>
+          </TextEllipsis>
           <TextEllipsis>
             <Typography size="xlarge" color="info" weight={700} ellipsis>
               {formatCurrency(price)}
