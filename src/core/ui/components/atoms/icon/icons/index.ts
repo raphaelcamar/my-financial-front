@@ -31,4 +31,4 @@ export * from './search-icon';
 export * from './square-icon';
 export * from './transaction-icon';
 export * from './trash-icon';
-export * from './walltet-icon';
+export * from './wallet-icon';

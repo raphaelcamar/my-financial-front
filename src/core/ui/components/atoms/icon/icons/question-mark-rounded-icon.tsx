@@ -16,3 +16,5 @@ export const QuestionMarkRoundedIcon: React.FC<Icon> = ({ color }) => {
     </svg>
   );
 };
+
+export default QuestionMarkRoundedIcon;
