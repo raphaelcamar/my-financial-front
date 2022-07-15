@@ -1,33 +1,42 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { RouteObject, useRoutes } from 'react-router-dom';
-import { TransactionsPage, Test } from '@/transaction/ui/pages';
 import { PrivateRoute } from '@/core/presenters/proxies';
+import { CircularProgress } from '@/core/ui/components/atoms';
+
+const TransactionsPage = React.lazy(() => import('@/transaction/ui/pages/transactions-page'));
+const Test = React.lazy(() => import('@/transaction/ui/pages/test'));
 
 export const TransactionRoutes: RouteObject[] = [
   {
     path: '/transacoes',
     element: (
-      <PrivateRoute>
-        <TransactionsPage />
-      </PrivateRoute>
+      <Suspense fallback={<CircularProgress color="info" size={40} />}>
+        <PrivateRoute>
+          <TransactionsPage />
+        </PrivateRoute>
+      </Suspense>
     ),
   },
 
   {
     path: '/teste',
     element: (
-      <PrivateRoute>
-        <Test />
-      </PrivateRoute>
+      <Suspense fallback={<CircularProgress color="info" size={40} />}>
+        <PrivateRoute>
+          <Test />
+        </PrivateRoute>
+      </Suspense>
     ),
   },
 
   {
     path: '/teste-2',
     element: (
-      <PrivateRoute>
-        <Test />
-      </PrivateRoute>
+      <Suspense fallback={<CircularProgress color="info" size={40} />}>
+        <PrivateRoute>
+          <Test />
+        </PrivateRoute>
+      </Suspense>
     ),
   },
 ];

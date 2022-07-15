@@ -7,3 +7,5 @@ export const Login: React.FC = () => (
     <LoginForm />
   </WrapperFigureForm>
 );
+
+export default Login;

@@ -16,3 +16,5 @@ export const TransactionsPage: React.FC = () => (
     </Container>
   </TransactionProvider>
 );
+
+export default TransactionsPage;

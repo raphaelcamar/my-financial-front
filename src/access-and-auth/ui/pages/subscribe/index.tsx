@@ -15,3 +15,5 @@ export const Subscribe: React.FC = () => (
     </Form>
   </Root>
 );
+
+export default Subscribe;

@@ -1,9 +1,9 @@
-import { useTheme } from '@mui/material';
 import React from 'react';
 import { Icon } from '@/core/domain';
+import { useThemeContext } from '@/core/presenters/contexts/styled-theme/themes/provider';
 
 export const RecurrencyValueIcon: React.FC<Icon> = ({ color }) => {
-  const theme = useTheme();
+  const theme = useThemeContext();
   return (
     <svg width="32" height="37" viewBox="0 0 32 37" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

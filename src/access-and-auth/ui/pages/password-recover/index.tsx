@@ -7,3 +7,5 @@ export const PasswordRecover: React.FC = () => (
     <PasswordRecoverForm />
   </WrapperFigureForm>
 );
+
+export default PasswordRecover;
