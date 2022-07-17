@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -26,6 +26,7 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
 
   const { getTransactions } = useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const start = formatDate(monthStartDate(new Date()), 'dd/MM/yyyy');
@@ -36,9 +37,12 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
 
   const handleSubmitForm = async (data: Transaction.Filter) => {
     try {
+      setLoading(true);
       await getTransactions(data);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Aconteceu alguma coisa. Tente novamente depois', { variant: 'error' });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -79,7 +83,14 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
           />
         </StyledInputMask>
         <WrapperButton>
-          <StyledButton type="submit" styleType="outlined">
+          <StyledButton
+            disabled={loading}
+            type="submit"
+            styleType="outlined"
+            loading={loading}
+            colorLoading="primary"
+            sizeLoading={5}
+          >
             Enviar
           </StyledButton>
         </WrapperButton>

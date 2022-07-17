@@ -12,9 +12,19 @@ interface ICardStatistic {
   description: string;
   icon: AvailableIcons;
   loading?: boolean;
+  allowNegative?: boolean;
+  isNegative?: boolean;
 }
 
-export const CardStatistic: React.FC<ICardStatistic> = ({ title, price, description, icon, loading }) => (
+export const CardStatistic: React.FC<ICardStatistic> = ({
+  title,
+  price,
+  description,
+  icon,
+  loading,
+  allowNegative,
+  isNegative,
+}) => (
   <Container>
     <Paper density={1} noRadiusIn="right" fullWidth>
       <WrapperLoader loading={loading} size={10} color="primary">
@@ -25,8 +35,8 @@ export const CardStatistic: React.FC<ICardStatistic> = ({ title, price, descript
             </Typography>
           </TextEllipsis>
           <TextEllipsis>
-            <Typography size="xlarge" color="info" weight={700} ellipsis>
-              {formatCurrency(price)}
+            <Typography size="xlarge" color={isNegative ? 'error' : 'info'} weight={700} ellipsis>
+              {formatCurrency(price, allowNegative)}
             </Typography>
           </TextEllipsis>
           <TextEllipsis>

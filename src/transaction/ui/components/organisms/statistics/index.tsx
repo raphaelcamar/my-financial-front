@@ -8,7 +8,7 @@ export const Statistics: React.FC = () => {
 
   const getStatistics = async () => {
     if (filter) {
-      await getStatisticsByFilter();
+      await getStatisticsByFilter(filter);
     }
   };
 
@@ -20,18 +20,30 @@ export const Statistics: React.FC = () => {
     <Container>
       <CardStatistic
         title="Total de gastos"
-        description="01/01/2021 à 01/01/2021"
-        price={5000}
+        description={`${statistic?.totalFilter?.filter?.start} à ${statistic?.totalFilter?.filter?.limit}`}
+        price={statistic?.totalFilter?.value}
         icon="recurrencyValue"
       />
       <CardStatistic
         title="Maior gasto"
-        description="Bola nike final copa do mundo 2006"
-        price={5138}
+        description={statistic?.mostSpent?.description}
+        price={statistic?.mostSpent?.value}
         icon="arrowLimit"
       />
-      <CardStatistic title="Média de gasto" description="01/01/2021 à 01/01/2021" price={5000} icon="balance" />
-      <CardStatistic title="Total de todas as transações" description="Dia 14/03/1999" price={400000} icon="moneyBag" />
+      <CardStatistic
+        title="Média de gasto"
+        description={`${statistic?.averageSpent?.filter?.start} à ${statistic?.averageSpent?.filter?.limit}`}
+        price={statistic?.averageSpent?.value}
+        icon="balance"
+      />
+      <CardStatistic
+        title="Total da carteira"
+        description="Total de todas as transações"
+        price={statistic?.total}
+        icon="moneyBag"
+        allowNegative
+        isNegative={statistic?.total < 0}
+      />
     </Container>
   );
 };
