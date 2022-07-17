@@ -60,10 +60,20 @@ export namespace Transaction {
     limit?: string | Date;
   }
 
-  // TODO getting a generic entity statistic, and get this better
   export interface Statistic {
-    title: string;
-    description: string;
-    value: number;
+    mostSpent: {
+      value: number;
+      filter: Transaction.Filter;
+      description: string;
+    };
+    averageSpent: {
+      filter: Transaction.Filter;
+      value: number;
+    };
+    total: number;
+    totalFilter: {
+      filter: Transaction.Filter;
+      value: number;
+    };
   }
 }

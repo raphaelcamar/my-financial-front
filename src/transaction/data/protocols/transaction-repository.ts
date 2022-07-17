@@ -5,5 +5,5 @@ export interface TransactionRepository {
   get(queryUrl?: string): Promise<Transaction[]>;
   delete(transactionId: string): Promise<void>;
   update(transaction: Transaction.Data): Promise<Transaction>;
-  getStatistics(filter: Transaction.Filter): Promise<Transaction.Statistic>;
+  getStatistics(queryUrl: string): Promise<Transaction.Statistic>;
 }

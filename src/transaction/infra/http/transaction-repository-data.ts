@@ -1,7 +1,8 @@
+/* eslint-disable no-use-before-define */
 import { RequestHttpRepository } from '@/core/infra';
 import { TransactionRepository } from '@/transaction/data';
 import { Transaction } from '@/transaction/domain';
-import { TransactionAdapter } from '@/transaction/infra/adapter';
+import { TransactionAdapter, TransactionStatisticsAdapter } from '@/transaction/infra/adapter';
 
 export class TransactionRepositoryData implements TransactionRepository {
   async create(transaction: Transaction.Data): Promise<Transaction> {
@@ -55,14 +56,28 @@ export class TransactionRepositoryData implements TransactionRepository {
     return adapteeResponse;
   }
 
-  async getStatistics(filter: Transaction.Filter): Promise<Transaction.Statistic> {
-    const request = new RequestHttpRepository<Transaction.Filter, any>();
+  async getStatistics(queryUrl: string): Promise<Transaction.Statistic> {
+    const request = new RequestHttpRepository<Transaction.Filter, Response.Statistic>();
 
     const httpResponse = await request.get({
-      url: 'transaction/statistics',
-      body: filter,
+      url: `transaction/statistics${queryUrl}`,
     });
 
-    return httpResponse.body;
+    const adapter = new TransactionStatisticsAdapter();
+    const adaptee = adapter.response(httpResponse.body);
+    return adaptee;
+  }
+}
+
+// TODO remove duplicate declaration
+export namespace Response {
+  export interface Statistic {
+    statistics: {
+      mostSpent: Transaction.Response;
+      totalFilter: number;
+      total: number;
+      average: number;
+    };
+    filter: Transaction.Filter;
   }
 }

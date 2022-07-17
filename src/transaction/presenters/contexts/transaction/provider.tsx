@@ -29,7 +29,6 @@ export const TransactionProvider: React.FC = ({ children }) => {
     const useCase = new CreateTransaction(transactionData, transactionRepository);
 
     await useCase.execute();
-
     const getTransactions = new GetTransactions(transactionRepository, state.filter);
 
     const result = await getTransactions.execute();
@@ -68,12 +67,11 @@ export const TransactionProvider: React.FC = ({ children }) => {
     dispatch(fetchUpdateTransaction(filteredTransactions));
   };
 
-  const getStatisticsByFilter = async () => {
+  const getStatisticsByFilter = async (filter: Transaction.Filter) => {
     const transactionRepository = new TransactionRepositoryData();
 
-    const useCase = new GetTransactionStatistic(transactionRepository, state.filter);
+    const useCase = new GetTransactionStatistic(transactionRepository, filter);
     const statistics = await useCase.execute();
-
     dispatch(fetchGetStatistics(statistics));
   };
 
