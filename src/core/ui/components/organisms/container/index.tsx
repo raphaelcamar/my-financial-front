@@ -4,7 +4,7 @@ import { Sidebar, Header, Drawer, SidebarOptions } from '@/core/ui/components/or
 import { SidebarAction } from '@/core/ui/components/molecules';
 import { Content, WrapperSidebar, WrapperDrawer, ContentDrawer, HeaderDrawer, IconWrapper } from './styles';
 import { SidebarData } from '@/core/utils';
-import { Icon, Typography } from '../../atoms';
+import { Icon, Typography } from '@/core/ui/components/atoms';
 
 export const Container: React.FC = () => {
   const [open, setOpen] = useState<boolean>(true);

@@ -14,7 +14,7 @@ import {
   SendNewPasswordRecover,
   SendCodePassowrdRecover,
 } from '@/access-and-auth/data';
-import { fetchUserAuth, fetchEmailPasswordRecover } from './actions';
+import { fetchUserAuth, fetchEmailPasswordRecover, fetchLogout } from './actions';
 import { HttpErrorStatusCode } from '@/core/data';
 
 export const AccessAndAuthProvider: React.FC = ({ children }) => {
@@ -103,6 +103,12 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
     await useCase.execute();
   };
 
+  const logout = () => {
+    const localStorageRepository = new LocalStorageRepository();
+    localStorageRepository.clearAll();
+    dispatch(fetchLogout(null));
+  };
+
   return (
     <AccessAndAuthContext.Provider
       value={{
@@ -115,6 +121,7 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
         recoverPassworSendEmail,
         sendNewPassword,
         sendCodeRecover,
+        logout,
       }}
     >
       {children}

@@ -16,14 +16,14 @@ const transitateWidth = (open: boolean) =>
 
 export const Content = styled.div<ContainerContentType>`
   flex-grow: 1;
-  padding: 28px 36px;
+  padding: 20px 36px;
   background: ${({ theme }) => theme.palette.grey[50]};
   min-height: 100vh;
   ${({ open }) => transitateWidth(open)}
   margin-left: ${({ open }) => (open ? SIZES.width : SIZES.marginLeft)}px;
   @media (${({ theme }) => theme.breakpoints.down('md')}) {
     margin-left: 0 !important;
-    padding: 28px 36px;
+    padding: 20px 36px;
   }
 `;
 

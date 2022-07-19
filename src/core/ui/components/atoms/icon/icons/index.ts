@@ -17,6 +17,7 @@ export * from './line-arrow-up-icon';
 export * from './logo-icon';
 export * from './logo-new-icon';
 export * from './logo-small-icon';
+export * from './logout-icon';
 export * from './mail-icon';
 export * from './mini-arrow-down-icon';
 export * from './mini-arrow-up-icon';

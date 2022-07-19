@@ -50,6 +50,7 @@ const ArrowLimitIcon = React.lazy(async () => await import('@/core/ui/components
 const MoneyBagIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/money-bag-icon'));
 const BalanceIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/balance-icon'));
 const WalletIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/wallet-icon'));
+const LogoutIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/logout-icon'));
 
 export const getIcon = {
   add: AddIcon,
@@ -84,5 +85,6 @@ export const getIcon = {
   square: SquareIcon,
   transaction: TransactionIcon,
   trash: TrashIcon,
+  logout: LogoutIcon,
   wallet: WalletIcon,
 };
