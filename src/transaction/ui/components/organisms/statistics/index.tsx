@@ -13,7 +13,7 @@ export const Statistics: React.FC = () => {
     if (filter) {
       try {
         setLoading(true);
-        await delay(15000);
+        await delay(1500);
         await getStatisticsByFilter(filter);
       } finally {
         setLoading(false);

@@ -22,7 +22,7 @@ export class TransactionStatisticsAdapter implements RequestAdapter {
       total: base?.statistics?.total,
       totalFilter: {
         filter: base?.filter,
-        value: base?.statistics?.total,
+        value: base?.statistics?.totalFilter,
       },
     };
 

@@ -15,7 +15,6 @@ const getShadowDensity = (density: Density) =>
   }[density]);
 
 export const Container = styled.div<ICardFlag>`
-  height: 100%;
   width: 54px;
   padding: 12px;
   display: flex;

@@ -36,7 +36,7 @@ export const CardStatistic: React.FC<ICardStatistic> = ({
           </TextEllipsis>
           <TextEllipsis>
             <Typography size="xlarge" color={isNegative ? 'error' : 'info'} weight={700} ellipsis>
-              {formatCurrency(price, allowNegative) || '-'}
+              {formatCurrency(price || 0, allowNegative) || '-'}
             </Typography>
           </TextEllipsis>
           <TextEllipsis>

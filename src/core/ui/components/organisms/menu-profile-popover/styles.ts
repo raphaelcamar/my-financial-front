@@ -69,3 +69,15 @@ export const PhotoName = styled.div`
   gap: 8px;
   align-items: center;
 `;
+
+export const WrapperIcon = styled.div<MenuProfileType>`
+  transition: all ease 0.3s;
+  ${({ open }) =>
+    open
+      ? css`
+          transform: rotate(180deg);
+        `
+      : css`
+          transform: rotate(0deg);
+        `};
+`;
