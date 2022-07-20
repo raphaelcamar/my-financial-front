@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 import { Button } from '@/core/ui/components/molecules';
 
-export const Container = styled.form`
+type TableActionsType = {
+  hasHelperText?: boolean;
+};
+
+export const Container = styled.form<TableActionsType>`
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  align-items: flex-end;
+  align-items: ${({ hasHelperText }) => (hasHelperText ? 'center' : 'flex-end')};
   width: 100%;
 
   @media (${({ theme }) => theme.breakpoints.down('md')}) {
     flex-direction: column;
-    align-items: center;
+    align-items: ${({ hasHelperText }) => (hasHelperText ? 'center' : 'flex-end')};
     gap: 8px;
   }
 `;
@@ -21,12 +25,12 @@ export const FilterSearch = styled.div`
   justify-content: space-between;
 `;
 
-export const WrapperButton = styled.div`
+export const WrapperButton = styled.div<TableActionsType>`
   width: 50%;
   height: 100%;
   display: flex;
   justify-content: baseline;
-  align-items: flex-end;
+  align-items: ${({ hasHelperText }) => (hasHelperText ? 'center' : 'flex-end')};
   margin-bottom: 8px;
   @media (${({ theme }) => theme.breakpoints.down('md')}) {
     width: 100%;

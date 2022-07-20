@@ -5,6 +5,7 @@ import { TableData, TableHeadProps } from '@/core/ui/components/organisms';
 import { formatCurrency, formatDateBR, formatTopic, formatType } from '@/core/utils';
 import { WrapperActionTableButtons } from './styles';
 import { Transaction } from '@/transaction/domain';
+import { TextEllipsis } from '../card-statistic/styles';
 
 interface ITableTransaction {
   tableHeaderData: TableHeadProps[];
@@ -22,30 +23,32 @@ export const TableTransaction: React.FC<ITableTransaction> = ({
   <TableData dataTitles={tableHeaderData}>
     {transactions?.map(transaction => (
       <Tr>
-        <Td width={10}>
+        <Td>
           <Chip color="primary">{formatTopic(transaction?.topic) || '-'}</Chip>
         </Td>
-        <Td width={350}>
-          <Typography size="small" color="grey">
-            {transaction?.anotation}
-          </Typography>
+        <Td>
+          <TextEllipsis>
+            <Typography size="small" color="grey" ellipsis>
+              {transaction?.anotation}
+            </Typography>
+          </TextEllipsis>
         </Td>
         <Td width={20}>
           <Typography size="small" color="grey">
             {transaction?.billedAt ? formatDateBR(String(transaction?.billedAt)) : '-'}
           </Typography>
         </Td>
-        <Td width={10}>
+        <Td>
           <Chip color={transaction?.type === 'ENTRANCE' ? 'success' : 'error'}>
             {formatType(transaction?.type) || '-'}
           </Chip>
         </Td>
-        <Td width={10}>
+        <Td>
           <Typography size="small" color="grey">
             {formatCurrency(transaction?.cost) || '-'}
           </Typography>
         </Td>
-        <Td width={10}>
+        <Td>
           <WrapperActionTableButtons>
             <IconButton
               onClick={() => handleEdit(transaction)}

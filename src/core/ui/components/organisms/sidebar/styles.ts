@@ -21,6 +21,8 @@ export const Container = styled.div<SidebarType>`
   transition: all ease 0.3s;
   position: fixed;
   height: 100vh;
+  z-index: 5;
+  background: ${({ theme }) => theme.palette.grey[50]};
   border-right: 1px solid ${({ theme }) => theme.palette.primary[100]};
   transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
 `;

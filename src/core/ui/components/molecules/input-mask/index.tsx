@@ -5,8 +5,8 @@ import { currency, date, formatCurrencyDefault, formatDateDefault } from '@/core
 type AvailableMasks = 'date' | 'currency';
 
 interface IInputMask extends IInput {
-  validator: boolean;
-  messageValidator: string;
+  error: boolean;
+  helperText: string;
   mask: AvailableMasks;
   label: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -24,8 +24,8 @@ const getMaskForDefaultValue = {
 };
 
 export const InputMask: React.FC<IInputMask> = ({
-  validator,
-  messageValidator,
+  error,
+  helperText,
   label,
   onChange,
   mask,
@@ -40,8 +40,8 @@ export const InputMask: React.FC<IInputMask> = ({
   return (
     <Input
       label={label}
-      helperText={messageValidator}
-      error={validator}
+      helperText={helperText}
+      error={error}
       onChange={e => handleChangeInput(e)}
       defaultValue={defaultValue && getMaskForDefaultValue[mask](defaultValue)}
       {...props}

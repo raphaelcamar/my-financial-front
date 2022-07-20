@@ -33,7 +33,7 @@ export const IconWrapper = styled.div<SideBarActionType>`
   align-items: center;
   justify-content: center;
   transition: all 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
-  z-index: 1;
+  z-index: 10;
   top: -12px;
   ${({ open }) => openCloseStyle(open)}
 `;

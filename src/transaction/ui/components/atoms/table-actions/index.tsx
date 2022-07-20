@@ -48,15 +48,18 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
 
   return (
     <>
-      <Container onSubmit={handleSubmit(handleSubmitForm)}>
+      <Container
+        onSubmit={handleSubmit(handleSubmitForm)}
+        hasHelperText={!!errors?.start?.message || !!errors?.limit?.message}
+      >
         <StyledInputMask>
           <Controller
             control={control}
             name="start"
             render={({ field: { value, onChange } }) => (
               <InputMask
-                validator={!!errors?.start?.message}
-                messageValidator={errors?.start?.message}
+                error={!!errors?.start?.message}
+                helperText={errors?.start?.message}
                 label="Início"
                 mask="date"
                 value={value as string}
@@ -72,17 +75,18 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
             name="limit"
             render={({ field: { value, onChange } }) => (
               <InputMask
-                validator={!!errors?.limit?.message}
-                messageValidator={errors?.limit?.message}
+                error={!!errors?.limit?.message}
+                helperText={errors?.limit?.message}
                 label="Fim"
                 mask="date"
                 value={value as string}
                 onChange={e => onChange(e)}
+                // helperText="Teste"
               />
             )}
           />
         </StyledInputMask>
-        <WrapperButton>
+        <WrapperButton hasHelperText={!!errors?.start?.message || !!errors?.limit?.message}>
           <StyledButton
             disabled={loading}
             type="submit"

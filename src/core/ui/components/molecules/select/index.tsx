@@ -40,7 +40,7 @@ export const Select = forwardRef<HTMLInputElement, ISelectProps>(
         const option = items?.find(item => item.value === defaultValue);
         setSelectedOption(option || null);
       }
-    }, [defaultValue]);
+    }, [defaultValue, items]);
 
     const handleListKeyDown = (e: React.KeyboardEvent<HTMLLIElement>, option: ISelectOption): void => {
       switch (e.key) {
