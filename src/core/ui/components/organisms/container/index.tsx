@@ -5,9 +5,10 @@ import { SidebarAction } from '@/core/ui/components/molecules';
 import { Content, WrapperSidebar, WrapperDrawer, ContentDrawer, HeaderDrawer, IconWrapper } from './styles';
 import { SidebarData } from '@/core/utils';
 import { Icon, Typography } from '@/core/ui/components/atoms';
+import { useSidebarContext } from '@/core/presenters/contexts/sidebar';
 
 export const Container: React.FC = () => {
-  const [open, setOpen] = useState<boolean>(true);
+  const { open, handleOpenSidebar } = useSidebarContext();
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const { pathname } = useLocation();
 
@@ -19,7 +20,7 @@ export const Container: React.FC = () => {
   return (
     <>
       <WrapperSidebar>
-        <SidebarAction open={open} onClick={() => setOpen(!open)} />
+        <SidebarAction open={open} onClick={() => handleOpenSidebar()} />
         <Sidebar open={open} />
       </WrapperSidebar>
       <WrapperDrawer>
@@ -33,7 +34,7 @@ export const Container: React.FC = () => {
                 My financial
               </Typography>
             </HeaderDrawer>
-            <SidebarOptions sidebarOpen sidebarOptions={SidebarData} />
+            <SidebarOptions sidebarOptions={SidebarData} />
           </ContentDrawer>
         </Drawer>
       </WrapperDrawer>

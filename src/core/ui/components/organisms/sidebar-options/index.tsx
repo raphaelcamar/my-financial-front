@@ -3,18 +3,18 @@ import { useLocation } from 'react-router-dom';
 import { ISidebaroption } from '@/core/domain';
 import { ItemSidebar, WrapperItemAccordion } from './styles';
 import { SidebarOption, SidebarAccordion } from '@/core/ui/components/molecules';
+import { useSidebarContext } from '@/core/presenters/contexts/sidebar';
 
 interface ISidebarOptions {
   sidebarOptions: ISidebaroption[];
-  sidebarOpen: boolean;
 }
 
-export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, sidebarOpen }) => {
+export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions }) => {
   const location = useLocation();
   const [accordion, setAccordion] = useState(false);
-  const { pathname } = useLocation();
+  const { open } = useSidebarContext();
 
-  const getMatchedRoute = (items: ISidebaroption[]): boolean => items?.some(item => item.path === pathname);
+  const getMatchedRoute = (items: ISidebaroption[]): boolean => items?.some(item => item.path === location.pathname);
 
   return (
     <>
@@ -23,17 +23,17 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, side
           <SidebarAccordion
             open={accordion}
             setOpen={setAccordion}
-            sidebarOpen={sidebarOpen}
+            sidebarOpen={open}
             icon={item?.icon}
             titleAccordion={item?.title}
             hasMatchedRoute={getMatchedRoute(item?.accordionItems)}
             quantity={item?.accordionItems?.length}
           >
-            <WrapperItemAccordion open={sidebarOpen}>
+            <WrapperItemAccordion open={open}>
               {item?.accordionItems?.map((accordionItem, index) => (
                 <SidebarOption
                   accordionOpen={accordion}
-                  sidebarOpen={sidebarOpen}
+                  sidebarOpen={open}
                   item={accordionItem}
                   path={accordionItem.path}
                   selected={location?.pathname === accordionItem.path}
@@ -46,7 +46,7 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions, side
           <ItemSidebar>
             <SidebarOption
               withFullRadius
-              sidebarOpen={sidebarOpen}
+              sidebarOpen={open}
               path={item.path}
               selected={location?.pathname === item.path}
               item={item}
