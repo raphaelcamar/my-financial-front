@@ -31,6 +31,7 @@ export const Popover = styled.div<MenuProfileType>`
   gap: 8px;
   width: 100%;
   padding: 12px;
+  padding-top: 0 !important;
   ${({ open }) =>
     open
       ? css`
@@ -80,4 +81,14 @@ export const WrapperIcon = styled.div<MenuProfileType>`
       : css`
           transform: rotate(0deg);
         `};
+`;
+
+export const WrapperMenuItem = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+`;
+
+export const Border = styled.div`
+  border-top: 1px solid ${({ theme }) => theme.palette.grey[100]};
 `;

@@ -32,6 +32,7 @@ export const ContainerInput = styled.div<ContainerInputType>`
   flex-direction: row;
   align-items: center;
   gap: 8px;
+  background: #ffffff;
   padding: 0 12px;
   ${({ noBottomRadius }) =>
     noBottomRadius

@@ -4,18 +4,25 @@ import { Icon, Typography } from '@/core/ui/components/atoms';
 import { Container } from './styles';
 
 interface IMenuItem {
-  text: string;
+  text?: string;
   icon?: AvailableIcons;
   onClick?: () => void;
+  width?: string;
 }
 
-export const MenuItem: React.FC<IMenuItem> = ({ text, icon, onClick }) => {
+export const MenuItem: React.FC<IMenuItem> = ({ text, icon, onClick, width }) => {
   const [colorHover, setColorHover] = useState<boolean>(false);
 
   return (
-    <Container onClick={onClick} onMouseEnter={() => setColorHover(true)} onMouseLeave={() => setColorHover(false)}>
+    <Container
+      text={!!text}
+      width={width}
+      onClick={onClick}
+      onMouseEnter={() => setColorHover(true)}
+      onMouseLeave={() => setColorHover(false)}
+    >
       <Icon icon={icon} color={colorHover ? 'primary' : null} shade={colorHover ? '500' : null} />
-      <Typography color={colorHover ? 'primary' : 'default'}>{text}</Typography>
+      {text && <Typography color={colorHover ? 'primary' : 'default'}>{text}</Typography>}
     </Container>
   );
 };

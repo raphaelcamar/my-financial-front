@@ -1,13 +1,23 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+type MenuItemType = {
+  width?: string;
+  text?: boolean;
+};
+
+export const Container = styled.div<MenuItemType>`
   border-radius: 8px;
   height: 24px;
-  width: 100%;
+  width: ${({ width }) => width || 'auto'};
   display: flex;
   flex-direction: row;
   gap: 8px;
   padding: 16px 8px;
+  ${({ text }) =>
+    !text &&
+    css`
+      justify-content: center;
+    `}
   align-items: center;
   color: ${({ theme }) => theme.palette.grey[500]};
   cursor: pointer;
