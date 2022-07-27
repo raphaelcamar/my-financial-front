@@ -23,10 +23,10 @@ export const TableTransaction: React.FC<ITableTransaction> = ({
   <TableData dataTitles={tableHeaderData}>
     {transactions?.map(transaction => (
       <Tr>
-        <Td>
+        <Td width={20}>
           <Chip color="primary">{formatTopic(transaction?.topic) || '-'}</Chip>
         </Td>
-        <Td>
+        <Td width={350}>
           <TextEllipsis>
             <Typography size="small" color="grey" ellipsis>
               {transaction?.anotation}
@@ -38,17 +38,17 @@ export const TableTransaction: React.FC<ITableTransaction> = ({
             {transaction?.billedAt ? formatDateBR(String(transaction?.billedAt)) : '-'}
           </Typography>
         </Td>
-        <Td>
+        <Td width={20}>
           <Chip color={transaction?.type === 'ENTRANCE' ? 'success' : 'error'}>
             {formatType(transaction?.type) || '-'}
           </Chip>
         </Td>
-        <Td>
+        <Td width={20}>
           <Typography size="small" color="grey">
             {formatCurrency(transaction?.cost) || '-'}
           </Typography>
         </Td>
-        <Td>
+        <Td width={20}>
           <WrapperActionTableButtons>
             <IconButton
               onClick={() => handleEdit(transaction)}

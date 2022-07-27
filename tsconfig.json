@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "isolatedModules": false,
     "target": "es6",
     "lib": [ "dom", "dom.iterable", "esnext"],
