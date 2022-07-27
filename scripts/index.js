@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 // TODO get better this script
-const FILES_TO_CREATE = ['data', 'domain', 'infra', 'presenters'];
+const FILES_TO_CREATE = ['data', 'domain', 'infra', 'presenters', 'ui', 'utils'];
 
 function getModuleToCreate() {
   const module = process.argv.slice(2);
