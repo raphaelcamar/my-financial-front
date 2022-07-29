@@ -61,7 +61,7 @@ export const mainTheme: DefaultTheme = {
     },
 
     background: {
-      paper: '#F9FAFB',
+      paper: '#FFFFFF',
       default: '#FAFAFA',
     },
     grey: {

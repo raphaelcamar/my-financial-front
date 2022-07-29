@@ -55,7 +55,7 @@ export const DrawerTransaction: React.FC<IDrawerTransaction> = ({ openModal, set
 
       await execute(data);
 
-      enqueueSnackbar('Transação criada com sucesso!', {
+      enqueueSnackbar(`Transação  ${type === 'create' ? 'criada' : 'alterada'} com sucesso!`, {
         variant: 'success',
       });
 
