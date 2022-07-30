@@ -1,31 +1,41 @@
 export class User {
   _id?: string;
-  name: string;
-  lastname?: string;
+  birthDate?: Date;
   email: string;
+  lastname?: string;
+  name: string;
   password: string;
-  token: string;
   pictureUrl?: string;
+  profession?: string;
+  salary?: number;
+  token: string;
 
   constructor(user: User.Data) {
     this._id = user._id;
-    this.name = user.name;
+    this.birthDate = user?.birthDate ? new Date(user?.birthDate) : null;
     this.lastname = user.lastname;
+    this.name = user.name;
+    this.email = user.email;
     this.password = user.password;
-    this.token = user.token;
     this.pictureUrl = user?.pictureUrl;
+    this.profession = user?.profession;
+    this.salary = user?.salary;
+    this.token = user.token;
   }
 }
 
 export namespace User {
   export interface Data {
     _id?: string;
-    name: string;
-    lastname?: string;
+    birthDate?: string | Date;
     email: string;
+    lastname?: string;
+    name: string;
     password: string;
-    token: string;
     pictureUrl?: string;
+    profession?: string;
+    salary?: number;
+    token: string;
   }
 
   export type Login = {

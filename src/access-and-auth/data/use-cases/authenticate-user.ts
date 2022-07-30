@@ -21,6 +21,6 @@ export class AuthenticateUser {
       this.cacheRepository.set('@token', userLogged.token);
     }
 
-    return userLogged;
+    return new User(userLogged);
   }
 }

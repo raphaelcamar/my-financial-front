@@ -21,6 +21,6 @@ export class CreateUser {
       this.cacheRepository.set('@token', token);
     }
 
-    return userLogged;
+    return new User(userLogged);
   }
 }

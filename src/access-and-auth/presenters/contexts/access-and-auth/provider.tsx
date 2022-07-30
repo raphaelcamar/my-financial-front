@@ -27,9 +27,9 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
     const accessRepository = new AccessRepositoryData();
 
     const useCase = new VerifySession(localStorageRepository, accessRepository);
-    const user = useCase.execute();
+    const user = await useCase.execute();
 
-    return user;
+    return new User(user);
   };
 
   const verifyInCache = (): boolean => {

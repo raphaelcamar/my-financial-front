@@ -3,6 +3,7 @@ import { RouteObject, useRoutes } from 'react-router';
 import { TransactionRoutes } from '@/transaction/presenters/routes';
 import { AccessAndAuthRoutes } from '@/access-and-auth/presenters/routes';
 import { NotFoundPage, ContainerPage } from '@/core/ui/pages';
+import { ProfileRoutes } from '@/profile/presenters';
 
 export const RootRoutes: RouteObject[] = [
   ...AccessAndAuthRoutes,
@@ -10,7 +11,7 @@ export const RootRoutes: RouteObject[] = [
     path: '/',
     element: <ContainerPage />,
     caseSensitive: true,
-    children: [...TransactionRoutes],
+    children: [...TransactionRoutes, ...ProfileRoutes],
   },
   {
     path: '*',

@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Sidebar, Header, Drawer, SidebarOptions } from '@/core/ui/components/organisms';
 import { SidebarAction } from '@/core/ui/components/molecules';
 import { Content, WrapperSidebar, WrapperDrawer, ContentDrawer, HeaderDrawer, IconWrapper } from './styles';
-import { SidebarData } from '@/core/utils';
+import { getHeaderTitle, SidebarData } from '@/core/utils';
 import { Icon, Typography } from '@/core/ui/components/atoms';
 import { useSidebarContext } from '@/core/presenters/contexts/sidebar';
 
@@ -13,8 +13,8 @@ export const Container: React.FC = () => {
   const { pathname } = useLocation();
 
   const getTitle = () => {
-    const currentPath = SidebarData.find(data => data.path === pathname);
-    return currentPath?.title;
+    const title = getHeaderTitle(pathname);
+    return title;
   };
 
   return (
