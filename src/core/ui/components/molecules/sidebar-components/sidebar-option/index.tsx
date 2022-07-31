@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Icon, Typography } from '@/core/ui/components/atoms';
+import { Chip } from '@/core/ui/components/molecules';
 import { AvailableIcons, ISidebaroption } from '@/core/domain';
-import { Container, WrapperIconText, WrapperIcon } from './styles';
+import { Container, WrapperIconText, WrapperIcon, WrapperTypography } from './styles';
 
 interface ISidebarOption {
-  onClick?: () => void;
   selected?: boolean;
   path?: string;
   item?: ISidebaroption;
@@ -15,7 +15,6 @@ interface ISidebarOption {
 }
 
 export const SidebarOption: React.FC<ISidebarOption> = ({
-  onClick,
   path,
   selected,
   sidebarOpen,
@@ -46,23 +45,29 @@ export const SidebarOption: React.FC<ISidebarOption> = ({
       });
     }
   }, [sidebarOpen, selected]);
+
   return (
     <Container
       open={sidebarOpen}
       selected={selected}
       to={path}
-      onClick={onClick || null}
+      soon={item?.soon || null}
       accordionOpen={accordionOpen}
       withFullRadius={withFullRadius}
       isLastItem={isLastItem}
     >
       <WrapperIconText accordionOpen={accordionOpen}>
-        {item.icon && (
+        {item?.icon && (
           <WrapperIcon selected={selected} accordionOpen={accordionOpen} open={sidebarOpen}>
             <Icon icon={item.icon as AvailableIcons} color={state.color} shade={state.shade} size={16} />
           </WrapperIcon>
         )}
-        {sidebarOpen && <Typography color={selected ? 'primary' : 'default'}>{item.title}</Typography>}
+        {sidebarOpen && (
+          <WrapperTypography>
+            <Typography color={selected ? 'primary' : 'default'}>{item.title}</Typography>
+            {item?.soon && <Chip color="warning">Em breve</Chip>}
+          </WrapperTypography>
+        )}
       </WrapperIconText>
     </Container>
   );

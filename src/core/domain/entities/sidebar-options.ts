@@ -2,9 +2,10 @@ import { AvailableIcons } from './available-icons';
 
 export interface ISidebaroption {
   isAccordion?: boolean;
-  icon: AvailableIcons;
+  icon?: AvailableIcons;
   title: string;
   path?: string;
+  soon?: boolean;
   accordionItems?: Omit<ISidebaroption, 'accordionItems' | 'isAccordion'>[];
 }
 

@@ -11,7 +11,7 @@ export const TransactionsPage: React.FC = () => (
         <Space>
           <TableContainer />
         </Space>
-        <div>Últimas movimentações</div>
+        {/* <div>Últimas movimentações</div> */}
       </SecondLine>
     </Container>
   </TransactionProvider>

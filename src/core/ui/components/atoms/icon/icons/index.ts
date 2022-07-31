@@ -30,6 +30,8 @@ export * from './question-mark-rounded-icon';
 export * from './recurrency-value-icon';
 export * from './search-icon';
 export * from './square-icon';
+export * from './tag-icon';
+export * from './transaction-dashboard-icon';
 export * from './transaction-icon';
 export * from './trash-icon';
 export * from './wallet-icon';

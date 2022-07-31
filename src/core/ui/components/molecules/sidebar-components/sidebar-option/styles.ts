@@ -8,6 +8,7 @@ type AccordionItemType = {
   open?: boolean;
   withFullRadius?: boolean;
   isLastItem?: boolean;
+  soon?: boolean;
 };
 
 const selectItemStyles = selected =>
@@ -36,7 +37,7 @@ export const Container = styled(Link)<AccordionItemType>`
   min-height: 48px;
   width: 100%;
   display: flex;
-  align-items: center;
+  pointer-events: ${({ soon }) => (soon ? 'none' : 'auto')};
   &:hover {
     background: ${({ theme }) => theme.palette.primary[50]};
   }
@@ -53,11 +54,10 @@ export const Container = styled(Link)<AccordionItemType>`
 export const WrapperIcon = styled.div<AccordionItemType>`
   display: flex;
   align-content: center;
-  ${({ theme, selected, open }) =>
+  ${({ selected, open }) =>
     selected &&
     !open &&
     css`
-      /* background: ${theme.palette.grey[50]}; */
       border-radius: 4px;
       padding: 12px;
     `}
@@ -72,4 +72,10 @@ export const WrapperIconText = styled.div<AccordionItemType>`
     display: flex;
     justify-content: center;
   }
+`;
+
+export const WrapperTypography = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;

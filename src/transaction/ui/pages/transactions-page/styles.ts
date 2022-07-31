@@ -18,9 +18,9 @@ export const FirstLine = styled.div`
 `;
 
 export const SecondLine = styled.div`
-  display: grid;
+  /* display: grid;
   grid-template-columns: 3fr 1fr;
-  gap: ${SPACING_DEFAULT}px;
+  gap: ${SPACING_DEFAULT}px; */
 
   @media (${({ theme }) => theme.breakpoints.down('md')}) {
     grid-template-columns: auto;

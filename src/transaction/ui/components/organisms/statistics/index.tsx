@@ -13,12 +13,19 @@ export const Statistics: React.FC = () => {
     if (filter) {
       try {
         setLoading(true);
-        await delay(1500);
+        await delay(500);
         await getStatisticsByFilter(filter);
       } finally {
         setLoading(false);
       }
     }
+  };
+
+  const getDateDescription = (start, limit) => {
+    if (start && limit) {
+      return `${start} à ${limit}`;
+    }
+    return '-';
   };
 
   useEffect(() => {
@@ -30,20 +37,23 @@ export const Statistics: React.FC = () => {
       <Container>
         <CardStatistic
           title="Total de gastos"
-          description={`${statistic?.totalFilter?.filter?.start} à ${statistic?.totalFilter?.filter?.limit}`}
+          description={getDateDescription(statistic?.totalFilter?.filter?.start, statistic?.totalFilter?.filter?.limit)}
           price={statistic?.totalFilter?.value}
           icon="recurrencyValue"
         />
 
         <CardStatistic
           title="Maior gasto"
-          description={statistic?.mostSpent?.description}
+          description={statistic?.mostSpent?.description || '-'}
           price={statistic?.mostSpent?.value}
           icon="arrowLimit"
         />
         <CardStatistic
           title="Média de gasto"
-          description={`${statistic?.averageSpent?.filter?.start} à ${statistic?.averageSpent?.filter?.limit}`}
+          description={getDateDescription(
+            statistic?.averageSpent?.filter?.start,
+            statistic?.averageSpent?.filter?.limit
+          )}
           price={statistic?.averageSpent?.value}
           icon="balance"
         />

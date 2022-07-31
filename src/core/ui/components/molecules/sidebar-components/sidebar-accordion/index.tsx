@@ -5,7 +5,7 @@ import { Typography, Icon } from '@/core/ui/components/atoms';
 
 interface ISidebarAccordion {
   titleAccordion: string;
-  icon: AvailableIcons;
+  icon?: AvailableIcons;
   sidebarOpen: boolean;
   open: boolean;
   setOpen: (open?: boolean) => void;
@@ -26,12 +26,18 @@ export const SidebarAccordion: React.FC<ISidebarAccordion> = ({
   <Wrapper onClick={() => setOpen(!open)} open={open}>
     <Container open={open} sidebarOpen={sidebarOpen} hasMatchedRoute={hasMatchedRoute}>
       <AccordionHeader>
-        <Icon
-          icon={icon}
-          color={open || hasMatchedRoute ? 'primary' : null}
-          shade={open || hasMatchedRoute ? 'main' : null}
-        />
-        {sidebarOpen && <Typography color={open || hasMatchedRoute ? 'primary' : 'grey'}>{titleAccordion}</Typography>}
+        {icon && (
+          <Icon
+            icon={icon}
+            color={open || hasMatchedRoute ? 'primary' : null}
+            shade={open || hasMatchedRoute ? 'main' : null}
+          />
+        )}
+        {sidebarOpen && (
+          <Typography weight={500} color={open || hasMatchedRoute ? 'primary' : 'grey'}>
+            {titleAccordion}
+          </Typography>
+        )}
       </AccordionHeader>
       {sidebarOpen && (
         <WrapperIcon open={open}>

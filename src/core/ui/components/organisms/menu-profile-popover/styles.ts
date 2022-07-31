@@ -16,7 +16,7 @@ export const Menu = styled.div<MenuProfileType>`
   width: 180px;
   border-radius: ${({ open }) => (open ? '24px 24px 0 0' : '24px')};
   cursor: pointer;
-  padding: 12px;
+  padding: 8px 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: ${({ theme }) => theme.palette.background.paper};
 `;
@@ -30,7 +30,7 @@ export const Popover = styled.div<MenuProfileType>`
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  padding: 12px;
+  padding: 8px 12px;
   padding-top: 0 !important;
   ${({ open }) =>
     open
@@ -38,7 +38,7 @@ export const Popover = styled.div<MenuProfileType>`
           z-index: 1000;
           height: auto;
           border-top: none;
-          top: 53px;
+          top: 46px;
         `
       : css`
           max-height: 0px;
@@ -51,7 +51,7 @@ export const Popover = styled.div<MenuProfileType>`
 export const Container = styled.div<MenuProfileType>`
   margin: 0px;
   border-radius: 24px;
-  padding: 12px;
+  padding: 8px 12px;
   transition: all ease 0.3s;
   display: flex;
   justify-content: space-between;
