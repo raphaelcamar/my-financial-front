@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AvailableIcons } from '@/core/domain';
 import { Icon, Typography } from '@/core/ui/components/atoms';
-import { Container } from './styles';
+import { Container, Text } from './styles';
 
 interface IMenuItem {
   text?: string;
@@ -22,7 +22,7 @@ export const MenuItem: React.FC<IMenuItem> = ({ text, icon, onClick, width }) =>
       onMouseLeave={() => setColorHover(false)}
     >
       <Icon icon={icon} color={colorHover ? 'primary' : null} shade={colorHover ? '500' : null} />
-      {text && <Typography color={colorHover ? 'primary' : 'default'}>{text}</Typography>}
+      <Text>{text && <Typography color={colorHover ? 'primary' : 'default'}>{text}</Typography>}</Text>
     </Container>
   );
 };

@@ -25,3 +25,9 @@ export const Container = styled.div<MenuItemType>`
     background: ${({ theme }) => theme.palette.grey[200]};
   }
 `;
+
+export const Text = styled.div`
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    display: none;
+  }
+`;

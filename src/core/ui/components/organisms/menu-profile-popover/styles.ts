@@ -13,12 +13,16 @@ export const Menu = styled.div<MenuProfileType>`
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  width: 180px;
+  min-width: 180px;
   border-radius: ${({ open }) => (open ? '24px 24px 0 0' : '24px')};
   cursor: pointer;
   padding: 8px 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: ${({ theme }) => theme.palette.background.paper};
+
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    min-width: auto;
+  }
 `;
 
 export const Popover = styled.div<MenuProfileType>`
@@ -81,6 +85,9 @@ export const WrapperIcon = styled.div<MenuProfileType>`
       : css`
           transform: rotate(0deg);
         `};
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    display: none;
+  }
 `;
 
 export const WrapperMenuItem = styled.div`
@@ -91,4 +98,10 @@ export const WrapperMenuItem = styled.div`
 
 export const Border = styled.div`
   border-top: 1px solid ${({ theme }) => theme.palette.grey[100]};
+`;
+
+export const Text = styled.div`
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    display: none;
+  }
 `;
