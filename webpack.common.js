@@ -12,7 +12,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'public/js'),
-    publicPath: '/public/js',
+    publicPath: '/public',
     filename: 'bundle.js'
   },
   resolve: {
@@ -49,7 +49,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Production'
+      template: './public/index.html'
     }),
     new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({
