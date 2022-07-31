@@ -2,6 +2,8 @@ import { Transaction } from '@/transaction/domain';
 
 export interface TransactionRepository {
   create(transaction: Transaction.Data): Promise<Transaction>;
-  getTransactions(queryUrl?: string): Promise<Transaction[]>;
-  deleteTransacion(transactionId: string): Promise<void>;
+  get(queryUrl?: string): Promise<Transaction[]>;
+  delete(transactionId: string): Promise<void>;
+  update(transaction: Transaction.Data): Promise<Transaction>;
+  getStatistics(queryUrl: string): Promise<Transaction.Statistic>;
 }

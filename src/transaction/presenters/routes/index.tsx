@@ -1,5 +1,44 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import { TransactionsPage } from '@/transaction/presenters/pages';
+import React, { Suspense } from 'react';
+import { RouteObject, useRoutes } from 'react-router-dom';
+import { PrivateRoute } from '@/core/presenters/proxies';
+import { CircularProgress } from '@/core/ui/components/atoms';
 
-export const TransactionRoutes = [<Route path="/transacoes" element={<TransactionsPage />} />];
+const TransactionsPage = React.lazy(() => import('@/transaction/ui/pages/transactions-page'));
+const Test = React.lazy(() => import('@/transaction/ui/pages/test'));
+
+export const TransactionRoutes: RouteObject[] = [
+  {
+    path: '/transacoes',
+    element: (
+      <Suspense fallback={<CircularProgress color="info" size={40} />}>
+        <PrivateRoute>
+          <TransactionsPage />
+        </PrivateRoute>
+      </Suspense>
+    ),
+  },
+
+  {
+    path: '/teste',
+    element: (
+      <Suspense fallback={<CircularProgress color="info" size={40} />}>
+        <PrivateRoute>
+          <Test />
+        </PrivateRoute>
+      </Suspense>
+    ),
+  },
+
+  {
+    path: '/teste-2',
+    element: (
+      <Suspense fallback={<CircularProgress color="info" size={40} />}>
+        <PrivateRoute>
+          <Test />
+        </PrivateRoute>
+      </Suspense>
+    ),
+  },
+];
+
+export const TransactionRoutesComponent = (): React.ReactElement => useRoutes(TransactionRoutes);

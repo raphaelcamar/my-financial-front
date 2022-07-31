@@ -3,12 +3,20 @@ import { Transaction } from '@/transaction/domain';
 import { TransactionContext } from './context';
 import { initialState, reducer } from './reducers';
 import { TransactionRepositoryData } from '@/transaction/infra';
-import { CreateTransaction, GetTransactions, DeleteTransaction } from '@/transaction/data/use-cases';
+import {
+  CreateTransaction,
+  GetTransactions,
+  DeleteTransaction,
+  UpdateTransaction,
+  GetTransactionStatistic,
+} from '@/transaction/data/use-cases';
 import {
   fetchCreateTransaction,
   fetchDeleteTransaction,
   fetchFilterTransaction,
+  fetchGetStatistics,
   fetchGetTransactions,
+  fetchUpdateTransaction,
 } from './actions';
 
 export const TransactionProvider: React.FC = ({ children }) => {
@@ -21,7 +29,6 @@ export const TransactionProvider: React.FC = ({ children }) => {
     const useCase = new CreateTransaction(transactionData, transactionRepository);
 
     await useCase.execute();
-
     const getTransactions = new GetTransactions(transactionRepository, state.filter);
 
     const result = await getTransactions.execute();
@@ -45,19 +52,41 @@ export const TransactionProvider: React.FC = ({ children }) => {
   const deleteTransaction = async (transactionId: string): Promise<void> => {
     const transactionRepository = new TransactionRepositoryData();
 
-    const useCase = new DeleteTransaction(transactionRepository, transactionId);
-    await useCase.execute();
-    dispatch(fetchDeleteTransaction(transactionId));
+    const useCase = new DeleteTransaction(transactionRepository, transactionId, state.transactions);
+    const filteredTransactions = await useCase.execute();
+    dispatch(fetchDeleteTransaction(filteredTransactions));
+  };
+
+  const updateTransaction = async (transaction: Transaction.Data): Promise<void> => {
+    const transactionRepository = new TransactionRepositoryData();
+
+    const useCase = new UpdateTransaction(transactionRepository, transaction, state.transactions);
+
+    const filteredTransactions = await useCase.execute();
+
+    dispatch(fetchUpdateTransaction(filteredTransactions));
+  };
+
+  const getStatisticsByFilter = async (filter: Transaction.Filter) => {
+    const transactionRepository = new TransactionRepositoryData();
+
+    const useCase = new GetTransactionStatistic(transactionRepository, filter);
+    const statistics = await useCase.execute();
+    dispatch(fetchGetStatistics(statistics));
   };
 
   return (
     <TransactionContext.Provider
       value={{
         transactionLoader,
+        filter: state.filter,
+        transactions: state.transactions,
+        statistic: state.statistic,
         createTransaction,
         getTransactions,
         deleteTransaction,
-        transactions: state.transactions,
+        updateTransaction,
+        getStatisticsByFilter,
       }}
     >
       {children}

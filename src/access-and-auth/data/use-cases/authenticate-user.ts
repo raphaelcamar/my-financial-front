@@ -12,8 +12,8 @@ export class AuthenticateUser {
   async execute(): Promise<User> {
     const userLogged = await this.accessRepository.login(this.loginData);
     if (userLogged) {
-      this.cacheRepository.clean('@user');
-      this.cacheRepository.clean('@token');
+      this.cacheRepository.clear('@token');
+      this.cacheRepository.clear('@user');
 
       delete userLogged?.password;
 
@@ -21,6 +21,6 @@ export class AuthenticateUser {
       this.cacheRepository.set('@token', userLogged.token);
     }
 
-    return userLogged;
+    return new User(userLogged);
   }
 }

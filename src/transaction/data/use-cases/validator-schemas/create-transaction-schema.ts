@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { isValidDate, parseDate } from '@/core/presenters/utils';
+import { isValidDate, parseDate } from '@/core/utils';
 
 const verifyDate = (value: string, originalValue: string): string => {
   const dateParse = parseDate(originalValue, 'dd/MM/yyyy');
@@ -9,26 +9,19 @@ const verifyDate = (value: string, originalValue: string): string => {
 };
 
 const verifyValue = (value: string, originalValue: string): number => {
-  const withoutpoints = originalValue.replace(/\D/g, '');
-  if (withoutpoints.length <= 0) return null;
+  const withoutpoints = String(originalValue)?.replace(/\D/g, '');
+
+  if (!withoutpoints || withoutpoints.length <= 0) return null;
 
   return Number(withoutpoints);
 };
 
-const TypeSchema = yup.object({
-  value: yup.string().oneOf(['SPENT', 'ENTRANCE']).required('Deve informar um tipo').nullable(),
-});
-
-const TopicSchema = yup.object({
-  value: yup
+export const CreateTransactionSchema = yup.object({
+  topic: yup
     .string()
     .oneOf(['FOOD', 'TRANSPORT', 'HEALTH', 'SALARY', 'OTHER'], 'Deve informar algumas das opções')
     .required('Deve informar um tópico')
     .nullable(),
-});
-
-export const CreateTransactionSchema = yup.object({
-  topic: TopicSchema,
 
   cost: yup
     .number()
@@ -45,7 +38,7 @@ export const CreateTransactionSchema = yup.object({
     .required('Deve informar uma data')
     .nullable(),
 
-  type: TypeSchema,
+  type: yup.string().oneOf(['SPENT', 'ENTRANCE']).required('Deve informar um tipo').nullable(),
 
   anotation: yup.string().max(100).nullable().required('Deve informar uma anotação'),
 });

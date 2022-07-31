@@ -10,7 +10,11 @@ export class LocalStorageRepository implements CacheRepository {
     return cache;
   }
 
-  clean(key: localStorageKey): void {
+  clear(key: localStorageKey): void {
     localStorage.removeItem(key);
+  }
+
+  clearAll(): void {
+    localStorage.clear();
   }
 }

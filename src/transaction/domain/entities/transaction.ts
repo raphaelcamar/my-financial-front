@@ -59,4 +59,21 @@ export namespace Transaction {
     start?: string | Date;
     limit?: string | Date;
   }
+
+  export interface Statistic {
+    mostSpent: {
+      value: number;
+      filter: Transaction.Filter;
+      description: string;
+    };
+    averageSpent: {
+      filter: Transaction.Filter;
+      value: number;
+    };
+    total: number;
+    totalFilter: {
+      filter: Transaction.Filter;
+      value: number;
+    };
+  }
 }

@@ -1,5 +1,5 @@
 /* eslint-disable default-param-last */
-import { ActionTypes, InitialState, USER_AUTHORIZED, EMAIL_PASSWORD_RECOVER } from './types';
+import { ActionTypes, InitialState, USER_AUTHORIZED, EMAIL_PASSWORD_RECOVER, USER_LOGOUT } from './types';
 
 export const initialState: InitialState = {
   user: undefined,
@@ -19,6 +19,12 @@ export function reducer(state = initialState, action: ActionTypes): InitialState
       return {
         ...state,
         emailPasswordRecover: action.payload,
+      };
+
+    case USER_LOGOUT:
+      return {
+        ...state,
+        user: action.payload,
       };
   }
 }

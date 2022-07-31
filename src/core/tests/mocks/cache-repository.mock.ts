@@ -3,7 +3,7 @@ import { CacheRepository, localStorageKey } from '@/core/data';
 export class MockCacheRepository implements CacheRepository {
   private readonly localStorage = new Map();
 
-  clean(key: localStorageKey): void {
+  clear(key: localStorageKey): void {
     this.localStorage.delete(key);
   }
 
@@ -13,5 +13,9 @@ export class MockCacheRepository implements CacheRepository {
 
   get<T>(key: localStorageKey): T {
     return this.localStorage.get(key) as T;
+  }
+
+  clearAll() {
+    this.localStorage.clear();
   }
 }

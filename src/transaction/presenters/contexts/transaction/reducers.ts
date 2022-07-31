@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable default-param-last */
 import {
   ActionTypes,
@@ -6,13 +7,16 @@ import {
   FILTER_TRANSACTION,
   InitialState,
   DELETE_TRANSACTION,
+  UPDATE_TRANSACTION,
+  STATISTIC_TRANSACTION,
 } from './types';
 
 export const initialState: InitialState = {
   transactions: [],
   filter: undefined,
+  statistic: undefined,
 };
-// eslint-disable-next-line consistent-return
+
 export function reducer(state = initialState, action: ActionTypes): InitialState {
   switch (action.type) {
     case CREATE_TRANSACTION:
@@ -34,7 +38,18 @@ export function reducer(state = initialState, action: ActionTypes): InitialState
     case DELETE_TRANSACTION:
       return {
         ...state,
-        transactions: state.transactions.filter(transaction => transaction._id !== action.payload),
+        transactions: action.payload,
+      };
+
+    case UPDATE_TRANSACTION:
+      return {
+        ...state,
+        transactions: action.payload,
+      };
+    case STATISTIC_TRANSACTION:
+      return {
+        ...state,
+        statistic: action.payload,
       };
   }
 }

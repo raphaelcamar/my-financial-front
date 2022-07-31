@@ -6,7 +6,8 @@ const breakpoints: BreakpointTypes = {
   sm: 600,
   md: 960,
   lg: 1280,
-  xl: 1920,
+  xl: 1450,
+  xxl: 1920,
 };
 
 export const mainTheme: DefaultTheme = {
@@ -60,7 +61,7 @@ export const mainTheme: DefaultTheme = {
     },
 
     background: {
-      paper: '#F9FAFB',
+      paper: '#FFFFFF',
       default: '#FAFAFA',
     },
     grey: {
