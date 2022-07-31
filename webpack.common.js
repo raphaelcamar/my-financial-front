@@ -11,9 +11,9 @@ module.exports = {
     app: './src/main/index.tsx'
   },
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundles/[name].[contenthash].js',
-    publicPath: '/'
+    path: path.join(__dirname, 'public/js'),
+    publicPath: '/public',
+    filename: 'bundle.js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -49,8 +49,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
-      filename: 'index.html'
+      template: './public/index.html'
     }),
     new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({
