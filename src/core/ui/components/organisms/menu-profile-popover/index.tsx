@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Avatar, Icon, Typography } from '@/core/ui/components/atoms';
-import { Menu, Popover, Wrapper, PhotoName, WrapperIcon, WrapperMenuItem, Border, Text } from './styles';
+import { Avatar, Hide, Icon, Typography } from '@/core/ui/components/atoms';
+import { Menu, Popover, Wrapper, PhotoName, WrapperIcon, WrapperMenuItem, Border } from './styles';
 import { MenuItem } from '@/core/ui/components/molecules';
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters';
 
@@ -16,9 +16,9 @@ export const MenuProfilePopover: React.FC = () => {
       <Menu open={menuOpen}>
         <PhotoName>
           <Avatar size={30} url={user?.pictureUrl || user?.name} />
-          <Text>
+          <Hide breakpoint="md">
             <Typography size="normal">{user?.name}</Typography>
-          </Text>
+          </Hide>
         </PhotoName>
         <WrapperIcon open={menuOpen}>
           <Icon icon="arrowDown" color="primary" shade="500" />

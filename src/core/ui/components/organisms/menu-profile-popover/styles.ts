@@ -99,9 +99,3 @@ export const WrapperMenuItem = styled.div`
 export const Border = styled.div`
   border-top: 1px solid ${({ theme }) => theme.palette.grey[100]};
 `;
-
-export const Text = styled.div`
-  @media (${({ theme }) => theme.breakpoints.down('md')}) {
-    display: none;
-  }
-`;

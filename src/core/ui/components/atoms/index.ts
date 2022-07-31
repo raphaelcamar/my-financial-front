@@ -2,6 +2,7 @@ export * from './avatar';
 export * from './checkbox';
 export * from './circular-progress';
 export * from './helper-text';
+export * from './hide';
 export * from './icon';
 export * from './input-base';
 export * from './modal';
