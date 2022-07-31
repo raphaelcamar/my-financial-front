@@ -57,7 +57,7 @@ export const SubscribeForm: React.FC = () => {
           </Button>
         </Form>
 
-        <GoogleButton>Inscreva-se com o google</GoogleButton>
+        {/* <GoogleButton>Inscreva-se com o google</GoogleButton> */}
         <Center>
           <RedirectLink question="Já possui conta?" link="Faça login" to="/login" />
         </Center>
