@@ -12,7 +12,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'public/js'),
-    publicPath: '/public',
+    publicPath: '/public/js',
     filename: 'bundle.js'
   },
   resolve: {
@@ -48,9 +48,9 @@ module.exports = {
     'react-dom': 'ReactDOM'
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html'
-    }),
+    // new HtmlWebpackPlugin({
+    //   title: 'Production'
+    // }),
     new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({
       process: 'process/browser',

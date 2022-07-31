@@ -1,56 +1,43 @@
 /* eslint-disable no-return-await */
 import React from 'react';
 
-const AddIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/add-icon'));
-const ArrowDownIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/arrow-down-icon'));
-const BellBallIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/bell-ball-icon'));
-const BellIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/bell-icon'));
-const CircleIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/circle-icon'));
-const CloseIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/close-icon'));
-const DashboardIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/dashboard-icon'));
-const FilterIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/filter-icon'));
-const GoogleIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/google-icon'));
-const KeyIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/key-icon'));
-const LineArrowDownIcon = React.lazy(
-  async () => await import('@/core/ui/components/atoms/icon/icons/line-arrow-down-icon')
-);
-const LineArrowUpIcon = React.lazy(
-  async () => await import('@/core/ui/components/atoms/icon/icons/line-arrow-up-icon')
-);
-const CloseEyeIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/close-eye-icon'));
-const OpenEyeIconIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/open-eye-icon'));
-const LogoNewIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/logo-new-icon'));
-const LogoSmallIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/logo-small-icon'));
-const MailIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/mail-icon'));
-const MiniArrowDownIcon = React.lazy(
-  async () => await import('@/core/ui/components/atoms/icon/icons/mini-arrow-down-icon')
-);
-const MiniArrowUpIcon = React.lazy(
-  async () => await import('@/core/ui/components/atoms/icon/icons/mini-arrow-up-icon')
-);
-const PersonIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/person-icon'));
-const QuestionMarkRoundedIcon = React.lazy(
-  async () => await import('@/core/ui/components/atoms/icon/icons/question-mark-rounded-icon')
-);
-const SearchIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/search-icon'));
-const SquareIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/square-icon'));
-const TransactionIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/transaction-icon'));
-const CloseDrawerMobileIcon = React.lazy(
-  async () => await import('@/core/ui/components/atoms/icon/icons/close-drawer-mobile-icon')
-);
-const OpenDrawerMobileIcon = React.lazy(
-  async () => await import('@/core/ui/components/atoms/icon/icons/open-drawer-mobile-icon')
-);
-const PenIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/pen-icon'));
-const TrashIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/trash-icon'));
-const RecurrencyValueIcon = React.lazy(
-  async () => await import('@/core/ui/components/atoms/icon/icons/recurrency-value-icon')
-);
-const ArrowLimitIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/arrow-limit-icon'));
-const MoneyBagIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/money-bag-icon'));
-const BalanceIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/balance-icon'));
-const WalletIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/wallet-icon'));
-const LogoutIcon = React.lazy(async () => await import('@/core/ui/components/atoms/icon/icons/logout-icon'));
+import { AddIcon } from '@/core/ui/components/atoms/icon/icons/add-icon';
+import { ArrowDownIcon } from '@/core/ui/components/atoms/icon/icons/arrow-down-icon';
+import { BellBallIcon } from '@/core/ui/components/atoms/icon/icons/bell-ball-icon';
+import { BellIcon } from '@/core/ui/components/atoms/icon/icons/bell-icon';
+import { CircleIcon } from '@/core/ui/components/atoms/icon/icons/circle-icon';
+import { CloseIcon } from '@/core/ui/components/atoms/icon/icons/close-icon';
+import { DashboardIcon } from '@/core/ui/components/atoms/icon/icons/dashboard-icon';
+import { FilterIcon } from '@/core/ui/components/atoms/icon/icons/filter-icon';
+import { GoogleIcon } from '@/core/ui/components/atoms/icon/icons/google-icon';
+import { KeyIcon } from '@/core/ui/components/atoms/icon/icons/key-icon';
+import { LineArrowDownIcon } from '@/core/ui/components/atoms/icon/icons/line-arrow-down-icon';
+import { LineArrowUpIcon } from '@/core/ui/components/atoms/icon/icons/line-arrow-up-icon';
+
+import { CloseEyeIcon } from '@/core/ui/components/atoms/icon/icons/close-eye-icon';
+import { OpenEyeIconIcon } from '@/core/ui/components/atoms/icon/icons/open-eye-icon';
+import { LogoNewIcon } from '@/core/ui/components/atoms/icon/icons/logo-new-icon';
+import { LogoSmallIcon } from '@/core/ui/components/atoms/icon/icons/logo-small-icon';
+import { MailIcon } from '@/core/ui/components/atoms/icon/icons/mail-icon';
+import { MiniArrowDownIcon } from '@/core/ui/components/atoms/icon/icons/mini-arrow-down-icon';
+import { MiniArrowUpIcon } from '@/core/ui/components/atoms/icon/icons/mini-arrow-up-icon';
+import { PersonIcon } from '@/core/ui/components/atoms/icon/icons/person-icon';
+import { QuestionMarkRoundedIcon } from '@/core/ui/components/atoms/icon/icons/question-mark-rounded-icon';
+import { SearchIcon } from '@/core/ui/components/atoms/icon/icons/search-icon';
+import { SquareIcon } from '@/core/ui/components/atoms/icon/icons/square-icon';
+import { TransactionIcon } from '@/core/ui/components/atoms/icon/icons/transaction-icon';
+import { CloseDrawerMobileIcon } from '@/core/ui/components/atoms/icon/icons/close-drawer-mobile-icon';
+
+import { OpenDrawerMobileIcon } from '@/core/ui/components/atoms/icon/icons/open-drawer-mobile-icon';
+import { PenIcon } from '@/core/ui/components/atoms/icon/icons/pen-icon';
+import { TrashIcon } from '@/core/ui/components/atoms/icon/icons/trash-icon';
+import { RecurrencyValueIcon } from '@/core/ui/components/atoms/icon/icons/recurrency-value-icon';
+
+import { ArrowLimitIcon } from '@/core/ui/components/atoms/icon/icons/arrow-limit-icon';
+import { MoneyBagIcon } from '@/core/ui/components/atoms/icon/icons/money-bag-icon';
+import { BalanceIcon } from '@/core/ui/components/atoms/icon/icons/balance-icon';
+import { WalletIcon } from '@/core/ui/components/atoms/icon/icons/wallet-icon';
+import { LogoutIcon } from '@/core/ui/components/atoms/icon/icons/logout-icon';
 
 export const getIcon = {
   add: AddIcon,

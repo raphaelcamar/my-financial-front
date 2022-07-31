@@ -3,8 +3,9 @@ import { RouteObject, useRoutes } from 'react-router-dom';
 import { PrivateRoute } from '@/core/presenters/proxies';
 import { CircularProgress } from '@/core/ui/components/atoms';
 
-const TransactionsPage = React.lazy(() => import('@/transaction/ui/pages/transactions-page'));
-const Test = React.lazy(() => import('@/transaction/ui/pages/test'));
+// const TransactionsPage = React.lazy(() => import('@/transaction/ui/pages/transactions-page'));
+// const Test = React.lazy(() => import('@/transaction/ui/pages/test'));
+import { TransactionsPage, Test } from '@/transaction/ui';
 
 export const TransactionRoutes: RouteObject[] = [
   {
