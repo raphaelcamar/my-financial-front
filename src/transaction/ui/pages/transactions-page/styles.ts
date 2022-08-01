@@ -18,9 +18,10 @@ export const FirstLine = styled.div`
 `;
 
 export const SecondLine = styled.div`
-  /* display: grid;
+  display: grid;
   grid-template-columns: 3fr 1fr;
-  gap: ${SPACING_DEFAULT}px; */
+  gap: ${SPACING_DEFAULT}px;
+  /* max-width: 100%; */
 
   @media (${({ theme }) => theme.breakpoints.down('md')}) {
     grid-template-columns: auto;
@@ -31,4 +32,5 @@ export const Space = styled.div`
   display: flex;
   gap: 24px;
   flex-direction: column;
+  overflow-x: auto;
 `;
