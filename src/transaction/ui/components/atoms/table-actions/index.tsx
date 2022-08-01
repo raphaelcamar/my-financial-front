@@ -46,47 +46,44 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
     }
   };
 
+  // TODO getting better this filter
   return (
     <>
-      <Container
-        onSubmit={handleSubmit(handleSubmitForm)}
-        hasHelperText={!!errors?.start?.message || !!errors?.limit?.message}
-      >
-        <StyledInputMask>
-          <Controller
-            control={control}
-            name="start"
-            render={({ field: { value, onChange } }) => (
-              <InputMask
-                error={!!errors?.start?.message}
-                helperText={errors?.start?.message}
-                label="Início"
-                mask="date"
-                value={value as string}
-                onChange={e => onChange(e)}
-              />
-            )}
-          />
-        </StyledInputMask>
+      <Container onSubmit={handleSubmit(handleSubmitForm)}>
+        <div style={{ display: 'flex', flexDirection: 'row', gap: 16, alignItems: 'center' }}>
+          <StyledInputMask>
+            <Controller
+              control={control}
+              name="start"
+              render={({ field: { value, onChange } }) => (
+                <InputMask
+                  error={!!errors?.start?.message}
+                  helperText={errors?.start?.message}
+                  label="Início"
+                  mask="date"
+                  value={value as string}
+                  onChange={e => onChange(e)}
+                />
+              )}
+            />
+          </StyledInputMask>
 
-        <StyledInputMask>
-          <Controller
-            control={control}
-            name="limit"
-            render={({ field: { value, onChange } }) => (
-              <InputMask
-                error={!!errors?.limit?.message}
-                helperText={errors?.limit?.message}
-                label="Fim"
-                mask="date"
-                value={value as string}
-                onChange={e => onChange(e)}
-                // helperText="Teste"
-              />
-            )}
-          />
-        </StyledInputMask>
-        <WrapperButton hasHelperText={!!errors?.start?.message || !!errors?.limit?.message}>
+          <StyledInputMask>
+            <Controller
+              control={control}
+              name="limit"
+              render={({ field: { value, onChange } }) => (
+                <InputMask
+                  error={!!errors?.limit?.message}
+                  helperText={errors?.limit?.message}
+                  label="Fim"
+                  mask="date"
+                  value={value as string}
+                  onChange={e => onChange(e)}
+                />
+              )}
+            />
+          </StyledInputMask>
           <StyledButton
             disabled={loading}
             type="submit"
@@ -94,11 +91,17 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
             loading={loading}
             colorLoading="primary"
             sizeLoading={5}
+            hasHelperText={!!errors?.start?.message || !!errors?.limit?.message}
           >
             Enviar
           </StyledButton>
-        </WrapperButton>
-        <ModalAddButton variant="primary" type="button" onClick={setOpenModal}>
+        </div>
+        <ModalAddButton
+          variant="primary"
+          type="button"
+          onClick={setOpenModal}
+          hasHelperText={!!errors?.start?.message || !!errors?.limit?.message}
+        >
           {buttonText}
         </ModalAddButton>
       </Container>

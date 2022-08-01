@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Button } from '@/core/ui/components/molecules';
+import { HelperText } from '@/core/ui/components/atoms';
 
 type TableActionsType = {
   hasHelperText?: boolean;
@@ -9,12 +10,12 @@ export const Container = styled.form<TableActionsType>`
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  align-items: ${({ hasHelperText }) => (hasHelperText ? 'center' : 'flex-end')};
+  align-items: center;
   width: 100%;
 
   @media (${({ theme }) => theme.breakpoints.down('md')}) {
     flex-direction: column;
-    align-items: ${({ hasHelperText }) => (hasHelperText ? 'center' : 'flex-end')};
+    align-items: center;
     gap: 8px;
   }
 `;
@@ -26,12 +27,12 @@ export const FilterSearch = styled.div`
 `;
 
 export const WrapperButton = styled.div<TableActionsType>`
-  width: 50%;
+  /* width: 50%; */
   height: 100%;
   display: flex;
   justify-content: baseline;
-  align-items: ${({ hasHelperText }) => (hasHelperText ? 'center' : 'flex-end')};
-  margin-bottom: 8px;
+  align-items: center;
+  margin-top: 10px;
   @media (${({ theme }) => theme.breakpoints.down('md')}) {
     width: 100%;
 
@@ -48,13 +49,14 @@ export const StyledInputMask = styled.div`
   }
 `;
 
-export const StyledButton = styled(Button)`
+export const StyledButton = styled(Button)<TableActionsType>`
   width: 30%;
+  margin-top: ${({ hasHelperText }) => (hasHelperText ? '4px' : '22px')};
 `;
 
-export const ModalAddButton = styled(Button)`
+export const ModalAddButton = styled(Button)<TableActionsType>`
   min-width: 250px;
-  margin-bottom: 8px;
+  margin-top: ${({ hasHelperText }) => (hasHelperText ? '4px' : '22px')};
   @media (${({ theme }) => theme.breakpoints.down('md')}) {
     width: 100%;
     min-height: 46px;

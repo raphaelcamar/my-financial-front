@@ -6,7 +6,7 @@ type AvailableMasks = 'date' | 'currency';
 
 interface IInputMask extends IInput {
   error: boolean;
-  helperText: string;
+  helperText?: string;
   mask: AvailableMasks;
   label: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
