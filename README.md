@@ -5,7 +5,7 @@
 # My financial 
 
 ## Descrição
-My financial é um aplicação que permite controlar sua vida financeira. O projeto foi iniciado para ser uma base de estudos durante o mesmo, permitindo aplicar soluções e novas tecnologias em uma base de código sólida, sempre evoluindo e alterando dentro do possível o projeto em sí.
+My financial é um aplicação que permite controlar sua vida financeira. O projeto foi iniciado para ser uma base de estudos, permitindo aplicar soluções e novas tecnologias em uma base de código sólida, sempre evoluindo.
 
 ## Tecnologias utilizadas
 
