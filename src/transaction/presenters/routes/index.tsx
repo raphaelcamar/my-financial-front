@@ -20,6 +20,17 @@ export const TransactionRoutes: RouteObject[] = [
   },
 
   {
+    path: '/',
+    element: (
+      <Suspense fallback={<CircularProgress color="info" size={40} />}>
+        <PrivateRoute>
+          <TransactionsPage />
+        </PrivateRoute>
+      </Suspense>
+    ),
+  },
+
+  {
     path: '/teste',
     element: (
       <Suspense fallback={<CircularProgress color="info" size={40} />}>
