@@ -4,10 +4,11 @@
 
 # My financial 
 
-## Descrição
-My financial é um aplicação que permite controlar sua vida financeira. O projeto foi iniciado para ser uma base de estudos durante o mesmo, permitindo aplicar soluções e novas tecnologias em uma base de código sólida, sempre evoluindo e alterando dentro do possível o projeto em sí.
+## Description
+My Financial it´s a app that allows you to control your financial life. The project was started to be a studying base, allowing to apply different solutions and new techonologies, in a very solid code base, always evolving.
 
-## Tecnologias utilizadas
+
+## Technologies
 
 - <a href="[doc:introduction](https://pt-br.reactjs.org/)" target="_blank">React</a>
 - <a href="[doc:introduction](https://www.typescriptlang.org/)" target="_blank">Typescript</a>
@@ -18,6 +19,8 @@ My financial é um aplicação que permite controlar sua vida financeira. O proj
 - <a href="[doc:introduction](https://jestjs.io/pt-BR/)" target="_blank">Jest</a>
 - <a href="[doc:introduction](https://testing-library.com/docs/react-testing-library/intro/)" target="_blank">React testing Library</a>
 - <a href="[doc:introduction](https://www.figma.com/)" target="_blank">Figma</a>
+- <a href="[doc:introduction](https://atomicdesign.bradfrost.com/chapter-2/)" target="_blank">Atomic design</a>
+- <a href="[doc:introduction](https://reactrouter.com/docs/en/v6/getting-started/overview)" target="_blank">React router dom V6</a>
 
-## Autores
+## Authors
 - [@raphaelcamar](https://www.github.com/raphaelcamar)
