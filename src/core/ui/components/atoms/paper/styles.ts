@@ -38,6 +38,6 @@ export const PaperContainer = styled.div<IPaper>`
   ${({ noRadiusIn }) => getRadius(noRadiusIn)};
   padding: 24px;
   width: ${({ fullWidth }) => (fullWidth ? '100%' : '')};
-  background: ${({ theme }) => theme.palette.grey[50]};
+  background: ${({ theme }) => theme.palette.background.paper};
   ${({ density }) => getShadowDensity(density)}
 `;
