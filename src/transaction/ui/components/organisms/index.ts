@@ -1,2 +1,2 @@
-export * from './table-container';
 export * from './statistics';
+export * from './table-container';

@@ -1,5 +1,6 @@
 export * from './button';
 export * from './chip';
+export * from './empty-state';
 export * from './icon-button';
 export * from './input-mask';
 export * from './input';

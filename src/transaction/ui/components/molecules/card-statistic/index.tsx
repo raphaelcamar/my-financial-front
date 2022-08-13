@@ -40,7 +40,7 @@ export const CardStatistic: React.FC<ICardStatistic> = ({
             </Typography>
           </TextEllipsis>
           <TextEllipsis>
-            <Typography size="xsmall" weight={500} color="secondary" ellipsis>
+            <Typography size="xsmall" weight={500} color="grey" shade={400} ellipsis>
               {description}
             </Typography>
           </TextEllipsis>

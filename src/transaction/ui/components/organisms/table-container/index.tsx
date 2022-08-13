@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { formatDate, monthStartDate } from '@/core/utils';
 import { Container } from './styles';
-import { WrapperLoader } from '@/core/ui/components/molecules';
+import { EmptyState, WrapperLoader } from '@/core/ui/components/molecules';
 
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 
@@ -82,14 +82,20 @@ export const TableContainer: React.FC = () => {
           onClose={() => setDeleteData(null)}
           onSubmit={() => handleSubmit()}
         />
-        <Container>
-          <TableTransaction
-            handleDelete={setDeleteData}
-            handleEdit={handleEdit}
-            tableHeaderData={tableHeaderData}
-            transactions={transactions}
-          />
-        </Container>
+        {transactions?.length <= 0 && !transactionLoader ? (
+          <>
+            <EmptyState message="Você não possui transações!" />
+          </>
+        ) : (
+          <Container>
+            <TableTransaction
+              handleDelete={setDeleteData}
+              handleEdit={handleEdit}
+              tableHeaderData={tableHeaderData}
+              transactions={transactions}
+            />
+          </Container>
+        )}
       </WrapperLoader>
     </>
   );

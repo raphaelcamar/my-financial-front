@@ -4,6 +4,7 @@ export const getHeaderTitle = (uri: string): string => {
     '/perfil': 'Meu perfil',
     '/minha-carteira': 'Minha carteira',
     '/informacoes-pessoais': 'Informacoes pessoais',
+    '/recorrencias-mensais': 'Recorrências Mensais',
   };
 
   return dataTitle?.[uri] || '';

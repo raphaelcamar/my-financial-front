@@ -10,6 +10,7 @@ export interface IIconButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   shade: keyof VariantProps;
   iconProps?: Omit<IconProps, 'icon'>;
   padding?: [number, number];
+  noBackground?: boolean;
 }
 
 export const IconButton: React.FC<IIconButton> = ({
@@ -18,10 +19,11 @@ export const IconButton: React.FC<IIconButton> = ({
   onClick,
   shade = '500',
   iconProps,
+  noBackground,
   padding,
   ...props
 }) => (
-  <Container padding={padding} color={color} shade={shade} onClick={onClick} {...props}>
+  <Container padding={padding} color={color} shade={shade} onClick={onClick} noBackground={noBackground} {...props}>
     <Icon icon={icon} {...iconProps} />
   </Container>
 );

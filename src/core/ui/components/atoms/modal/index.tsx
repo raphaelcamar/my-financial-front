@@ -15,7 +15,7 @@ export const Modal: React.FC<IModal> = ({ children, open, title, closeModal }) =
     <ModalWrapper>
       <Paper density={0}>
         <ModalHeader>
-          <Typography size="xlarge" color="default" weight={600}>
+          <Typography size="xlarge" color="grey" weight={600}>
             {title}
           </Typography>
           <IconButton

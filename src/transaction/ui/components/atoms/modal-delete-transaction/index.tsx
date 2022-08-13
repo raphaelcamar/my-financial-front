@@ -23,7 +23,7 @@ export const ModalDeleteTransaction: React.FC<IModalDeleteTransaction> = ({
   <Modal closeModal={onClose} open={openModal} title="Deseja excluir a transação?">
     <Wrapper>
       <Information>
-        <Typography color="default" weight={500} size="normal">
+        <Typography color="grey" weight={500} size="normal">
           {data?.anotation}
         </Typography>
         <Typography color="grey" weight={200}>

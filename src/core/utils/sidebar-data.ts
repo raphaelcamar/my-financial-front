@@ -19,6 +19,11 @@ export const SidebarData: ISidebaroption[] = [
         title: 'Tags',
         soon: true,
       },
+      {
+        icon: 'recurrence',
+        path: '/recorrencias-mensais',
+        title: 'Recorrência mensal',
+      },
     ],
   },
 ];

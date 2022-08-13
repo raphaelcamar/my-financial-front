@@ -17,10 +17,10 @@ describe('Typography unit tests', () => {
     expect(getByText(/Test/i)).toBeInTheDocument();
   });
 
-  test('Should be able to render Typography component with default color, large size and weight 100', () => {
+  test('Should be able to render Typography component with grey color, large size and weight 100', () => {
     render(
       ProvideStyledTheme(
-        <Typography color="default" size="large" weight={100}>
+        <Typography color="grey" size="large" weight={100}>
           Test
         </Typography>
       )
@@ -28,7 +28,7 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.font.color.default}`);
+    expect(typography).toHaveStyle(`color: ${theme.palette.grey[400]}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[100]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.large}`);
   });

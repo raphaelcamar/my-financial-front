@@ -3,7 +3,7 @@ import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import { ButtonVariant, StyleType } from '@/core/domain/styles';
 import { ColorProps, Shade } from '@/main/styled';
 import { ButtonStyle } from './styles';
-import { CircularProgress } from '../../atoms';
+import { CircularProgress } from '@/core/ui/components/atoms';
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;

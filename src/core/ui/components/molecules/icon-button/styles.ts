@@ -5,10 +5,11 @@ type ContainerType = {
   color: keyof ColorProps;
   shade: keyof VariantProps;
   padding?: [number, number];
+  noBackground?: boolean;
 };
 
-const getBackgroundColor = (color: keyof ColorProps, shade: keyof VariantProps) => css`
-  background: ${({ theme }) => theme.palette[color][shade]};
+const getBackgroundColor = (color: keyof ColorProps, shade: keyof VariantProps, noBackground?: boolean) => css`
+  background: ${({ theme }) => (noBackground ? 'transparent' : theme.palette[color][shade])};
 `;
 
 export const Container = styled.button<ContainerType>`
@@ -28,10 +29,17 @@ export const Container = styled.button<ContainerType>`
   justify-content: center;
   ${({ color, shade }) => getBackgroundColor(color, shade)}
   cursor: pointer;
-  box-shadow: 0px 0 0px 0px rgb(0 0 0 / 20%), 0px 0px 2px 0px rgb(0 0 0 / 14%), 0px 0px 6px 1px rgb(0 0 0 / 12%);
+  box-shadow: ${({ noBackground }) =>
+    noBackground
+      ? 'none'
+      : '0px 0 0px 0px rgb(0 0 0 / 20%), 0px 0px 2px 0px rgb(0 0 0 / 14%), 0px 0px 6px 1px rgb(0 0 0 / 12%);'};
 
   &:hover {
     border-radius: 12px;
+    box-shadow: ${({ noBackground }) =>
+      noBackground
+        ? 'none'
+        : '0px 0 0px 0px rgb(0 0 0 / 20%), 0px 0px 2px 0px rgb(0 0 0 / 14%), 0px 0px 6px 1px rgb(0 0 0 / 12%);'};
   }
 
   &:active {

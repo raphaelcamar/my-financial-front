@@ -22,7 +22,7 @@ export const MenuItem: React.FC<IMenuItem> = ({ text, icon, onClick, width }) =>
       onMouseLeave={() => setColorHover(false)}
     >
       <Icon icon={icon} color={colorHover ? 'primary' : null} shade={colorHover ? '500' : null} />
-      <Hide breakpoint="md">{text && <Typography color={colorHover ? 'primary' : 'default'}>{text}</Typography>}</Hide>
+      <Hide breakpoint="md">{text && <Typography color={colorHover ? 'primary' : 'grey'}>{text}</Typography>}</Hide>
     </Container>
   );
 };
