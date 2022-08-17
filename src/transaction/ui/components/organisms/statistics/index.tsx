@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import { useSnackbar } from 'notistack';
 import { CardStatistic } from '@/transaction/ui/components/molecules';
 import { Container } from './styles';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { WrapperLoader } from '@/core/ui/components/molecules';
-import { delay } from '@/core/utils';
 
 export const Statistics: React.FC = () => {
   const { filter, statistic, getStatisticsByFilter } = useTransactionContext();
   const [loading, setLoading] = useState<boolean>(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const getStatistics = async () => {
     if (filter) {
       try {
         setLoading(true);
-        await delay(500);
         await getStatisticsByFilter(filter);
+      } catch (err) {
+        enqueueSnackbar('Aconteceu alguma coisa ao buscar as estatísticas. Tente novamente depois', {
+          variant: 'error',
+        });
       } finally {
         setLoading(false);
       }

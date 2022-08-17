@@ -56,8 +56,8 @@ export namespace Transaction {
   }
 
   export interface Filter {
-    start?: string | Date;
-    limit?: string | Date;
+    start?: Date;
+    limit?: Date;
   }
 
   export interface Statistic {
