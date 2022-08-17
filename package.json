@@ -11,6 +11,7 @@
     "test:watch": "jest --silent=false --i --watch",
     "clear-jest": "jest --clearCache",
     "lint": "eslint . --ext .ts --fix-dry-run",
+    "prepare": "husky install",
     "generate": "node scripts/index.js"
   },
   "author": "",
@@ -27,6 +28,7 @@
     "dotenv": "^16.0.0",
     "dotenv-webpack": "^7.1.0",
     "git-commit-msg-linter": "^4.1.1",
+    "husky": "^8.0.1",
     "jest": "^28.0.3",
     "jest-styled-components": "^7.0.8",
     "notistack": "^2.0.3",
