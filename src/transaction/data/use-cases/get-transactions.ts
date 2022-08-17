@@ -1,5 +1,6 @@
 import { Transaction } from '@/transaction/domain';
 import { TransactionRepository } from '@/transaction/data/protocols';
+import { formatDate } from '@/core/utils';
 
 export class GetTransactions {
   constructor(private transactionRepository: TransactionRepository, private filter?: Transaction.Filter) {}
@@ -16,11 +17,11 @@ export class GetTransactions {
     if (!filters?.limit && !filters?.start) return '';
 
     if (filters?.start) {
-      query += `?start=${filters?.start}`;
+      query += `?start=${formatDate(filters?.start, 'dd/MM/yyyy')}`;
     }
 
     if (filters?.limit) {
-      query += `&limit=${filters?.limit}`;
+      query += `&limit=${formatDate(filters?.limit, 'dd/MM/yyyy')}`;
     }
 
     return query;

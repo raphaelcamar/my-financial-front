@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { formatDate, monthStartDate } from '@/core/utils';
-import { Container, WrapperButton, StyledButton, StyledInputMask, ModalAddButton } from './styles';
+import { monthStartDate } from '@/core/utils';
+import { Container, StyledButton, StyledInputMask, ModalAddButton } from './styles';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
-import { InputMask } from '@/core/ui/components/molecules/input-mask';
 import { Transaction } from '@/transaction/domain';
 import { FilterTransactionSchema } from '@/transaction/data';
+import { DatePicker } from '@/core/ui/components/atoms';
+import { Input } from '@/core/ui/components/molecules';
 
 interface ITableActions {
   setOpenModal: () => void;
@@ -29,8 +30,8 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const start = formatDate(monthStartDate(new Date()), 'dd/MM/yyyy');
-    const limit = formatDate(new Date(), 'dd/MM/yyyy');
+    const start = monthStartDate(new Date());
+    const limit = new Date();
 
     reset({ start, limit });
   }, []);
@@ -55,14 +56,13 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
             <Controller
               control={control}
               name="start"
-              render={({ field: { value, onChange } }) => (
-                <InputMask
-                  error={!!errors?.start?.message}
-                  helperText={errors?.start?.message}
-                  label="Início"
-                  mask="date"
-                  value={value as string}
-                  onChange={e => onChange(e)}
+              render={({ field: { onChange, value } }) => (
+                <DatePicker
+                  customInput={
+                    <Input label="Início" helperText={errors?.start?.message} error={!!errors?.start?.message} />
+                  }
+                  selected={value as Date}
+                  onChange={date => onChange(date)}
                 />
               )}
             />
@@ -72,14 +72,13 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
             <Controller
               control={control}
               name="limit"
-              render={({ field: { value, onChange } }) => (
-                <InputMask
-                  error={!!errors?.limit?.message}
-                  helperText={errors?.limit?.message}
-                  label="Fim"
-                  mask="date"
-                  value={value as string}
-                  onChange={e => onChange(e)}
+              render={({ field: { onChange, value } }) => (
+                <DatePicker
+                  customInput={
+                    <Input label="Limite" helperText={errors?.limit?.message} error={!!errors?.limit?.message} />
+                  }
+                  selected={value as Date}
+                  onChange={date => onChange(date)}
                 />
               )}
             />

@@ -1,5 +1,6 @@
 import { Transaction } from '@/transaction/domain';
 import { TransactionRepository } from '@/transaction/data/protocols';
+import { formatDate } from '@/core/utils';
 
 export class GetTransactionStatistic {
   constructor(private transactionRepository: TransactionRepository, private filter?: Transaction.Filter) {}
@@ -17,11 +18,11 @@ export class GetTransactionStatistic {
     if (!filters?.limit && !filters?.start) return '';
 
     if (filters?.start) {
-      query += `?start=${filters?.start}`;
+      query += `?start=${formatDate(filters?.start)}`;
     }
 
     if (filters?.limit) {
-      query += `&limit=${filters?.limit}`;
+      query += `&limit=${formatDate(filters?.limit)}`;
     }
 
     return query;

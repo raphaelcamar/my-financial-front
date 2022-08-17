@@ -2,7 +2,7 @@
 /* eslint-disable no-promise-executor-return */
 import React, { useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { formatDate, monthStartDate } from '@/core/utils';
+import { monthStartDate } from '@/core/utils';
 import { Container } from './styles';
 import { EmptyState, WrapperLoader } from '@/core/ui/components/molecules';
 
@@ -36,8 +36,8 @@ export const TableContainer: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const getTransactionsActualDate = async () => {
-    const start = formatDate(monthStartDate(new Date()), 'dd/MM/yyyy');
-    const limit = formatDate(new Date(), 'dd/MM/yyyy');
+    const start = monthStartDate(new Date());
+    const limit = new Date();
     const filter: Transaction.Filter = { limit, start };
 
     await getTransactions(filter);

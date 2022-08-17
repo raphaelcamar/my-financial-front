@@ -11,7 +11,7 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.font.color.default}`);
+    expect(typography).toHaveStyle(`color: ${theme.palette.grey[500]}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[400]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.normal}`);
     expect(getByText(/Test/i)).toBeInTheDocument();
@@ -28,7 +28,7 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.palette.grey[400]}`);
+    expect(typography).toHaveStyle(`color: ${theme.palette.grey[500]}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[100]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.large}`);
   });
@@ -44,7 +44,7 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.font.color.error}`);
+    expect(typography).toHaveStyle(`color: ${theme.palette.error[500]}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[200]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.normal}`);
   });
@@ -60,7 +60,7 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.font.color.grey}`);
+    expect(typography).toHaveStyle(`color: ${theme.palette.grey[500]}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[300]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.small}`);
   });
@@ -76,7 +76,7 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.font.color.info}`);
+    expect(typography).toHaveStyle(`color: ${theme.palette.info[500]}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[400]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.xlarge}`);
   });
@@ -92,15 +92,15 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.font.color.primary}`);
+    expect(typography).toHaveStyle(`color: ${theme.palette.primary[500]}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[500]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.xsmall}`);
   });
 
-  test('Should be able to render Typography component with secondary color, xxlarge size and weight 600', () => {
+  test('Should be able to render Typography component with grey 200 color, xxlarge size and weight 600', () => {
     render(
       ProvideStyledTheme(
-        <Typography color="secondary" size="xxlarge" weight={600}>
+        <Typography color="grey" shade={200} size="xxlarge" weight={600}>
           Test
         </Typography>
       )
@@ -108,7 +108,7 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.font.color.secondary}`);
+    expect(typography).toHaveStyle(`color: ${theme.palette.grey[200]}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[600]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.xxlarge}`);
   });
@@ -124,7 +124,7 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.font.color.success}`);
+    expect(typography).toHaveStyle(`color: ${theme.palette.success[500]}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[700]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.xxxlarge}`);
   });
@@ -140,15 +140,15 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.font.color.warning}`);
+    expect(typography).toHaveStyle(`color: ${theme.palette.warning[500]}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[800]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.normal}`);
   });
 
-  test('Should be able to render Typography component with white color, normal size and weight 900', () => {
+  test('Should be able to render Typography component with grey 50, normal size and weight 900', () => {
     render(
       ProvideStyledTheme(
-        <Typography color="white" size="normal" weight={900}>
+        <Typography color="grey" shade={50} size="normal" weight={900}>
           Test
         </Typography>
       )
@@ -156,7 +156,7 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.font.color.white}`);
+    expect(typography).toHaveStyle(`color: ${theme.palette.grey[50]}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[900]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.normal}`);
   });
