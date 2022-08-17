@@ -9,6 +9,7 @@ module.exports = {
   ],
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1',
+    '^.+\\.(css|less)$': '<rootDir>/config/CSSStub.js'
   },
   transform: {
     '.+\\.(ts|tsx)$': 'ts-jest'
