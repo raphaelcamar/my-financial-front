@@ -17,13 +17,14 @@ export const SidebarData: ISidebaroption[] = [
         icon: 'tag',
         path: '/tags',
         title: 'Tags',
-        soon: true,
+        // soon: true,
       },
-      {
-        icon: 'recurrence',
-        path: '/recorrencias-mensais',
-        title: 'Recorrência mensal',
-      },
+      // {
+      //   icon: 'recurrence',
+      //   path: '/recorrencias-mensais',
+      //   title: 'Recorrência mensal',
+      //   // soon: true,
+      // },
     ],
   },
 ];

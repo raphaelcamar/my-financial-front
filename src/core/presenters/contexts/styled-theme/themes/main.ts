@@ -2,7 +2,7 @@ import { DefaultTheme } from 'styled-components';
 import { BreakpointTypes } from '@/main/styled';
 
 const breakpoints: BreakpointTypes = {
-  xs: 200,
+  xs: 330,
   sm: 600,
   md: 960,
   lg: 1280,

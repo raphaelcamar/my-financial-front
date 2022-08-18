@@ -5,6 +5,7 @@ import { AccessAndAuthRoutes } from '@/access-and-auth/presenters/routes';
 import { MonthlyRecurrenceRoutes } from '@/monthly-recurrence/presenters/routes';
 import { NotFoundPage, ContainerPage } from '@/core/ui/pages';
 import { ProfileRoutes } from '@/profile/presenters';
+import { TagRoutes } from '@/tag/presenters';
 
 export const RootRoutes: RouteObject[] = [
   ...AccessAndAuthRoutes,
@@ -12,7 +13,7 @@ export const RootRoutes: RouteObject[] = [
     path: '/',
     element: <ContainerPage />,
     caseSensitive: true,
-    children: [...TransactionRoutes, ...ProfileRoutes, ...MonthlyRecurrenceRoutes],
+    children: [...TransactionRoutes, ...ProfileRoutes, ...MonthlyRecurrenceRoutes, ...TagRoutes],
   },
   {
     path: '*',
