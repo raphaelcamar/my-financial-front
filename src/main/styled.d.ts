@@ -67,6 +67,10 @@ export type ColorProps = {
   grey: Omit<VariantProps, 'light' | 'dark' | 'main'>;
   success: VariantProps;
   info: VariantProps;
+  green: VariantProps;
+  brown: VariantProps;
+  purple: VariantProps;
+  skin: VariantProps;
 };
 
 export type FontColorProps = {
