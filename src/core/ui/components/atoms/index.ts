@@ -1,6 +1,7 @@
 export * from './avatar';
 export * from './checkbox';
 export * from './circular-progress';
+export * from './click-away-listener';
 export * from './date-picker';
 export * from './helper-text';
 export * from './hide';

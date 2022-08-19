@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { forwardRef, useEffect, useState } from 'react';
-import { Icon } from '@/core/ui/components/atoms';
+import { ClickAwayListener, Icon } from '@/core/ui/components/atoms';
 import { StyledInput, WrapperIcon, Container, OptionsContainer, Option } from './styles';
 import { TypeTransaction } from '@/transaction/domain';
 import { SelectType } from '@/core/domain';
@@ -81,7 +81,7 @@ export const Select = forwardRef<HTMLInputElement, ISelectProps>(
     };
 
     return (
-      <div>
+      <ClickAwayListener onClickAway={() => setOpen(false)}>
         <Container>
           <StyledInput
             type="button"
@@ -122,7 +122,7 @@ export const Select = forwardRef<HTMLInputElement, ISelectProps>(
             ))}
           </OptionsContainer>
         </Container>
-      </div>
+      </ClickAwayListener>
     );
   }
 );
