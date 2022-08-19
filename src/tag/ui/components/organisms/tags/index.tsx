@@ -15,7 +15,7 @@ export const Tags: React.FC = () => {
   const getTags = async () => {
     setLoading(true);
     try {
-      await delay(2000);
+      // await delay(2000);
       await getAllTags();
     } catch (err) {
       enqueueSnackbar(err?.message || 'Aconteceu alguma coisa, tente novamente mais tarde.', {

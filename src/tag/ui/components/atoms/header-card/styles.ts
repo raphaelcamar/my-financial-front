@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components';
+import { ColorProps } from '@/main/styled';
 
 type HeaderCardType = {
   open?: boolean;
-  color?: string; // TODO
+  color?: keyof ColorProps;
 };
 
 export const Title = styled.div`
@@ -26,13 +27,10 @@ export const Circle = styled.div<HeaderCardType>`
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.palette.primary.main};
+  background: ${({ theme, color }) => theme.palette?.[color][500]};
 `;
 
 export const Pop = styled.div<HeaderCardType>`
-  position: absolute;
-  transition: all ease-in-out 0.2s;
-  left: 22;
   display: flex;
   min-width: 120px;
   flex-direction: column;

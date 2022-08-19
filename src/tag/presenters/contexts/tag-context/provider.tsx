@@ -11,6 +11,7 @@ export const TagProvider: React.FC = ({ children }) => {
   const getAllTags = async (): Promise<void> => {
     const tagRepository = new TagRepositoryData();
     const useCase = new GetAllTags(tagRepository);
+
     const result = await useCase.execute();
     dispatch(fetchTags(result));
   };

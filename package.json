@@ -18,6 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@hookform/resolvers": "^2.8.8",
+    "@popperjs/core": "^2.11.6",
     "@types/axios": "^0.14.0",
     "@types/babel__traverse": "^7.17.1",
     "@types/react-datepicker": "^4.4.2",
@@ -38,6 +39,7 @@
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.27.0",
     "react-input-mask": "^2.0.4",
+    "react-popper": "^2.3.0",
     "react-router": "6.3.0",
     "react-router-dom": "6.3.0",
     "styled-components": "^5.3.5",

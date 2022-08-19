@@ -2,14 +2,20 @@ import React from 'react';
 import { Typography } from '@/core/ui/components/atoms';
 import { Button } from '@/core/ui/components/molecules';
 import { Footer } from './styles';
+import { formatDate } from '@/core/utils';
 
-export const BottomCard: React.FC = () => (
+interface IBottonCard {
+  createdAt: Date;
+  isInactive: boolean;
+}
+
+export const BottomCard: React.FC<IBottonCard> = ({ createdAt, isInactive }) => (
   <Footer>
     <Typography shade={400} size="small" color="grey" type="span">
-      Criado em 14/03/1999
+      Criado em {formatDate(createdAt)}
     </Typography>
-    <Button styleType="outlined" type="button" variant="error">
-      Inativar
+    <Button styleType="outlined" type="button" variant={isInactive ? 'success' : 'error'}>
+      {isInactive ? 'Ativar' : 'Inativar'}
     </Button>
   </Footer>
 );

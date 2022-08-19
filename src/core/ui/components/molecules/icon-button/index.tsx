@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, forwardRef } from 'react';
 import { AvailableIcons } from '@/core/domain';
 import { Icon, IconProps } from '@/core/ui/components/atoms';
 import { Container } from './styles';
@@ -13,17 +13,18 @@ export interface IIconButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   noBackground?: boolean;
 }
 
-export const IconButton: React.FC<IIconButton> = ({
-  icon,
-  color = 'primary',
-  onClick,
-  shade = '500',
-  iconProps,
-  noBackground,
-  padding,
-  ...props
-}) => (
-  <Container padding={padding} color={color} shade={shade} onClick={onClick} noBackground={noBackground} {...props}>
-    <Icon icon={icon} {...iconProps} />
-  </Container>
+export const IconButton = forwardRef<HTMLButtonElement, IIconButton>(
+  ({ icon, color = 'primary', onClick, shade = '500', iconProps, noBackground, padding, ...props }, ref) => (
+    <Container
+      ref={ref}
+      padding={padding}
+      color={color}
+      shade={shade}
+      onClick={onClick}
+      noBackground={noBackground}
+      {...props}
+    >
+      <Icon icon={icon} {...iconProps} />
+    </Container>
+  )
 );

@@ -14,6 +14,7 @@ export * from './empty-state-icon';
 export * from './filter-bar-icon';
 export * from './filter-icon';
 export * from './google-icon';
+export * from './inactive-tag-icon';
 export * from './key-icon';
 export * from './line-arrow-down-icon';
 export * from './line-arrow-up-icon';

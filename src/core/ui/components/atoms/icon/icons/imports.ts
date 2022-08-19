@@ -40,6 +40,7 @@ import { TransactionDashboardIcon } from '@/core/ui/components/atoms/icon/icons/
 import { TransactionIcon } from '@/core/ui/components/atoms/icon/icons/transaction-icon';
 import { TrashIcon } from '@/core/ui/components/atoms/icon/icons/trash-icon';
 import { WalletIcon } from '@/core/ui/components/atoms/icon/icons/wallet-icon';
+import { InactiveTagIcon } from '@/core/ui/components/atoms/icon/icons/inactive-tag-icon';
 
 export const getIcon = {
   add: AddIcon,
@@ -58,6 +59,7 @@ export const getIcon = {
   filter: FilterIcon,
   filterBar: FilterBarIcon,
   google: GoogleIcon,
+  inactiveTag: InactiveTagIcon,
   key: KeyIcon,
   lineArrowDown: LineArrowDownIcon,
   lineArrowUp: LineArrowUpIcon,

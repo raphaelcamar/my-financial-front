@@ -11,6 +11,11 @@ export const MenuProfilePopover: React.FC = () => {
   const { user, logout } = useAccessAndAuthContext();
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   return (
     <Wrapper open={menuOpen}>
       <ClickAwayListener onClickAway={() => setMenuOpen(false)}>
@@ -29,7 +34,7 @@ export const MenuProfilePopover: React.FC = () => {
           <Border />
           <MenuItem hideOnMobile="md" text="Meu Perfil" icon="person" onClick={() => navigate('/perfil')} />
           <WrapperMenuItem>
-            <MenuItem hideOnMobile="md" icon="logout" width="49px" onClick={() => logout()} />
+            <MenuItem hideOnMobile="md" icon="logout" width="49px" onClick={() => handleLogout()} />
           </WrapperMenuItem>
         </Popover>
       </ClickAwayListener>

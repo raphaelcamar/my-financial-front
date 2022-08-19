@@ -40,5 +40,6 @@ export type AvailableIcons =
   | 'transaction'
   | 'transactionDashboard'
   | 'trash'
+  | 'inactiveTag'
   | 'logout'
   | 'wallet';

@@ -5,7 +5,7 @@ export class GetAllTags {
   constructor(private tagRepository: TagRepository) {}
 
   async execute(): Promise<Tag[]> {
-    const result = this.tagRepository.getAllTags();
+    const result = await this.tagRepository.getAllTags();
     return result;
   }
 }

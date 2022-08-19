@@ -4,6 +4,7 @@ export class Tag {
   color: string;
   title: string;
   inactivatedAt?: Date;
+  createdAt?: Date;
   userId: string;
 
   constructor(data: Tag.Data) {
@@ -12,6 +13,7 @@ export class Tag {
     this.color = data.color;
     this.title = data.title;
     this.inactivatedAt = data.inactivatedAt;
+    this.createdAt = data?.createdAt;
   }
 }
 
@@ -23,5 +25,6 @@ export namespace Tag {
     title: string;
     inactivatedAt?: Date;
     userId: string;
+    createdAt: Date;
   }
 }

@@ -23,7 +23,7 @@ export const MenuItem: React.FC<IMenuItem> = ({ text, icon, onClick, width, hide
       onMouseEnter={() => setColorHover(true)}
       onMouseLeave={() => setColorHover(false)}
     >
-      <Icon icon={icon} color={colorHover ? 'primary' : null} shade={colorHover ? '500' : null} />
+      <Icon icon={icon} size={16} color={colorHover ? 'primary' : null} shade={colorHover ? '500' : null} />
       {hideOnMobile ? (
         <Hide breakpoint={hideOnMobile}>
           {text && (
