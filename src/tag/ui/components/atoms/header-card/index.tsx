@@ -16,6 +16,7 @@ export const HeaderCard: React.FC<IHeaderCard> = ({ color, onDelete, onEdit, tit
   const [open, setOpen] = useState<boolean>(false);
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
+
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: 'bottom-start',
     modifiers: [

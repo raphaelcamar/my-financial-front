@@ -1,3 +1,5 @@
+export type TagStatus = 'active' | 'inactive';
+
 export class Tag {
   _id?: string;
   description: string;

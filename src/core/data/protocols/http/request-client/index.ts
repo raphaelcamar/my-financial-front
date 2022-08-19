@@ -12,4 +12,5 @@ export interface HttpClient<T, R> {
   get(params: HttpPostParams<T>): Promise<HttpResponse<R>>;
   put(params: HttpPostParams<T>): Promise<HttpResponse<R>>;
   delete(params: HttpPostParams<T>): Promise<HttpResponse<R>>;
+  patch(params: HttpPostParams<T>): Promise<HttpResponse<R>>;
 }

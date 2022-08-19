@@ -2,6 +2,7 @@ import { api } from '@/core/infra';
 import { HttpClient, HttpPostParams, HttpResponse } from '@/core/data/protocols';
 import { injectHeaders } from '../decorators';
 
+// TODO refactor this, with just one function
 export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
   async get(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
     const httpResponse = await api.get(params.url, {
@@ -41,6 +42,17 @@ export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
     const httpResponse = await api.delete(`/${params.url}`, {
       headers: injectHeaders(params?.headers),
       data: params.body,
+    });
+
+    return {
+      statusCode: httpResponse.status,
+      body: httpResponse.data,
+    };
+  }
+
+  async patch(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
+    const httpResponse = await api.patch(`/${params.url}`, params.body, {
+      headers: injectHeaders(params?.headers),
     });
 
     return {

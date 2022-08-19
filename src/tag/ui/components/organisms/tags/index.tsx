@@ -8,7 +8,7 @@ import { CircularProgress } from '@/core/ui/components/atoms';
 import { delay } from '@/core/utils';
 
 export const Tags: React.FC = () => {
-  const { tags, getAllTags } = useTagContext();
+  const { tags, getAllTags, modifyTagStatus } = useTagContext();
   const [loading, setLoading] = useState<boolean>(false);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -29,7 +29,7 @@ export const Tags: React.FC = () => {
   const renderListTags = (): JSX.Element => (
     <>
       {tags?.map(tag => (
-        <TagCard tag={tag} />
+        <TagCard tag={tag} modifyTagStatus={modifyTagStatus} />
       ))}
     </>
   );
