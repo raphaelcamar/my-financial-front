@@ -1,3 +1,2 @@
-export * from './filter-tag';
-export * from './tag-actions';
-export * from './tag-card';
+export * from './header-tag-page';
+export * from './tags';

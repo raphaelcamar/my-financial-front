@@ -27,9 +27,9 @@ export const MenuProfilePopover: React.FC = () => {
         </Menu>
         <Popover open={menuOpen}>
           <Border />
-          <MenuItem text="Meu Perfil" icon="person" onClick={() => navigate('/perfil')} />
+          <MenuItem hideOnMobile="md" text="Meu Perfil" icon="person" onClick={() => navigate('/perfil')} />
           <WrapperMenuItem>
-            <MenuItem icon="logout" width="49px" onClick={() => logout()} />
+            <MenuItem hideOnMobile="md" icon="logout" width="49px" onClick={() => logout()} />
           </WrapperMenuItem>
         </Popover>
       </ClickAwayListener>

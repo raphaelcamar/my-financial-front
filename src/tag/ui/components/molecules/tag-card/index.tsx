@@ -1,10 +1,14 @@
 import React from 'react';
 import { Typography } from '@/core/ui/components/atoms';
-import { HeaderCard } from '@/tag/ui/components/molecules';
+import { BottomCard, HeaderCard } from '@/tag/ui/components/atoms';
 import { StyledPaper } from './styles';
-import { BottomCard } from '@/tag/ui/components/atoms';
+import { Tag } from '@/tag/domain/entities';
 
-export const TagCard: React.FC = () => (
+interface ITagCard {
+  tag: Tag;
+}
+
+export const TagCard: React.FC<ITagCard> = ({ tag }) => (
   <StyledPaper density={1}>
     <HeaderCard />
     <Typography>Tag de serviços de streaming</Typography>

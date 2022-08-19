@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 
-interface IClickAwatListener {
+interface IClickAwatListener extends React.HTMLAttributes<HTMLDivElement> {
   onClickAway: () => void;
 }
 
-export const ClickAwayListener: React.FC<IClickAwatListener> = ({ onClickAway, children }) => {
+export const ClickAwayListener: React.FC<IClickAwatListener> = ({ onClickAway, children, ...props }) => {
   const ref = useRef(null);
 
   const handleClickOutside = (event): void => {
@@ -19,5 +19,9 @@ export const ClickAwayListener: React.FC<IClickAwatListener> = ({ onClickAway, c
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [ref]);
-  return <div ref={ref}>{children}</div>;
+  return (
+    <div ref={ref} {...props}>
+      {children}
+    </div>
+  );
 };
