@@ -21,8 +21,8 @@ export const TypographyStyle = styled.h1.attrs<TypographyProps>(({ type = 'p' })
     ${ellipsis &&
     css`
       white-space: nowrap;
+      width: 100%;
       overflow: hidden;
-      text-overflow: ellipsis;
     `}
   `}
 `;

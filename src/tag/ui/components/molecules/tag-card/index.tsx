@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { Typography } from '@/core/ui/components/atoms';
+import { TextEllipsis, Typography } from '@/core/ui/components/atoms';
 import { BottomCard, HeaderCard } from '@/tag/ui/components/atoms';
 import { StyledPaper } from './styles';
 import { Tag, TagStatus } from '@/tag/domain/entities';
@@ -35,7 +35,10 @@ export const TagCard: React.FC<ITagCard> = ({ tag, modifyTagStatus }) => {
   return (
     <StyledPaper density={1}>
       <HeaderCard color={tag?.color as keyof ColorProps} title={tag?.title} onDelete={() => null} onEdit={() => null} />
-      <Typography>{tag?.description}</Typography>
+      <TextEllipsis rows={1}>
+        <Typography>{tag?.description}</Typography>
+      </TextEllipsis>
+
       <BottomCard
         createdAt={tag?.createdAt}
         isInactive={!!tag?.inactivatedAt}
