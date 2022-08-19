@@ -38,13 +38,5 @@ export const Tags: React.FC = () => {
     getTags();
   }, []);
 
-  return (
-    <>
-      {loading ? (
-        <CircularProgress size={36} color="primary" /> // TODO switch for skeleton
-      ) : (
-        <TagCards>{renderListTags()}</TagCards>
-      )}
-    </>
-  );
+  return <>{loading ? <CircularProgress size={36} color="primary" /> : <TagCards>{renderListTags()}</TagCards>}</>;
 };

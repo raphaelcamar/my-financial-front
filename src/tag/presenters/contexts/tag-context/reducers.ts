@@ -1,8 +1,9 @@
 /* eslint-disable default-param-last */
-import { ActionTypes, InitialState, GET_ALL_TAGS } from './types';
+import { ActionTypes, InitialState, GET_ALL_TAGS, CURRENT_VIEW_TAG } from './types';
 
 export const initialState: InitialState = {
   tags: undefined,
+  currentViewTag: null,
 };
 
 // eslint-disable-next-line consistent-return
@@ -12,6 +13,12 @@ export function reducer(state = initialState, action: ActionTypes): InitialState
       return {
         ...state,
         tags: action.payload,
+      };
+
+    case CURRENT_VIEW_TAG:
+      return {
+        ...state,
+        currentViewTag: action.payload,
       };
   }
 }

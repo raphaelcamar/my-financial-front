@@ -5,6 +5,8 @@ type PropsTagContext = {
   tags: Tag[];
   getAllTags: () => Promise<void>;
   modifyTagStatus: (tagStatus: TagStatus, tagId: string) => Promise<void>;
+  currentViewTag: TagStatus;
+  setCurrentViewTag: (viewTag: TagStatus) => Promise<void>;
 };
 
 export const TagContext = createContext<PropsTagContext>({} as PropsTagContext);

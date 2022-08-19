@@ -1,9 +1,9 @@
 import React, { useReducer } from 'react';
-import { GetAllTags, ModifyStatusTag } from '@/tag/data/use-cases';
+import { GetAllTags, GetTagByStatus, ModifyStatusTag } from '@/tag/data/use-cases';
 import { TagRepositoryData } from '@/tag/infra';
 import { TagContext } from './context';
 import { initialState, reducer } from './reducers';
-import { fetchTags } from './actions';
+import { fetchTags, fetchTagsByStatus } from './actions';
 import { TagStatus } from '@/tag/domain/entities';
 
 export const TagProvider: React.FC = ({ children }) => {
@@ -11,9 +11,10 @@ export const TagProvider: React.FC = ({ children }) => {
 
   const getAllTags = async (): Promise<void> => {
     const tagRepository = new TagRepositoryData();
-    const useCase = new GetAllTags(tagRepository);
 
+    const useCase = new GetAllTags(tagRepository);
     const result = await useCase.execute();
+
     dispatch(fetchTags(result));
   };
 
@@ -25,10 +26,22 @@ export const TagProvider: React.FC = ({ children }) => {
     dispatch(fetchTags(updatedTags));
   };
 
+  const setCurrentViewTag = async (viewTag: TagStatus): Promise<void> => {
+    dispatch(fetchTagsByStatus(viewTag));
+
+    const tagRepository = new TagRepositoryData();
+    const useCase = new GetTagByStatus(tagRepository, viewTag);
+
+    const tags = await useCase.execute();
+    dispatch(fetchTags(tags));
+  };
+
   return (
     <TagContext.Provider
       value={{
         tags: state.tags,
+        currentViewTag: state.currentViewTag,
+        setCurrentViewTag,
         getAllTags,
         modifyTagStatus,
       }}

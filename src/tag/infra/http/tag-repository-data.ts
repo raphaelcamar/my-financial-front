@@ -21,4 +21,13 @@ export class TagRepositoryData implements TagRepository {
 
     return httpResponse.body;
   }
+
+  async getByStatus(status: TagStatus): Promise<Tag[]> {
+    const request = new RequestHttpRepository<unknown, Tag[]>();
+    const httpResponse = await request.get({
+      url: `tag/${status}`,
+    });
+
+    return httpResponse.body;
+  }
 }
