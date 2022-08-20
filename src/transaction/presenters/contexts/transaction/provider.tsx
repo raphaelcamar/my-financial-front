@@ -18,6 +18,7 @@ import {
   fetchGetTransactions,
   fetchUpdateTransaction,
 } from './actions';
+import { delay } from '@/core/utils';
 
 export const TransactionProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -67,10 +68,11 @@ export const TransactionProvider: React.FC = ({ children }) => {
     dispatch(fetchUpdateTransaction(filteredTransactions));
   };
 
-  const getStatisticsByFilter = async (filter: Transaction.Filter) => {
+  const getStatisticsByFilter = async (filter: Transaction.Filter): Promise<void> => {
     const transactionRepository = new TransactionRepositoryData();
 
     const useCase = new GetTransactionStatistic(transactionRepository, filter);
+    await delay(500);
     const statistics = await useCase.execute();
     dispatch(fetchGetStatistics(statistics));
   };

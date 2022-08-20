@@ -5,7 +5,7 @@ export enum HttpSuccessStatusCode {
 }
 
 export type HttpResponse<T> = {
-  statusCode: number;
+  statusCode?: number;
   body?: T;
 };
 

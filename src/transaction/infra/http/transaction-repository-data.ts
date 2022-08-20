@@ -57,12 +57,12 @@ export class TransactionRepositoryData implements TransactionRepository {
   }
 
   async getStatistics(queryUrl: string): Promise<Transaction.Statistic> {
-    const request = new RequestHttpRepository<Transaction.Filter, Response.Statistic>();
+    const http = new RequestHttpRepository<Transaction.Filter, Response.Statistic>();
 
-    const httpResponse = await request.get({
+    const httpResponse = await http.request({
+      method: 'get',
       url: `transaction/statistics${queryUrl}`,
     });
-
     const adapter = new TransactionStatisticsAdapter();
     const adaptee = adapter.response(httpResponse.body);
     return adaptee;

@@ -16,7 +16,7 @@ export const Statistics: React.FC = () => {
         setLoading(true);
         await getStatisticsByFilter(filter);
       } catch (err) {
-        enqueueSnackbar('Aconteceu alguma coisa ao buscar as estatísticas. Tente novamente depois', {
+        enqueueSnackbar(err?.message, {
           variant: 'error',
         });
       } finally {
