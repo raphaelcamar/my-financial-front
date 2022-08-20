@@ -15,8 +15,9 @@ export class TagRepositoryData implements TagRepository {
   }
 
   async modifyStatusTag(status: TagStatus, tagId: string): Promise<Tag> {
-    const request = new RequestHttpRepository<unknown, Tag>();
-    const httpResponse = await request.patch({
+    const http = new RequestHttpRepository<unknown, Tag>();
+    const httpResponse = await http.request({
+      method: 'patch',
       url: `tag/type/${status}/${tagId}`,
     });
 
@@ -24,8 +25,9 @@ export class TagRepositoryData implements TagRepository {
   }
 
   async getByStatus(status: TagStatus): Promise<Tag[]> {
-    const request = new RequestHttpRepository<unknown, Tag[]>();
-    const httpResponse = await request.get({
+    const http = new RequestHttpRepository<unknown, Tag[]>();
+    const httpResponse = await http.request({
+      method: 'get',
       url: `tag/${status}`,
     });
 

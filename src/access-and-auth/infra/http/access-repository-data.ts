@@ -8,20 +8,21 @@ type BodyRequestToken = {
 
 export class AccessRepositoryData implements AccessRepository {
   async login(bodyLogin: User.Login): Promise<User> {
-    const request = new RequestHttpRepository<User.Login, User>();
+    const http = new RequestHttpRepository<User.Login, User>();
 
-    const httpResponse = await request.post({
+    const httpResponse = await http.request({
+      method: 'post',
       url: 'user/login',
       body: bodyLogin,
     });
-
     return httpResponse.body;
   }
 
   async subscribe(bodyLogin: User.Subscribe): Promise<User> {
-    const request = new RequestHttpRepository<User.Subscribe, User>();
+    const http = new RequestHttpRepository<User.Subscribe, User>();
 
-    const httpResponse = await request.post({
+    const httpResponse = await http.request({
+      method: 'post',
       url: 'user/create',
       body: bodyLogin,
     });
@@ -30,9 +31,10 @@ export class AccessRepositoryData implements AccessRepository {
   }
 
   async verifyAccessToken(tokenId: string): Promise<User> {
-    const request = new RequestHttpRepository<BodyRequestToken, User>();
+    const http = new RequestHttpRepository<BodyRequestToken, User>();
 
-    const httpResponse = await request.post({
+    const httpResponse = await http.request({
+      method: 'post',
       url: 'user/verify',
       body: {
         token: tokenId,
@@ -43,8 +45,9 @@ export class AccessRepositoryData implements AccessRepository {
   }
 
   async sendRecoverPasswordEmail(email: string): Promise<void> {
-    const request = new RequestHttpRepository<Pick<User.Login, 'email'>, void>();
-    await request.post({
+    const http = new RequestHttpRepository<Pick<User.Login, 'email'>, void>();
+    await http.request({
+      method: 'post',
       url: 'user/password-recover',
       body: {
         email,
@@ -53,23 +56,22 @@ export class AccessRepositoryData implements AccessRepository {
   }
 
   async sendNewPasswordRecover(password: string, email: string): Promise<void> {
-    const request = new RequestHttpRepository<Pick<User, 'password' | 'email'>, void>();
+    const http = new RequestHttpRepository<Pick<User, 'password' | 'email'>, void>();
 
-    await request.put({
+    await http.request({
+      method: 'put',
       url: 'user/update',
       body: {
         email,
         password,
       },
     });
-
-    return null;
   }
 
   async sendCodePasswordRecover(code: string, email: string): Promise<void> {
-    const request = new RequestHttpRepository<any, void>();
+    const http = new RequestHttpRepository<any, void>();
 
-    await request.post({
+    await http.post({
       url: 'user/verify-code',
       body: {
         email,

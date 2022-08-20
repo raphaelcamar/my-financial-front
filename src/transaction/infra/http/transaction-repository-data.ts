@@ -6,13 +6,14 @@ import { TransactionAdapter, TransactionStatisticsAdapter } from '@/transaction/
 
 export class TransactionRepositoryData implements TransactionRepository {
   async create(transaction: Transaction.Data): Promise<Transaction> {
-    const request = new RequestHttpRepository<Transaction.Response, Transaction.Response>();
+    const http = new RequestHttpRepository<Transaction.Response, Transaction.Response>();
 
     const adapter = new TransactionAdapter();
 
     const adaptee = adapter.request(transaction);
 
-    const httpResponse = await request.post({
+    const httpResponse = await http.request({
+      method: 'post',
       url: 'transaction',
       body: adaptee,
     });
@@ -21,8 +22,9 @@ export class TransactionRepositoryData implements TransactionRepository {
   }
 
   async get(query?: string): Promise<Transaction[]> {
-    const request = new RequestHttpRepository<unknown, Transaction.Response[]>();
-    const httpResponse = await request.get({
+    const http = new RequestHttpRepository<unknown, Transaction.Response[]>();
+    const httpResponse = await http.request({
+      method: 'get',
       url: `transaction${query}`,
     });
 
@@ -34,20 +36,22 @@ export class TransactionRepositoryData implements TransactionRepository {
   }
 
   async delete(transactionId: string): Promise<void> {
-    const request = new RequestHttpRepository<string, void>();
+    const http = new RequestHttpRepository<string, void>();
 
-    await request.delete({
+    await http.request({
+      method: 'delete',
       url: `transaction/${transactionId}`,
     });
   }
 
   async update(transaction: Transaction.Data): Promise<Transaction> {
-    const request = new RequestHttpRepository<Transaction.Response, Transaction.Response>();
+    const http = new RequestHttpRepository<Transaction.Response, Transaction.Response>();
     const adapter = new TransactionAdapter();
 
     const adapteeRequest = adapter.request(transaction);
 
-    const httpResponse = await request.put({
+    const httpResponse = await http.request({
+      method: 'put',
       url: 'transaction/update',
       body: adapteeRequest,
     });
