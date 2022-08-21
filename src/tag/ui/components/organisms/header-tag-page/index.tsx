@@ -1,12 +1,15 @@
 /* eslint-disable no-return-await */
-import React from 'react';
+import React, { useState } from 'react';
 import { FilterTag } from '@/tag/ui/components/atoms';
 import { Container, Filter } from './styles';
 import { Button } from '@/core/ui/components/molecules';
 import { useTagContext } from '@/tag/presenters/contexts';
+import { ModalCreateTag } from '../modal-create-tag';
 
 export const HeaderTagPage: React.FC = () => {
   const { setCurrentViewTag, currentViewTag } = useTagContext();
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
   return (
     <Filter>
       <FilterTag />
@@ -35,10 +38,11 @@ export const HeaderTagPage: React.FC = () => {
         >
           Inativas
         </Button>
-        <Button onClick={() => null} styleType="fullfiled" variant="primary">
+        <Button onClick={() => setModalOpen(true)} styleType="fullfiled" variant="primary">
           Adicionar
         </Button>
       </Container>
+      <ModalCreateTag modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </Filter>
   );
 };

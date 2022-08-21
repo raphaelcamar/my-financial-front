@@ -1,11 +1,11 @@
 import React from 'react';
 import { Typography } from '@/core/ui/components/atoms';
 import { ContainerChip } from './styles';
-import { FontColorProps } from '@/main/styled';
+import { ColorProps } from '@/main/styled';
 
 // TODO
 export interface IChip {
-  color: keyof FontColorProps;
+  color: keyof ColorProps;
   width?: number;
 }
 

@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
 import { TypographyTags } from '@/core/domain/styles';
-import { FontColorProps, FontSizeProps, FontWeightProps, Shade } from '@/main/styled';
+import { ColorProps, FontSizeProps, FontWeightProps, Shade } from '@/main/styled';
 import { TypographyStyle } from './styles';
 
 interface ITypography {
-  color?: keyof FontColorProps;
+  color?: keyof ColorProps;
   shade?: Shade;
   size?: keyof FontSizeProps;
   weight?: keyof FontWeightProps;

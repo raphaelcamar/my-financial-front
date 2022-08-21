@@ -9,6 +9,7 @@ export * from './icon';
 export * from './input-base';
 export * from './modal';
 export * from './paper';
+export * from './popover';
 export * from './skeleton';
 export * from './table-components';
 export * from './text-ellipsis';

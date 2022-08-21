@@ -11,7 +11,7 @@ export const Container = styled.div<ContainerType>`
   bottom: 0;
   left: 0;
   transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  z-index: ${({ open }) => (open ? 1200 : -1000)};
+  z-index: ${({ open }) => (open ? 10 : -1000)};
   background: #1a1a1aa2;
   height: 100%;
   overflow: hidden;

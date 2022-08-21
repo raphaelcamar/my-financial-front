@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
-import { FontColorProps, FontSizeProps, FontWeightProps, Shade } from '@/main/styled';
+import { ColorProps, FontSizeProps, FontWeightProps, Shade } from '@/main/styled';
 import { TypographyTags } from '@/core/domain/styles';
 
 type TypographyProps = {
-  color?: keyof FontColorProps;
+  color?: keyof ColorProps;
   shade?: Shade;
   size?: keyof FontSizeProps;
   weight?: keyof FontWeightProps;
