@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { api } from '@/core/infra';
+import { api, LocalStorageRepository } from '@/core/infra';
 import {
   HttpClient,
   HttpErrorStatusCode,
@@ -12,63 +12,6 @@ import { ExpiredSessionError, ServerError, UnexpectedError } from '@/core/domain
 
 // TODO refactor this, with just one function
 export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
-  async get(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
-    const httpResponse = await api.get(params.url, {
-      data: params.body,
-      headers: injectHeaders(params.headers),
-    });
-
-    return {
-      statusCode: httpResponse.status,
-      body: httpResponse.data,
-    };
-  }
-
-  async post(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
-    const httpResponse = await api.post(`/${params.url}`, params.body, {
-      headers: injectHeaders(params?.headers),
-    });
-
-    return {
-      statusCode: httpResponse.status,
-      body: httpResponse.data,
-    };
-  }
-
-  async put(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
-    const httpResponse = await api.put(`/${params.url}`, params.body, {
-      headers: injectHeaders(params?.headers),
-    });
-
-    return {
-      statusCode: httpResponse.status,
-      body: httpResponse.data,
-    };
-  }
-
-  async delete(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
-    const httpResponse = await api.delete(`/${params.url}`, {
-      headers: injectHeaders(params?.headers),
-      data: params.body,
-    });
-
-    return {
-      statusCode: httpResponse.status,
-      body: httpResponse.data,
-    };
-  }
-
-  async patch(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
-    const httpResponse = await api.patch(`/${params.url}`, params.body, {
-      headers: injectHeaders(params?.headers),
-    });
-
-    return {
-      statusCode: httpResponse.status,
-      body: httpResponse.data,
-    };
-  }
-
   // eslint-disable-next-line consistent-return
   async request(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
     let response: AxiosResponse;
@@ -102,11 +45,23 @@ export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
       case HttpErrorStatusCode.NOT_ACCEPTABLE:
       case HttpErrorStatusCode.NOT_FOUND:
       case HttpErrorStatusCode.UNAUTHORIZED:
+        this.clearSession();
         throw new ExpiredSessionError();
 
       case HttpErrorStatusCode.UNPROCESSABLE_ENTITY:
       case HttpErrorStatusCode.UNSUPPORTED_MEDIA_TYPE:
         throw new ServerError(response?.data?.message, response.status);
     }
+  }
+
+  private clearSession() {
+    const queryString = window.location.href;
+
+    const a = new LocalStorageRepository();
+    const params = new URL(queryString);
+    const { pathname } = params;
+
+    a.clearAll();
+    window.location.href = `/login?redirect=expiredToken&page=${pathname}`;
   }
 }

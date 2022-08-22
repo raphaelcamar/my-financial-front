@@ -3,6 +3,6 @@ export class ExpiredSessionError extends Error {
   constructor() {
     super();
     this.name = 'ExpiredSessionError';
-    this.message = 'Sessão expirada. Faça login novamente para continuar';
+    this.message = 'Sessão expirada. Você será redirecionado para o login';
   }
 }

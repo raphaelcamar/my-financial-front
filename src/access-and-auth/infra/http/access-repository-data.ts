@@ -71,7 +71,8 @@ export class AccessRepositoryData implements AccessRepository {
   async sendCodePasswordRecover(code: string, email: string): Promise<void> {
     const http = new RequestHttpRepository<any, void>();
 
-    await http.post({
+    await http.request({
+      method: 'post',
       url: 'user/verify-code',
       body: {
         email,

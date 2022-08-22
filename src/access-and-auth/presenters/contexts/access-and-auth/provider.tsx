@@ -44,17 +44,6 @@ export const AccessAndAuthProvider: React.FC = ({ children }) => {
         const user = await verifyUserAuth();
         if (user) dispatch(fetchUserAuth(user));
       } catch (err) {
-        if (err?.status === HttpErrorStatusCode.UNAUTHORIZED) {
-          navigate('/login', { replace: true });
-
-          const localStorageRepository = new LocalStorageRepository();
-          localStorageRepository.clearAll();
-
-          enqueueSnackbar('Sessão expirada. Faça login novamente para continuar', {
-            variant: 'info',
-          });
-        }
-
         dispatch(fetchUserAuth(null));
       }
     }
