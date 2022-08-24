@@ -4,12 +4,12 @@ import { ClickAwayListener, Hide, Icon, Typography } from '@/core/ui/components/
 import { Avatar, MenuItem } from '@/core/ui/components/molecules';
 import { Menu, Popover, Wrapper, PhotoName, WrapperIcon, WrapperMenuItem, Border } from './styles';
 
-import { useAccessAndAuthContext } from '@/access-and-auth/presenters';
+import { useAccessContext } from '@/user/presenters/contexts/access';
 
 export const MenuProfilePopover: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
-  const { user, logout } = useAccessAndAuthContext();
+  const { user, logout } = useAccessContext();
   const navigate = useNavigate();
 
   const handleLogout = () => {

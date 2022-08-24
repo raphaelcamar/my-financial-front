@@ -1,10 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
+import { useAccessContext } from '@/user/presenters/contexts/access';
 import { Navigate } from './navigate';
 
 export const PublicRoute: React.FC = ({ children }) => {
-  const { user } = useAccessAndAuthContext();
+  const { user } = useAccessContext();
   const location = useLocation();
 
   const verifyUser = () => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
-import { useAccessAndAuthContext } from '@/access-and-auth/presenters/contexts';
+import { useAccessContext } from '@/user/presenters/contexts/access';
 
 export const PrivateRoute: React.FC = ({ children }) => {
-  const { verifyInCache } = useAccessAndAuthContext();
+  const { verifyInCache } = useAccessContext();
   const location = useLocation();
 
   const verifyUser = () => {

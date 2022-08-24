@@ -10,7 +10,6 @@ import {
 import { injectHeaders } from '../decorators';
 import { ExpiredSessionError, ServerError, UnexpectedError } from '@/core/domain/errors';
 
-// TODO refactor this, with just one function
 export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
   // eslint-disable-next-line consistent-return
   async request(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
@@ -33,21 +32,21 @@ export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
       if (!response) throw new UnexpectedError();
     }
     switch (response.status) {
-      case HttpSuccessStatusCode.NO_CONTENT:
+      case HttpErrorStatusCode.UNAUTHORIZED:
+        this.clearSession();
+        throw new ExpiredSessionError();
+
       case HttpSuccessStatusCode.OK:
         return {
           statusCode: response.status,
           body: response.data,
         };
+      case HttpSuccessStatusCode.NO_CONTENT:
       case HttpErrorStatusCode.BAD_REQUEST:
       case HttpErrorStatusCode.FORBIDDEN:
       case HttpErrorStatusCode.INTERNAL:
       case HttpErrorStatusCode.NOT_ACCEPTABLE:
       case HttpErrorStatusCode.NOT_FOUND:
-      case HttpErrorStatusCode.UNAUTHORIZED:
-        this.clearSession();
-        throw new ExpiredSessionError();
-
       case HttpErrorStatusCode.UNPROCESSABLE_ENTITY:
       case HttpErrorStatusCode.UNSUPPORTED_MEDIA_TYPE:
         throw new ServerError(response?.data?.message, response.status);
