@@ -1,11 +1,9 @@
-/* eslint-disable consistent-return */
-/* eslint-disable default-param-last */
 import {
   ActionTypes,
+  InitialState,
   CREATE_TRANSACTION,
   GET_TRANSACTIONS,
   FILTER_TRANSACTION,
-  InitialState,
   DELETE_TRANSACTION,
   UPDATE_TRANSACTION,
   STATISTIC_TRANSACTION,

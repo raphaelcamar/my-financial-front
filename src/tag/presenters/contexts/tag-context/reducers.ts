@@ -1,4 +1,4 @@
-/* eslint-disable default-param-last */
+
 import { ActionTypes, InitialState, GET_ALL_TAGS, CURRENT_VIEW_TAG } from './types';
 
 export const initialState: InitialState = {
@@ -6,7 +6,7 @@ export const initialState: InitialState = {
   currentViewTag: null,
 };
 
-// eslint-disable-next-line consistent-return
+
 export function reducer(state = initialState, action: ActionTypes): InitialState {
   switch (action.type) {
     case GET_ALL_TAGS:
