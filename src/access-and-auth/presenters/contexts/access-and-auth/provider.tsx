@@ -1,6 +1,4 @@
 import React, { useEffect, useReducer } from 'react';
-import { useNavigate } from 'react-router';
-import { useSnackbar } from 'notistack';
 import { AccessRepositoryData } from '@/access-and-auth/infra';
 import { AccessAndAuthContext } from './context';
 import { initialState, reducer } from './reducers';
@@ -15,12 +13,9 @@ import {
   SendCodePassowrdRecover,
 } from '@/access-and-auth/data';
 import { fetchUserAuth, fetchEmailPasswordRecover, fetchLogout } from './actions';
-import { HttpErrorStatusCode } from '@/core/data';
 
 export const AccessAndAuthProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const navigate = useNavigate();
-  const { enqueueSnackbar } = useSnackbar();
 
   const verifyUserAuth = async (): Promise<User> => {
     const localStorageRepository = new LocalStorageRepository();

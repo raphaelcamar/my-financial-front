@@ -68,7 +68,17 @@
 		"no-underscore-dangle": "off",
 		"@typescript-eslint/no-namespace": "off",
 		"import/export": "off",
+		"react/no-unused-prop-types": "off",
 		"lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
-	}
+	},
+	"overrides": [
+		{
+			"files": ["**/*/reducers.ts"],
+			"rules": {
+				"default-param-last": "off",
+				"consistent-return": "off"
+			}
+		}
+	]
 }
 
