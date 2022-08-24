@@ -1,7 +1,7 @@
 import React from 'react';
 import { User } from '@/access-and-auth/domain';
 import { Inputs, SpaceInputs, StyledInputBase, AvatarPosition } from './styles';
-import { Avatar } from '@/core/ui/components/atoms';
+import { Avatar } from '@/core/ui/components/molecules';
 import { CardProfile } from '@/profile/ui/components/atoms';
 
 import { differenceInYearsDate } from '@/core/utils';
@@ -13,7 +13,7 @@ interface IBodyInformationCard {
 export const BodyInformationCard: React.FC<IBodyInformationCard> = ({ user }) => (
   <CardProfile>
     <AvatarPosition>
-      <Avatar size={112} url={user?.pictureUrl || user?.name} />
+      <Avatar chooseAvatar size={112} url={user?.pictureUrl || user?.name} />
     </AvatarPosition>
     <Inputs>
       <StyledInputBase readOnly value={`${user?.name} ${user?.lastname}`} />

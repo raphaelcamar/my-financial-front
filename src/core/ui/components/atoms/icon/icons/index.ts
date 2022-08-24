@@ -31,6 +31,7 @@ export * from './open-drawer-mobile-icon';
 export * from './open-eye-icon';
 export * from './pen-icon';
 export * from './person-icon';
+export * from './photo-icon';
 export * from './question-mark-rounded-icon';
 export * from './recurrence-icon';
 export * from './recurrency-value-icon';

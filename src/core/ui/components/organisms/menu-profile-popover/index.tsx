@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Avatar, ClickAwayListener, Hide, Icon, Typography } from '@/core/ui/components/atoms';
+import { ClickAwayListener, Hide, Icon, Typography } from '@/core/ui/components/atoms';
+import { Avatar, MenuItem } from '@/core/ui/components/molecules';
 import { Menu, Popover, Wrapper, PhotoName, WrapperIcon, WrapperMenuItem, Border } from './styles';
-import { MenuItem } from '@/core/ui/components/molecules';
+
 import { useAccessAndAuthContext } from '@/access-and-auth/presenters';
 
 export const MenuProfilePopover: React.FC = () => {

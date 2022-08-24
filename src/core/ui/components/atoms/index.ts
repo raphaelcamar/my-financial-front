@@ -1,4 +1,3 @@
-export * from './avatar';
 export * from './checkbox';
 export * from './circular-progress';
 export * from './click-away-listener';

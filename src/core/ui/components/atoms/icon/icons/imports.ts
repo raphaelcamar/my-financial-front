@@ -41,6 +41,7 @@ import { TransactionIcon } from '@/core/ui/components/atoms/icon/icons/transacti
 import { TrashIcon } from '@/core/ui/components/atoms/icon/icons/trash-icon';
 import { WalletIcon } from '@/core/ui/components/atoms/icon/icons/wallet-icon';
 import { InactiveTagIcon } from '@/core/ui/components/atoms/icon/icons/inactive-tag-icon';
+import { PhotoIcon } from '@/core/ui/components/atoms/icon/icons/photo-icon';
 
 export const getIcon = {
   add: AddIcon,
@@ -75,6 +76,7 @@ export const getIcon = {
   openEye: OpenEyeIconIcon,
   pen: PenIcon,
   person: PersonIcon,
+  photo: PhotoIcon,
   questionMarkRounded: QuestionMarkRoundedIcon,
   recurrence: RecurrenceIcon,
   recurrencyValue: RecurrencyValueIcon,
