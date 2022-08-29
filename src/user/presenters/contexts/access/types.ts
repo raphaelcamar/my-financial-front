@@ -1,4 +1,4 @@
-import { User } from '@/access-and-auth/domain';
+import { User } from '@/user/domain';
 
 export enum ActionType {
   USER_AUTHORIZED = 'USER_AUTHORIZED',

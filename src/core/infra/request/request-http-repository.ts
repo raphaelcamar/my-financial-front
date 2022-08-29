@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { api, LocalStorageRepository } from '@/core/infra';
+import { LocalStorageRepository } from '@/core/infra';
 import {
   HttpClient,
   HttpErrorStatusCode,
@@ -56,11 +56,11 @@ export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
   private clearSession() {
     const queryString = window.location.href;
 
-    const a = new LocalStorageRepository();
+    const localStorageRepository = new LocalStorageRepository();
     const params = new URL(queryString);
     const { pathname } = params;
 
-    a.clearAll();
+    localStorageRepository.clearAll();
     window.location.href = `/login?redirect=expiredToken&page=${pathname}`;
   }
 }

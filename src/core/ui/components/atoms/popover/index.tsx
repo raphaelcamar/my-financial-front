@@ -1,7 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import { usePopper } from 'react-popper';
 import { ClickAwayListener, Icon } from '@/core/ui/components/atoms';
 import { Menu, PopoverElements, Wrapper, WrapperIcon, Border } from './styles';

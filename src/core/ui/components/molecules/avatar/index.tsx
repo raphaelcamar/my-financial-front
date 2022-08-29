@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSnackbar } from 'notistack';
 import { delay } from '@/core/utils';
 import { CircularProgress, Icon } from '../../atoms';
 import { ChooseAvatar, Container, Letter, WrapperAvatar } from './styles';
@@ -7,12 +8,14 @@ interface IAvatar {
   url?: string;
   size?: number;
   chooseAvatar?: boolean;
+  updatePicture?: (picture: Blob) => Promise<void>;
 }
 
-export const Avatar: React.FC<IAvatar> = ({ url, size, chooseAvatar }) => {
+export const Avatar: React.FC<IAvatar> = ({ url, size, chooseAvatar, updatePicture }) => {
   const [openOption, setOpenOption] = useState<boolean>(false);
   const [imagePreview, setImagePreview] = useState<string>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const isValidUrl = (testUrl: string): boolean => {
     const reg = /http/;
@@ -24,16 +27,22 @@ export const Avatar: React.FC<IAvatar> = ({ url, size, chooseAvatar }) => {
   };
 
   const handleUploadAvatar = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
-    event.preventDefault();
-    const { files } = event.target;
-    setOpenOption(true);
-    setLoading(true);
-    await delay(2000);
-    setLoading(false);
+    try {
+      event.preventDefault();
+      const { files } = event.target;
 
-    setImagePreview(URL.createObjectURL(files?.[0]));
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
+      setOpenOption(true);
+      setLoading(true);
+
+      await updatePicture(files?.[0]);
+      await delay(2000);
+
+      setImagePreview(URL.createObjectURL(files?.[0]));
+    } catch (err) {
+      enqueueSnackbar(err, { variant: 'error' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

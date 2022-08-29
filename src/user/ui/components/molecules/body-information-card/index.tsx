@@ -8,12 +8,13 @@ import { differenceInYearsDate } from '@/core/utils';
 
 interface IBodyInformationCard {
   user: User;
+  updatePicture: (picture: Blob) => Promise<void>;
 }
 
-export const BodyInformationCard: React.FC<IBodyInformationCard> = ({ user }) => (
+export const BodyInformationCard: React.FC<IBodyInformationCard> = ({ user, updatePicture }) => (
   <CardProfile>
     <AvatarPosition>
-      <Avatar chooseAvatar size={112} url={user?.pictureUrl || user?.name} />
+      <Avatar chooseAvatar size={112} url={user?.pictureUrl || user?.name} updatePicture={updatePicture} />
     </AvatarPosition>
     <Inputs>
       <StyledInputBase readOnly value={`${user?.name} ${user?.lastname}`} />

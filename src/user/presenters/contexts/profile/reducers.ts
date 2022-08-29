@@ -1,7 +1,7 @@
 import { Action, InitialState, ActionType } from './types';
 
 export const initialState: InitialState = {
-  avatarUrl: undefined,
+  user: undefined,
 };
 
 export function reducer(state = initialState, action: Action): InitialState {
@@ -9,7 +9,7 @@ export function reducer(state = initialState, action: Action): InitialState {
     case ActionType.CHANGE_AVATAR_URL:
       return {
         ...state,
-        avatarUrl: action.payload,
+        user: { ...state.user, pictureUrl: action.payload },
       };
   }
 }

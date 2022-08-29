@@ -45,6 +45,20 @@ export const AccessProvider: React.FC = ({ children }) => {
     verify();
   }, []);
 
+  const getStorageEvent = (event: StorageEvent) => {
+    if (event.type === 'storage') {
+      const localStorageRepository = new LocalStorageRepository();
+      const user = localStorageRepository.get<User>('@user');
+      dispatch(fetchLogin(user));
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('storage', getStorageEvent);
+
+    return () => window.removeEventListener('storage', getStorageEvent);
+  }, []);
+
   const userAuth = async (loginData: User.Login): Promise<void> => {
     const accessRepository = new AccessRepositoryData();
     const localStorageRepository = new LocalStorageRepository();

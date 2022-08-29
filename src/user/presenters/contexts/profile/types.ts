@@ -1,9 +1,11 @@
+import { User } from '@/user/domain';
+
 export enum ActionType {
   CHANGE_AVATAR_URL = 'CHANGE_AVATAR_URL',
 }
 
 export type InitialState = {
-  avatarUrl: string;
+  user: User;
 };
 
 export type ChangeAvatar = {
