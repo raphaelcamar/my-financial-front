@@ -22,9 +22,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(t|j)s(x?)$/,
-        exclude: /node_modules/,
-        use: 'babel-loader'
+        test: /\.ts(x?)$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.css$/i,
@@ -40,13 +40,16 @@ module.exports = {
     }
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public', 'index.html'),
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: path.resolve(__dirname, 'public', 'index.html'),
+    // }),
     new Dotenv({
       path: envFile,
       safe: true,
       systemvars: true
+    }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
     }),
   ]
 }
