@@ -1,16 +1,18 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const envFile = './.env'
 
 module.exports = {
-  devtool: 'eval-source-map',
   entry: {
-    app: path.resolve(__dirname, 'src', 'main', 'index.tsx')
+    app: './src/main/index.tsx'
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.join(__dirname, 'public/js'),
+    publicPath: '/public/js',
     filename: 'bundle.js'
   },
   resolve: {
@@ -20,17 +22,15 @@ module.exports = {
     }
   },
   module: {
-    rules: [
-      {
-        test: /\.ts(x?)$/,
-        loader: 'ts-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-    ],
+    rules: [{
+      test: /\.ts(x?)$/,
+      loader: 'ts-loader',
+      exclude: /node_modules/
+    },
+    {
+      test: /\.css$/i,
+      use: ["style-loader", "css-loader"],
+    }],
   },
   devServer: {
     static: './public',
@@ -39,17 +39,26 @@ module.exports = {
       writeToDisk: true
     }
   },
+  optimization: {
+    minimizer: [
+    ]
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM'
+  },
   plugins: [
     // new HtmlWebpackPlugin({
-    //   template: path.resolve(__dirname, 'public', 'index.html'),
+    //   title: 'Production'
     // }),
+    new CleanWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
     new Dotenv({
       path: envFile,
       safe: true,
       systemvars: true
-    }),
-    new webpack.ProvidePlugin({
-      process: 'process/browser',
     }),
   ]
 }
