@@ -84,7 +84,7 @@ export const TableContainer: React.FC = () => {
         />
         {transactions?.length <= 0 && !transactionLoader ? (
           <>
-            <EmptyState message="Você não possui transações!" />
+            <EmptyState message="Você não possui transações com esse filtro!" />
           </>
         ) : (
           <Container>

@@ -12,7 +12,7 @@ module.exports = {
     app: path.resolve(__dirname, 'src', 'main', 'index.tsx')
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   resolve: {
@@ -29,9 +29,9 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-      test: /\.ts(x?)$/,
-      loader: 'ts-loader',
-      exclude: /node_modules/
+        test: /\.ts(x?)$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.css$/i,
@@ -45,10 +45,6 @@ module.exports = {
     devMiddleware: {
       writeToDisk: true
     }
-  },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM'
   },
   plugins: [
     new HtmlWebpackPlugin({
