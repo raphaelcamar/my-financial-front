@@ -9,11 +9,9 @@ import { ColorProps } from '@/main/styled';
 interface ITagCard {
   tag: Tag;
   modifyTagStatus: (tagStatus: TagStatus, tagId: string) => Promise<void>;
-  deleteTag: (tag: Tag) => void;
-  editTag: (tag: Tag) => void;
 }
 
-export const TagCard: React.FC<ITagCard> = ({ tag, modifyTagStatus, deleteTag, editTag }) => {
+export const TagCard: React.FC<ITagCard> = ({ tag, modifyTagStatus }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -36,12 +34,7 @@ export const TagCard: React.FC<ITagCard> = ({ tag, modifyTagStatus, deleteTag, e
 
   return (
     <StyledPaper density={1}>
-      <HeaderCard
-        color={tag?.color as keyof ColorProps}
-        title={tag?.title}
-        onDelete={() => deleteTag(tag)}
-        onEdit={() => editTag(tag)}
-      />
+      <HeaderCard color={tag?.color as keyof ColorProps} title={tag?.title} onDelete={() => null} onEdit={() => null} />
       <TextEllipsis rows={1}>
         <Typography>{tag?.description}</Typography>
       </TextEllipsis>

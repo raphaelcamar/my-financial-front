@@ -48,8 +48,8 @@ export const HeaderCard: React.FC<IHeaderCard> = ({ color, onDelete, onEdit, tit
         />
         {open ? (
           <Pop ref={setPopperElement} open={open} style={styles.popper} {...attributes.popper}>
-            <MenuItem text="Editar" icon="pen" onClick={() => onEdit()} />
-            <MenuItem text="Excluir" icon="trash" onClick={() => onDelete()} />
+            <MenuItem text="Editar" icon="pen" />
+            <MenuItem text="Excluir" icon="trash" />
           </Pop>
         ) : (
           <></>

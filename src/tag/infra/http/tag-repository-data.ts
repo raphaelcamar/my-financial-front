@@ -47,13 +47,4 @@ export class TagRepositoryData implements TagRepository {
 
     return httpResponse.body;
   }
-
-  async delete(tagId: string): Promise<void> {
-    const http = new RequestHttpRepository<string, void>();
-
-    await http.request({
-      method: 'delete',
-      url: `tag/${tagId}`,
-    });
-  }
 }
