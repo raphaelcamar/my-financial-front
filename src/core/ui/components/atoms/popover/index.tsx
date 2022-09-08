@@ -53,7 +53,6 @@ export const Popover: React.FC<IPopover> = ({ displayElement, children, withArro
             style={styles.popper}
             {...attributes.popper}
           >
-            <Border />
             {children}
           </PopoverElements>
         </ClickAwayListener>

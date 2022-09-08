@@ -9,6 +9,7 @@ type PropsTagContext = {
   getAllTags: () => Promise<void>;
   modifyTagStatus: (tagStatus: TagStatus, tagId: string) => Promise<void>;
   setCurrentViewTag: (viewTag: TagStatus) => Promise<void>;
+  deleteTag: (tagId: string) => Promise<void>;
 };
 
 export const TagContext = createContext<PropsTagContext>({} as PropsTagContext);

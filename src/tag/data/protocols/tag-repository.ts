@@ -5,4 +5,5 @@ export interface TagRepository {
   getAllTags: () => Promise<Tag[]>;
   getByStatus: (status: TagStatus) => Promise<Tag[]>;
   modifyStatusTag: (status: TagStatus, tagId: string) => Promise<Tag>;
+  delete: (tagId: string) => Promise<void>;
 }

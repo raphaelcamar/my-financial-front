@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import { CreateTag, GetAllTags, GetTagByStatus, ModifyStatusTag } from '@/tag/data/use-cases';
+import { CreateTag, DeleteTag, GetAllTags, GetTagByStatus, ModifyStatusTag } from '@/tag/data/use-cases';
 import { TagRepositoryData } from '@/tag/infra';
 import { TagContext } from './context';
 import { initialState, reducer } from './reducers';
@@ -46,6 +46,14 @@ export const TagProvider: React.FC = ({ children }) => {
     dispatch(fetchTags(tags));
   };
 
+  const deleteTag = async (tagId: string): Promise<void> => {
+    const tagRepository = new TagRepositoryData();
+    const useCase = new DeleteTag(tagId, tagRepository, state.tags);
+
+    const result = await useCase.execute();
+    dispatch(fetchTags(result));
+  };
+
   const create = async (tag: Tag): Promise<void> => {
     dispatch(fetchTagsByStatus('active'));
 
@@ -66,6 +74,7 @@ export const TagProvider: React.FC = ({ children }) => {
         tags: state.tags,
         loading,
         create,
+        deleteTag,
         getAllTags,
         modifyTagStatus,
         setCurrentViewTag,

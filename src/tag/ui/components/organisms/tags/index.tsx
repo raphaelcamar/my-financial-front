@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useSnackbar } from 'notistack';
 import { TagCards } from './styles';
 import { useTagContext } from '@/tag/presenters/contexts';
-import { TagCard } from '@/tag/ui/components/molecules';
+import { ModalDeleteTag, TagCard } from '@/tag/ui/components/molecules';
 import { CircularProgress } from '@/core/ui/components/atoms';
+import { Tag } from '@/tag/domain/entities';
 
 export const Tags: React.FC = () => {
-  const { tags, getAllTags, modifyTagStatus, loading } = useTagContext();
+  const { tags, getAllTags, modifyTagStatus, loading, deleteTag } = useTagContext();
+  const [modalDeleteOpen, setModalDeleteOpen] = useState<Tag>(null);
+
   const { enqueueSnackbar } = useSnackbar();
 
   const getTags = async () => {
@@ -23,7 +26,12 @@ export const Tags: React.FC = () => {
   const renderListTags = (): JSX.Element => (
     <>
       {tags?.map(tag => (
-        <TagCard tag={tag} modifyTagStatus={modifyTagStatus} />
+        <TagCard
+          tag={tag}
+          modifyTagStatus={modifyTagStatus}
+          deleteTag={deleteableTag => setModalDeleteOpen(deleteableTag)}
+          editTag={DeleteableTag => setModalDeleteOpen(DeleteableTag)}
+        />
       ))}
     </>
   );
@@ -32,5 +40,17 @@ export const Tags: React.FC = () => {
     getTags();
   }, []);
 
-  return loading ? <CircularProgress size={36} color="primary" /> : <TagCards>{renderListTags()}</TagCards>;
+  return loading ? (
+    <CircularProgress size={36} color="primary" />
+  ) : (
+    <>
+      <TagCards>{renderListTags()}</TagCards>
+      <ModalDeleteTag
+        deleteTag={deleteTag}
+        open={!!modalDeleteOpen}
+        setOpen={setModalDeleteOpen}
+        tag={modalDeleteOpen}
+      />
+    </>
+  );
 };
