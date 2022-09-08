@@ -1,7 +1,6 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
 const path = require('path')
-const webpack = require('webpack')
+const Dotenv = require('dotenv-webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const envFile = './.env'
 
@@ -23,14 +22,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(t|j)sx/,
+        test: /\.(t|j)s(x?)$/,
         exclude: /node_modules/,
         use: 'babel-loader'
-      },
-      {
-        test: /\.ts(x?)$/,
-        loader: 'ts-loader',
-        exclude: /node_modules/
       },
       {
         test: /\.css$/i,
@@ -48,10 +42,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html'),
-    }),
-    new webpack.ProvidePlugin({
-      process: 'process/browser',
-      "React": "react"
     }),
     new Dotenv({
       path: envFile,
