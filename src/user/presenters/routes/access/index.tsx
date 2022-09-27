@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
 import { RouteObject, useRoutes } from 'react-router-dom';
-import { Login, Subscribe, PasswordRecover } from '@/user/ui/pages';
 import { CircularProgress } from '@/core/ui/components/atoms';
+
+const Login = React.lazy(async () => import(/* webpackChunkName: "LoginPage" */ '@/user/ui/pages/login'));
+const Subscribe = React.lazy(async () => import(/* webpackChunkName: "SubscribePage" */ '@/user/ui/pages/subscribe'));
+const PasswordRecover = React.lazy(
+  async () => import(/* webpackChunkName: "PasswordRecover" */ '@/user/ui/pages/password-recover')
+);
 
 export const AccessRoutes: RouteObject[] = [
   {

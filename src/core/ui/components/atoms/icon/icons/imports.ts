@@ -1,3 +1,4 @@
+import React from 'react';
 import { AddIcon } from '@/core/ui/components/atoms/icon/icons/add-icon';
 import { ArrowDownIcon } from '@/core/ui/components/atoms/icon/icons/arrow-down-icon';
 import { ArrowLimitIcon } from '@/core/ui/components/atoms/icon/icons/arrow-limit-icon';
@@ -14,7 +15,7 @@ import { EmptyStateIcon } from '@/core/ui/components/atoms/icon/icons/empty-stat
 import { FilterBarIcon } from '@/core/ui/components/atoms/icon/icons/filter-bar-icon';
 import { FilterIcon } from '@/core/ui/components/atoms/icon/icons/filter-icon';
 import { GoogleIcon } from '@/core/ui/components/atoms/icon/icons/google-icon';
-import { KeyIcon } from '@/core/ui/components/atoms/icon/icons/key-icon';
+// import { KeyIcon } from '@/core/ui/components/atoms/icon/icons/key-icon';
 import { LineArrowDownIcon } from '@/core/ui/components/atoms/icon/icons/line-arrow-down-icon';
 import { LineArrowUpIcon } from '@/core/ui/components/atoms/icon/icons/line-arrow-up-icon';
 import { LogoNewIcon } from '@/core/ui/components/atoms/icon/icons/logo-new-icon';
@@ -28,7 +29,7 @@ import { MoreOptionIcon } from '@/core/ui/components/atoms/icon/icons/more-optio
 import { OpenDrawerMobileIcon } from '@/core/ui/components/atoms/icon/icons/open-drawer-mobile-icon';
 import { OpenEyeIconIcon } from '@/core/ui/components/atoms/icon/icons/open-eye-icon';
 import { PenIcon } from '@/core/ui/components/atoms/icon/icons/pen-icon';
-import { PersonIcon } from '@/core/ui/components/atoms/icon/icons/person-icon';
+// import { PersonIcon } from '@/core/ui/components/atoms/icon/icons/person-icon';
 import { QuestionMarkRoundedIcon } from '@/core/ui/components/atoms/icon/icons/question-mark-rounded-icon';
 import { RecurrenceIcon } from '@/core/ui/components/atoms/icon/icons/recurrence-icon';
 import { RecurrencyValueIcon } from '@/core/ui/components/atoms/icon/icons/recurrency-value-icon';
@@ -42,6 +43,13 @@ import { TrashIcon } from '@/core/ui/components/atoms/icon/icons/trash-icon';
 import { WalletIcon } from '@/core/ui/components/atoms/icon/icons/wallet-icon';
 import { InactiveTagIcon } from '@/core/ui/components/atoms/icon/icons/inactive-tag-icon';
 import { PhotoIcon } from '@/core/ui/components/atoms/icon/icons/photo-icon';
+
+const KeyIcon = React.lazy(
+  async () => import(/* webpackChunkName: "key" */ '@/core/ui/components/atoms/icon/icons/key-icon')
+);
+const PersonIcon = React.lazy(
+  async () => import(/* webpackChunkName: "person" */ '@/core/ui/components/atoms/icon/icons/person-icon')
+);
 
 export const getIcon = {
   add: AddIcon,

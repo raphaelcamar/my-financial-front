@@ -2,7 +2,6 @@
   "name": "my-financial-front",
   "version": "1.0.0",
   "description": "My financial frontend project",
-  "main": "index.js",
   "scripts": {
     "dev": "webpack server --config webpack.dev.js --port=3000",
     "build": "webpack --config webpack.prod.js",
@@ -44,7 +43,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.18.10",
-    "@babel/core": "^7.19.0",
+    "@babel/core": "^7.19.1",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
@@ -63,7 +62,6 @@
     "@typescript-eslint/parser": "^5.10.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.3",
-    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.6.0",

@@ -11,9 +11,8 @@ module.exports = {
     app: './src/main/index.tsx'
   },
   output: {
-    path: path.join(__dirname, 'public/js'),
-    publicPath: '/public/js',
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -22,36 +21,37 @@ module.exports = {
     }
   },
   module: {
-    rules: [{
-      test: /\.ts(x?)$/,
-      loader: 'ts-loader',
-      exclude: /node_modules/
-    },
-    {
-      test: /\.css$/i,
-      use: ["style-loader", "css-loader"],
-    }],
+    rules: [
+      {
+        test: /\.(j|t)s(x?)$/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
   devServer: {
     static: './public',
+    hot: true,
     historyApiFallback: true,
     devMiddleware: {
       writeToDisk: true
     }
   },
   optimization: {
-    minimizer: [
-    ]
+    runtimeChunk: true
   },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM'
+  performance: {
+    hints: false,
   },
   plugins: [
-    // new HtmlWebpackPlugin({
-    //   title: 'Production'
-    // }),
     new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public/index.html'),
+      favicon: path.resolve(__dirname, 'public/img/favicon.ico'),
+    }),
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
