@@ -22,7 +22,7 @@ export const TableTransaction: React.FC<ITableTransaction> = ({
 }) => (
   <TableData dataTitles={tableHeaderData}>
     {transactions?.map(transaction => (
-      <Tr>
+      <Tr key={transaction._id}>
         <Td width={20}>
           <Chip color="primary">{formatTopic(transaction?.topic) || '-'}</Chip>
         </Td>

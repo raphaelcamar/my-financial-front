@@ -18,7 +18,7 @@ export const TableData: React.FC<ITableData> = ({ dataTitles, children }) => (
     <Table>
       <THead>
         {dataTitles?.map(dataTitle => (
-          <Th onClick={() => dataTitle?.onClick()}>
+          <Th key={dataTitle.title} onClick={() => dataTitle?.onClick()}>
             <TitleGroup>
               <Typography size="small">{dataTitle.title}</Typography>
               {dataTitle?.sorteable && (

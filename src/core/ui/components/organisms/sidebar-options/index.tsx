@@ -22,6 +22,7 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions }) =>
         item?.isAccordion ? (
           <SidebarAccordion
             open={accordion}
+            key={item.path}
             setOpen={setAccordion}
             sidebarOpen={open}
             icon={item?.icon}
@@ -34,6 +35,7 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions }) =>
                 <SidebarOption
                   accordionOpen={accordion}
                   sidebarOpen={open}
+                  key={item.path}
                   item={accordionItem}
                   path={accordionItem.path}
                   selected={location?.pathname === accordionItem.path}
