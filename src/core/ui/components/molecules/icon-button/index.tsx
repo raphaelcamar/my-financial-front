@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, forwardRef } from 'react';
-import { AvailableIcons } from '@/core/domain';
-import { Icon, IconProps } from '@/core/ui/components/atoms';
+
+import { AvailableIcons, Icon, IconProps } from '@/core/ui/components/atoms';
 import { Container } from './styles';
 import { ColorProps, VariantProps } from '@/main/styled';
 

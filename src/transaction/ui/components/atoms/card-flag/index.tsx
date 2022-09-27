@@ -1,7 +1,6 @@
 import React from 'react';
-import { Icon } from '@/core/ui/components/atoms';
+import { AvailableIcons, Icon } from '@/core/ui/components/atoms';
 import { Container } from './styles';
-import { AvailableIcons } from '@/core/domain';
 
 export type Density = 0 | 1 | 2;
 

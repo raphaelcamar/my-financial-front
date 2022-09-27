@@ -1,7 +1,6 @@
 import React from 'react';
-import { Icon } from '@/core/ui/components/atoms';
+import { AvailableIcons, Icon } from '@/core/ui/components/atoms';
 import { Root, Format, Blur } from './styles';
-import { AvailableIcons } from '@/core/domain';
 
 interface IFigure {
   type: 'square' | 'circle';

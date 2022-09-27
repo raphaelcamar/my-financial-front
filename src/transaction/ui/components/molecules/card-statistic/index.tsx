@@ -1,9 +1,8 @@
 import React from 'react';
-import { Paper, Typography } from '@/core/ui/components/atoms';
+import { AvailableIcons, Paper, Typography } from '@/core/ui/components/atoms';
 import { Container, Content, TextEllipsis } from './styles';
 import { formatCurrency } from '@/core/utils';
 import { CardFlag } from '@/transaction/ui/components/atoms';
-import { AvailableIcons } from '@/core/domain';
 import { WrapperLoader } from '@/core/ui/components/molecules';
 
 interface ICardStatistic {

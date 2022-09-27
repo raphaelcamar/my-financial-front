@@ -1,7 +1,6 @@
 import React from 'react';
 import { Children, Wrapper, AccordionHeader, Container, WrapperIcon } from './styles';
-import { AvailableIcons } from '@/core/domain';
-import { Typography, Icon } from '@/core/ui/components/atoms';
+import { Typography, Icon, AvailableIcons } from '@/core/ui/components/atoms';
 
 interface ISidebarAccordion {
   titleAccordion: string;

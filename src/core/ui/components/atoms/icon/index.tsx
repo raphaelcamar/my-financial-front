@@ -1,9 +1,10 @@
 import React, { Suspense, useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { WrapperIcon } from './styles';
-import { AvailableIcons } from '@/core/domain';
 import { ColorProps, VariantProps } from '@/main/styled';
-import { getIcon } from './icons/imports';
+import { Icons } from './icons/imports';
+
+export type AvailableIcons = keyof typeof Icons;
 
 export type IconProps = {
   icon: AvailableIcons;
@@ -16,7 +17,7 @@ export const Icon: React.FC<IconProps> = ({ icon, color, shade, size }) => {
   const theme = useContext(ThemeContext);
   const iconColor = theme.palette?.[color]?.[shade];
 
-  const ChoicedIcon = getIcon[icon];
+  const ChoicedIcon = Icons[icon];
 
   return (
     <Suspense fallback={<></>}>

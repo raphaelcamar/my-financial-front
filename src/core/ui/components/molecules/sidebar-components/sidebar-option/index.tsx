@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Icon, Typography } from '@/core/ui/components/atoms';
+import { AvailableIcons, Icon, Typography } from '@/core/ui/components/atoms';
 import { Chip } from '@/core/ui/components/molecules';
-import { AvailableIcons, ISidebaroption } from '@/core/domain';
+import { ISidebaroption } from '@/core/domain';
 import { Container, WrapperIconText, WrapperIcon, WrapperTypography } from './styles';
 
 interface ISidebarOption {

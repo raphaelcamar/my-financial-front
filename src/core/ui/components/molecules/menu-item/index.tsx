@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { AvailableIcons } from '@/core/domain';
-import { Hide, Icon, Typography } from '@/core/ui/components/atoms';
+import { AvailableIcons, Hide, Icon, Typography } from '@/core/ui/components/atoms';
 import { Container } from './styles';
 import { BreakpointTypes } from '@/main/styled';
 

@@ -1,48 +1,127 @@
 import React from 'react';
-import { AddIcon } from '@/core/ui/components/atoms/icon/icons/add-icon';
-import { ArrowDownIcon } from '@/core/ui/components/atoms/icon/icons/arrow-down-icon';
-import { ArrowLimitIcon } from '@/core/ui/components/atoms/icon/icons/arrow-limit-icon';
-import { BalanceIcon } from '@/core/ui/components/atoms/icon/icons/balance-icon';
-import { BarViewIcon } from '@/core/ui/components/atoms/icon/icons/bar-view-icon';
-import { BellBallIcon } from '@/core/ui/components/atoms/icon/icons/bell-ball-icon';
-import { BellIcon } from '@/core/ui/components/atoms/icon/icons/bell-icon';
-import { CircleIcon } from '@/core/ui/components/atoms/icon/icons/circle-icon';
-import { CloseDrawerMobileIcon } from '@/core/ui/components/atoms/icon/icons/close-drawer-mobile-icon';
-import { CloseEyeIcon } from '@/core/ui/components/atoms/icon/icons/close-eye-icon';
-import { CloseIcon } from '@/core/ui/components/atoms/icon/icons/close-icon';
-import { DashboardIcon } from '@/core/ui/components/atoms/icon/icons/dashboard-icon';
-import { EmptyStateIcon } from '@/core/ui/components/atoms/icon/icons/empty-state-icon';
-import { FilterBarIcon } from '@/core/ui/components/atoms/icon/icons/filter-bar-icon';
-import { FilterIcon } from '@/core/ui/components/atoms/icon/icons/filter-icon';
-import { GoogleIcon } from '@/core/ui/components/atoms/icon/icons/google-icon';
-// import { KeyIcon } from '@/core/ui/components/atoms/icon/icons/key-icon';
-import { LineArrowDownIcon } from '@/core/ui/components/atoms/icon/icons/line-arrow-down-icon';
-import { LineArrowUpIcon } from '@/core/ui/components/atoms/icon/icons/line-arrow-up-icon';
-import { LogoNewIcon } from '@/core/ui/components/atoms/icon/icons/logo-new-icon';
-import { LogoSmallIcon } from '@/core/ui/components/atoms/icon/icons/logo-small-icon';
-import { LogoutIcon } from '@/core/ui/components/atoms/icon/icons/logout-icon';
-import { MailIcon } from '@/core/ui/components/atoms/icon/icons/mail-icon';
-import { MiniArrowDownIcon } from '@/core/ui/components/atoms/icon/icons/mini-arrow-down-icon';
-import { MiniArrowUpIcon } from '@/core/ui/components/atoms/icon/icons/mini-arrow-up-icon';
-import { MoneyBagIcon } from '@/core/ui/components/atoms/icon/icons/money-bag-icon';
-import { MoreOptionIcon } from '@/core/ui/components/atoms/icon/icons/more-option-icon';
-import { OpenDrawerMobileIcon } from '@/core/ui/components/atoms/icon/icons/open-drawer-mobile-icon';
-import { OpenEyeIconIcon } from '@/core/ui/components/atoms/icon/icons/open-eye-icon';
-import { PenIcon } from '@/core/ui/components/atoms/icon/icons/pen-icon';
-// import { PersonIcon } from '@/core/ui/components/atoms/icon/icons/person-icon';
-import { QuestionMarkRoundedIcon } from '@/core/ui/components/atoms/icon/icons/question-mark-rounded-icon';
-import { RecurrenceIcon } from '@/core/ui/components/atoms/icon/icons/recurrence-icon';
-import { RecurrencyValueIcon } from '@/core/ui/components/atoms/icon/icons/recurrency-value-icon';
-import { SearchIcon } from '@/core/ui/components/atoms/icon/icons/search-icon';
-import { SquareIcon } from '@/core/ui/components/atoms/icon/icons/square-icon';
-import { SquareViewIcon } from '@/core/ui/components/atoms/icon/icons/square-view-icon';
-import { TagIcon } from '@/core/ui/components/atoms/icon/icons/tag-icon';
-import { TransactionDashboardIcon } from '@/core/ui/components/atoms/icon/icons/transaction-dashboard-icon';
-import { TransactionIcon } from '@/core/ui/components/atoms/icon/icons/transaction-icon';
-import { TrashIcon } from '@/core/ui/components/atoms/icon/icons/trash-icon';
-import { WalletIcon } from '@/core/ui/components/atoms/icon/icons/wallet-icon';
-import { InactiveTagIcon } from '@/core/ui/components/atoms/icon/icons/inactive-tag-icon';
-import { PhotoIcon } from '@/core/ui/components/atoms/icon/icons/photo-icon';
+
+const AddIcon = React.lazy(
+  async () => import(/* webpackChunkName: "add" */ '@/core/ui/components/atoms/icon/icons/add-icon')
+);
+const ArrowDownIcon = React.lazy(
+  async () => import(/* webpackChunkName: "arrowDown" */ '@/core/ui/components/atoms/icon/icons/arrow-down-icon')
+);
+const ArrowLimitIcon = React.lazy(
+  async () => import(/* webpackChunkName: "arrowLimit" */ '@/core/ui/components/atoms/icon/icons/arrow-limit-icon')
+);
+const BalanceIcon = React.lazy(
+  async () => import(/* webpackChunkName: "balance" */ '@/core/ui/components/atoms/icon/icons/balance-icon')
+);
+const BellIcon = React.lazy(
+  async () => import(/* webpackChunkName: "bell" */ '@/core/ui/components/atoms/icon/icons/bell-icon')
+);
+const CircleIcon = React.lazy(
+  async () => import(/* webpackChunkName: "circle" */ '@/core/ui/components/atoms/icon/icons/circle-icon')
+);
+const CloseDrawerMobileIcon = React.lazy(
+  async () =>
+    import(/* webpackChunkName: "closeDrawerMobile" */ '@/core/ui/components/atoms/icon/icons/close-drawer-mobile-icon')
+);
+const CloseEyeIcon = React.lazy(
+  async () => import(/* webpackChunkName: "closeEye" */ '@/core/ui/components/atoms/icon/icons/close-eye-icon')
+);
+const CloseIcon = React.lazy(
+  async () => import(/* webpackChunkName: "close" */ '@/core/ui/components/atoms/icon/icons/close-icon')
+);
+const DashboardIcon = React.lazy(
+  async () => import(/* webpackChunkName: "dashboard" */ '@/core/ui/components/atoms/icon/icons/dashboard-icon')
+);
+const EmptyStateIcon = React.lazy(
+  async () => import(/* webpackChunkName: "emptyState" */ '@/core/ui/components/atoms/icon/icons/empty-state-icon')
+);
+const FilterBarIcon = React.lazy(
+  async () => import(/* webpackChunkName: "filterBar" */ '@/core/ui/components/atoms/icon/icons/filter-bar-icon')
+);
+const FilterIcon = React.lazy(
+  async () => import(/* webpackChunkName: "filter" */ '@/core/ui/components/atoms/icon/icons/filter-icon')
+);
+const GoogleIcon = React.lazy(
+  async () => import(/* webpackChunkName: "google" */ '@/core/ui/components/atoms/icon/icons/google-icon')
+);
+const LineArrowDownIcon = React.lazy(
+  async () =>
+    import(/* webpackChunkName: "lineArrowDown" */ '@/core/ui/components/atoms/icon/icons/line-arrow-down-icon')
+);
+const LineArrowUpIcon = React.lazy(
+  async () => import(/* webpackChunkName: "lineArrowup" */ '@/core/ui/components/atoms/icon/icons/line-arrow-up-icon')
+);
+const MailIcon = React.lazy(
+  async () => import(/* webpackChunkName: "mail" */ '@/core/ui/components/atoms/icon/icons/mail-icon')
+);
+const MiniArrowDownIcon = React.lazy(
+  async () =>
+    import(/* webpackChunkName: "miniArrowDown" */ '@/core/ui/components/atoms/icon/icons/mini-arrow-down-icon')
+);
+const MiniArrowUpIcon = React.lazy(
+  async () => import(/* webpackChunkName: "miniArrowup" */ '@/core/ui/components/atoms/icon/icons/mini-arrow-up-icon')
+);
+const MoneyBagIcon = React.lazy(
+  async () => import(/* webpackChunkName: "moneyBag" */ '@/core/ui/components/atoms/icon/icons/money-bag-icon')
+);
+const MoreOptionIcon = React.lazy(
+  async () => import(/* webpackChunkName: "moreOption" */ '@/core/ui/components/atoms/icon/icons/more-option-icon')
+);
+const OpenDrawerMobileIcon = React.lazy(
+  async () =>
+    import(/* webpackChunkName: "openDrawerMobile" */ '@/core/ui/components/atoms/icon/icons/open-drawer-mobile-icon')
+);
+const OpenEyeIcon = React.lazy(
+  async () => import(/* webpackChunkName: "openEye" */ '@/core/ui/components/atoms/icon/icons/open-eye-icon')
+);
+const PenIcon = React.lazy(
+  async () => import(/* webpackChunkName: "pen" */ '@/core/ui/components/atoms/icon/icons/pen-icon')
+);
+const QuestionMarkRoundedIcon = React.lazy(
+  async () =>
+    import(
+      /* webpackChunkName: "questionMarkRounded" */ '@/core/ui/components/atoms/icon/icons/question-mark-rounded-icon'
+    )
+);
+const RecurrenceIcon = React.lazy(
+  async () => import(/* webpackChunkName: "recurrence" */ '@/core/ui/components/atoms/icon/icons/recurrence-icon')
+);
+const RecurrencyValueIcon = React.lazy(
+  async () =>
+    import(/* webpackChunkName: "recurrenceValue" */ '@/core/ui/components/atoms/icon/icons/recurrency-value-icon')
+);
+const SearchIcon = React.lazy(
+  async () => import(/* webpackChunkName: "search" */ '@/core/ui/components/atoms/icon/icons/search-icon')
+);
+const SquareIcon = React.lazy(
+  async () => import(/* webpackChunkName: "square" */ '@/core/ui/components/atoms/icon/icons/square-icon')
+);
+const SquareViewIcon = React.lazy(
+  async () => import(/* webpackChunkName: "squareView" */ '@/core/ui/components/atoms/icon/icons/square-view-icon')
+);
+const TagIcon = React.lazy(
+  async () => import(/* webpackChunkName: "tag" */ '@/core/ui/components/atoms/icon/icons/tag-icon')
+);
+const TransactionDashboardIcon = React.lazy(
+  async () =>
+    import(
+      /* webpackChunkName: "transactionDashboard" */ '@/core/ui/components/atoms/icon/icons/transaction-dashboard-icon'
+    )
+);
+const TransactionIcon = React.lazy(
+  async () => import(/* webpackChunkName: "transaction" */ '@/core/ui/components/atoms/icon/icons/transaction-icon')
+);
+const TrashIcon = React.lazy(
+  async () => import(/* webpackChunkName: "trash" */ '@/core/ui/components/atoms/icon/icons/trash-icon')
+);
+const WalletIcon = React.lazy(
+  async () => import(/* webpackChunkName: "wallet" */ '@/core/ui/components/atoms/icon/icons/wallet-icon')
+);
+const InactiveTagIcon = React.lazy(
+  async () => import(/* webpackChunkName: "inactiveTag" */ '@/core/ui/components/atoms/icon/icons/inactive-tag-icon')
+);
+const PhotoIcon = React.lazy(
+  async () => import(/* webpackChunkName: "photo" */ '@/core/ui/components/atoms/icon/icons/photo-icon')
+);
 
 const KeyIcon = React.lazy(
   async () => import(/* webpackChunkName: "key" */ '@/core/ui/components/atoms/icon/icons/key-icon')
@@ -50,8 +129,23 @@ const KeyIcon = React.lazy(
 const PersonIcon = React.lazy(
   async () => import(/* webpackChunkName: "person" */ '@/core/ui/components/atoms/icon/icons/person-icon')
 );
+const BarViewIcon = React.lazy(
+  async () => import(/* webpackChunkName: "barView" */ '@/core/ui/components/atoms/icon/icons/bar-view-icon')
+);
+const BellBallIcon = React.lazy(
+  async () => import(/* webpackChunkName: "bellBall" */ '@/core/ui/components/atoms/icon/icons/bell-ball-icon')
+);
+const LogoNewIcon = React.lazy(
+  async () => import(/* webpackChunkName: "logoNew" */ '@/core/ui/components/atoms/icon/icons/logo-new-icon')
+);
+const LogoSmallIcon = React.lazy(
+  async () => import(/* webpackChunkName: "logoSmall" */ '@/core/ui/components/atoms/icon/icons/logo-small-icon')
+);
+const LogoutIcon = React.lazy(
+  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/logout-icon')
+);
 
-export const getIcon = {
+export const Icons = {
   add: AddIcon,
   arrowDown: ArrowDownIcon,
   arrowLimit: ArrowLimitIcon,
@@ -81,7 +175,7 @@ export const getIcon = {
   moneyBag: MoneyBagIcon,
   moreOption: MoreOptionIcon,
   openDrawerMobile: OpenDrawerMobileIcon,
-  openEye: OpenEyeIconIcon,
+  openEye: OpenEyeIcon,
   pen: PenIcon,
   person: PersonIcon,
   photo: PhotoIcon,
