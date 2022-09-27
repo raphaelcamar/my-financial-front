@@ -22,3 +22,5 @@ export const MonthlyRecurrencePage: React.FC = () => (
     </MonthlyCards>
   </Container>
 );
+
+export default MonthlyRecurrencePage;

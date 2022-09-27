@@ -2,7 +2,11 @@ import React, { Suspense } from 'react';
 import { RouteObject, useRoutes } from 'react-router-dom';
 import { PrivateRoute } from '@/core/presenters/proxies';
 import { CircularProgress } from '@/core/ui/components/atoms';
-import { MonthlyRecurrencePage } from '@/monthly-recurrence/ui/pages/monthly-recurrence-page';
+
+const MonthlyRecurrencePage = React.lazy(
+  async () =>
+    import(/* webpackChunkName: "MonthlyRecurrencePage" */ '@/monthly-recurrence/ui/pages/monthly-recurrence-page')
+);
 
 export const MonthlyRecurrenceRoutes: RouteObject[] = [
   {

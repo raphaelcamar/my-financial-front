@@ -11,3 +11,5 @@ export const TagPage: React.FC = () => (
     </Container>
   </TagProvider>
 );
+
+export default TagPage;

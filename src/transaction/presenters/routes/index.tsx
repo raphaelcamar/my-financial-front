@@ -3,9 +3,9 @@ import { RouteObject, useRoutes } from 'react-router-dom';
 import { PrivateRoute } from '@/core/presenters/proxies';
 import { CircularProgress } from '@/core/ui/components/atoms';
 
-// const TransactionsPage = React.lazy(() => import('@/transaction/ui/pages/transactions-page'));
-// const Test = React.lazy(() => import('@/transaction/ui/pages/test'));
-import { TransactionsPage, Test } from '@/transaction/ui';
+const TransactionsPage = React.lazy(
+  async () => import(/* webpackChunkName: "TransactionsPage" */ '@/transaction/ui/pages/transactions-page')
+);
 
 export const TransactionRoutes: RouteObject[] = [
   {
@@ -25,28 +25,6 @@ export const TransactionRoutes: RouteObject[] = [
       <Suspense fallback={<CircularProgress color="info" size={40} />}>
         <PrivateRoute>
           <TransactionsPage />
-        </PrivateRoute>
-      </Suspense>
-    ),
-  },
-
-  {
-    path: '/teste',
-    element: (
-      <Suspense fallback={<CircularProgress color="info" size={40} />}>
-        <PrivateRoute>
-          <Test />
-        </PrivateRoute>
-      </Suspense>
-    ),
-  },
-
-  {
-    path: '/teste-2',
-    element: (
-      <Suspense fallback={<CircularProgress color="info" size={40} />}>
-        <PrivateRoute>
-          <Test />
         </PrivateRoute>
       </Suspense>
     ),

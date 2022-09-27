@@ -10,3 +10,5 @@ export const ProfilePage: React.FC = () => (
     </Container>
   </ProfileProvider>
 );
+
+export default ProfilePage;

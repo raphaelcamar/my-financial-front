@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react';
 import { RouteObject, useRoutes } from 'react-router';
 import { CircularProgress } from '@/core/ui/components/atoms';
-import { TagPage } from '@/tag/ui';
+
+const TagPage = React.lazy(async () => import(/* webpackChunkName: "TagPage" */ '@/tag/ui/pages/tag-page'));
 
 export const TagRoutes: RouteObject[] = [
   {
