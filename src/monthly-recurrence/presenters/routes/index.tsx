@@ -8,6 +8,10 @@ const MonthlyRecurrencePage = React.lazy(
     import(/* webpackChunkName: "MonthlyRecurrencePage" */ '@/monthly-recurrence/ui/pages/monthly-recurrence-page')
 );
 
+const TagPage = React.lazy(
+  async () => import(/* webpackChunkName: "TagPage" */ '@/monthly-recurrence/ui/pages/tag-page')
+);
+
 export const MonthlyRecurrenceRoutes: RouteObject[] = [
   {
     path: '/recorrencias-mensais',
@@ -16,6 +20,14 @@ export const MonthlyRecurrenceRoutes: RouteObject[] = [
         <PrivateRoute>
           <MonthlyRecurrencePage />
         </PrivateRoute>
+      </Suspense>
+    ),
+  },
+  {
+    path: '/tags',
+    element: (
+      <Suspense fallback={<CircularProgress color="info" />}>
+        <TagPage />
       </Suspense>
     ),
   },
