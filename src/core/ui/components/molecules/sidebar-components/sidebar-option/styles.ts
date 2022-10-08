@@ -30,10 +30,9 @@ const containerOpen = (open?: boolean, isLastItem?: boolean) =>
         justify-content: center;
       `;
 
-export const Container = styled(Link)<AccordionItemType>`
+export const Container = styled.div<AccordionItemType>`
   border-radius: 8px;
   padding: 8px 16px;
-  text-decoration: none;
   min-height: 48px;
   width: 100%;
   display: flex;
@@ -49,6 +48,11 @@ export const Container = styled(Link)<AccordionItemType>`
     css`
       border-radius: 8px !important;
     `}
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.font.color.default};
 `;
 
 export const WrapperIcon = styled.div<AccordionItemType>`

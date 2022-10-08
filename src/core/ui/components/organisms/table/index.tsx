@@ -2,6 +2,7 @@
 import React from 'react';
 import { Typography, Icon, TableContainer, Table, Tbody, THead, Th, Td, Tr } from '@/core/ui/components/atoms';
 import { TitleGroup, WrapperIcons } from './styles';
+import { randomId } from '@/core/utils';
 
 export type TableHeadProps = {
   sorteable?: boolean;
@@ -19,7 +20,7 @@ export const TableData: React.FC<ITableData> = ({ dataTitles, children }) => (
       <THead>
         <Tr>
           {dataTitles?.map(dataTitle => (
-            <Td key={dataTitle.title} onClick={() => dataTitle?.onClick()}>
+            <Td key={randomId()} onClick={() => dataTitle?.onClick()}>
               <TitleGroup>
                 <Typography size="small">{dataTitle.title}</Typography>
                 {dataTitle?.sorteable && (

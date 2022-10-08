@@ -20,10 +20,12 @@ export const Tags: React.FC = () => {
     }
   };
 
+  const deleteTag = () => null;
+
   const renderListTags = (): JSX.Element => (
     <>
       {tags?.map(tag => (
-        <TagCard key={tag?._id} tag={tag} modifyTagStatus={modifyTagStatus} />
+        <TagCard key={tag?._id} tag={tag} modifyTagStatus={modifyTagStatus} deleteTag={deleteTag} />
       ))}
     </>
   );

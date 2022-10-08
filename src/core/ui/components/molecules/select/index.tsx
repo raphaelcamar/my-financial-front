@@ -6,6 +6,7 @@ import { ClickAwayListener, Icon } from '@/core/ui/components/atoms';
 import { StyledInput, WrapperIcon, Container, OptionsContainer, Option } from './styles';
 import { TypeTransaction } from '@/transaction/domain';
 import { SelectType } from '@/core/domain';
+import { randomId } from '@/core/utils';
 
 export interface ISelectOption {
   text?: string;
@@ -114,7 +115,7 @@ export const Select = forwardRef<HTMLInputElement, ISelectProps>(
                 onKeyDown={e => handleListKeyDown(e, option)}
                 aria-selected={selectedOption?.value === option?.value}
                 selected={selectedOption?.value === option?.value}
-                key={option?.value}
+                key={randomId()}
                 onClick={() => handleSelectOption(option)}
               >
                 {option?.text}

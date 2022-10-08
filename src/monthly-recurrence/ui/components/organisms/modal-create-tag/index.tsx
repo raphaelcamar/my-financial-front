@@ -18,6 +18,7 @@ import {
 } from './styles';
 import { Chip, Input } from '@/core/ui/components/molecules';
 import { useTagContext } from '@/monthly-recurrence/presenters/contexts';
+import { randomId } from '@/core/utils';
 
 interface IModalCreateTag {
   modalOpen?: boolean;
@@ -93,7 +94,7 @@ export const ModalCreateTag: React.FC<IModalCreateTag> = ({ modalOpen, setModalO
           >
             <ChoiceColors>
               {COLORS.map((color: keyof ColorProps) => (
-                <Circle color={color} onClick={() => handleChangeColor(color)} />
+                <Circle key={randomId()} color={color} onClick={() => handleChangeColor(color)} />
               ))}
             </ChoiceColors>
           </Popover>

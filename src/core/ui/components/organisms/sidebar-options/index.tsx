@@ -4,6 +4,7 @@ import { ISidebaroption } from '@/core/domain';
 import { ItemSidebar, WrapperItemAccordion } from './styles';
 import { SidebarOption, SidebarAccordion } from '@/core/ui/components/molecules';
 import { useSidebarContext } from '@/core/presenters/contexts/sidebar';
+import { randomId } from '@/core/utils';
 
 interface ISidebarOptions {
   sidebarOptions: ISidebaroption[];
@@ -35,7 +36,7 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions }) =>
                 <SidebarOption
                   accordionOpen={accordion}
                   sidebarOpen={open}
-                  key={item.path}
+                  key={randomId()}
                   item={accordionItem}
                   path={accordionItem.path}
                   selected={location?.pathname === accordionItem.path}

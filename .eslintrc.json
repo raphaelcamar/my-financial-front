@@ -69,7 +69,8 @@
 		"@typescript-eslint/no-namespace": "off",
 		"import/export": "off",
 		"react/no-unused-prop-types": "off",
-		"lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
+		"lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+		"react/default-props-match-prop-types": "off"
 	},
 	"overrides": [
 		{

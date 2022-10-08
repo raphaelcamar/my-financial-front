@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AvailableIcons, Icon, Typography } from '@/core/ui/components/atoms';
 import { Chip } from '@/core/ui/components/molecules';
 import { ISidebaroption } from '@/core/domain';
-import { Container, WrapperIconText, WrapperIcon, WrapperTypography } from './styles';
+import { Container, WrapperIconText, WrapperIcon, WrapperTypography, StyledLink } from './styles';
 
 interface ISidebarOption {
   selected?: boolean;
@@ -47,28 +48,29 @@ export const SidebarOption: React.FC<ISidebarOption> = ({
   }, [sidebarOpen, selected]);
 
   return (
-    <Container
-      open={sidebarOpen}
-      selected={selected}
-      to={path}
-      soon={item?.soon || null}
-      accordionOpen={accordionOpen}
-      withFullRadius={withFullRadius}
-      isLastItem={isLastItem}
-    >
-      <WrapperIconText accordionOpen={accordionOpen}>
-        {item?.icon && (
-          <WrapperIcon selected={selected} accordionOpen={accordionOpen} open={sidebarOpen}>
-            <Icon icon={item.icon as AvailableIcons} color={state.color} shade={state.shade} size={16} />
-          </WrapperIcon>
-        )}
-        {sidebarOpen && (
-          <WrapperTypography>
-            <Typography color={selected ? 'primary' : 'grey'}>{item.title}</Typography>
-            {item?.soon && <Chip color="warning">Em breve</Chip>}
-          </WrapperTypography>
-        )}
-      </WrapperIconText>
-    </Container>
+    <StyledLink to={path}>
+      <Container
+        open={sidebarOpen}
+        selected={selected}
+        soon={item?.soon || null}
+        accordionOpen={accordionOpen}
+        withFullRadius={withFullRadius}
+        isLastItem={isLastItem}
+      >
+        <WrapperIconText accordionOpen={accordionOpen}>
+          {item?.icon && (
+            <WrapperIcon selected={selected} accordionOpen={accordionOpen} open={sidebarOpen}>
+              <Icon icon={item.icon as AvailableIcons} color={state.color} shade={state.shade} size={16} />
+            </WrapperIcon>
+          )}
+          {sidebarOpen && (
+            <WrapperTypography>
+              <Typography color={selected ? 'primary' : 'grey'}>{item.title}</Typography>
+              {item?.soon && <Chip color="warning">Em breve</Chip>}
+            </WrapperTypography>
+          )}
+        </WrapperIconText>
+      </Container>
+    </StyledLink>
   );
 };
