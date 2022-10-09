@@ -3,7 +3,7 @@ export const getHeaderTitle = (uri: string): string => {
     '/transacoes': 'Transações',
     '/perfil': 'Meu perfil',
     '/minha-carteira': 'Minha carteira',
-    '/informacoes-pessoais': 'Informacoes pessoais',
+    '/informacoes-pessoais': 'Informações pessoais',
     '/recorrencias-mensais': 'Recorrências Mensais',
     '/tags': 'Tags',
   };
