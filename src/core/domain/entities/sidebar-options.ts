@@ -1,4 +1,4 @@
-import { AvailableIcons } from './available-icons';
+import { AvailableIcons } from '@/core/ui/components/atoms';
 
 export interface ISidebaroption {
   isAccordion?: boolean;

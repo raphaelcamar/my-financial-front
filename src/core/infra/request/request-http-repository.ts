@@ -16,32 +16,38 @@ export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
     let response: AxiosResponse;
     try {
       response = await axios.request({
-        url: `${process.env.BASE_URL}/${params.url}`,
+        url: params.url,
         method: params?.method,
         data: params?.body,
         headers: injectHeaders(params?.headers),
       });
-
       return {
-        statusCode: response.status,
-        body: response.data,
+        statusCode: response?.status,
+        body: response?.data,
       };
     } catch (error) {
       response = error.response;
 
       if (!response) throw new UnexpectedError();
     }
+
+    this.getResponseStatus(response);
+  }
+
+  // eslint-disable-next-line consistent-return
+  getResponseStatus(response: AxiosResponse): HttpResponse<R> {
     switch (response.status) {
       case HttpErrorStatusCode.UNAUTHORIZED:
         this.clearSession();
         throw new ExpiredSessionError();
 
+      case HttpSuccessStatusCode.NO_CONTENT:
+        return {};
       case HttpSuccessStatusCode.OK:
         return {
           statusCode: response.status,
           body: response.data,
         };
-      case HttpSuccessStatusCode.NO_CONTENT:
       case HttpErrorStatusCode.BAD_REQUEST:
       case HttpErrorStatusCode.FORBIDDEN:
       case HttpErrorStatusCode.INTERNAL:
@@ -51,9 +57,14 @@ export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
       case HttpErrorStatusCode.UNSUPPORTED_MEDIA_TYPE:
         throw new ServerError(response?.data?.message, response.status);
     }
+
+    return {
+      body: response.data,
+      statusCode: response.status,
+    };
   }
 
-  private clearSession() {
+  clearSession() {
     const queryString = window.location.href;
 
     const localStorageRepository = new LocalStorageRepository();
