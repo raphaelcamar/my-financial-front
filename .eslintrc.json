@@ -70,7 +70,8 @@
 		"import/export": "off",
 		"react/no-unused-prop-types": "off",
 		"lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
-		"react/default-props-match-prop-types": "off"
+		"react/default-props-match-prop-types": "off",
+		"@typescript-eslint/no-explicit-any": "off"
 	},
 	"overrides": [
 		{
