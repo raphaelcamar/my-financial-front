@@ -1,10 +1,12 @@
 import { faker } from '@faker-js/faker';
-import { MockCacheRepository } from '@/core/tests/mocks';
+
+import 'jest-localstorage-mock';
+import { LocalStorageRepository } from './local-storage-repository';
 
 type LocalStorageKeys = 'test' | 'data';
 
 const makeSut = () => {
-  const localStorage = new MockCacheRepository<LocalStorageKeys>();
+  const localStorage = new LocalStorageRepository<LocalStorageKeys>();
   const value = JSON.parse(faker.datatype.json());
 
   return {
@@ -19,14 +21,14 @@ describe('LocalStorageRepository', () => {
 
     localStorage.set('test', value);
 
-    expect(localStorage.get('test')).toBe(value);
+    expect(localStorage.get('test')).toStrictEqual(value);
   });
 
   test('Should be able to get values into localStorage', () => {
     const { localStorage, value } = makeSut();
 
     localStorage.set('test', value);
-    expect(localStorage.get('test')).toBe(value);
+    expect(localStorage.get('test')).toStrictEqual(value);
   });
 
   test('Should be able to clear values into localStorage', () => {
@@ -36,7 +38,7 @@ describe('LocalStorageRepository', () => {
     localStorage.set('data', value);
     localStorage.clear('test');
     expect(localStorage.get('test')).toBeFalsy();
-    expect(localStorage.get('data')).toBe(value);
+    expect(localStorage.get('data')).toStrictEqual(value);
   });
 
   test('Should be able to clear all values into localStorage', () => {

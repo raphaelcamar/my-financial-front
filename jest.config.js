@@ -1,5 +1,5 @@
 module.exports = {
-  roots: ['<rootDir>/src'],
+  roots: ['<rootDir>/src/core'],
   verbose: true,
   coverageDirectory: 'coverage',
   collectCoverageFrom: [
@@ -13,7 +13,13 @@ module.exports = {
     '!<rootDir>/src/**/validator/**/*',
     '!<rootDir>/src/**/index.ts',
     '!<rootDir>/src/**/imports.ts',
+    '!<rootDir>/src/**/types.ts',
     '!<rootDir>/src/**/*.data.ts',
+    '!<rootDir>/src/monthly-recurrence/**/*',
+    '!<rootDir>/src/transaction/**/*',
+    '!<rootDir>/src/user/**/*',
+    '!<rootDir>/src/**/*.d.*',
+    '!<rootDir>/src/**/*-error.*',
   ],
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: [
