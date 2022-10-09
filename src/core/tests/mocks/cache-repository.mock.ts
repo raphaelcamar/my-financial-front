@@ -1,17 +1,17 @@
-import { CacheRepository, localStorageKey } from '@/core/data';
+import { CacheRepository } from '@/core/data';
 
-export class MockCacheRepository implements CacheRepository {
+export class MockCacheRepository<K> implements CacheRepository<K> {
   private readonly localStorage = new Map();
 
-  clear(key: localStorageKey): void {
+  clear(key: K): void {
     this.localStorage.delete(key);
   }
 
-  set(key: localStorageKey, value: string | object): void {
+  set(key: K, value: string | object): void {
     this.localStorage.set(key, value);
   }
 
-  get<T>(key: localStorageKey): T {
+  get<T>(key: K): T {
     return this.localStorage.get(key) as T;
   }
 
