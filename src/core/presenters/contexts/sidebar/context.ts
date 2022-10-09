@@ -1,10 +1,10 @@
 import { createContext, useContext } from 'react';
 
-type PropsSidebar = {
+type SidebarProps = {
   open?: boolean;
   handleOpenSidebar: () => void;
 };
 
-export const SidebarContext = createContext<PropsSidebar>({} as PropsSidebar);
+export const SidebarContext = createContext<SidebarProps>({} as SidebarProps);
 
-export const useSidebarContext = (): PropsSidebar => useContext(SidebarContext);
+export const useSidebarContext = (): SidebarProps => useContext(SidebarContext);

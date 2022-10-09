@@ -10,7 +10,7 @@ import { BodyContent, Buttons, Progress, SubmitButton, DrawerHeader } from './st
 import { Transaction } from '@/transaction/domain';
 import { CreateTransactionSchema } from '@/transaction/data/use-cases';
 import { InputMask } from '@/core/ui/components/molecules/input-mask';
-import { entranceItems, spentItems, typeItems } from '@/transaction/utils/data';
+import { entranceItems, spentItems, selectTypeItems } from '@/transaction/utils/data';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { Checkbox, Typography } from '@/core/ui/components/atoms';
 
@@ -105,7 +105,7 @@ export const DrawerTransaction: React.FC<IDrawerTransaction> = ({ openModal, set
           setValue={setValue}
           value={watch('type')}
           label="Tipo da transação"
-          items={typeItems}
+          items={selectTypeItems}
           defaultValue={defaultValues?.type}
         />
 

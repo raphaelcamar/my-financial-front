@@ -1,7 +1,7 @@
 import { SelectType } from '@/core/domain';
 import { TypeTransaction } from '@/transaction/domain';
 
-export const typeItems: SelectType<TypeTransaction>[] = [
+export const selectTypeItems: SelectType<TypeTransaction>[] = [
   {
     text: 'Entrada',
     value: 'ENTRANCE',
