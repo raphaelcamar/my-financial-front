@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-use-before-define */
 import { RequestAdapter } from '@/core/data';
 import { Transaction } from '@/transaction/domain';

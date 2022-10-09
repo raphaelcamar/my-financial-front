@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Button } from '@/core/ui/components/molecules';
-import { HelperText } from '@/core/ui/components/atoms';
 
 type TableActionsType = {
   hasHelperText?: boolean;
