@@ -28,6 +28,7 @@ describe('LocalStorageRepository', () => {
     const { localStorage, value } = makeSut();
 
     localStorage.set('test', value);
+
     expect(localStorage.get('test')).toStrictEqual(value);
   });
 
@@ -37,6 +38,7 @@ describe('LocalStorageRepository', () => {
     localStorage.set('test', value);
     localStorage.set('data', value);
     localStorage.clear('test');
+
     expect(localStorage.get('test')).toBeFalsy();
     expect(localStorage.get('data')).toStrictEqual(value);
   });
@@ -47,6 +49,7 @@ describe('LocalStorageRepository', () => {
     localStorage.set('test', value);
     localStorage.set('data', value);
     localStorage.clearAll();
+
     expect(localStorage.get('test')).toBeFalsy();
     expect(localStorage.get('data')).toBeFalsy();
   });
