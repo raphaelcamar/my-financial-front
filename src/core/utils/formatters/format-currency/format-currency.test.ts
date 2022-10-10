@@ -29,4 +29,12 @@ describe('FormatCurrency - Unit Test', () => {
     expect(formattedValue).toContain(',');
     expect(formattedValue).toContain('-');
   });
+
+  test('Should not be able to format the currencyand return falsy', () => {
+    const VALUE = undefined;
+
+    const formattedValue = formatCurrency(VALUE);
+
+    expect(formattedValue).toBeFalsy();
+  });
 });
