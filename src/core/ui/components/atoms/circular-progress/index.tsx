@@ -9,9 +9,9 @@ export interface ICircularProgress {
 
 export const CircularProgress: React.FC<ICircularProgress> = ({ size, color }) => (
   <Root>
-    <Circle animationDelay={0} size={size} color={color} />
-    <Circle animationDelay={0.2} size={size} color={color} />
-    <Circle animationDelay={0.4} size={size} color={color} />
-    <Circle animationDelay={0.6} size={size} color={color} />
+    <Circle data-testid="circular-progress" animationDelay={0} size={size} color={color} />
+    <Circle data-testid="circular-progress" animationDelay={0.2} size={size} color={color} />
+    <Circle data-testid="circular-progress" animationDelay={0.4} size={size} color={color} />
+    <Circle data-testid="circular-progress" animationDelay={0.6} size={size} color={color} />
   </Root>
 );
