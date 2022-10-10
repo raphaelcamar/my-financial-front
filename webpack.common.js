@@ -3,6 +3,7 @@ const path = require('path')
 const Dotenv = require('dotenv-webpack')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const envFile = './.env'
 
@@ -60,5 +61,8 @@ module.exports = {
       safe: true,
       systemvars: true
     }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+    })
   ]
 }
