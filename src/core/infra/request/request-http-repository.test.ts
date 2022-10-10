@@ -2,7 +2,7 @@ import axios from 'axios';
 import { HttpErrorStatusCode, HttpSuccessStatusCode } from '@/core/data';
 import { mockBodyResponse, mockErrorBodyResponse } from '@/core/tests/mocks';
 import { RequestHttpRepository } from './request-http-repository';
-import { ExpiredSessionError, ServerError } from '@/core/domain/errors';
+import { ExpiredSessionError, ServerError, UnexpectedError } from '@/core/domain/errors';
 
 jest.mock('axios');
 
@@ -40,6 +40,21 @@ describe('RequestHttpRepository', () => {
     expect(response).toHaveProperty('statusCode');
     expect(response).toHaveProperty('body');
   });
+
+  // test('Should not be able to make API call and throw UnexpectedError', async () => {
+  //   const { sut } = makeSut();
+  //   const mockedAxios = axios as jest.Mocked<typeof axios>;
+  //   mockedAxios.post.mockRejectedValue({ message: 'error' });
+  //   try {
+  //     const r = await sut.request({
+  //       url: '',
+  //       method: 'post',
+  //     });
+  //     console.log({ r });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // });
 
   test('Should not be able to return body and throw error with statusCode 500 - INTERNAL', async () => {
     const { sut, status } = makeSut('INTERNAL');

@@ -6,7 +6,7 @@ import { TransactionAdapter, TransactionStatisticsAdapter } from '@/transaction/
 
 export class TransactionRepositoryData implements TransactionRepository {
   async create(transaction: Transaction.Data): Promise<Transaction> {
-    const http = new RequestHttpRepository<Transaction.Response, Transaction.Response>();
+    const http = new RequestHttpRepository<Transaction.Response, Transaction.Response>(process.env.BASE_URL);
 
     const adapter = new TransactionAdapter();
 
@@ -22,7 +22,7 @@ export class TransactionRepositoryData implements TransactionRepository {
   }
 
   async get(query?: string): Promise<Transaction[]> {
-    const http = new RequestHttpRepository<unknown, Transaction.Response[]>();
+    const http = new RequestHttpRepository<unknown, Transaction.Response[]>(process.env.BASE_URL);
     const httpResponse = await http.request({
       method: 'get',
       url: `transaction${query}`,
@@ -36,7 +36,7 @@ export class TransactionRepositoryData implements TransactionRepository {
   }
 
   async delete(transactionId: string): Promise<void> {
-    const http = new RequestHttpRepository<string, void>();
+    const http = new RequestHttpRepository<string, void>(process.env.BASE_URL);
 
     await http.request({
       method: 'delete',
@@ -45,7 +45,7 @@ export class TransactionRepositoryData implements TransactionRepository {
   }
 
   async update(transaction: Transaction.Data): Promise<Transaction> {
-    const http = new RequestHttpRepository<Transaction.Response, Transaction.Response>();
+    const http = new RequestHttpRepository<Transaction.Response, Transaction.Response>(process.env.BASE_URL);
     const adapter = new TransactionAdapter();
 
     const adapteeRequest = adapter.request(transaction);
@@ -61,7 +61,7 @@ export class TransactionRepositoryData implements TransactionRepository {
   }
 
   async getStatistics(queryUrl: string): Promise<Transaction.Statistic> {
-    const http = new RequestHttpRepository<Transaction.Filter, Response.Statistic>();
+    const http = new RequestHttpRepository<Transaction.Filter, Response.Statistic>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'get',

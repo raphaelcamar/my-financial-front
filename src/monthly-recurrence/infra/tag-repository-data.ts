@@ -4,7 +4,7 @@ import { Tag, TagStatus } from '@/monthly-recurrence/domain/entities';
 
 export class TagRepositoryData implements TagRepository {
   async getAllTags(): Promise<Tag[]> {
-    const http = new RequestHttpRepository<unknown, Tag[]>();
+    const http = new RequestHttpRepository<unknown, Tag[]>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'get',
@@ -26,7 +26,7 @@ export class TagRepositoryData implements TagRepository {
   }
 
   async getByStatus(status: TagStatus): Promise<Tag[]> {
-    const http = new RequestHttpRepository<unknown, Tag[]>();
+    const http = new RequestHttpRepository<unknown, Tag[]>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'get',
@@ -37,7 +37,7 @@ export class TagRepositoryData implements TagRepository {
   }
 
   async create(tag: Tag): Promise<Tag> {
-    const http = new RequestHttpRepository<Tag, Tag>();
+    const http = new RequestHttpRepository<Tag, Tag>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'post',
@@ -49,7 +49,7 @@ export class TagRepositoryData implements TagRepository {
   }
 
   async delete(tagId: string): Promise<Tag> {
-    const http = new RequestHttpRepository<string, Tag>();
+    const http = new RequestHttpRepository<string, Tag>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'delete',

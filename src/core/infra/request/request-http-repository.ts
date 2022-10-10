@@ -11,12 +11,18 @@ import { injectHeaders } from '../decorators';
 import { ExpiredSessionError, ServerError, UnexpectedError } from '@/core/domain/errors';
 
 export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
+  BASE_URL: string;
+
+  constructor(private baseUrl?: string) {
+    this.BASE_URL = baseUrl;
+  }
+
   // eslint-disable-next-line consistent-return
   async request(params: HttpPostParams<T>): Promise<HttpResponse<R>> {
     let response: AxiosResponse;
     try {
       response = await axios.request({
-        url: params.url,
+        url: `${this.BASE_URL}/${params.url}`,
         method: params?.method,
         data: params?.body,
         headers: injectHeaders(params?.headers),

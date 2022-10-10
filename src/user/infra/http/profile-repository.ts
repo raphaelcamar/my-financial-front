@@ -4,7 +4,7 @@ import { ProfileRepository } from '@/user/data';
 
 export class ProfileRepositoryData implements ProfileRepository {
   async updatePicture(picture: Blob): Promise<string> {
-    const http = new RequestHttpRepository<FormData, UpdatePictureRespone>();
+    const http = new RequestHttpRepository<FormData, UpdatePictureRespone>(process.env.BASE_URL);
 
     const formData = new FormData();
     formData.append('file', picture);

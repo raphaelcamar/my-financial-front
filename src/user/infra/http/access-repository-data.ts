@@ -8,7 +8,7 @@ type BodyRequestToken = {
 
 export class AccessRepositoryData implements AccessRepository {
   async login(bodyLogin: User.Login): Promise<User> {
-    const http = new RequestHttpRepository<User.Login, User>();
+    const http = new RequestHttpRepository<User.Login, User>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'post',
@@ -19,7 +19,7 @@ export class AccessRepositoryData implements AccessRepository {
   }
 
   async subscribe(bodyLogin: User.Subscribe): Promise<User> {
-    const http = new RequestHttpRepository<User.Subscribe, User>();
+    const http = new RequestHttpRepository<User.Subscribe, User>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'post',
@@ -31,7 +31,7 @@ export class AccessRepositoryData implements AccessRepository {
   }
 
   async verifyAccessToken(tokenId: string): Promise<User> {
-    const http = new RequestHttpRepository<BodyRequestToken, User>();
+    const http = new RequestHttpRepository<BodyRequestToken, User>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'post',
@@ -45,7 +45,7 @@ export class AccessRepositoryData implements AccessRepository {
   }
 
   async sendRecoverPasswordEmail(email: string): Promise<void> {
-    const http = new RequestHttpRepository<Pick<User.Login, 'email'>, void>();
+    const http = new RequestHttpRepository<Pick<User.Login, 'email'>, void>(process.env.BASE_URL);
     await http.request({
       method: 'post',
       url: 'user/password-recover',
@@ -56,7 +56,7 @@ export class AccessRepositoryData implements AccessRepository {
   }
 
   async sendNewPasswordRecover(password: string, email: string): Promise<void> {
-    const http = new RequestHttpRepository<Pick<User, 'password' | 'email'>, void>();
+    const http = new RequestHttpRepository<Pick<User, 'password' | 'email'>, void>(process.env.BASE_URL);
 
     await http.request({
       method: 'put',
@@ -69,7 +69,7 @@ export class AccessRepositoryData implements AccessRepository {
   }
 
   async sendCodePasswordRecover(code: string, email: string): Promise<void> {
-    const http = new RequestHttpRepository<any, void>();
+    const http = new RequestHttpRepository<any, void>(process.env.BASE_URL);
 
     await http.request({
       method: 'post',
