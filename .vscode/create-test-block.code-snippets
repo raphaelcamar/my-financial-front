@@ -1,0 +1,14 @@
+{
+  "Typescript tests": {
+    "prefix": "sptTest",
+    "body": [
+      "describe('$1', () => {",
+        "test('', () => {",
+          
+        "})",
+      "})"
+    ],
+    "description": "Typescript React tests block"
+  }
+}
+
