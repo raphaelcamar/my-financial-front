@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "types": ["vite/client"],
     "experimentalDecorators": true,
     "isolatedModules": false,
     "target": "es6",
