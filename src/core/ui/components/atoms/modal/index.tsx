@@ -11,7 +11,7 @@ interface IModal {
 }
 
 export const Modal: React.FC<IModal> = ({ children, open, title, closeModal }) => (
-  <Container open={open}>
+  <Container open={open} data-testid="modal-container">
     <ModalWrapper>
       <Paper density={0}>
         <ModalHeader>
@@ -19,14 +19,13 @@ export const Modal: React.FC<IModal> = ({ children, open, title, closeModal }) =
             {title}
           </Typography>
           <IconButton
+            data-testid="icon-button-modal"
             onClick={closeModal}
             icon="close"
             color="primary"
             shade="500"
             iconProps={{ color: 'grey', shade: '50' }}
-          >
-            {title}
-          </IconButton>
+          />
         </ModalHeader>
         {children}
       </Paper>
