@@ -22,6 +22,18 @@ export class User {
     this.salary = user?.salary;
     this.token = user.token;
   }
+
+  getNameAndLastName(): string {
+    return `${this.name} ${this.lastname}`;
+  }
+
+  getFieldOrEmpty(field: keyof User.Data): string {
+    if (!field) return '-';
+
+    if (!this?.[field]) return '-';
+
+    return this[field].toString();
+  }
 }
 
 export namespace User {

@@ -17,14 +17,14 @@ export const BodyInformationCard: React.FC<IBodyInformationCard> = ({ user, upda
       <Avatar chooseAvatar size={112} url={user?.pictureUrl || user?.name} updatePicture={updatePicture} />
     </AvatarPosition>
     <Inputs>
-      <StyledInputBase readOnly value={`${user?.name} ${user?.lastname}`} />
-      <StyledInputBase readOnly value={`${user?.email}`} />
+      <StyledInputBase readOnly value={user.getNameAndLastName()} />
+      <StyledInputBase readOnly value={user.getFieldOrEmpty('email')} />
       <SpaceInputs grid="1fr 1fr">
-        <StyledInputBase readOnly value={`${user?.profession || '-'}`} />
-        <StyledInputBase readOnly value={`${user?.salary || '-'}`} />
+        <StyledInputBase readOnly value={user.getFieldOrEmpty('profession')} />
+        <StyledInputBase readOnly value={user.getFieldOrEmpty('salary')} />
       </SpaceInputs>
       <SpaceInputs grid="2fr 1fr">
-        <StyledInputBase readOnly value={`${user?.birthDate || '-'}`} />
+        <StyledInputBase readOnly value={user.getFieldOrEmpty('birthDate')} />
         <StyledInputBase readOnly value={differenceInYearsDate(user?.birthDate, new Date()) || '-'} />
       </SpaceInputs>
     </Inputs>
