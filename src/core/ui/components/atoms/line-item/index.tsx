@@ -20,7 +20,7 @@ export const LineItem = ({ children, linkable, ...props }: PropsWithChildren<ILi
     );
   }
 
-  return <Line>{children}</Line>;
+  return <Line data-testid="line-item">{children}</Line>;
 };
 
 LineItem.defaultProps = defaultProps;
