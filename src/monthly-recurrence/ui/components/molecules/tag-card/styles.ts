@@ -26,8 +26,8 @@ export const WrapperModalButtons = styled.div`
   justify-content: flex-end;
   gap: 8px;
 
-  & button:last-child {
-    width: 100%;
+  & button {
+    width: 70%;
   }
 `;
 

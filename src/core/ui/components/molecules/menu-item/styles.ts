@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 type MenuItemType = {
   width?: string;
   text?: boolean;
+  disabled?: boolean;
 };
 
 export const Container = styled.div<MenuItemType>`
@@ -19,9 +20,9 @@ export const Container = styled.div<MenuItemType>`
       justify-content: center;
     `}
   align-items: center;
-  color: ${({ theme }) => theme.palette.grey[500]};
-  cursor: pointer;
+  color: ${({ theme, disabled }) => (disabled ? theme.palette.grey[50] : theme.palette.grey[500])};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   &:hover {
-    background: ${({ theme }) => theme.palette.grey[200]};
+    background: ${({ theme, disabled }) => (disabled ? 'inherit' : theme.palette.grey[200])};
   }
 `;

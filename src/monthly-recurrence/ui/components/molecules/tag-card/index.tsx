@@ -77,7 +77,9 @@ export const TagCard: React.FC<ITagCard> = ({ tag, modifyTagStatus, deleteTag })
             <Button variant="grey" styleType="glass" onClick={() => setModalDelete(false)}>
               Cancelar
             </Button>
-            <Button variant="error">Excluir</Button>
+            <Button styleType="glass" variant="error">
+              Excluir
+            </Button>
           </WrapperModalButtons>
         </BodyModalDelete>
       </Modal>

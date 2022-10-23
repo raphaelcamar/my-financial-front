@@ -6,6 +6,12 @@ const AddIcon = React.lazy(
 const ArrowDownIcon = React.lazy(
   async () => import(/* webpackChunkName: "arrowDown" */ '@/core/ui/components/atoms/icon/icons/arrow-down-icon')
 );
+const ArrowLeftIcon = React.lazy(
+  async () => import(/* webpackChunkName: "arrowLeft" */ '@/core/ui/components/atoms/icon/icons/arrow-left-icon')
+);
+const ArrowRightIcon = React.lazy(
+  async () => import(/* webpackChunkName: "arrowRight" */ '@/core/ui/components/atoms/icon/icons/arrow-right-icon')
+);
 const ArrowLimitIcon = React.lazy(
   async () => import(/* webpackChunkName: "arrowLimit" */ '@/core/ui/components/atoms/icon/icons/arrow-limit-icon')
 );
@@ -149,6 +155,8 @@ export const Icons = {
   add: AddIcon,
   arrowDown: ArrowDownIcon,
   arrowLimit: ArrowLimitIcon,
+  arrowLeft: ArrowLeftIcon,
+  arrowRight: ArrowRightIcon,
   balance: BalanceIcon,
   barView: BarViewIcon,
   bell: BellIcon,

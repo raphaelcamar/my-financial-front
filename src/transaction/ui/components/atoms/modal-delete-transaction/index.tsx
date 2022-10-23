@@ -36,10 +36,10 @@ export const ModalDeleteTransaction: React.FC<IModalDeleteTransaction> = ({
       </Typography>
     </Wrapper>
     <ActionButtons>
-      <StyledButton styleType="outlined" variant="grey" onClick={onClose}>
+      <StyledButton styleType="glass" variant="grey" onClick={onClose}>
         Cancelar
       </StyledButton>
-      <StyledButton loading={loading} disabled={loading} styleType="fullfiled" variant="error" onClick={onSubmit}>
+      <StyledButton loading={loading} disabled={loading} styleType="glass" variant="error" onClick={onSubmit}>
         Excluir
       </StyledButton>
     </ActionButtons>
