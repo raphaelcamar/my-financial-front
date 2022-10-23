@@ -11,10 +11,9 @@ export class UserMockBuilder {
     return {
       email: faker.internet.email(),
       name: faker.name.firstName(),
-      password: faker.internet.password(),
       token: faker.database.mongodbObjectId(),
       _id: faker.database.mongodbObjectId(),
-      birthDate: faker.date.past(),
+      birthDate: faker.date.past().toISOString(),
       lastname: faker.name.lastName(),
       pictureUrl: faker.image.avatar(),
       profession: faker.name.jobTitle(),

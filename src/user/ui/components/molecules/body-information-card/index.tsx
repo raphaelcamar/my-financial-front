@@ -4,7 +4,7 @@ import { Inputs, SpaceInputs, StyledInputBase, AvatarPosition } from './styles';
 import { Avatar } from '@/core/ui/components/molecules';
 import { CardProfile } from '@/user/ui/components/atoms';
 
-import { differenceInYearsDate } from '@/core/utils';
+import { differenceInYearsDate, formatCurrencyDefault, formatDateBR } from '@/core/utils';
 
 interface IBodyInformationCard {
   user: User;
@@ -21,10 +21,10 @@ export const BodyInformationCard: React.FC<IBodyInformationCard> = ({ user, upda
       <StyledInputBase readOnly value={user.getFieldOrEmpty('email')} />
       <SpaceInputs grid="1fr 1fr">
         <StyledInputBase readOnly value={user.getFieldOrEmpty('profession')} />
-        <StyledInputBase readOnly value={user.getFieldOrEmpty('salary')} />
+        <StyledInputBase readOnly value={formatCurrencyDefault(user.getFieldOrEmpty('salary'))} />
       </SpaceInputs>
       <SpaceInputs grid="2fr 1fr">
-        <StyledInputBase readOnly value={user.getFieldOrEmpty('birthDate')} />
+        <StyledInputBase readOnly value={formatDateBR(user.getFieldOrEmpty('birthDate'))} />
         <StyledInputBase readOnly value={differenceInYearsDate(user?.birthDate, new Date()) || '-'} />
       </SpaceInputs>
     </Inputs>

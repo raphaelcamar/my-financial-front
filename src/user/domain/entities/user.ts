@@ -4,7 +4,7 @@ export class User {
   email: string;
   lastname?: string;
   name: string;
-  password: string;
+  password?: string;
   pictureUrl?: string;
   profession?: string;
   salary?: number;
@@ -27,7 +27,7 @@ export class User {
     return `${this.name} ${this.lastname}`;
   }
 
-  getFieldOrEmpty(field: keyof User.Data): string {
+  getFieldOrEmpty(field: keyof User.Data): any {
     if (!field) return '-';
 
     if (!this?.[field]) return '-';
@@ -43,7 +43,7 @@ export namespace User {
     email: string;
     lastname?: string;
     name: string;
-    password: string;
+    password?: string;
     pictureUrl?: string;
     profession?: string;
     salary?: number;
