@@ -109,10 +109,10 @@ export const ModalCreateTag: React.FC<IModalCreateTag> = ({ modalOpen, setModalO
         />
 
         <Buttons>
-          <StyledButton type="button" variant="grey" styleType="outlined" onClick={() => setModalOpen(false)}>
+          <StyledButton type="button" variant="grey" styleType="glass" onClick={() => setModalOpen(false)}>
             Cancelar
           </StyledButton>
-          <StyledButton loading={loading} variant="primary" type="submit">
+          <StyledButton loading={loading} styleType="glass" variant="primary" type="submit">
             Criar tag
           </StyledButton>
         </Buttons>

@@ -37,10 +37,10 @@ export const ContainerInput = styled.div<ContainerInputType>`
   ${({ noBottomRadius }) =>
     noBottomRadius
       ? css`
-          border-radius: 12px 12px 0 0;
+          border-radius: 8px 8px 0 0;
         `
       : css`
-          border-radius: 12px;
+          border-radius: 8px;
         `}
   transition: all ease-out 0.3s;
 `;

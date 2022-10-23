@@ -29,7 +29,7 @@ export const Popover: React.FC<IPopover> = ({ displayElement, children, withArro
   });
 
   return (
-    <Wrapper open={menuOpen} size={size}>
+    <Wrapper open={menuOpen} size={size} data-testid="popover">
       {label && label}
       <div style={{ width: '100%' }} ref={divRef}>
         <ClickAwayListener onClickAway={() => setMenuOpen(false)}>
@@ -38,10 +38,11 @@ export const Popover: React.FC<IPopover> = ({ displayElement, children, withArro
             open={menuOpen}
             ref={setReferenceElement}
             withArrowIcon={withArrowIcon}
+            data-testid="menu"
           >
             {displayElement}
             {withArrowIcon ? (
-              <WrapperIcon open={menuOpen}>
+              <WrapperIcon open={menuOpen} data-testid="arrow-icon">
                 <Icon icon="arrowDown" color="primary" shade="500" />
               </WrapperIcon>
             ) : null}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, IconButton, Input } from '@/core/ui/components/molecules';
-import { Container } from './styles';
+import { Container, Form } from './styles';
 import { DatePicker, Modal } from '@/core/ui/components/atoms';
 
 export const MonthlyActions: React.FC = () => {
@@ -37,12 +37,14 @@ export const MonthlyActions: React.FC = () => {
         Adicionar
       </Button>
       <Modal open={modal} title="Adicionar Recorrência" closeModal={() => setModal(false)}>
-        <DatePicker customInput={<Input label="Data de início" />} onChange={() => null} />
-        <DatePicker customInput={<Input label="Data fim" />} onChange={() => null} />
-        <Input label="Nome" />
-        <Input label="Descrição" />
-        <Input label="Valor" />
-        <Input label="Tag" />
+        <Form>
+          <DatePicker customInput={<Input label="Data de início" />} onChange={() => null} />
+          <DatePicker customInput={<Input label="Data fim" />} onChange={() => null} />
+          <Input label="Nome" />
+          <Input label="Descrição" />
+          <Input label="Valor" />
+          <Input label="Tag" />
+        </Form>
       </Modal>
     </Container>
   );
