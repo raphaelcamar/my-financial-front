@@ -11,6 +11,7 @@ type PropsTransaction = {
   updateTransaction: (transaction: Transaction.Data) => Promise<void>;
   getTransactions: (filter?: Transaction.Filter) => Promise<void>;
   deleteTransaction: (transaction: string) => Promise<void>;
+  setTransactionLoader: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const TransactionContext = createContext<PropsTransaction>({} as PropsTransaction);

@@ -1,11 +1,10 @@
 import React from 'react';
-import { Td, Tr, Typography } from '@/core/ui/components/atoms';
+import { Td, TextEllipsis, Tr, Typography } from '@/core/ui/components/atoms';
 import { Chip, IconButton } from '@/core/ui/components/molecules';
 import { TableData, TableHeadProps } from '@/core/ui/components/organisms';
 import { formatCurrency, formatDateBR, formatTopic, formatType } from '@/core/utils';
 import { WrapperActionTableButtons } from './styles';
 import { Transaction } from '@/transaction/domain';
-import { TextEllipsis } from '../card-statistic/styles';
 
 interface ITableTransaction {
   tableHeaderData: TableHeadProps[];
@@ -23,32 +22,32 @@ export const TableTransaction: React.FC<ITableTransaction> = ({
   <TableData dataTitles={tableHeaderData}>
     {transactions?.map(transaction => (
       <Tr key={transaction._id}>
-        <Td width={20}>
+        <Td width={50}>
           <Chip color="primary">{formatTopic(transaction?.topic) || '-'}</Chip>
         </Td>
-        <Td width={350}>
-          <TextEllipsis>
-            <Typography size="small" color="grey" ellipsis>
+        <Td width={300}>
+          <TextEllipsis rows={1}>
+            <Typography size="small" color="grey">
               {transaction?.anotation}
             </Typography>
           </TextEllipsis>
         </Td>
-        <Td width={20}>
+        <Td width={90}>
           <Typography size="small" color="grey">
             {transaction?.billedAt ? formatDateBR(String(transaction?.billedAt)) : '-'}
           </Typography>
         </Td>
-        <Td width={20}>
+        <Td width={90}>
           <Chip color={transaction?.type === 'ENTRANCE' ? 'success' : 'error'}>
             {formatType(transaction?.type) || '-'}
           </Chip>
         </Td>
-        <Td width={20}>
+        <Td width={90}>
           <Typography size="small" color="grey">
             {formatCurrency(transaction?.cost) || '-'}
           </Typography>
         </Td>
-        <Td width={20}>
+        <Td width={90}>
           <WrapperActionTableButtons>
             <IconButton
               onClick={() => handleEdit(transaction)}

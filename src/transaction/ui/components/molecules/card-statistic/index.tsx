@@ -1,6 +1,6 @@
 import React from 'react';
-import { AvailableIcons, Paper, Typography } from '@/core/ui/components/atoms';
-import { Container, Content, TextEllipsis } from './styles';
+import { AvailableIcons, Paper, TextEllipsis, Typography } from '@/core/ui/components/atoms';
+import { Container, Content } from './styles';
 import { formatCurrency } from '@/core/utils';
 import { CardFlag } from '@/transaction/ui/components/atoms';
 import { WrapperLoader } from '@/core/ui/components/molecules';
@@ -28,18 +28,18 @@ export const CardStatistic: React.FC<ICardStatistic> = ({
     <Paper density={1} noRadiusIn="right" fullWidth>
       <WrapperLoader loading={loading} size={10} color="primary">
         <Content>
-          <TextEllipsis>
-            <Typography weight={600} size="normal" ellipsis>
+          <TextEllipsis rows={1}>
+            <Typography weight={600} size="normal">
               {title}
             </Typography>
           </TextEllipsis>
-          <TextEllipsis>
-            <Typography size="xlarge" color={isNegative ? 'error' : 'info'} weight={700} ellipsis>
+          <TextEllipsis rows={1}>
+            <Typography size="xlarge" color={isNegative ? 'error' : 'info'} weight={700}>
               {formatCurrency(price || 0, allowNegative) || '-'}
             </Typography>
           </TextEllipsis>
-          <TextEllipsis>
-            <Typography size="xsmall" weight={500} color="grey" shade={400} ellipsis>
+          <TextEllipsis rows={1}>
+            <Typography size="xsmall" weight={500} color="grey" shade={400}>
               {description}
             </Typography>
           </TextEllipsis>

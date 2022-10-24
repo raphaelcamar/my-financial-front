@@ -6,12 +6,12 @@ const BASE_URL = `${process.env.BASE_URL}/user`;
 
 const AccessRepositoryDataHandlers = [
   rest.post(`${BASE_URL}/login`, (req, res, ctx) =>
-    res(ctx.delay(1500), ctx.status(HttpSuccessStatusCode.OK), ctx.json(new UserMockBuilder().user))
+    res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(new UserMockBuilder().user), ctx.delay(1500))
   ),
   rest.post(`${BASE_URL}/subscribe`, (req, res, ctx) =>
     res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(new UserMockBuilder().user), ctx.delay(1500))
   ),
-  rest.post(`${BASE_URL}/verifyAccessToken`, (req, res, ctx) =>
+  rest.post(`${BASE_URL}/verify`, (req, res, ctx) =>
     res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(new UserMockBuilder().user), ctx.delay(1500))
   ),
 ];

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledTd } from './styles';
 
-interface ITd {
+export interface ITd {
   width?: number;
   onClick?: () => void;
 }

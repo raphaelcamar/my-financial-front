@@ -12,9 +12,11 @@ import { tableHeaderData } from '@/transaction/utils/data';
 import { ModalDeleteTransaction, TableActions } from '@/transaction/ui/components/atoms';
 import { Transaction } from '@/transaction/domain';
 import { TableTransaction, DrawerTransaction } from '@/transaction/ui/components/molecules';
+import { TransactionMockBuilder } from '@/transaction/mocks';
 
 export const TableContainer: React.FC = () => {
-  const { getTransactions, deleteTransaction, transactions, transactionLoader } = useTransactionContext();
+  const { getTransactions, deleteTransaction, setTransactionLoader, transactions, transactionLoader } =
+    useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
 
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -40,7 +42,16 @@ export const TableContainer: React.FC = () => {
     const limit = new Date();
     const filter: Transaction.Filter = { limit, start };
 
-    await getTransactions(filter);
+    try {
+      console.log(new TransactionMockBuilder().getArray(20));
+      await getTransactions(filter);
+    } catch (err) {
+      enqueueSnackbar(err?.message || 'Não foi possível buscar as transações. Tente novamente mais tarde', {
+        variant: 'error',
+      });
+    } finally {
+      setTransactionLoader(false);
+    }
   };
 
   useEffect(() => {

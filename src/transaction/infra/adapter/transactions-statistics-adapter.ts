@@ -5,10 +5,6 @@ import { Transaction } from '@/transaction/domain';
 import { Response } from '@/transaction/infra/http';
 
 export class TransactionStatisticsAdapter implements RequestAdapter {
-  request(base: Transaction.Data): Transaction.Response {
-    return null;
-  }
-
   response(base: Response.Statistic): Transaction.Statistic {
     const adaptee: Transaction.Statistic = {
       mostSpent: {

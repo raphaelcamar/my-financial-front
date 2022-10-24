@@ -89,6 +89,7 @@ export const TransactionProvider: React.FC = ({ children }) => {
         deleteTransaction,
         updateTransaction,
         getStatisticsByFilter,
+        setTransactionLoader,
       }}
     >
       {children}
