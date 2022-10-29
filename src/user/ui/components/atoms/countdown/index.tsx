@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { CountdownWrapper, Container, StyledTypography, Options, StyledButton } from './styles';
 import { formatMillisecondsToMinutes } from '@/user/utils';
 
-export const THREE_MINUTES = 1000 * 60 * 3;
+const THREE_MINUTES = 1000 * 60 * 3;
 
 interface ICountdown {
   reset: () => void;

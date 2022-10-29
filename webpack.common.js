@@ -4,6 +4,7 @@ const Dotenv = require('dotenv-webpack')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CirularDependencyPlugin = require('circular-dependency-plugin')
 
 const envFile = './.env'
 
@@ -63,6 +64,16 @@ module.exports = {
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
+    }),
+    new CirularDependencyPlugin({
+      // exclude detection of files based on a RegExp
+      exclude: /node_modules/,
+      // include specific files based on a RegExp
+      include: /src/,
+      // add errors to webpack instead of warnings
+      failOnError: true,
+      // allow import cycles that include an asyncronous import,
+      // e.g. via import(/* webpackMode: "weak" */ './file.js')
     })
   ]
 }

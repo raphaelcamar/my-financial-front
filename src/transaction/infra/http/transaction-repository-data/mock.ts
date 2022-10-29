@@ -5,7 +5,7 @@ import { TransactionMockBuilder, StatisticsMockBuilder } from '@/transaction/moc
 const BASE_URL = `${process.env.BASE_URL}/transaction`;
 
 const TransactionRepositoryDataHandlers = [
-  rest.post(`${BASE_URL}/create`, (req, res, ctx) =>
+  rest.post(`${BASE_URL}`, (req, res, ctx) =>
     res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(new TransactionMockBuilder().transaction), ctx.delay(1500))
   ),
 

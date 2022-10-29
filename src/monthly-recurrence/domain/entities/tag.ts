@@ -1,9 +1,11 @@
+import { ColorProps } from '@/main/styled';
+
 export type TagStatus = 'active' | 'inactive';
 
 export class Tag {
   _id?: string;
   description: string;
-  color: string;
+  color: keyof ColorProps;
   title: string;
   inactivatedAt?: Date;
   createdAt?: Date;
@@ -12,7 +14,7 @@ export class Tag {
   constructor(data: Tag.Data) {
     this._id = data?._id;
     this.description = data.description;
-    this.color = data.color;
+    this.color = data.color as keyof ColorProps;
     this.title = data.title;
     this.inactivatedAt = data.inactivatedAt;
     this.createdAt = data?.createdAt;
