@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { delay } from '@/core/utils';
-import { CircularProgress, Icon } from '../../atoms';
+import { CircularProgress, Icon } from '@/core/ui/components/atoms';
 import { ChooseAvatar, Container, Letter, WrapperAvatar } from './styles';
 
 interface IAvatar {
