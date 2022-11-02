@@ -39,4 +39,15 @@ describe('Routing tests', () => {
     await waitFor(() => expect(screen.getByTestId('header')).toBeInTheDocument());
     await waitFor(() => expect(screen.getByTestId('sidebar')).toBeInTheDocument());
   });
+
+  test('Should be able to render the not found page', async () => {
+    render(
+      <MemoryRouter initialEntries={['/some-bad-route']}>
+        <RootRoutesComponent />
+      </MemoryRouter>,
+      { wrapper: MockProviders }
+    );
+
+    await waitFor(() => expect(screen.getByTestId('not-found-page')).toBeInTheDocument());
+  });
 });

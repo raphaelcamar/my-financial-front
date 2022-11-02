@@ -3,7 +3,7 @@ import { TextLink, Typography } from '@/core/ui/components/atoms';
 import { Container, Content, StyledTypography } from './styles';
 
 export const NotFound: React.FC = () => (
-  <Container>
+  <Container data-testid="not-found-page">
     <Content>
       <StyledTypography size="xxxlarge" color="primary" weight={600}>
         404
