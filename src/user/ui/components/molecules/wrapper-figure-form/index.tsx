@@ -7,10 +7,11 @@ export interface IWrapperFigureForm {
   side: 'left' | 'right';
   figureType: 'circle' | 'square';
   children: ReactNode;
+  testId?: string;
 }
 
-export const WrapperFigureForm: React.FC<IWrapperFigureForm> = ({ side, figureType, children }) => (
-  <Root>
+export const WrapperFigureForm: React.FC<IWrapperFigureForm> = ({ side, figureType, children, testId }) => (
+  <Root data-testid={testId}>
     <Form>{children}</Form>
     <FigureStyle side={side}>
       <Figure type={figureType} />

@@ -10,7 +10,7 @@ interface IHheaderProps {
 }
 
 export const Header: React.FC<IHheaderProps> = ({ title, openDrawer, setOpenDrawer }) => (
-  <ContainerHeader>
+  <ContainerHeader data-testid="header">
     <WrapperHamburguerBar onClick={() => setOpenDrawer(true)}>
       <Icon color="primary" shade="500" icon={openDrawer ? 'openDrawerMobile' : 'closeDrawerMobile'} />
     </WrapperHamburguerBar>

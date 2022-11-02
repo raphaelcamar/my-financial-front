@@ -19,7 +19,7 @@ export const Container: React.FC = () => {
 
   return (
     <>
-      <WrapperSidebar>
+      <WrapperSidebar data-testid="sidebar">
         <SidebarAction open={open} onClick={() => handleOpenSidebar()} />
         <Sidebar open={open} />
       </WrapperSidebar>

@@ -43,7 +43,6 @@ export const TableContainer: React.FC = () => {
     const filter: Transaction.Filter = { limit, start };
 
     try {
-      console.log(new TransactionMockBuilder().getArray(20));
       await getTransactions(filter);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível buscar as transações. Tente novamente mais tarde', {

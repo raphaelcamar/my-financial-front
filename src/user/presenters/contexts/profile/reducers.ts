@@ -1,3 +1,4 @@
+import { User } from '@/user/domain';
 import { Action, InitialState, ActionType } from './types';
 
 export const initialState: InitialState = {
@@ -9,7 +10,7 @@ export function reducer(state = initialState, action: Action): InitialState {
     case ActionType.CHANGE_AVATAR_URL:
       return {
         ...state,
-        user: { ...state.user, pictureUrl: action.payload },
+        user: new User({ ...state.user, pictureUrl: action.payload }),
       };
   }
 }
