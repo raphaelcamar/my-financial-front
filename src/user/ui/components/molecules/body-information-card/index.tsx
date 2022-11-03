@@ -24,7 +24,7 @@ export const BodyInformationCard: React.FC<IBodyInformationCard> = ({ user, upda
         <StyledInputBase readOnly value={formatCurrencyDefault(user.getFieldOrEmpty('salary'))} />
       </SpaceInputs>
       <SpaceInputs grid="2fr 1fr">
-        <StyledInputBase readOnly value={formatDateBR(user.getFieldOrEmpty('birthDate'))} />
+        <StyledInputBase readOnly value={formatDateBR(user?.birthDate ? String(user.birthDate) : null) || '-'} />
         <StyledInputBase readOnly value={differenceInYearsDate(user?.birthDate, new Date()) || '-'} />
       </SpaceInputs>
     </Inputs>
