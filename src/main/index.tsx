@@ -6,9 +6,9 @@ import { RootProviders } from './root-providers';
 import { RootRoutesComponent } from '@/core/presenters/routes';
 import { worker } from '@/core/presenters/request-interceptor';
 
-if (process.env.NODE_ENV === 'development') {
-  worker.start();
-}
+// if (process.env.NODE_ENV === 'development') {
+//   worker.start();
+// }
 
 ReactDOM.render(
   <BrowserRouter>

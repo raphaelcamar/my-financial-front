@@ -1,41 +1,27 @@
 import React, { useState } from 'react';
-import { Button, IconButton, Input } from '@/core/ui/components/molecules';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Input } from '@/core/ui/components/molecules';
 import { Container, Form } from './styles';
 import { DatePicker, Modal } from '@/core/ui/components/atoms';
+import { ViewOptions } from '@/monthly-recurrence/ui/components/molecules';
+import { MonthlyRecurrence } from '@/monthly-recurrence/domain/entities/monthly-recurrence';
 
 export const MonthlyActions: React.FC = () => {
   const [modal, setModal] = useState<boolean>(false);
 
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   setValue,
+  //   resetField,
+  //   reset,
+  //   formState: { errors },
+  // } = useForm<MonthlyRecurrence.Data>({ resolver: yupResolver({}) });
+
   return (
     <Container>
-      <Button styleType="glass" shade={200} variant="primary">
-        Todos
-      </Button>
-      <Button styleType="glass" variant="grey">
-        Cartão
-      </Button>
-      <Button styleType="glass" variant="grey">
-        Assinaturas
-      </Button>
-      <IconButton
-        onClick={() => null}
-        icon="squareView"
-        color="grey"
-        shade="50"
-        padding={[8, 14]}
-        iconProps={{ color: 'primary', shade: '400' }}
-      />
-      <IconButton
-        onClick={() => null}
-        icon="barView"
-        color="grey"
-        shade="50"
-        padding={[8, 14]}
-        iconProps={{ color: 'grey', shade: '400' }}
-      />
-      <Button onClick={() => setModal(true)} styleType="fullfiled" variant="primary">
-        Adicionar
-      </Button>
+      <ViewOptions setModal={setModal} />
       <Modal open={modal} title="Adicionar Recorrência" closeModal={() => setModal(false)}>
         <Form>
           <DatePicker customInput={<Input label="Data de início" />} onChange={() => null} />
