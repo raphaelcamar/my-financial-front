@@ -15,7 +15,7 @@ export class TagRepositoryData implements TagRepository {
   }
 
   async modifyStatusTag(status: TagStatus, tagId: string): Promise<Tag> {
-    const http = new RequestHttpRepository<unknown, Tag>();
+    const http = new RequestHttpRepository<unknown, Tag>(process.env.BASE_URL);
     const httpResponse = await http.request({
       method: 'patch',
       url: `tag/type/${status}/${tagId}`,
