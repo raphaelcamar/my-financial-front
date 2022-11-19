@@ -17,5 +17,9 @@
     ],
     [ "@babel/preset-react", { "runtime": "automatic" } ],
     "@babel/preset-typescript"
-  ]
+  ],
+  "plugins": ["react-hot-loader/babel"],
+  "compact": true,
+  "retainLines": true,
+  "minified": true
 }

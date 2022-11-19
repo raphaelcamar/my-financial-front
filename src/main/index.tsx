@@ -1,20 +1,20 @@
+// import 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import './global.css';
-import { RootProviders } from './root-providers';
-import { RootRoutesComponent } from '@/core/presenters/routes';
-import { worker } from '@/core/presenters/request-interceptor';
+
+import { Root } from './root';
 
 // if (process.env.NODE_ENV === 'development') {
 //   worker.start();
 // }
 
-ReactDOM.render(
-  <BrowserRouter>
-    <RootProviders>
-      <RootRoutesComponent />
-    </RootProviders>
-  </BrowserRouter>,
-  document.getElementById('main')
-);
+ReactDOM.render(<Root />, document.getElementById('main'));
+
+if (import.meta.webpackHot.hot) {
+  console.log('Entrou aqui');
+  import.meta.webpackHot.hot.accept('./root.tsx', () => {
+    const NewRoot = require('./root.tsx').default;
+    ReactDOM.render(<NewRoot />, document.getElementById('main'));
+  });
+}

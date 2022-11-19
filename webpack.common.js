@@ -4,6 +4,7 @@ const Dotenv = require('dotenv-webpack')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const DashboardPlugin = require("webpack-dashboard/plugin");
 
 const envFile = './.env'
 
@@ -25,12 +26,17 @@ module.exports = {
     rules: [
       {
         test: /\.(j|t)s(x?)$/,
-        use: 'babel-loader'
+        use: 'babel-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
+      }
     ],
   },
   devServer: {
@@ -42,7 +48,13 @@ module.exports = {
     }
   },
   optimization: {
-    runtimeChunk: true
+    runtimeChunk: true,
+    minimize: true,
+    emitOnErrors: true,
+    innerGraph: false,
+    mangleExports: 'size',
+    mangleWasmImports: true,
+    moduleIds: 'named'
   },
   performance: {
     hints: false,
@@ -56,6 +68,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
+    new webpack.HotModuleReplacementPlugin({}),
     new Dotenv({
       path: envFile,
       safe: true,
@@ -63,6 +76,7 @@ module.exports = {
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
-    })
+    }),
+    new DashboardPlugin()
   ]
 }

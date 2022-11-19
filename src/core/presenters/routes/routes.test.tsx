@@ -8,6 +8,8 @@ import { RootRoutesComponent } from '.';
 import '@testing-library/jest-dom';
 import 'jest-localstorage-mock';
 
+jest.mock('axios');
+
 beforeEach(() => {
   Object.defineProperty(global.self, 'crypto', {
     value: {
