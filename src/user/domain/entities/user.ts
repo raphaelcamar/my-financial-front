@@ -11,7 +11,7 @@ export class User {
   profession?: string;
   salary?: number;
   token: string;
-  wallets: Wallet[];
+  wallets?: Wallet[];
 
   constructor(user: User.Data) {
     this._id = user._id;
