@@ -18,6 +18,7 @@ export class UserMockBuilder {
       pictureUrl: faker.image.avatar(),
       profession: faker.name.jobTitle(),
       salary: faker.datatype.number({ max: 9999999, min: 99999 }),
+      wallets: [],
     };
   }
 }
