@@ -53,7 +53,7 @@ export const SubscribeForm: React.FC = () => {
           />
 
           <Button variant="primary" styleType="fullfiled" shade={500} loading={loading}>
-            Login
+            Cadastrar
           </Button>
         </Form>
 

@@ -14,7 +14,7 @@ export const Menu = styled.div<MenuProfileType>`
   justify-content: space-between;
   gap: 8px;
   min-width: 180px;
-  border-radius: ${({ open }) => (open ? '24px 24px 0 0' : '24px')};
+  border-radius: ${({ open }) => (open ? '12px 12px 0 0' : '12px')};
   cursor: pointer;
   padding: 8px 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -27,7 +27,7 @@ export const Menu = styled.div<MenuProfileType>`
 
 export const Popover = styled.div<MenuProfileType>`
   background: ${({ theme }) => theme.palette.background.paper};
-  border-radius: 0 0 24px 24px;
+  border-radius: 0 0 12px 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: absolute;
   display: flex;

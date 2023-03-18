@@ -6,3 +6,4 @@ export * from './menu-profile-popover';
 export * from './sidebar-options';
 export * from './sidebar';
 export * from './table';
+export * from './menu-indicators';

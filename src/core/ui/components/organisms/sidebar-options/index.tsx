@@ -19,44 +19,46 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions }) =>
 
   return (
     <>
-      {sidebarOptions.map(item =>
-        item?.isAccordion ? (
-          <SidebarAccordion
-            open={accordion}
-            key={item.title}
-            setOpen={setAccordion}
-            sidebarOpen={open}
-            icon={item?.icon}
-            titleAccordion={item?.title}
-            hasMatchedRoute={getMatchedRoute(item?.accordionItems)}
-            quantity={item?.accordionItems?.length}
-          >
-            <WrapperItemAccordion open={open}>
-              {item?.accordionItems?.map((accordionItem, index) => (
-                <SidebarOption
-                  accordionOpen={accordion}
-                  sidebarOpen={open}
-                  key={randomId()}
-                  item={accordionItem}
-                  path={accordionItem.path}
-                  selected={location?.pathname === accordionItem.path}
-                  isLastItem={item?.accordionItems.length === index + 1}
-                />
-              ))}
-            </WrapperItemAccordion>
-          </SidebarAccordion>
-        ) : (
-          <ItemSidebar>
-            <SidebarOption
-              withFullRadius
+      {sidebarOptions.map(item => (
+        <div style={{ paddingBottom: 12 }}>
+          {item?.isAccordion ? (
+            <SidebarAccordion
+              open={accordion}
+              key={item.title}
+              setOpen={setAccordion}
               sidebarOpen={open}
-              path={item.path}
-              selected={location?.pathname === item.path}
-              item={item}
-            />
-          </ItemSidebar>
-        )
-      )}
+              icon={item?.icon}
+              titleAccordion={item?.title}
+              hasMatchedRoute={getMatchedRoute(item?.accordionItems)}
+              quantity={item?.accordionItems?.length}
+            >
+              <WrapperItemAccordion open={open}>
+                {item?.accordionItems?.map((accordionItem, index) => (
+                  <SidebarOption
+                    accordionOpen={accordion}
+                    sidebarOpen={open}
+                    key={randomId()}
+                    item={accordionItem}
+                    path={accordionItem.path}
+                    selected={location?.pathname === accordionItem.path}
+                    isLastItem={item?.accordionItems.length === index + 1}
+                  />
+                ))}
+              </WrapperItemAccordion>
+            </SidebarAccordion>
+          ) : (
+            <ItemSidebar>
+              <SidebarOption
+                withFullRadius
+                sidebarOpen={open}
+                path={item.path}
+                selected={location?.pathname === item.path}
+                item={item}
+              />
+            </ItemSidebar>
+          )}
+        </div>
+      ))}
     </>
   );
 };

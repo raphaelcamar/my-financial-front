@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, Typography } from '@/core/ui/components/atoms';
-import { ContainerHeader, WrapperHamburguerBar } from './styles';
-import { MenuProfilePopover } from '@/core/ui/components/organisms';
+import { ContainerHeader, ContainerHeaderOptions, WrapperHamburguerBar } from './styles';
+import { MenuProfilePopover, MenuIndicators } from '@/core/ui/components/organisms';
 
 interface IHheaderProps {
   title: string;
@@ -17,6 +17,9 @@ export const Header: React.FC<IHheaderProps> = ({ title, openDrawer, setOpenDraw
     <Typography type="h1" size="xxxlarge">
       {title}
     </Typography>
-    <MenuProfilePopover />
+    <ContainerHeaderOptions>
+      <MenuIndicators />
+      <MenuProfilePopover />
+    </ContainerHeaderOptions>
   </ContainerHeader>
 );

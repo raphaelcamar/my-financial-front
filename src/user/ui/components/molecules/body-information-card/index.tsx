@@ -17,7 +17,7 @@ export const BodyInformationCard: React.FC<IBodyInformationCard> = ({ user, upda
       <Avatar chooseAvatar size={112} url={user?.pictureUrl || user?.name} updatePicture={updatePicture} />
     </AvatarPosition>
     <Inputs>
-      <StyledInputBase readOnly value={user.getNameAndLastName()} />
+      <StyledInputBase readOnly value={user?.getNameAndLastName()} />
       <StyledInputBase readOnly value={user.getFieldOrEmpty('email')} />
       <SpaceInputs grid="1fr 1fr">
         <StyledInputBase readOnly value={user.getFieldOrEmpty('profession')} />

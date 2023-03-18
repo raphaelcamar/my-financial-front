@@ -29,6 +29,10 @@ export const TransactionRoutes: RouteObject[] = [
       </Suspense>
     ),
   },
+  {
+    path: 'despesas-e-receitas',
+    element: <div>Olá planeta</div>,
+  },
 ];
 
 export const TransactionRoutesComponent = (): React.ReactElement => useRoutes(TransactionRoutes);

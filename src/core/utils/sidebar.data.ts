@@ -26,4 +26,9 @@ export const SidebarData: ISidebaroption[] = [
       },
     ],
   },
+  {
+    path: '/despesas-e-receitas',
+    icon: 'transaction',
+    title: 'Depesas e receitas',
+  },
 ];
