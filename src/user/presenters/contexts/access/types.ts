@@ -1,14 +1,16 @@
-import { User } from '@/user/domain';
+import { User, Wallet } from '@/user/domain';
 
 export enum ActionType {
   USER_AUTHORIZED = 'USER_AUTHORIZED',
   EMAIL_PASSWORD_RECOVER = 'EMAIL_PASSWORD_RECOVER',
   USER_LOGOUT = 'USER_LOGOUT',
+  CHANGE_WALLET = 'CHANGE_WALLET',
 }
 
 export type InitialState = {
   user: User;
   emailPasswordRecover: string;
+  currentWallet: Wallet;
 };
 
 type UserAuthorized = {
@@ -26,4 +28,9 @@ type EmailPasswordRecover = {
   payload: string;
 };
 
-export type Action = UserAuthorized | EmailPasswordRecover | UserLogout;
+type ChangeWallet = {
+  type: ActionType.CHANGE_WALLET;
+  payload: Wallet;
+};
+
+export type Action = UserAuthorized | EmailPasswordRecover | UserLogout | ChangeWallet;

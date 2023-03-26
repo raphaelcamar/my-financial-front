@@ -17,20 +17,20 @@ const getShadowDensity = (density: Density) =>
 const getRadius = (noRadiusIn: NoRadius) =>
   !noRadiusIn
     ? css`
-        border-radius: 16px;
+        border-radius: 12px;
       `
     : {
         left: css`
-          border-radius: 0px 16px 16px 0;
+          border-radius: 0px 12px 12px 0;
         `,
         right: css`
-          border-radius: 16px 0 0 16px;
+          border-radius: 12px 0 0 12px;
         `,
         top: css`
-          border-radius: 0px 0px 16px 16px;
+          border-radius: 0px 0px 12px 12px;
         `,
         bottom: css`
-          border-radius: 16px 16px 0px 0px;
+          border-radius: 12px 12px 0px 0px;
         `,
       }[noRadiusIn];
 

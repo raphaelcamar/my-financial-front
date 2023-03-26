@@ -6,6 +6,7 @@ export interface ISidebaroption {
   title: string;
   path?: string;
   soon?: boolean;
+  id?: string;
   accordionItems?: Omit<ISidebaroption, 'accordionItems' | 'isAccordion'>[];
 }
 

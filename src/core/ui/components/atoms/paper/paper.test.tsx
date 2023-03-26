@@ -12,7 +12,7 @@ describe('Paper unit test', () => {
     const paper = screen.getByTestId('paper');
     expect(paper).toHaveStyle('box-shadow: none');
     expect(paper).toHaveStyle('padding: 24px');
-    expect(paper).toHaveStyle('border-radius: 16px');
+    expect(paper).toHaveStyle('border-radius: 12px');
     expect(paper).toHaveTextContent('Teste');
   });
 
@@ -22,7 +22,7 @@ describe('Paper unit test', () => {
     const paper = screen.getByTestId('paper');
     expect(paper).toHaveStyle('box-shadow: 0px 4px 4px rgba(0,0,0,0.25)');
     expect(paper).toHaveStyle('padding: 24px');
-    expect(paper).toHaveStyle('border-radius: 16px');
+    expect(paper).toHaveStyle('border-radius: 12px');
     expect(paper).toHaveTextContent('Teste');
   });
 
@@ -32,7 +32,7 @@ describe('Paper unit test', () => {
     const paper = screen.getByTestId('paper');
     expect(paper).toHaveStyle('box-shadow: 0px 4px 10px 4px rgba(0,0,0,0.25)');
     expect(paper).toHaveStyle('padding: 24px');
-    expect(paper).toHaveStyle('border-radius: 16px');
+    expect(paper).toHaveStyle('border-radius: 12px');
     expect(paper).toHaveTextContent('Teste');
   });
 
@@ -48,7 +48,7 @@ describe('Paper unit test', () => {
     const paper = screen.getByTestId('paper');
     expect(paper).toHaveStyle('box-shadow: 0px 4px 10px 4px rgba(0,0,0,0.25)');
     expect(paper).toHaveStyle('padding: 24px');
-    expect(paper).toHaveStyle('border-radius: 0px 0px 16px 16px');
+    expect(paper).toHaveStyle('border-radius: 0px 0px 12px 12px');
     expect(paper).toHaveTextContent('Teste');
   });
 
@@ -64,7 +64,7 @@ describe('Paper unit test', () => {
     const paper = screen.getByTestId('paper');
     expect(paper).toHaveStyle('box-shadow: 0px 4px 10px 4px rgba(0,0,0,0.25)');
     expect(paper).toHaveStyle('padding: 24px');
-    expect(paper).toHaveStyle('border-radius:16px 16px 0px 0px;');
+    expect(paper).toHaveStyle('border-radius:12px 12px 0px 0px;');
     expect(paper).toHaveTextContent('Teste');
   });
 
@@ -80,7 +80,7 @@ describe('Paper unit test', () => {
     const paper = screen.getByTestId('paper');
     expect(paper).toHaveStyle('box-shadow: 0px 4px 10px 4px rgba(0,0,0,0.25)');
     expect(paper).toHaveStyle('padding: 24px');
-    expect(paper).toHaveStyle('border-radius: 0px 16px 16px 0;');
+    expect(paper).toHaveStyle('border-radius: 0px 12px 12px 0;');
     expect(paper).toHaveTextContent('Teste');
   });
 
@@ -96,7 +96,7 @@ describe('Paper unit test', () => {
     const paper = screen.getByTestId('paper');
     expect(paper).toHaveStyle('box-shadow: 0px 4px 10px 4px rgba(0,0,0,0.25)');
     expect(paper).toHaveStyle('padding: 24px');
-    expect(paper).toHaveStyle('border-radius: 16px 0 0 16px;');
+    expect(paper).toHaveStyle('border-radius: 12px 0 0 12px;');
     expect(paper).toHaveTextContent('Teste');
   });
 });
