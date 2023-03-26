@@ -4,6 +4,10 @@ export const WrapperIconButtons = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+
+  @media (${({ theme }) => theme.breakpoints.down('sm')}) {
+    display: none;
+  }
 `;
 
 export const WrapperRevenue = styled.div`
@@ -12,6 +16,10 @@ export const WrapperRevenue = styled.div`
   display: flex;
   height: 46px;
   align-items: center;
+
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    display: none;
+  }
 `;
 
 export const ReadonlyInput = styled.input`

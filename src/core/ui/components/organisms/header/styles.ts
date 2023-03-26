@@ -7,6 +7,14 @@ export const ContainerHeader = styled.div`
   /* border-bottom: 1px solid ${({ theme }) => theme.palette.grey[200]}; */
   margin-bottom: 28px;
   padding-bottom: 8px;
+
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    grid-template-columns: 1fr 3fr 4fr;
+  }
+
+  @media (${({ theme }) => theme.breakpoints.down('sm')}) {
+    grid-template-columns: 1fr 3fr 1fr;
+  }
 `;
 
 export const WrapperHamburguerBar = styled.div`
@@ -16,6 +24,8 @@ export const WrapperHamburguerBar = styled.div`
   @media (${({ theme }) => theme.breakpoints.down('md')}) {
     visibility: visible;
     display: inherit;
+    display: flex;
+    align-items: flex-start;
   }
 `;
 
@@ -25,4 +35,8 @@ export const ContainerHeaderOptions = styled.div`
   gap: 12px;
   width: 100%;
   justify-content: space-between;
+
+  @media (${({ theme }) => theme.breakpoints.down('sm')}) {
+    justify-content: flex-end;
+  }
 `;
