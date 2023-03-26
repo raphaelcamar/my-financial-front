@@ -4,15 +4,16 @@ import { ReadonlyInput, WrapperIcon, WrapperIconButtons, WrapperRevenue } from '
 import { Icon } from '@/core/ui/components/atoms';
 import { useAccessContext } from '@/user/presenters';
 import { formatCurrency } from '@/core/utils';
+import { CardWallets } from '../card-wallets';
 
 export const MenuIndicators = (): ReactElement => {
-  const { user } = useAccessContext();
+  const { user, currentWallet } = useAccessContext();
   const [currencyOpen, setCurrencyOpen] = useState<boolean>(false);
 
   return (
     <WrapperIconButtons>
       <IconButton icon="bell" color="grey" shade="50" iconProps={{ color: 'primary', shade: '500', size: 22 }} />
-      <IconButton icon="wallet" color="grey" shade="50" iconProps={{ color: 'primary', shade: '500', size: 22 }} />
+      {user && <CardWallets wallets={user?.wallets} selected={currentWallet} />}
       <WrapperRevenue>
         <ReadonlyInput
           type={currencyOpen ? 'text' : 'password'}

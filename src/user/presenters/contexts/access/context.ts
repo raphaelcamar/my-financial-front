@@ -1,9 +1,10 @@
 import { createContext, useContext } from 'react';
-import { User } from '@/user/domain';
+import { User, Wallet } from '@/user/domain';
 
 type PropsAccessContext = {
   user: User;
   passwordToken: string;
+  currentWallet: Wallet;
   userAuth: (body: User.Login) => Promise<void>;
   newUser: (body: User.Subscribe) => Promise<void>;
   verifyUserAuth: () => Promise<User>;

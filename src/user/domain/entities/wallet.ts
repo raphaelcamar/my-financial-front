@@ -8,7 +8,7 @@ export class Wallet {
   public value?: number;
 
   constructor(data: Wallet.Data) {
-    this.id = data.id;
+    this.id = data._id;
     this.userId = data.userId;
     this.name = data.name;
     this.createdAt = data.createdAt;
@@ -19,5 +19,7 @@ export class Wallet {
 }
 
 export namespace Wallet {
-  export type Data = typeof Wallet.prototype;
+  export type Data = Omit<typeof Wallet.prototype, 'id'> & {
+    _id: string;
+  };
 }

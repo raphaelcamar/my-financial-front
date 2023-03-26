@@ -1,4 +1,4 @@
-import { User } from '@/user/domain';
+import { User, Wallet } from '@/user/domain';
 import { Action, ActionType } from './types';
 
 export function fetchLogin(payload: User): Action {
@@ -11,4 +11,11 @@ export function fetchEmailPasswordRecover(payload: string): Action {
 
 export function fetchLogout(payload: User): Action {
   return { type: ActionType.USER_LOGOUT, payload };
+}
+
+export function fetchWallet(payload: Wallet): Action {
+  return {
+    type: ActionType.CHANGE_WALLET,
+    payload,
+  };
 }

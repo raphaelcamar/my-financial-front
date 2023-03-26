@@ -12,7 +12,7 @@ import {
   SendNewPasswordRecover,
   SendCodePassowrdRecover,
 } from '@/user/data/use-cases/access';
-import { fetchLogin, fetchEmailPasswordRecover, fetchLogout } from './actions';
+import { fetchLogin, fetchEmailPasswordRecover, fetchLogout, fetchWallet } from './actions';
 
 export const AccessProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -37,6 +37,10 @@ export const AccessProvider: React.FC = ({ children }) => {
     async function verify() {
       try {
         const user = await verifyUserAuth();
+        const wallet = user.wallets?.[0];
+
+        if (wallet) dispatch(fetchWallet(wallet));
+
         if (user) dispatch(fetchLogin(user));
       } catch (err) {
         dispatch(fetchLogin(null));
@@ -66,6 +70,7 @@ export const AccessProvider: React.FC = ({ children }) => {
     const useCase = new AuthenticateUser(accessRepository, localStorageRepository, loginData);
     const user = await useCase.execute();
 
+    dispatch(fetchWallet(user?.wallets?.[0]));
     dispatch(fetchLogin(user));
   };
 
@@ -75,7 +80,7 @@ export const AccessProvider: React.FC = ({ children }) => {
 
     const useCase = new CreateUser(accessRepository, localStorageRepository, subscribeData);
     const user = await useCase.execute();
-
+    dispatch(fetchWallet(user?.wallets?.[0]));
     dispatch(fetchLogin(user));
   };
 
@@ -110,6 +115,7 @@ export const AccessProvider: React.FC = ({ children }) => {
   return (
     <AccessContext.Provider
       value={{
+        currentWallet: state.currentWallet,
         user: state.user,
         passwordToken: state.emailPasswordRecover,
         userAuth,

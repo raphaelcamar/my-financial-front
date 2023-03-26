@@ -7,8 +7,8 @@ type BodyRequestToken = {
 };
 
 export class AccessRepositoryData implements AccessRepository {
-  async login(bodyLogin: User.Login): Promise<User> {
-    const http = new RequestHttpRepository<User.Login, User>(process.env.BASE_URL);
+  async login(bodyLogin: User.Login): Promise<User.Data> {
+    const http = new RequestHttpRepository<User.Login, User.Data>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'post',
@@ -18,8 +18,8 @@ export class AccessRepositoryData implements AccessRepository {
     return httpResponse.body;
   }
 
-  async subscribe(bodyLogin: User.Subscribe): Promise<User> {
-    const http = new RequestHttpRepository<User.Subscribe, User>(process.env.BASE_URL);
+  async subscribe(bodyLogin: User.Subscribe): Promise<User.Data> {
+    const http = new RequestHttpRepository<User.Subscribe, User.Data>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'post',
@@ -30,8 +30,8 @@ export class AccessRepositoryData implements AccessRepository {
     return httpResponse.body;
   }
 
-  async verifyAccessToken(tokenId: string): Promise<User> {
-    const http = new RequestHttpRepository<BodyRequestToken, User>(process.env.BASE_URL);
+  async verifyAccessToken(tokenId: string): Promise<User.Data> {
+    const http = new RequestHttpRepository<BodyRequestToken, User.Data>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'post',

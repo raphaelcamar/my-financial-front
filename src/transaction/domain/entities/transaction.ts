@@ -13,6 +13,7 @@ export class Transaction {
   cost: number;
   total?: number;
   topic: TypeTopic;
+  walletId: string;
 
   constructor(transaction: Transaction.Data) {
     this._id = transaction._id;
@@ -25,6 +26,7 @@ export class Transaction {
     this.cost = transaction.cost;
     this.topic = transaction.topic;
     this.total = transaction.total;
+    this.walletId = transaction.walletId;
   }
 }
 
@@ -40,6 +42,7 @@ export namespace Transaction {
     cost: number;
     topic: TypeTopic;
     total?: number;
+    walletId: string;
   }
 
   export interface Response {
@@ -53,6 +56,7 @@ export namespace Transaction {
     value: number;
     topic: TypeTopic;
     amount: number;
+    walletId: string;
   }
 
   export interface Filter {

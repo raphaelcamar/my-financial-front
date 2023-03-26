@@ -24,7 +24,7 @@ export class User {
     this.profession = user?.profession;
     this.salary = user?.salary;
     this.token = user.token;
-    this.wallets = user.wallets;
+    this.wallets = user.wallets.map(wallet => new Wallet(wallet));
   }
 
   getNameAndLastName(): string {
@@ -52,7 +52,7 @@ export namespace User {
     profession?: string;
     salary?: number;
     token: string;
-    wallets: Wallet[];
+    wallets: Wallet.Data[];
   }
 
   export type Login = {

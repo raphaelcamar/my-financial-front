@@ -3,6 +3,7 @@ import { ActionType, Action, InitialState } from './types';
 export const initialState: InitialState = {
   user: undefined,
   emailPasswordRecover: undefined,
+  currentWallet: undefined,
 };
 
 export function reducer(state = initialState, action: Action): InitialState {
@@ -23,6 +24,11 @@ export function reducer(state = initialState, action: Action): InitialState {
       return {
         ...state,
         user: action.payload,
+      };
+    case ActionType.CHANGE_WALLET:
+      return {
+        ...state,
+        currentWallet: action.payload,
       };
   }
 }

@@ -13,6 +13,7 @@ import { InputMask } from '@/core/ui/components/molecules/input-mask';
 import { entranceItems, spentItems, selectTypeItems } from '@/transaction/utils/data';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { Checkbox, Typography } from '@/core/ui/components/atoms';
+import { useAccessContext } from '@/user/presenters';
 
 interface IDrawerTransaction {
   openModal: boolean;
@@ -24,6 +25,7 @@ interface IDrawerTransaction {
 export const DrawerTransaction: React.FC<IDrawerTransaction> = ({ openModal, setOpenModal, type, defaultValues }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const { createTransaction, updateTransaction } = useTransactionContext();
+  const { currentWallet } = useAccessContext();
   const { enqueueSnackbar } = useSnackbar();
 
   const {
@@ -52,8 +54,7 @@ export const DrawerTransaction: React.FC<IDrawerTransaction> = ({ openModal, set
     try {
       setLoading(true);
       const execute = type === 'create' ? createTransaction : updateTransaction;
-
-      await execute(data);
+      await execute({ ...data, walletId: currentWallet.id });
 
       enqueueSnackbar(`Transação  ${type === 'create' ? 'criada' : 'alterada'} com sucesso!`, {
         variant: 'success',
