@@ -5,7 +5,7 @@ type SidebarType = {
   open: boolean;
 };
 
-const changeWidth = (open?: boolean) =>
+const changeCssOrientations = (open?: boolean) =>
   open
     ? css`
         width: ${SIZES.width};
@@ -23,10 +23,11 @@ export const Container = styled.div<SidebarType>`
   height: 100vh;
   z-index: 5;
   background: ${({ theme }) => theme.palette.grey[50]};
-  border-right: 1px solid ${({ theme }) => theme.palette.primary[100]};
-  transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+  border-radius: ${({ open }) => (open ? '0 24px 24px 0' : '0px')};
+  box-shadow: 0px 4px 6px 4px rgba(0, 0, 0, 0.25);
+  transition: all 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
 `;
 
 export const WrapperSidebar = styled.aside<SidebarType>`
-  ${({ open }) => changeWidth(open)}
+  ${({ open }) => changeCssOrientations(open)}
 `;
