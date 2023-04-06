@@ -24,14 +24,19 @@ export const Container = styled.div`
   width: 100%;
   max-width: 450px;
   height: 90px;
-  /* .swiper {
-    width: 100%;
-    .swiper-wrapper {
-      width: 100%;
-      height: 100%;
-    }
+
+  @media (${({ theme }) => theme.breakpoints.down('xl')}) {
+    max-width: 641px;
   }
-     */
+
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    max-width: 790px;
+  }
+
+  @media (${({ theme }) => theme.breakpoints.down('sm')}) {
+    max-width: 450px;
+  }
+
   .slick-slide {
     text-align: center;
     font-size: 14px;

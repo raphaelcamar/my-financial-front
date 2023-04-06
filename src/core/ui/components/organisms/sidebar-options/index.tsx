@@ -4,7 +4,6 @@ import { ISidebaroption } from '@/core/domain';
 import { ItemSidebar, WrapperItemAccordion } from './styles';
 import { SidebarOption, SidebarAccordion } from '@/core/ui/components/molecules';
 import { useSidebarContext } from '@/core/presenters/contexts/sidebar';
-import { randomId } from '@/core/utils';
 
 interface ISidebarOptions {
   sidebarOptions: ISidebaroption[];
