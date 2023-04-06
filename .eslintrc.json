@@ -32,6 +32,7 @@
     "prettier"
 	],
 	"rules": {
+		"no-plusplus": "off",
     "space-before-function-paren": "off",
 		"react/jsx-no-constructed-context-values": "off",
     "prettier/prettier": ["error", {
