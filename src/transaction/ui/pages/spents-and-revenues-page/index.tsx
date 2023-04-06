@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { Container, FilterContainer, Indicators, WrapperGridItem } from './styles';
 import { FilterYear, FilterMonth } from '@/transaction/ui/components/molecules';
 import { IndicatorCard } from '@/transaction/ui/components/atoms';
+import { TableTransactions } from '@/transaction/ui/components/organisms';
 
 export const SpentsAndRevenuesPage = (): ReactElement => (
   <Container>
@@ -10,7 +11,7 @@ export const SpentsAndRevenuesPage = (): ReactElement => (
         <FilterMonth />
         <FilterYear />
       </FilterContainer>
-      <div style={{ background: 'red' }}>Tabela</div>
+      <TableTransactions />
     </WrapperGridItem>
     <WrapperGridItem>
       <Indicators>
