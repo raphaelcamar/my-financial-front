@@ -23,8 +23,9 @@ export const Container = styled.div<SidebarType>`
   height: 100vh;
   z-index: 5;
   background: ${({ theme }) => theme.palette.grey[50]};
-  border-radius: ${({ open }) => (open ? '0 24px 24px 0' : '0px')};
-  box-shadow: 0px 4px 6px 4px rgba(0, 0, 0, 0.25);
+  /* border-radius: ${({ open }) => (open ? '0 24px 24px 0' : '0px')}; */
+  border-right: ${({ theme }) => `1px solid ${theme.palette.primary[100]}`};
+  /* box-shadow: 0px 4px 6px 4px rgba(0, 0, 0, 0.25); */
   transition: all 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
 `;
 

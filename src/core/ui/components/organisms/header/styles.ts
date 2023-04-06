@@ -32,9 +32,9 @@ export const WrapperHamburguerBar = styled.div`
 export const ContainerHeaderOptions = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 26px;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
 
   @media (${({ theme }) => theme.breakpoints.down('sm')}) {
     justify-content: flex-end;

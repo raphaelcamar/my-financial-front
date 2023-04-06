@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { usePopper } from 'react-popper';
-import { ClickAwayListener, Typography } from '@/core/ui/components/atoms';
-import { Circle, Header, Pop, Title } from './styles';
-import { IconButton, MenuItem } from '@/core/ui/components/molecules';
+import React from 'react';
+import { Typography } from '@/core/ui/components/atoms';
+import { Circle, Header, Title } from './styles';
 import { ColorProps } from '@/main/styled';
+import { MoreOptions } from '@/core/ui/components/organisms';
 
 interface IHeaderCard {
   color: keyof ColorProps;
@@ -12,49 +11,20 @@ interface IHeaderCard {
   onDelete: () => void;
 }
 
-export const HeaderCard: React.FC<IHeaderCard> = ({ color, onDelete, onEdit, title }) => {
-  const [open, setOpen] = useState<boolean>(false);
-  const [referenceElement, setReferenceElement] = useState(null);
-  const [popperElement, setPopperElement] = useState(null);
+export const HeaderCard: React.FC<IHeaderCard> = ({ color, onDelete, onEdit, title }) => (
+  <Header>
+    <Title>
+      <Circle color={color} />
+      <Typography size="normal" weight={700} shade={700}>
+        {title}
+      </Typography>
+    </Title>
 
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    placement: 'bottom-start',
-    modifiers: [
-      {
-        name: 'preventOverflow',
-        options: {
-          mainAxis: false,
-        },
-      },
-    ],
-  });
-
-  return (
-    <Header>
-      <Title>
-        <Circle color={color} />
-        <Typography size="normal" weight={700}>
-          {title}
-        </Typography>
-      </Title>
-      <ClickAwayListener onClickAway={() => setOpen(false)}>
-        <IconButton
-          icon="moreOption"
-          color="grey"
-          shade="50"
-          noBackground
-          onClick={() => setOpen(!open)}
-          ref={setReferenceElement}
-        />
-        {open ? (
-          <Pop ref={setPopperElement} open={open} style={styles.popper} {...attributes.popper}>
-            <MenuItem text="Editar" icon="pen" disabled />
-            <MenuItem text="Excluir" icon="trash" onClick={() => onDelete()} />
-          </Pop>
-        ) : (
-          <></>
-        )}
-      </ClickAwayListener>
-    </Header>
-  );
-};
+    <MoreOptions
+      items={[
+        { text: 'Editar', disabled: true, icon: 'pen' },
+        { text: 'Excluir', icon: 'trash', onClick: () => onDelete() },
+      ]}
+    />
+  </Header>
+);

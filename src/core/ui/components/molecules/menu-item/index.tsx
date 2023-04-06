@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { AvailableIcons, Hide, Icon, Typography } from '@/core/ui/components/atoms';
 import { Container } from './styles';
-import { BreakpointTypes, Shade, VariantProps } from '@/main/styled';
+import { BreakpointTypes, VariantProps } from '@/main/styled';
 
-interface IMenuItem {
+export interface IMenuItem {
   text?: string;
   icon?: AvailableIcons;
   onClick?: () => void;
   width?: string;
   hideOnMobile?: keyof BreakpointTypes;
   disabled?: boolean;
+  selected?: boolean;
 }
 
-export const MenuItem: React.FC<IMenuItem> = ({ text, icon, onClick, width, hideOnMobile, disabled }) => {
-  const [colorHover, setColorHover] = useState<boolean>(false);
+export const MenuItem: React.FC<IMenuItem> = ({ text, icon, onClick, width, hideOnMobile, disabled, selected }) => {
+  const [colorHover, setColorHover] = useState<boolean>(selected);
 
   const handleMouseEvent = (state: boolean): void => {
     if (!disabled) {
@@ -33,8 +34,9 @@ export const MenuItem: React.FC<IMenuItem> = ({ text, icon, onClick, width, hide
       width={width}
       onClick={disabled ? () => null : onClick}
       onMouseEnter={() => handleMouseEvent(true)}
-      onMouseLeave={() => handleMouseEvent(false)}
+      onMouseLeave={() => handleMouseEvent(!!selected)}
       disabled={disabled}
+      selected={selected}
     >
       <Icon icon={icon} size={16} color={colorHover ? 'primary' : null} shade={getIconShade()} />
       {hideOnMobile ? (

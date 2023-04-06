@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { ColorProps } from '@/main/styled';
 
 type HeaderCardType = {
@@ -28,23 +28,4 @@ export const Circle = styled.div<HeaderCardType>`
   height: 24px;
   border-radius: 50%;
   background: ${({ theme, color }) => theme.palette?.[color][500]};
-`;
-
-export const Pop = styled.div<HeaderCardType>`
-  display: flex;
-  min-width: 120px;
-  flex-direction: column;
-  gap: 4px;
-  background: ${({ theme }) => theme.palette.background.paper};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-  padding: 8px;
-  ${({ open }) =>
-    open
-      ? css`
-          transform: scale(1);
-        `
-      : css`
-          transform: scale(0);
-        `};
 `;
