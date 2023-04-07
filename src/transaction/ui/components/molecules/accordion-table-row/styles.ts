@@ -15,17 +15,17 @@ export const Children = styled.div<{ open?: boolean }>`
   min-height: 0px;
   height: 0px;
   gap: 16px;
+  flex-wrap: wrap;
   transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   ${({ open }) =>
     open
       ? css`
           visibility: visible;
           padding: 32px;
-          height: 260px;
+          height: 124px;
           overflow: auto;
           overflow-y: hidden;
           display: flex;
-          flex-wrap: wrap;
         `
       : css`
           height: 0px;

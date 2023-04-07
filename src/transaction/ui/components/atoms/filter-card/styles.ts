@@ -24,6 +24,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 450px;
   height: 90px;
+  background-color: ${({ theme }) => theme.palette.background.paper};
 
   @media (${({ theme }) => theme.breakpoints.down('xl')}) {
     max-width: 641px;

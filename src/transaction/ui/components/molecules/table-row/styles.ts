@@ -15,9 +15,9 @@ export const Row = styled.tr`
   width: 100%;
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.7fr 3.6fr 1fr 1fr 1fr 1fr;
+  gap: 16px;
   border-radius: 8px;
-  gap: 4px;
   background: ${({ theme }) => theme.palette.grey[100]};
 `;
 

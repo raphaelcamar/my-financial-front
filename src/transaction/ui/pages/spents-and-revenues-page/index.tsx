@@ -30,7 +30,7 @@ export const SpentsAndRevenuesPage = (): ReactElement => (
           value={419}
         />
       </Indicators>
-      <div style={{ background: 'blue' }}>Hitórico</div>
+      <div>Histórico</div>
     </WrapperGridItem>
   </Container>
 );

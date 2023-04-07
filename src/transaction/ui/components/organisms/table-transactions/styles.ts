@@ -8,7 +8,8 @@ export const Container = styled.div`
   gap: 48px;
   max-height: 650px;
   overflow: auto;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); ;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: ${({ theme }) => theme.palette.background.paper};
 `;
 
 export const HeaderTable = styled.header`
@@ -26,7 +27,7 @@ export const BodyTable = styled.tbody`
 export const THead = styled.thead`
   display: table-header-group;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.7fr 3.1fr 1fr 1fr 1fr 1fr;
 
   @media (${({ theme }) => theme.breakpoints.down('md')}) {
     display: none;

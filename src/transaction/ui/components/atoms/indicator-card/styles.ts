@@ -9,8 +9,10 @@ export const Container = styled.div<Partial<IIndicatorCard>>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: ${({ type }) =>
-    `linear-gradient(318.68deg, #ffffff 49.91%, ${type === 'ENTRANCE' ? '#039855' : '#F04438'} 210.12%);`};
+  background: ${({ type, theme }) =>
+    `linear-gradient(318.68deg, #ffffff 49.91%, ${
+      type === 'ENTRANCE' ? theme.palette.success[400] : theme.palette.error[400]
+    } 210.12%);`};
 `;
 
 export const Header = styled.div`
@@ -23,12 +25,13 @@ export const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 32px;
 `;
 
 export const Spacer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 32px;
 `;
 
 export const PercentIndicator = styled.div`
