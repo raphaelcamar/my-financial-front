@@ -43,7 +43,7 @@ export const TableContainer: React.FC = () => {
     const filter: Transaction.Filter = { limit, start };
 
     try {
-      await getTransactions(filter);
+      // await getTransactions(filter);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível buscar as transações. Tente novamente mais tarde', {
         variant: 'error',
@@ -60,7 +60,7 @@ export const TableContainer: React.FC = () => {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      await deleteTransaction(deleteData?._id);
+      // await deleteTransaction(deleteData?._id);
 
       enqueueSnackbar('Transação deletada com sucesso!', {
         variant: 'success',

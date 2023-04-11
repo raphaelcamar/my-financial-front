@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from 'react';
+import { useSnackbar } from 'notistack';
 import { Icon, TextEllipsis, Typography } from '@/core/ui/components/atoms';
 import { IconButton } from '@/core/ui/components/molecules';
 import { FirstRow, IconIndicator, Row, WrapperActionTableButtons } from './styles';
@@ -6,15 +7,20 @@ import { Transaction } from '@/transaction/domain';
 import { LineFlag, ModalDeleteTransaction } from '@/transaction/ui/components/atoms';
 import { ColorProps } from '@/main/styled';
 import { formatCurrency, formatTopic } from '@/core/utils';
+import { useAccessContext } from '@/user/presenters';
+import { useTransactionContext } from '@/transaction/presenters/contexts';
 
 type ITableRow = {
   transaction?: Transaction;
   handleEdit: (transaction: Transaction) => Promise<void>;
-  handleDelete: (transaction: Transaction) => Promise<void>;
 };
-export const TableRow = ({ transaction, handleDelete, handleEdit }: ITableRow): ReactElement => {
+export const TableRow = ({ transaction, handleEdit }: ITableRow): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const { currentWallet } = useAccessContext();
+  const { deleteTransaction } = useTransactionContext();
+  const { enqueueSnackbar } = useSnackbar();
 
   const isFinished = transaction.status === 'FINISHED';
 
@@ -23,6 +29,20 @@ export const TableRow = ({ transaction, handleDelete, handleEdit }: ITableRow): 
     if (transaction.type === 'SPENT') return 'error';
 
     return 'info';
+  };
+
+  const fetchDeleteTransaction = async (): Promise<void> => {
+    try {
+      setLoading(true);
+      await deleteTransaction(transaction._id, currentWallet.id);
+    } catch (err) {
+      enqueueSnackbar(err?.message || 'Não foi possível buscar as transações. Tente novamente mais tarde', {
+        variant: 'error',
+      });
+    } finally {
+      setOpenModal(false);
+      setLoading(false);
+    }
   };
 
   return (
@@ -68,7 +88,7 @@ export const TableRow = ({ transaction, handleDelete, handleEdit }: ITableRow): 
         data={transaction}
         openModal={openModal}
         onClose={() => setOpenModal(false)}
-        onSubmit={() => handleEdit(transaction)}
+        onSubmit={() => fetchDeleteTransaction()}
       />
     </Row>
   );

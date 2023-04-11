@@ -49,12 +49,12 @@ export class TransactionRepositoryData implements TransactionRepository {
     return adaptee;
   }
 
-  async delete(transactionId: string): Promise<void> {
-    const http = new RequestHttpRepository<string, void>(process.env.BASE_URL);
+  async delete(transactionId: string, walletId: string): Promise<void> {
+    const http = new RequestHttpRepository<string, void>(`${process.env.BASE_URL}/v2`);
 
     await http.request({
       method: 'delete',
-      url: `transaction/${transactionId}`,
+      url: `transaction/${walletId}/${transactionId}`,
     });
   }
 

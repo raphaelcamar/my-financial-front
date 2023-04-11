@@ -39,7 +39,7 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
   const handleSubmitForm = async (data: Transaction.Filter) => {
     try {
       setLoading(true);
-      await getTransactions(data);
+      // await getTransactions(data);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Aconteceu alguma coisa. Tente novamente depois', { variant: 'error' });
     } finally {

@@ -6,7 +6,7 @@ import { Hide, Skeleton, Tbody, Td, Typography } from '@/core/ui/components/atom
 import { TableRow, AccordionTableRow } from '../../molecules';
 import { Transaction } from '@/transaction/domain';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
-import { delay, monthStartDate } from '@/core/utils';
+import { monthStartDate } from '@/core/utils';
 import { useAccessContext } from '@/user/presenters';
 
 export const TableTransactions = (): ReactElement => {
@@ -38,14 +38,6 @@ export const TableTransactions = (): ReactElement => {
   }, [currentWallet]);
 
   const handleEdit = async (transaction: Transaction): Promise<void> => {
-    try {
-      // TODO
-    } catch (err) {
-      // TODO
-    }
-  };
-
-  const handleDelete = async (transaction: Transaction): Promise<void> => {
     try {
       // TODO
     } catch (err) {
@@ -97,7 +89,7 @@ export const TableTransactions = (): ReactElement => {
                 {transactions.map(transaction => (
                   <>
                     <Hide breakpoint="sm" direction="down">
-                      <TableRow handleEdit={handleEdit} handleDelete={handleDelete} transaction={transaction} />
+                      <TableRow handleEdit={handleEdit} transaction={transaction} />
                     </Hide>
                     <Hide breakpoint="sm" direction="up">
                       <AccordionTableRow transaction={transaction} />

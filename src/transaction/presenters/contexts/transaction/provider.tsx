@@ -28,10 +28,9 @@ export const TransactionProvider: React.FC = ({ children }) => {
     const transactionRepository = new TransactionRepositoryData();
 
     const useCase = new CreateTransaction(transactionData, transactionRepository);
-
     await useCase.execute();
-    const getTransactions = new GetTransactions(transactionRepository, transactionData.walletId, state.filter);
 
+    const getTransactions = new GetTransactions(transactionRepository, transactionData.walletId, state.filter);
     const result = await getTransactions.execute();
 
     dispatch(fetchCreateTransaction(result));
@@ -47,6 +46,7 @@ export const TransactionProvider: React.FC = ({ children }) => {
 
     dispatch(fetchGetTransactions(transactions));
     dispatch(fetchFilterTransaction(filter));
+
     setTransactionLoader(false);
   };
 
@@ -61,10 +61,10 @@ export const TransactionProvider: React.FC = ({ children }) => {
     dispatch(fetchFilterTransaction(filter));
   };
 
-  const deleteTransaction = async (transactionId: string): Promise<void> => {
+  const deleteTransaction = async (transactionId: string, walletId: string): Promise<void> => {
     const transactionRepository = new TransactionRepositoryData();
 
-    const useCase = new DeleteTransaction(transactionRepository, transactionId, state.transactions);
+    const useCase = new DeleteTransaction(transactionRepository, transactionId, walletId, state.transactions);
     const filteredTransactions = await useCase.execute();
     dispatch(fetchDeleteTransaction(filteredTransactions));
   };

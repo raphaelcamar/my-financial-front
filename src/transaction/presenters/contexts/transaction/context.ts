@@ -10,7 +10,7 @@ type PropsTransaction = {
   createTransaction: (transaction: Transaction.Data) => Promise<void>;
   updateTransaction: (transaction: Transaction.Data) => Promise<void>;
   getTransactions: (filter: Transaction.Filter, walletId: string) => Promise<void>;
-  deleteTransaction: (transaction: string) => Promise<void>;
+  deleteTransaction: (transactionId: string, walletId: string) => Promise<void>;
   setTransactionLoader: React.Dispatch<React.SetStateAction<boolean>>;
   getTransactionsV2: (filter: Transaction.Filter, walletId: string) => Promise<void>;
 };
