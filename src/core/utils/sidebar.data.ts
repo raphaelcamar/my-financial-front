@@ -4,14 +4,14 @@ import { randomId } from './random-id';
 export const SidebarData: ISidebaroption[] = [
   {
     isAccordion: true,
-    path: '/transacoes',
+    path: '/despesas-e-receitas',
     icon: 'transaction',
     title: 'Transações',
     id: randomId(),
     accordionItems: [
       {
         icon: 'transactionDashboard',
-        path: '/transacoes',
+        path: '/despesas-e-receitas',
         title: 'Início',
         soon: false,
         id: randomId(),

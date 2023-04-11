@@ -12,6 +12,7 @@ export class User {
   salary?: number;
   token: string;
   wallets?: Wallet[];
+  currentWallet?: Wallet;
 
   constructor(user: User.Data) {
     this._id = user._id;
@@ -25,6 +26,7 @@ export class User {
     this.salary = user?.salary;
     this.token = user.token;
     this.wallets = user.wallets.map(wallet => new Wallet(wallet));
+    this.currentWallet = user?.currentWallet ? new Wallet(user?.currentWallet) : null;
   }
 
   getNameAndLastName(): string {
@@ -53,6 +55,7 @@ export namespace User {
     salary?: number;
     token: string;
     wallets: Wallet.Data[];
+    currentWallet: Wallet.Data;
   }
 
   export type Login = {

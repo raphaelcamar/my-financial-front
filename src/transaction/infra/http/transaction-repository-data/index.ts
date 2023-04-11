@@ -21,6 +21,20 @@ export class TransactionRepositoryData implements TransactionRepository {
     return adapter.response(httpResponse.body);
   }
 
+  async getV2(walletId: string, query?: string): Promise<Transaction[]> {
+    const http = new RequestHttpRepository<unknown, Transaction.Response[]>(`${process.env.BASE_URL}/v2`);
+
+    const httpResponse = await http.request({
+      method: 'get',
+      url: `transaction/${walletId}${query}`,
+    });
+
+    const adapter = new TransactionAdapter();
+    const adaptee = httpResponse.body.map(transactionResponse => adapter.response(transactionResponse));
+
+    return adaptee;
+  }
+
   async get(query?: string): Promise<Transaction[]> {
     const http = new RequestHttpRepository<unknown, Transaction.Response[]>(process.env.BASE_URL);
     const httpResponse = await http.request({

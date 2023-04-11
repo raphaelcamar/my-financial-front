@@ -18,6 +18,12 @@ export const Row = styled.tr`
   grid-template-columns: 0.7fr 3.6fr 1fr 1fr 1fr 1fr;
   gap: 16px;
   border-radius: 8px;
+  cursor: pointer;
+  transition: all ease 0.2s;
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.palette.primary[300]};
+  }
+  border: 1px solid ${({ theme }) => theme.palette.grey[100]};
   background: ${({ theme }) => theme.palette.grey[100]};
 `;
 

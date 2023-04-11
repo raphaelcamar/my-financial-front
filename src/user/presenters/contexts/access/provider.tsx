@@ -37,8 +37,7 @@ export const AccessProvider: React.FC = ({ children }) => {
     async function verify() {
       try {
         const user = await verifyUserAuth();
-        const wallet = user.wallets?.[0];
-
+        const wallet = user.currentWallet;
         if (wallet) dispatch(fetchWallet(wallet));
 
         if (user) dispatch(fetchLogin(user));
@@ -70,7 +69,7 @@ export const AccessProvider: React.FC = ({ children }) => {
     const useCase = new AuthenticateUser(accessRepository, localStorageRepository, loginData);
     const user = await useCase.execute();
 
-    dispatch(fetchWallet(user?.wallets?.[0]));
+    dispatch(fetchWallet(user?.currentWallet));
     dispatch(fetchLogin(user));
   };
 
@@ -80,7 +79,7 @@ export const AccessProvider: React.FC = ({ children }) => {
 
     const useCase = new CreateUser(accessRepository, localStorageRepository, subscribeData);
     const user = await useCase.execute();
-    dispatch(fetchWallet(user?.wallets?.[0]));
+    dispatch(fetchWallet(user?.currentWallet));
     dispatch(fetchLogin(user));
   };
 

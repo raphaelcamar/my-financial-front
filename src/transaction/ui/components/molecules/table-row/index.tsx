@@ -4,6 +4,8 @@ import { IconButton } from '@/core/ui/components/molecules';
 import { FirstRow, IconIndicator, Row, WrapperActionTableButtons } from './styles';
 import { Transaction } from '@/transaction/domain';
 import { LineFlag, ModalDeleteTransaction } from '@/transaction/ui/components/atoms';
+import { ColorProps } from '@/main/styled';
+import { formatCurrency, formatTopic } from '@/core/utils';
 
 type ITableRow = {
   transaction?: Transaction;
@@ -14,25 +16,34 @@ export const TableRow = ({ transaction, handleDelete, handleEdit }: ITableRow): 
   const [loading, setLoading] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
 
+  const isFinished = transaction.status === 'FINISHED';
+
+  const getColorFlagByType = (): keyof ColorProps => {
+    if (transaction.type === 'ENTRANCE') return 'success';
+    if (transaction.type === 'SPENT') return 'error';
+
+    return 'info';
+  };
+
   return (
     <Row>
       <FirstRow>
-        <LineFlag color="brown" />
+        <LineFlag color={getColorFlagByType()} />
         <IconIndicator>
           <Icon icon="wallet" color="grey" shade="50" size={16} />
         </IconIndicator>
       </FirstRow>
 
       <Typography type="p">
-        <TextEllipsis>Observação da transação que foi cadastrada logo há menos </TextEllipsis>
+        <TextEllipsis>{transaction.anotation}</TextEllipsis>
       </Typography>
 
-      <Typography type="p" color="success">
-        Concluído
+      <Typography type="p" color={isFinished ? 'success' : 'warning'}>
+        {isFinished ? 'Finalizado' : 'Pendente'}
       </Typography>
-      <Typography type="p">Saúde</Typography>
+      <Typography type="p">{formatTopic(transaction.topic)}</Typography>
 
-      <Typography type="p">R$ 510,30</Typography>
+      <Typography type="p">{formatCurrency(transaction.cost)}</Typography>
 
       <WrapperActionTableButtons>
         <IconButton

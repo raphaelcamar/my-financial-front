@@ -9,9 +9,10 @@ type PropsTransaction = {
   getStatisticsByFilter: (filter?: Transaction.Filter) => Promise<void>;
   createTransaction: (transaction: Transaction.Data) => Promise<void>;
   updateTransaction: (transaction: Transaction.Data) => Promise<void>;
-  getTransactions: (filter?: Transaction.Filter) => Promise<void>;
+  getTransactions: (filter: Transaction.Filter, walletId: string) => Promise<void>;
   deleteTransaction: (transaction: string) => Promise<void>;
   setTransactionLoader: React.Dispatch<React.SetStateAction<boolean>>;
+  getTransactionsV2: (filter: Transaction.Filter, walletId: string) => Promise<void>;
 };
 
 export const TransactionContext = createContext<PropsTransaction>({} as PropsTransaction);

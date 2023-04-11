@@ -8,7 +8,7 @@ export class TransactionAdapter implements RequestAdapter {
       userId: base?.userId,
       type: base?.type,
       topic: base?.topic,
-      value: this.subtractOrAdd(base.cost / 100, base?.type),
+      value: base.cost / 100,
       createdAt: null,
       updatedAt: null,
       _id: base?._id,
@@ -16,6 +16,7 @@ export class TransactionAdapter implements RequestAdapter {
       anotation: base?.anotation,
       billedAt: parseDate(base.billedAt as string, 'dd/MM/yyyy').toISOString(),
       amount: base.total,
+      status: base.status,
     };
 
     delete adaptee.createdAt;

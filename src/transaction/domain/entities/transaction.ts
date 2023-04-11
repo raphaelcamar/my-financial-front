@@ -2,6 +2,8 @@ export type TypeTransaction = 'ENTRANCE' | 'SPENT' | 'RECURRENT';
 
 export type TypeTopic = 'FOOD' | 'TRANSPORT' | 'HEALTH' | 'OTHER' | 'SALARY';
 
+export type TypeStatus = 'FINISHED' | 'PENDING';
+
 export class Transaction {
   _id?: string;
   userId: string;
@@ -13,6 +15,7 @@ export class Transaction {
   cost: number;
   total?: number;
   topic: TypeTopic;
+  status: TypeStatus;
   walletId: string;
 
   constructor(transaction: Transaction.Data) {
@@ -27,6 +30,7 @@ export class Transaction {
     this.topic = transaction.topic;
     this.total = transaction.total;
     this.walletId = transaction.walletId;
+    this.status = transaction.status;
   }
 }
 
@@ -43,6 +47,7 @@ export namespace Transaction {
     topic: TypeTopic;
     total?: number;
     walletId: string;
+    status: TypeStatus;
   }
 
   export interface Response {
@@ -57,6 +62,7 @@ export namespace Transaction {
     topic: TypeTopic;
     amount: number;
     walletId: string;
+    status: TypeStatus;
   }
 
   export interface Filter {

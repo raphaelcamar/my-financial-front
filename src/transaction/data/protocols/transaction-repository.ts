@@ -6,4 +6,5 @@ export interface TransactionRepository {
   delete(transactionId: string): Promise<void>;
   update(transaction: Transaction.Data): Promise<Transaction>;
   getStatistics(queryUrl: string): Promise<Transaction.Statistic>;
+  getV2(walletId: string, query?: string): Promise<Transaction[]>;
 }

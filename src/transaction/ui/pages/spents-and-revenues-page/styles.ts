@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ColorProps } from '@/main/styled';
 
 export const Container = styled.div`
   display: grid;
@@ -33,4 +34,8 @@ export const WrapperGridItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 42px;
+`;
+
+export const Highlight = styled.span<{ color: keyof ColorProps }>`
+  color: ${({ theme, color }) => theme.palette[color][500]};
 `;
