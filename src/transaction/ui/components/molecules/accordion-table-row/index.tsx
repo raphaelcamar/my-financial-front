@@ -12,7 +12,7 @@ type IAccordionTableRow = {
 export const AccordionTableRow = ({ transaction }: IAccordionTableRow): ReactElement => {
   const [openAccordion, setOpenAccordion] = useState<boolean>(false);
   return (
-    <WrapperAccordion onClick={() => setOpenAccordion(!openAccordion)}>
+    <WrapperAccordion role="button" onClick={() => setOpenAccordion(!openAccordion)}>
       <FirstRow>
         <LineFlag color="error" />
         <div>
@@ -20,9 +20,9 @@ export const AccordionTableRow = ({ transaction }: IAccordionTableRow): ReactEle
             <Icon icon="wallet" color="grey" shade="50" size={16} />
           </IconIndicator>
         </div>
-        <Typography type="p">
-          <TextEllipsis>Observação da transaçãoasdasdasdas a dsdasadsdasas dasdasd</TextEllipsis>
-        </Typography>
+        <TextEllipsis>
+          <Typography type="p">{transaction.anotation}</Typography>
+        </TextEllipsis>
       </FirstRow>
       <Children open={openAccordion}>
         <AccordionRow>

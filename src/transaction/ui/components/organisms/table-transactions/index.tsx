@@ -1,8 +1,8 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { Fragment, ReactElement, useEffect } from 'react';
 import { Button } from '@raphaelcamar/ui-lib';
 import { useSnackbar } from 'notistack';
 import { BodyTable, Container, HeaderTable, THead, WrapperBody } from './styles';
-import { Hide, Skeleton, Tbody, Td, Typography } from '@/core/ui/components/atoms';
+import { Hide, Skeleton, Tbody, Td, Tr, Typography } from '@/core/ui/components/atoms';
 import { TableRow, AccordionTableRow } from '../../molecules';
 import { Transaction } from '@/transaction/domain';
 import { useTransactionContext } from '@/transaction/presenters/contexts';
@@ -51,46 +51,68 @@ export const TableTransactions = (): ReactElement => {
       </HeaderTable>
       <BodyTable>
         <THead>
-          <Td withoutLine>
-            <Typography weight={600}>Tipo</Typography>
-          </Td>
-          <Td withoutLine>
-            <Typography weight={600}>Observação</Typography>
-          </Td>
-          <Td withoutLine>
-            <Typography weight={600}>Status</Typography>
-          </Td>
-          <Td withoutLine>
-            <Typography weight={600}>Tópico</Typography>
-          </Td>
-          <Td withoutLine>
-            <Typography weight={600}>Valor</Typography>
-          </Td>
-          <Td withoutLine>
-            <Typography weight={600}>Ações</Typography>
-          </Td>
+          <Tr>
+            <td>
+              <Typography weight={600}>Tipo</Typography>
+            </td>
+          </Tr>
+          <Tr>
+            <td>
+              <Typography weight={600}>Observação</Typography>
+            </td>
+          </Tr>
+          <Tr>
+            <td>
+              <Typography weight={600}>Status</Typography>
+            </td>
+          </Tr>
+          <Tr>
+            <td>
+              <Typography weight={600}>Tópico</Typography>
+            </td>
+          </Tr>
+          <Tr>
+            <td>
+              <Typography weight={600}>Valor</Typography>
+            </td>
+          </Tr>
+          <Tr>
+            <td>
+              <Typography weight={600}>Ações</Typography>
+            </td>
+          </Tr>
         </THead>
         <Tbody>
           <WrapperBody>
             {transactionLoader ? (
               <>
-                <Skeleton shade={200} height={64} borderRadius={8} />
-                <Skeleton shade={200} height={64} borderRadius={8} />
-                <Skeleton shade={200} height={64} borderRadius={8} />
-                <Skeleton shade={200} height={64} borderRadius={8} />
-                <Skeleton shade={200} height={64} borderRadius={8} />
+                <td>
+                  <Skeleton shade={200} height={64} borderRadius={8} />
+                </td>
+                <td>
+                  <Skeleton shade={200} height={64} borderRadius={8} />
+                </td>
+                <td>
+                  <Skeleton shade={200} height={64} borderRadius={8} />
+                </td>
+                <td>
+                  <Skeleton shade={200} height={64} borderRadius={8} />
+                </td>
+                <td>
+                  <Skeleton shade={200} height={64} borderRadius={8} />
+                </td>
               </>
             ) : (
               <>
                 {transactions.map(transaction => (
-                  <>
+                  <td key={transaction._id}>
                     <Hide breakpoint="sm" direction="down">
                       <TableRow handleEdit={handleEdit} transaction={transaction} />
                     </Hide>
                     <Hide breakpoint="sm" direction="up">
                       <AccordionTableRow transaction={transaction} />
                     </Hide>
-                  </>
+                  </td>
                 ))}
               </>
             )}

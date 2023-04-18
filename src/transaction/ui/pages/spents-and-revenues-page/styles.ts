@@ -21,21 +21,8 @@ export const FilterContainer = styled.div`
   }
 `;
 
-export const Indicators = styled.div`
-  display: flex;
-  gap: 36px;
-
-  @media (${({ theme }) => theme.breakpoints.down('xl')}) {
-    flex-direction: column;
-  }
-`;
-
 export const WrapperGridItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 42px;
-`;
-
-export const Highlight = styled.span<{ color: keyof ColorProps }>`
-  color: ${({ theme, color }) => theme.palette[color][500]};
 `;

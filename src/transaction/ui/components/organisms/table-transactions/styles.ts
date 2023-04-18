@@ -18,7 +18,7 @@ export const HeaderTable = styled.header`
   justify-content: space-between;
 `;
 
-export const BodyTable = styled.tbody`
+export const BodyTable = styled.table`
   display: flex;
   gap: 36px;
   flex-direction: column;
@@ -34,7 +34,7 @@ export const THead = styled.thead`
   }
 `;
 
-export const WrapperBody = styled.div`
+export const WrapperBody = styled.tr`
   display: flex;
   flex-direction: column;
   gap: 12px;

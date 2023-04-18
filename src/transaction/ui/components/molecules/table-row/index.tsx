@@ -53,10 +53,9 @@ export const TableRow = ({ transaction, handleEdit }: ITableRow): ReactElement =
           <Icon icon="wallet" color="grey" shade="50" size={16} />
         </IconIndicator>
       </FirstRow>
-
-      <Typography type="p">
-        <TextEllipsis>{transaction.anotation}</TextEllipsis>
-      </Typography>
+      <TextEllipsis>
+        <Typography type="p">{transaction.anotation}</Typography>
+      </TextEllipsis>
 
       <Typography type="p" color={isFinished ? 'success' : 'warning'}>
         {isFinished ? 'Finalizado' : 'Pendente'}

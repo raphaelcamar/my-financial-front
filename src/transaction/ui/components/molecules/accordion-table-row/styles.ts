@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const WrapperAccordion = styled.button`
+export const WrapperAccordion = styled.a`
   border: none;
   background: none;
   border-radius: 8px;
