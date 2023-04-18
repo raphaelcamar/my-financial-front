@@ -11,7 +11,7 @@ export const useLoginForm = () => {
   const { userAuth } = useAccessContext();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-  const [redirectTo, setRedirectTo] = useState<string>('/transacoes');
+  const [redirectTo, setRedirectTo] = useState<string>('/despesas-e-receitas');
 
   const {
     register,

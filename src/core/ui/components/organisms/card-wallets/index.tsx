@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from 'react';
+import React, { Fragment, ReactElement, useRef, useState } from 'react';
 import { usePopper } from 'react-popper';
 import { Wallet } from '@/user/domain';
 import { ClickAwayListener } from '@/core/ui/components/atoms';
@@ -44,18 +44,14 @@ export const CardWallets = ({ selected, wallets }: ICardWallets): ReactElement =
             />
             <Container open={menuOpen} ref={setPopperElement} style={{ ...styles.popper }} {...attributes.popper}>
               {wallets?.map(wallet => (
-                <>
-                  <Item
-                    key={wallet.id}
-                    selected={Boolean(walletSelected.id === wallet.id)}
-                    onClick={() => setWalletSelected(wallet)}
-                  >
+                <Fragment key={wallet.id}>
+                  <Item selected={Boolean(walletSelected.id === wallet.id)} onClick={() => setWalletSelected(wallet)}>
                     <BodyItem>
                       <h3>{wallet.name}</h3>
                       <span>{formatCurrency(wallet.value)}</span>
                     </BodyItem>
                   </Item>
-                </>
+                </Fragment>
               ))}
             </Container>
           </div>

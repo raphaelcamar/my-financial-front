@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
 import { ArrowOption, Container } from './styles';
 import { Icon, Slider } from '@/core/ui/components/atoms';
+import { randomId } from '@/core/utils';
 
 export type ItemFilter = {
   id: string;
@@ -70,7 +71,7 @@ export const FilterCard = ({ items, slideStarter, onChangeSlider }: IFilterCard)
       <div style={{ width: '80%' }}>
         <Slider {...settings} ref={sliderRef}>
           {items?.map(item => (
-            <p key={item.id}>{item.label}</p>
+            <p key={randomId()}>{item.label}</p>
           ))}
         </Slider>
       </div>

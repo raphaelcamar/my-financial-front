@@ -19,11 +19,10 @@ export const SidebarOptions: React.FC<ISidebarOptions> = ({ sidebarOptions }) =>
   return (
     <>
       {sidebarOptions.map(item => (
-        <div style={{ paddingBottom: 12 }}>
+        <div style={{ paddingBottom: 12 }} key={item.id}>
           {item?.isAccordion ? (
             <SidebarAccordion
               open={accordion}
-              key={item.id}
               setOpen={setAccordion}
               sidebarOpen={open}
               icon={item?.icon}

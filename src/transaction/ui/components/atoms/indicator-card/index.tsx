@@ -34,7 +34,7 @@ export const IndicatorCard = ({ date, description, percentage, type, value }: II
           />
         </Header>
         <Typography color="grey" shade={900} weight={700} size="xlarge">
-          <InputBase value={formatCurrency(value)} type={showMoney ? 'text' : 'password'} />
+          <InputBase value={formatCurrency(value)} type={showMoney ? 'text' : 'password'} readOnly />
         </Typography>
         {description}
       </Spacer>

@@ -13,7 +13,7 @@ export const NotFound: React.FC = () => {
         </StyledTypography>
         <div>
           <Typography weight={400}>Página não encontrada!</Typography>
-          <TextLink to={!verifyInCache() ? '/login' : '/transacoes'}>Volte para tela inicial</TextLink>
+          <TextLink to={!verifyInCache() ? '/login' : '/despesas-e-receitas'}>Volte para tela inicial</TextLink>
         </div>
       </Content>
     </Container>

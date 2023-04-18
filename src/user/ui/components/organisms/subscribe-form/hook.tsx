@@ -27,7 +27,7 @@ export const useSubscribeForm = () => {
 
     try {
       await newUser(data);
-      navigate('/transacoes');
+      navigate('/despesas-e-receitas');
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível fazer o cadastro. Tente novamente mais tarde', {
         variant: 'error',

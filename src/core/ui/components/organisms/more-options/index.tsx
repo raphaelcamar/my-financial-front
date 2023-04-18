@@ -3,6 +3,7 @@ import { usePopper } from 'react-popper';
 import { ClickAwayListener } from '../../atoms';
 import { IMenuItem, IconButton, MenuItem } from '../../molecules';
 import { Popup } from './styles';
+import { randomId } from '@/core/utils';
 
 type IMoreOptions = {
   items: IMenuItem[];
@@ -46,7 +47,7 @@ export const MoreOptions = ({ items, closeOnSelectIitem }: IMoreOptions): ReactE
       {open ? (
         <Popup ref={setPopperElement} open={open} style={styles.popper} {...attributes.popper}>
           {items?.map(menuItemProps => (
-            <MenuItem {...menuItemProps} onClick={() => handleClick(menuItemProps.onClick)} />
+            <MenuItem {...menuItemProps} key={randomId()} onClick={() => handleClick(menuItemProps.onClick)} />
           ))}
         </Popup>
       ) : (
