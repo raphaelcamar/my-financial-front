@@ -51,14 +51,16 @@ export const TransactionProvider: React.FC = ({ children }) => {
   };
 
   const getTransactionsV2 = async (filter: Transaction.Filter, walletId: string): Promise<void> => {
+    setTransactionLoader(true);
     const transactionRepository = new TransactionRepositoryData();
 
     const useCase = new GetTransactions(transactionRepository, walletId, filter);
-
     const transactions = await useCase.execute();
-
+    await delay(2000);
     dispatch(fetchGetTransactions(transactions));
     dispatch(fetchFilterTransaction(filter));
+
+    setTransactionLoader(false);
   };
 
   const deleteTransaction = async (transactionId: string, walletId: string): Promise<void> => {

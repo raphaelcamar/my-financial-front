@@ -55,13 +55,6 @@ export const CardWallets = ({ selected, wallets }: ICardWallets): ReactElement =
                       <span>{formatCurrency(wallet.value)}</span>
                     </BodyItem>
                   </Item>
-
-                  <Item key={wallet.id} selected={false} onClick={() => setWalletSelected(wallet)}>
-                    <BodyItem>
-                      <h3>{wallet.name}</h3>
-                      <span>{formatCurrency(wallet.value)}</span>
-                    </BodyItem>
-                  </Item>
                 </>
               ))}
             </Container>

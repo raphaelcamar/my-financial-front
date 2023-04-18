@@ -1,8 +1,7 @@
 import React, { ReactElement } from 'react';
-import { Container, FilterContainer, Highlight, Indicators, WrapperGridItem } from './styles';
-import { FilterYear, FilterMonth } from '@/transaction/ui/components/molecules';
+import { Container, Highlight, Indicators, WrapperGridItem } from './styles';
 import { IndicatorCard } from '@/transaction/ui/components/atoms';
-import { TableTransactions } from '@/transaction/ui/components/organisms';
+import { TableTransactions, Filter } from '@/transaction/ui/components/organisms';
 import { Typography } from '@/core/ui/components/atoms';
 import { TransactionProvider } from '@/transaction/presenters/contexts';
 
@@ -10,10 +9,7 @@ export const SpentsAndRevenuesPage = (): ReactElement => (
   <TransactionProvider>
     <Container>
       <WrapperGridItem>
-        <FilterContainer>
-          <FilterMonth />
-          <FilterYear />
-        </FilterContainer>
+        <Filter />
         <TableTransactions />
       </WrapperGridItem>
       <WrapperGridItem>

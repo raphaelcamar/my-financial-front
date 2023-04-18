@@ -12,6 +12,7 @@ type IFilterCard = {
   items?: ItemFilter[];
   slideStarter: number;
   onChangeSlider: (sliderIndex: number) => void;
+  backToInitialState?: () => void;
 };
 
 export const FilterCard = ({ items, slideStarter, onChangeSlider }: IFilterCard): ReactElement => {
@@ -22,6 +23,10 @@ export const FilterCard = ({ items, slideStarter, onChangeSlider }: IFilterCard)
   useEffect(() => {
     sliderRef.current.slickGoTo(currentSlide);
   }, [currentSlide]);
+
+  useEffect(() => {
+    setCurrentSlide(slideStarter);
+  }, [slideStarter]);
 
   const handleNextSlide = (slide: number) => {
     const newIndex = slide >= totalSlides ? 0 : slide;

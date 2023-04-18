@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Button } from '@raphaelcamar/ui-lib';
 import { useSnackbar } from 'notistack';
 import { BodyTable, Container, HeaderTable, THead, WrapperBody } from './styles';
@@ -10,17 +10,15 @@ import { monthStartDate } from '@/core/utils';
 import { useAccessContext } from '@/user/presenters';
 
 export const TableTransactions = (): ReactElement => {
-  const { getTransactionsV2, transactions } = useTransactionContext();
+  const { getTransactionsV2, transactions, transactionLoader } = useTransactionContext();
   const { enqueueSnackbar } = useSnackbar();
   const { currentWallet } = useAccessContext();
 
-  const [loading, setLoading] = useState<boolean>(false);
-
   const fetchTransactions = async (): Promise<void> => {
     try {
-      setLoading(true);
+      const date = new Date();
       const start = monthStartDate(new Date());
-      const limit = new Date();
+      const limit = new Date(date.getFullYear(), date.getMonth() + 1, 0);
       const filter: Transaction.Filter = { limit, start };
 
       await getTransactionsV2(filter, currentWallet.id);
@@ -28,8 +26,6 @@ export const TableTransactions = (): ReactElement => {
       enqueueSnackbar(err?.message || 'Não foi possível buscar as transações. Tente novamente mais tarde', {
         variant: 'error',
       });
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -76,7 +72,7 @@ export const TableTransactions = (): ReactElement => {
         </THead>
         <Tbody>
           <WrapperBody>
-            {loading ? (
+            {transactionLoader ? (
               <>
                 <Skeleton shade={200} height={64} borderRadius={8} />
                 <Skeleton shade={200} height={64} borderRadius={8} />

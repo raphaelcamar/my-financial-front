@@ -40,6 +40,11 @@ export class User {
 
     return this[field].toString();
   }
+
+  filterWallets(currentWallet: Wallet, wallets: Wallet[]): Wallet[] {
+    const removeCurrentWalletFromList = wallets.filter(wallet => wallet.id !== currentWallet.id);
+    return removeCurrentWalletFromList.map(wallet => new Wallet({ ...wallet, _id: wallet.id }));
+  }
 }
 
 export namespace User {

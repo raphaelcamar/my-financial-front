@@ -9,23 +9,23 @@ const TransactionsPage = React.lazy(
 );
 
 export const TransactionRoutes: RouteObject[] = [
-  {
-    path: '/transacoes',
-    element: (
-      <Suspense fallback={<CircularProgress color="info" size={40} />}>
-        <PrivateRoute>
-          <TransactionsPage />
-        </PrivateRoute>
-      </Suspense>
-    ),
-  },
+  // {
+  //   path: '/transacoes',
+  //   element: (
+  //     <Suspense fallback={<CircularProgress color="info" size={40} />}>
+  //       <PrivateRoute>
+  //         <TransactionsPage />
+  //       </PrivateRoute>
+  //     </Suspense>
+  //   ),
+  // },
 
   {
     path: '/',
     element: (
       <Suspense fallback={<CircularProgress color="info" size={40} />}>
         <PrivateRoute>
-          <TransactionsPage />
+          <SpentsAndRevenuesPage />
         </PrivateRoute>
       </Suspense>
     ),
