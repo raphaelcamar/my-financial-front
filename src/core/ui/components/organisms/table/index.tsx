@@ -1,6 +1,5 @@
-/* eslint-disable no-nested-ternary */
 import React from 'react';
-import { Typography, Icon, TableContainer, Table, Tbody, THead, Th, Td, Tr } from '@/core/ui/components/atoms';
+import { Typography, Icon, TableContainer, Table, Tbody, THead, Tr, Td } from '@/core/ui/components/atoms';
 import { TitleGroup, WrapperIcons } from './styles';
 import { randomId } from '@/core/utils';
 

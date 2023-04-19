@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import { Container, WrapperGridItem } from './styles';
 import { TableTransactions, Filter, Indicators } from '@/transaction/ui/components/organisms';
-import { TransactionProvider } from '@/transaction/presenters/contexts';
+import { SpentsAndRevenuesProvider } from '@/transaction/presenters/contexts/spents-and-revenues/provider';
 
 export const SpentsAndRevenuesPage = (): ReactElement => (
-  <TransactionProvider>
+  <SpentsAndRevenuesProvider>
     <Container>
       <WrapperGridItem>
         <Filter />
@@ -15,5 +15,5 @@ export const SpentsAndRevenuesPage = (): ReactElement => (
         <div>Histórico</div>
       </WrapperGridItem>
     </Container>
-  </TransactionProvider>
+  </SpentsAndRevenuesProvider>
 );

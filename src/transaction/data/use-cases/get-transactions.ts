@@ -11,6 +11,7 @@ export class GetTransactions {
 
   async execute(): Promise<Transaction[]> {
     const query = this.mountFilter(this.filter);
+
     const transaction = await this.transactionRepository.getV2(this.walletId, query);
     return transaction;
   }

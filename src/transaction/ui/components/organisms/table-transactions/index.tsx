@@ -1,16 +1,18 @@
-import React, { Fragment, ReactElement, useEffect } from 'react';
+/* eslint-disable no-nested-ternary */
+import React, { ReactElement, useEffect } from 'react';
 import { Button } from '@raphaelcamar/ui-lib';
 import { useSnackbar } from 'notistack';
 import { BodyTable, Container, HeaderTable, THead, WrapperBody } from './styles';
-import { Hide, Skeleton, Tbody, Td, Tr, Typography } from '@/core/ui/components/atoms';
-import { TableRow, AccordionTableRow } from '../../molecules';
+import { Hide, Skeleton, Tbody, Tr, Typography } from '@/core/ui/components/atoms';
+import { TableRow, AccordionTableRow } from '@/transaction/ui/components/molecules';
 import { Transaction } from '@/transaction/domain';
-import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { monthStartDate } from '@/core/utils';
 import { useAccessContext } from '@/user/presenters';
+import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/spents-and-revenues/context';
+import { EmptyState } from '@/core/ui/components/molecules';
 
 export const TableTransactions = (): ReactElement => {
-  const { getTransactionsV2, transactions, transactionLoader } = useTransactionContext();
+  const { getTransactions, transactions, transactionLoader } = useSpentsAndRevenuesContext();
   const { enqueueSnackbar } = useSnackbar();
   const { currentWallet } = useAccessContext();
 
@@ -21,7 +23,7 @@ export const TableTransactions = (): ReactElement => {
       const limit = new Date(date.getFullYear(), date.getMonth() + 1, 0);
       const filter: Transaction.Filter = { limit, start };
 
-      await getTransactionsV2(filter, currentWallet.id);
+      await getTransactions(currentWallet.id, filter);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível buscar as transações. Tente novamente mais tarde', {
         variant: 'error',
@@ -50,60 +52,60 @@ export const TableTransactions = (): ReactElement => {
         <Button>Adicionar</Button>
       </HeaderTable>
       <BodyTable>
-        <THead>
-          <Tr>
+        {transactionLoader ? (
+          <>
             <td>
-              <Typography weight={600}>Tipo</Typography>
+              <Skeleton shade={200} height={64} borderRadius={8} />
             </td>
-          </Tr>
-          <Tr>
             <td>
-              <Typography weight={600}>Observação</Typography>
+              <Skeleton shade={200} height={64} borderRadius={8} />
             </td>
-          </Tr>
-          <Tr>
             <td>
-              <Typography weight={600}>Status</Typography>
+              <Skeleton shade={200} height={64} borderRadius={8} />
             </td>
-          </Tr>
-          <Tr>
             <td>
-              <Typography weight={600}>Tópico</Typography>
+              <Skeleton shade={200} height={64} borderRadius={8} />
             </td>
-          </Tr>
-          <Tr>
             <td>
-              <Typography weight={600}>Valor</Typography>
+              <Skeleton shade={200} height={64} borderRadius={8} />
             </td>
-          </Tr>
-          <Tr>
-            <td>
-              <Typography weight={600}>Ações</Typography>
-            </td>
-          </Tr>
-        </THead>
-        <Tbody>
-          <WrapperBody>
-            {transactionLoader ? (
-              <>
+          </>
+        ) : transactions?.length > 0 ? (
+          <>
+            <THead>
+              <Tr>
                 <td>
-                  <Skeleton shade={200} height={64} borderRadius={8} />
+                  <Typography weight={600}>Tipo</Typography>
                 </td>
+              </Tr>
+              <Tr>
                 <td>
-                  <Skeleton shade={200} height={64} borderRadius={8} />
+                  <Typography weight={600}>Observação</Typography>
                 </td>
+              </Tr>
+              <Tr>
                 <td>
-                  <Skeleton shade={200} height={64} borderRadius={8} />
+                  <Typography weight={600}>Status</Typography>
                 </td>
+              </Tr>
+              <Tr>
                 <td>
-                  <Skeleton shade={200} height={64} borderRadius={8} />
+                  <Typography weight={600}>Tópico</Typography>
                 </td>
+              </Tr>
+              <Tr>
                 <td>
-                  <Skeleton shade={200} height={64} borderRadius={8} />
+                  <Typography weight={600}>Valor</Typography>
                 </td>
-              </>
-            ) : (
-              <>
+              </Tr>
+              <Tr>
+                <td>
+                  <Typography weight={600}>Ações</Typography>
+                </td>
+              </Tr>
+            </THead>
+            <Tbody>
+              <WrapperBody>
                 {transactions.map(transaction => (
                   <td key={transaction._id}>
                     <Hide breakpoint="sm" direction="down">
@@ -114,10 +116,12 @@ export const TableTransactions = (): ReactElement => {
                     </Hide>
                   </td>
                 ))}
-              </>
-            )}
-          </WrapperBody>
-        </Tbody>
+              </WrapperBody>
+            </Tbody>
+          </>
+        ) : (
+          <EmptyState message="Você não possui transações neste mês" />
+        )}
       </BodyTable>
     </Container>
   );

@@ -1,6 +1,5 @@
 import React, { ReactElement, useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { useTransactionContext } from '@/transaction/presenters/contexts';
 import { FilterContainer } from './styles';
 import { SaveBar } from '@/core/ui/components/organisms';
 import { useAccessContext } from '@/user/presenters';
@@ -8,6 +7,7 @@ import { FilterCard } from '../../atoms';
 import { getListOfMonths, getListOfYears } from './data';
 import { monthStartDate } from '@/core/utils';
 import { Transaction } from '@/transaction/domain';
+import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/spents-and-revenues/context';
 
 type InitialValuesProps = {
   month: number;
@@ -15,7 +15,7 @@ type InitialValuesProps = {
 };
 
 export const Filter = (): ReactElement => {
-  const { getTransactionsV2 } = useTransactionContext();
+  const { getTransactions } = useSpentsAndRevenuesContext();
   const { currentWallet } = useAccessContext();
 
   const [hasChanges, setHasChanges] = useState<boolean>(false);
@@ -51,7 +51,7 @@ export const Filter = (): ReactElement => {
   const fetchTransactionsByFilter = async (): Promise<void> => {
     try {
       setLoading(true);
-      await getTransactionsV2(formatFilterToSend(), currentWallet.id);
+      await getTransactions(currentWallet.id, formatFilterToSend());
 
       setHasChanges(false);
     } catch (err) {

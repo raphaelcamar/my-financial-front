@@ -85,6 +85,15 @@ export class TransactionRepositoryData implements TransactionRepository {
     const adaptee = adapter.response(httpResponse.body);
     return adaptee;
   }
+
+  async getIndicatorsV2(walletId: string, month: number, year: number): Promise<void> {
+    const http = new RequestHttpRepository<Transaction.Filter, Response.Statistic>(`${process.env.BASE_URL}/v2`);
+
+    const httpResponse = await http.request({
+      method: 'get',
+      url: `transaction/${walletId}?month=${month}&year=${year}`,
+    });
+  }
 }
 
 // TODO remove duplicate declaration

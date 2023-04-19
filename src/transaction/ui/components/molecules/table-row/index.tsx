@@ -8,7 +8,7 @@ import { LineFlag, ModalDeleteTransaction } from '@/transaction/ui/components/at
 import { ColorProps } from '@/main/styled';
 import { formatCurrency, formatTopic } from '@/core/utils';
 import { useAccessContext } from '@/user/presenters';
-import { useTransactionContext } from '@/transaction/presenters/contexts';
+import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/spents-and-revenues/context';
 
 type ITableRow = {
   transaction?: Transaction;
@@ -19,7 +19,7 @@ export const TableRow = ({ transaction, handleEdit }: ITableRow): ReactElement =
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const { currentWallet } = useAccessContext();
-  const { deleteTransaction } = useTransactionContext();
+  const { deleteTransaction } = useSpentsAndRevenuesContext();
   const { enqueueSnackbar } = useSnackbar();
 
   const isFinished = transaction.status === 'FINISHED';
