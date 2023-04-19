@@ -2,7 +2,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import { Button } from '@raphaelcamar/ui-lib';
 import { useSnackbar } from 'notistack';
-import { BodyTable, Container, HeaderTable, THead, WrapperBody } from './styles';
+import { BodyTable, Container, HeaderTable, THead, WrapperBody, WrapperSkeletons } from './styles';
 import { Hide, Skeleton, Tbody, Tr, Typography } from '@/core/ui/components/atoms';
 import { TableRow, AccordionTableRow } from '@/transaction/ui/components/molecules';
 import { Transaction } from '@/transaction/domain';
@@ -51,78 +51,66 @@ export const TableTransactions = (): ReactElement => {
         </Typography>
         <Button>Adicionar</Button>
       </HeaderTable>
-      <BodyTable>
-        {transactionLoader ? (
-          <>
-            <td>
-              <Skeleton shade={200} height={64} borderRadius={8} />
-            </td>
-            <td>
-              <Skeleton shade={200} height={64} borderRadius={8} />
-            </td>
-            <td>
-              <Skeleton shade={200} height={64} borderRadius={8} />
-            </td>
-            <td>
-              <Skeleton shade={200} height={64} borderRadius={8} />
-            </td>
-            <td>
-              <Skeleton shade={200} height={64} borderRadius={8} />
-            </td>
-          </>
-        ) : transactions?.length > 0 ? (
-          <>
-            <THead>
-              <Tr>
-                <td>
-                  <Typography weight={600}>Tipo</Typography>
+
+      {transactionLoader ? (
+        <WrapperSkeletons>
+          <Skeleton shade={200} height={64} borderRadius={8} />
+          <Skeleton shade={200} height={64} borderRadius={8} />
+          <Skeleton shade={200} height={64} borderRadius={8} />
+          <Skeleton shade={200} height={64} borderRadius={8} />
+        </WrapperSkeletons>
+      ) : transactions?.length > 0 ? (
+        <BodyTable>
+          <THead>
+            <Tr>
+              <td>
+                <Typography weight={600}>Tipo</Typography>
+              </td>
+            </Tr>
+            <Tr>
+              <td>
+                <Typography weight={600}>Observação</Typography>
+              </td>
+            </Tr>
+            <Tr>
+              <td>
+                <Typography weight={600}>Status</Typography>
+              </td>
+            </Tr>
+            <Tr>
+              <td>
+                <Typography weight={600}>Tópico</Typography>
+              </td>
+            </Tr>
+            <Tr>
+              <td>
+                <Typography weight={600}>Valor</Typography>
+              </td>
+            </Tr>
+            <Tr>
+              <td>
+                <Typography weight={600}>Ações</Typography>
+              </td>
+            </Tr>
+          </THead>
+          <Tbody>
+            <WrapperBody>
+              {transactions.map(transaction => (
+                <td key={transaction._id}>
+                  <Hide breakpoint="sm" direction="down">
+                    <TableRow handleEdit={handleEdit} transaction={transaction} />
+                  </Hide>
+                  <Hide breakpoint="sm" direction="up">
+                    <AccordionTableRow transaction={transaction} />
+                  </Hide>
                 </td>
-              </Tr>
-              <Tr>
-                <td>
-                  <Typography weight={600}>Observação</Typography>
-                </td>
-              </Tr>
-              <Tr>
-                <td>
-                  <Typography weight={600}>Status</Typography>
-                </td>
-              </Tr>
-              <Tr>
-                <td>
-                  <Typography weight={600}>Tópico</Typography>
-                </td>
-              </Tr>
-              <Tr>
-                <td>
-                  <Typography weight={600}>Valor</Typography>
-                </td>
-              </Tr>
-              <Tr>
-                <td>
-                  <Typography weight={600}>Ações</Typography>
-                </td>
-              </Tr>
-            </THead>
-            <Tbody>
-              <WrapperBody>
-                {transactions.map(transaction => (
-                  <td key={transaction._id}>
-                    <Hide breakpoint="sm" direction="down">
-                      <TableRow handleEdit={handleEdit} transaction={transaction} />
-                    </Hide>
-                    <Hide breakpoint="sm" direction="up">
-                      <AccordionTableRow transaction={transaction} />
-                    </Hide>
-                  </td>
-                ))}
-              </WrapperBody>
-            </Tbody>
-          </>
-        ) : (
-          <EmptyState message="Você não possui transações neste mês" />
-        )}
-      </BodyTable>
+              ))}
+            </WrapperBody>
+          </Tbody>
+        </BodyTable>
+      ) : (
+        <EmptyState message="Você não possui transações neste mês" />
+      )}
     </Container>
   );
 };
