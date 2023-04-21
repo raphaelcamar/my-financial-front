@@ -11,7 +11,8 @@ import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/s
 import { EmptyState } from '@/core/ui/components/molecules';
 
 export const TableTransactions = (): ReactElement => {
-  const { getTransactions, transactions, transactionLoader, filter } = useSpentsAndRevenuesContext();
+  const { getTransactions, transactions, transactionLoader, setTransactionLoader, filter } =
+    useSpentsAndRevenuesContext();
   const { enqueueSnackbar } = useSnackbar();
   const { currentWallet } = useAccessContext();
 
@@ -22,6 +23,8 @@ export const TableTransactions = (): ReactElement => {
       enqueueSnackbar(err?.message || 'Não foi possível buscar as transações. Tente novamente mais tarde', {
         variant: 'error',
       });
+    } finally {
+      setTransactionLoader(false);
     }
   };
 
