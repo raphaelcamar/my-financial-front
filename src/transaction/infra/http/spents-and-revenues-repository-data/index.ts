@@ -9,7 +9,10 @@ export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesReposit
 
     const httpResponse = await http.request({
       method: 'get',
-      url: `transaction/${walletId}${query}`,
+      url: `transaction${query}`,
+      headers: {
+        'wallet-id': walletId,
+      },
     });
 
     const adapter = new TransactionAdapter();
@@ -23,7 +26,10 @@ export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesReposit
 
     await http.request({
       method: 'delete',
-      url: `transaction/${walletId}/${transactionId}`,
+      url: `transaction/${transactionId}`,
+      headers: {
+        'wallet-id': walletId,
+      },
     });
   }
 
@@ -35,7 +41,10 @@ export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesReposit
 
     const { body } = await http.request({
       method: 'get',
-      url: `transaction/${walletId}/indicators${query}`,
+      url: `transaction/indicators${query}`,
+      headers: {
+        'wallet-id': walletId,
+      },
     });
 
     const entranceIndicator = new Indicator({ ...body.entrance, month: body.month, year: body.year }, 'ENTRANCE');

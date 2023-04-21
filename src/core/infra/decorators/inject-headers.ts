@@ -6,7 +6,6 @@ export const injectHeaders = (headers: AxiosRequestHeaders = {}): AxiosRequestHe
 
   return {
     Authorization: `Bearer ${token.get('@token')}`,
-    'Access-Control-Allow-Origin': '*',
     ...headers,
   };
 };
