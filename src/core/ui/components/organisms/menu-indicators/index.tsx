@@ -18,7 +18,7 @@ export const MenuIndicators = (): ReactElement => {
         <ReadonlyInput
           type={currencyOpen ? 'text' : 'password'}
           readOnly
-          value={formatCurrency(user?.wallets?.[0]?.value || 0)}
+          value={formatCurrency(currentWallet?.value || 0, true)}
         />
         <WrapperIcon onClick={() => setCurrencyOpen(!currencyOpen)}>
           <Icon icon={currencyOpen ? 'openEye' : 'closeEye'} color="primary" shade="500" />

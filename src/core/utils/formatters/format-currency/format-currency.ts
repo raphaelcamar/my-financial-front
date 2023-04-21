@@ -1,4 +1,4 @@
-export const formatCurrency = (value: number, withoutNegative?: boolean) => {
+export const formatCurrency = (value: number, withNegative?: boolean) => {
   const formattedValue = value?.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-  return withoutNegative ? formattedValue : formattedValue?.replace('-', '');
+  return withNegative ? formattedValue : formattedValue?.replace('-', '');
 };
