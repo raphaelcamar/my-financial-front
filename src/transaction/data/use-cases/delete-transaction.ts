@@ -1,9 +1,9 @@
-import { TransactionRepository } from '@/transaction/data';
+import { SpentsAndRevenuesRepository } from '@/transaction/data';
 import { Transaction } from '@/transaction/domain';
 
 export class DeleteTransaction {
   constructor(
-    private transactionRepository: TransactionRepository,
+    private transactionRepository: SpentsAndRevenuesRepository,
     private transactionId: string,
     private walletId: string,
     private transactions: Transaction[]

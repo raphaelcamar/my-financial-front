@@ -1,8 +1,9 @@
-import { Transaction } from '@/transaction/domain';
+import { Indicator, Transaction } from '@/transaction/domain';
 
 export type InitialState = {
   transactions: Transaction[];
   filter: Transaction.Filter;
+  indicators: any;
 };
 
 export enum ActionType {
@@ -28,4 +29,9 @@ export type DeleteTransaction = {
   payload: Transaction[];
 };
 
-export type ReducerActions = GetTransactions | UpdateFilter | DeleteTransaction;
+export type UpdateIndicators = {
+  type: ActionType.UPDATE_INDICATORS;
+  payload: { spent: Indicator; entrance: Indicator };
+};
+
+export type ReducerActions = GetTransactions | UpdateFilter | DeleteTransaction | UpdateIndicators;

@@ -36,4 +36,5 @@ export const FirstRow = styled.div`
 export const WrapperActionTableButtons = styled.div`
   display: flex;
   gap: 8px;
+  margin-right: 16px;
 `;

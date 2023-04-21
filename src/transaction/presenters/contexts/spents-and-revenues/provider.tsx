@@ -1,11 +1,11 @@
 import React, { ReactElement, useReducer, useState } from 'react';
 import { initialState, reducer } from './reducers';
 import { SpentsAndRevenuesContext } from './context';
-import { TransactionRepositoryData } from '@/transaction/infra';
-import { DeleteTransaction, GetTransactions } from '@/transaction/data';
-import { fetchDeleteTransaction, fetchFilterTransaction, fetchGetTransactions } from './actions';
+import { DeleteTransaction, GetIndicators, GetTransactions } from '@/transaction/data';
+import { fetchDeleteTransaction, fetchFilterTransaction, fetchGetTransactions, fetchIndicators } from './actions';
 import { delay } from '@/core/utils';
 import { Transaction } from '@/transaction/domain';
+import { SpentsAndRevenuesRepositoryData } from '@/transaction/infra/http/spents-and-revenues-repository-data';
 
 export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -13,9 +13,9 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
 
   const getTransactions = async (walletId: string, filter: Transaction.Filter): Promise<void> => {
     setLoading(true);
-    const transactionRepository = new TransactionRepositoryData();
+    const spentsAndRevenuesRepository = new SpentsAndRevenuesRepositoryData();
 
-    const useCase = new GetTransactions(transactionRepository, walletId, filter);
+    const useCase = new GetTransactions(spentsAndRevenuesRepository, walletId, filter);
     const transactions = await useCase.execute();
 
     await delay(2000);
@@ -26,12 +26,22 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
   };
 
   const deleteTransaction = async (transactionId: string, walletId: string): Promise<void> => {
-    const transactionRepository = new TransactionRepositoryData();
+    const spentsAndRevenuesRepository = new SpentsAndRevenuesRepositoryData();
 
-    const useCase = new DeleteTransaction(transactionRepository, transactionId, walletId, state.transactions);
+    const useCase = new DeleteTransaction(spentsAndRevenuesRepository, transactionId, walletId, state.transactions);
     const filteredTransactions = await useCase.execute();
 
     dispatch(fetchDeleteTransaction(filteredTransactions));
+  };
+
+  const getIndicators = async (walletId: string, filter: Transaction.Filter): Promise<void> => {
+    const spentsAndRevenuesRepository = new SpentsAndRevenuesRepositoryData();
+
+    const useCase = new GetIndicators(walletId, filter, spentsAndRevenuesRepository);
+
+    const result = await useCase.execute();
+
+    dispatch(fetchIndicators(result));
   };
 
   return (
@@ -42,6 +52,9 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
         setTransactionLoader: setLoading,
         transactions: state.transactions,
         deleteTransaction,
+        getIndicators,
+        filter: state.filter,
+        indicators: state.indicators,
       }}
     >
       {children}

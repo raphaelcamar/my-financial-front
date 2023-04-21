@@ -1,10 +1,10 @@
 import { Transaction } from '@/transaction/domain';
-import { TransactionRepository } from '@/transaction/data/protocols';
+import { SpentsAndRevenuesRepository } from '@/transaction/data/protocols';
 import { formatDate } from '@/core/utils';
 
 export class GetTransactions {
   constructor(
-    private transactionRepository: TransactionRepository,
+    private transactionRepository: SpentsAndRevenuesRepository,
     private walletId: string,
     private filter?: Transaction.Filter
   ) {}
@@ -12,7 +12,7 @@ export class GetTransactions {
   async execute(): Promise<Transaction[]> {
     const query = this.mountFilter(this.filter);
 
-    const transaction = await this.transactionRepository.getV2(this.walletId, query);
+    const transaction = await this.transactionRepository.getTransactions(this.walletId, query);
     return transaction;
   }
 

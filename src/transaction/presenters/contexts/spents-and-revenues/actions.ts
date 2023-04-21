@@ -1,4 +1,4 @@
-import { Transaction } from '@/transaction/domain';
+import { Indicator, Transaction } from '@/transaction/domain';
 import { ActionType, ReducerActions } from './types';
 
 export const fetchGetTransactions = (payload: Transaction[]): ReducerActions => ({
@@ -13,5 +13,10 @@ export const fetchFilterTransaction = (payload: Transaction.Filter): ReducerActi
 
 export const fetchDeleteTransaction = (payload: Transaction[]): ReducerActions => ({
   type: ActionType.DELETE_TRANSACTION,
+  payload,
+});
+
+export const fetchIndicators = (payload: { entrance: Indicator; spent: Indicator }): ReducerActions => ({
+  type: ActionType.UPDATE_INDICATORS,
   payload,
 });

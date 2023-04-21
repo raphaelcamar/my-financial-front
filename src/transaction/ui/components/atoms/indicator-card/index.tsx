@@ -34,16 +34,16 @@ export const IndicatorCard = ({ date, description, percentage, type, value }: II
           />
         </Header>
         <Typography color="grey" shade={900} weight={700} size="xlarge">
-          <InputBase value={formatCurrency(value)} type={showMoney ? 'text' : 'password'} readOnly />
+          <InputBase value={formatCurrency(value || 0)} type={showMoney ? 'text' : 'password'} readOnly />
         </Typography>
-        {description}
+        {description || '-'}
       </Spacer>
       <Footer>
         <Typography color="grey" shade={400} size="xsmall">
-          {format(date, 'MMMM / yyyy', { locale: ptBR })}
+          {format(date || new Date(), 'MMMM / yyyy', { locale: ptBR })}
         </Typography>
         <PercentIndicator>
-          <Typography color="success" shade={500} size="xsmall" weight={700}>{`+${percentage}%`}</Typography>
+          <Typography color="success" shade={500} size="xsmall" weight={700}>{`${percentage || 0}%`}</Typography>
           <Icon icon="miniArrowDown" color="success" shade="500" />
         </PercentIndicator>
       </Footer>

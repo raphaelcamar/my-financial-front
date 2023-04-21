@@ -6,23 +6,17 @@ import { BodyTable, Container, HeaderTable, THead, WrapperBody, WrapperSkeletons
 import { Hide, Skeleton, Tbody, Tr, Typography } from '@/core/ui/components/atoms';
 import { TableRow, AccordionTableRow } from '@/transaction/ui/components/molecules';
 import { Transaction } from '@/transaction/domain';
-import { monthStartDate } from '@/core/utils';
 import { useAccessContext } from '@/user/presenters';
 import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/spents-and-revenues/context';
 import { EmptyState } from '@/core/ui/components/molecules';
 
 export const TableTransactions = (): ReactElement => {
-  const { getTransactions, transactions, transactionLoader } = useSpentsAndRevenuesContext();
+  const { getTransactions, transactions, transactionLoader, filter } = useSpentsAndRevenuesContext();
   const { enqueueSnackbar } = useSnackbar();
   const { currentWallet } = useAccessContext();
 
   const fetchTransactions = async (): Promise<void> => {
     try {
-      const date = new Date();
-      const start = monthStartDate(new Date());
-      const limit = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-      const filter: Transaction.Filter = { limit, start };
-
       await getTransactions(currentWallet.id, filter);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível buscar as transações. Tente novamente mais tarde', {

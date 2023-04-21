@@ -24,6 +24,12 @@ export const BodyTable = styled.table`
   flex-direction: column;
 `;
 
+export const WrapperSkeletons = styled.div`
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+`;
+
 export const THead = styled.thead`
   display: table-header-group;
   display: grid;

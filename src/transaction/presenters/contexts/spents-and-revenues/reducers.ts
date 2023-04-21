@@ -1,8 +1,16 @@
+import { monthStartDate } from '@/core/utils';
 import { ActionType, InitialState, ReducerActions } from './types';
+import { Transaction } from '@/transaction/domain';
+
+const date = new Date();
+const start = monthStartDate(new Date());
+const limit = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+const filter: Transaction.Filter = { limit, start };
 
 export const initialState: InitialState = {
   transactions: [],
-  filter: undefined,
+  filter,
+  indicators: undefined,
 };
 
 export const reducer = (state = initialState, action: ReducerActions): InitialState => {
@@ -22,6 +30,11 @@ export const reducer = (state = initialState, action: ReducerActions): InitialSt
       return {
         ...state,
         transactions: action.payload,
+      };
+    case ActionType.UPDATE_INDICATORS:
+      return {
+        ...state,
+        indicators: action.payload,
       };
   }
 };

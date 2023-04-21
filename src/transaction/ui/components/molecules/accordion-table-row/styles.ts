@@ -54,6 +54,7 @@ export const IconIndicator = styled.span`
 export const WrapperActionTableButtons = styled.div`
   display: flex;
   gap: 8px;
+  margin-right: 16px;
 `;
 
 export const AccordionRow = styled.div`
