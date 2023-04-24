@@ -1,11 +1,13 @@
 import React from 'react';
-import { StyledThemeProvider, NotistackProvider } from '@/core/presenters/contexts';
+import { StyledThemeProvider, NotistackProvider, SocketProvider } from '@/core/presenters/contexts';
 import { AccessProvider } from '@/user/presenters/contexts/access';
 
 export const RootProviders: React.FC = ({ children }) => (
   <StyledThemeProvider>
     <NotistackProvider>
-      <AccessProvider>{children}</AccessProvider>
+      <AccessProvider>
+        <SocketProvider>{children}</SocketProvider>
+      </AccessProvider>
     </NotistackProvider>
   </StyledThemeProvider>
 );

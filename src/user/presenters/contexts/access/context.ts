@@ -5,6 +5,7 @@ type PropsAccessContext = {
   user: User;
   passwordToken: string;
   currentWallet: Wallet;
+  walletValue: number;
   userAuth: (body: User.Login) => Promise<void>;
   newUser: (body: User.Subscribe) => Promise<void>;
   verifyUserAuth: () => Promise<User>;
@@ -13,6 +14,7 @@ type PropsAccessContext = {
   sendNewPassword: (password: string) => Promise<void>;
   sendCodeRecover: (code: string) => Promise<void>;
   logout: () => void;
+  setNewWalletValue: (newValue: number) => void;
 };
 
 export const AccessContext = createContext<PropsAccessContext>({} as PropsAccessContext);

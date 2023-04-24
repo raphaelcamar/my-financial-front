@@ -19,3 +19,10 @@ export function fetchWallet(payload: Wallet): Action {
     payload,
   };
 }
+
+export function fetchNewValue(payload: number): Action {
+  return {
+    type: ActionType.NEW_WALLET_VALUE,
+    payload,
+  };
+}

@@ -5,12 +5,14 @@ export enum ActionType {
   EMAIL_PASSWORD_RECOVER = 'EMAIL_PASSWORD_RECOVER',
   USER_LOGOUT = 'USER_LOGOUT',
   CHANGE_WALLET = 'CHANGE_WALLET',
+  NEW_WALLET_VALUE = 'NEW_WALLET_VALUE',
 }
 
 export type InitialState = {
   user: User;
   emailPasswordRecover: string;
   currentWallet: Wallet;
+  walletValue: number;
 };
 
 type UserAuthorized = {
@@ -33,4 +35,9 @@ type ChangeWallet = {
   payload: Wallet;
 };
 
-export type Action = UserAuthorized | EmailPasswordRecover | UserLogout | ChangeWallet;
+type UpdateWalletValue = {
+  type: ActionType.NEW_WALLET_VALUE;
+  payload: number;
+};
+
+export type Action = UserAuthorized | EmailPasswordRecover | UserLogout | ChangeWallet | UpdateWalletValue;

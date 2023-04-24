@@ -12,6 +12,7 @@ export const WrapperIcon = styled.div<WrapperIconType>`
     size
       ? css`
           width: ${size}px;
+          height: ${size}px;
         `
       : ''}
 `;

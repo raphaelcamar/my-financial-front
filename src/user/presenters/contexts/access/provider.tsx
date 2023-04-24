@@ -12,7 +12,7 @@ import {
   SendNewPasswordRecover,
   SendCodePassowrdRecover,
 } from '@/user/data/use-cases/access';
-import { fetchLogin, fetchEmailPasswordRecover, fetchLogout, fetchWallet } from './actions';
+import { fetchLogin, fetchEmailPasswordRecover, fetchLogout, fetchWallet, fetchNewValue } from './actions';
 
 export const AccessProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -111,12 +111,17 @@ export const AccessProvider: React.FC = ({ children }) => {
     dispatch(fetchLogout(null));
   };
 
+  const setNewWalletValue = (newValue: number) => {
+    dispatch(fetchNewValue(newValue));
+  };
+
   return (
     <AccessContext.Provider
       value={{
         currentWallet: state.currentWallet,
         user: state.user,
         passwordToken: state.emailPasswordRecover,
+        walletValue: state.walletValue,
         userAuth,
         newUser,
         verifyUserAuth,
@@ -125,6 +130,7 @@ export const AccessProvider: React.FC = ({ children }) => {
         sendNewPassword,
         sendCodeRecover,
         logout,
+        setNewWalletValue,
       }}
     >
       {children}
