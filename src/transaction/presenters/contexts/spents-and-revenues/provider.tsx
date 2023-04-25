@@ -20,9 +20,12 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
 
     await delay(2000);
     dispatch(fetchGetTransactions(transactions));
-    dispatch(fetchFilterTransaction(filter));
 
     setLoading(false);
+  };
+
+  const setFilter = (filter: Transaction.Filter): void => {
+    dispatch(fetchFilterTransaction(filter));
   };
 
   const deleteTransaction = async (transactionId: string, walletId: string): Promise<void> => {
@@ -53,6 +56,7 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
         transactions: state.transactions,
         deleteTransaction,
         getIndicators,
+        setFilter,
         filter: state.filter,
         indicators: state.indicators,
       }}

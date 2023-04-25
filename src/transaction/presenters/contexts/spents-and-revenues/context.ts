@@ -10,6 +10,7 @@ type PropsSpentAndRevenues = {
   deleteTransaction: (walletId: string, transactionId: string) => Promise<void>;
   getIndicators: (walletId: string, filter: Transaction.Filter) => Promise<void>;
   setTransactionLoader: React.Dispatch<React.SetStateAction<boolean>>;
+  setFilter: React.Dispatch<React.SetStateAction<Transaction.Filter>>;
 };
 
 export const SpentsAndRevenuesContext = createContext<PropsSpentAndRevenues>({} as PropsSpentAndRevenues);

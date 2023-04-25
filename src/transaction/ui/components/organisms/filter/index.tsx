@@ -15,7 +15,7 @@ type InitialValuesProps = {
 };
 
 export const Filter = (): ReactElement => {
-  const { getTransactions } = useSpentsAndRevenuesContext();
+  const { getTransactions, setFilter } = useSpentsAndRevenuesContext();
   const { currentWallet } = useAccessContext();
 
   const [hasChanges, setHasChanges] = useState<boolean>(false);
@@ -51,6 +51,7 @@ export const Filter = (): ReactElement => {
   const fetchTransactionsByFilter = async (): Promise<void> => {
     try {
       setLoading(true);
+      setFilter(formatFilterToSend());
       await getTransactions(currentWallet.id, formatFilterToSend());
 
       setHasChanges(false);
