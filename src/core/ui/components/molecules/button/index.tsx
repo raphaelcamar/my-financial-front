@@ -3,7 +3,7 @@ import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import { ButtonVariant, StyleType } from '@/core/domain/styles';
 import { ColorProps, Shade } from '@/main/styled';
 import { ButtonStyle } from './styles';
-import { CircularProgress } from '@/core/ui/components/atoms';
+import { CircularLoader } from '@/core/ui/components/atoms';
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -17,6 +17,6 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button: React.FC<IButtonProps> = ({ loading, children, colorLoading, sizeLoading, ...props }) => (
   <ButtonStyle data-testid="styled-button" {...props}>
-    {loading ? <CircularProgress color={colorLoading} size={sizeLoading} /> : children}
+    {loading ? <CircularLoader color={colorLoading} size={sizeLoading} /> : children}
   </ButtonStyle>
 );

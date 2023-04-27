@@ -15,3 +15,4 @@ export * from './text-ellipsis';
 export * from './text-link';
 export * from './typography';
 export * from './slider';
+export * from './circular-loader';
