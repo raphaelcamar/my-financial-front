@@ -6,8 +6,8 @@ import { ColorProps, VariantProps } from '@/main/styled';
 
 export interface IIconButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: AvailableIcons;
-  color: keyof ColorProps;
-  shade: keyof VariantProps;
+  color?: keyof ColorProps;
+  shade?: keyof VariantProps;
   iconProps?: Omit<IconProps, 'icon'>;
   padding?: [number, number];
   noBackground?: boolean;

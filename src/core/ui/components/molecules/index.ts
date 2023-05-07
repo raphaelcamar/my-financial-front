@@ -9,3 +9,4 @@ export * from './menu-item';
 export * from './select';
 export * from './sidebar-components';
 export * from './wrapper-loader';
+export * from './selectable-coin';

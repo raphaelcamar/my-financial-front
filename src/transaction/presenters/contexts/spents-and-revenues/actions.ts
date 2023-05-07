@@ -20,3 +20,8 @@ export const fetchIndicators = (payload: { entrance: Indicator; spent: Indicator
   type: ActionType.UPDATE_INDICATORS,
   payload,
 });
+
+export const fetchCreateTransaction = (payload: Transaction): ReducerActions => ({
+  type: ActionType.CREATE_TRANSACTION,
+  payload,
+});

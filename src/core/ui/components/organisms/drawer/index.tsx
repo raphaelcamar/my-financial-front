@@ -17,7 +17,7 @@ export const Drawer: React.FC<IDrawer> = ({
   side = 'right',
   actionTop,
   noRadius,
-  widthSize,
+  widthSize = '550px',
 }) => (
   <Container open={open}>
     <DrawerWrapper widthSize={widthSize} noRadius={noRadius} open={open} side={side} fullWidth={fullWidth}>

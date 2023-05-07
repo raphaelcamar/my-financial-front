@@ -1,4 +1,3 @@
-import { Button } from '@raphaelcamar/ui-lib';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { Container } from './styles';
@@ -7,6 +6,7 @@ import { MonthlyClosingRepositoryData } from '@/transaction/infra/http/monthly-c
 import { useAccessContext } from '@/user/presenters';
 import { createFilter } from '@/transaction/utils';
 import { delay } from '@/core/utils';
+import { Button } from '@/core/ui/components/molecules';
 
 export const CloseMonth = (): ReactElement => {
   const { filter } = useSpentsAndRevenuesContext();

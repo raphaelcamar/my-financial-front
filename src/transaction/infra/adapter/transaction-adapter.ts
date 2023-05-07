@@ -13,8 +13,9 @@ export class TransactionAdapter implements RequestAdapter {
       updatedAt: null,
       _id: base?._id,
       walletId: base.walletId,
+      coin: base?.coin,
       anotation: base?.anotation,
-      billedAt: parseDate(base.billedAt as string, 'dd/MM/yyyy').toISOString(),
+      billedAt: parseDate(new Date().toLocaleDateString(), 'dd/MM/yyyy').toISOString(),
       amount: base.total,
       status: base.status,
     };

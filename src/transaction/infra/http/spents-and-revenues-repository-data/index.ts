@@ -3,6 +3,8 @@ import { RequestHttpRepository } from '@/core/infra';
 import { SpentsAndRevenuesRepository } from '@/transaction/data';
 import { Indicator, Transaction } from '@/transaction/domain';
 
+type ResponseIndicators = { entrance: Indicator.Server; spent: Indicator.Server; month: number; year: number };
+
 export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesRepository {
   async getTransactions(walletId: string, query?: string): Promise<Transaction[]> {
     const http = new RequestHttpRepository<unknown, Transaction.Response[]>(`${process.env.BASE_URL}/v2`);
@@ -34,10 +36,7 @@ export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesReposit
   }
 
   async getIndicators(walletId: string, query: string): Promise<{ spent: Indicator; entrance: Indicator }> {
-    const http = new RequestHttpRepository<
-      string,
-      { entrance: Indicator.Server; spent: Indicator.Server; month: number; year: number }
-    >(`${process.env.BASE_URL}/v2`);
+    const http = new RequestHttpRepository<string, ResponseIndicators>(`${process.env.BASE_URL}/v2`);
 
     const { body } = await http.request({
       method: 'get',
@@ -51,5 +50,24 @@ export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesReposit
     const spentIndicator = new Indicator({ ...body.spent, month: body.month, year: body.year }, 'SPENT');
 
     return { entrance: entranceIndicator, spent: spentIndicator };
+  }
+
+  async create(transaction: Transaction.Data): Promise<Transaction> {
+    const http = new RequestHttpRepository<Transaction.Response, Transaction.Data>(`${process.env.BASE_URL}/v2`);
+
+    const adapter = new TransactionAdapter();
+
+    const adaptee = adapter.request(transaction);
+
+    const { body } = await http.request({
+      method: 'post',
+      url: `transaction`,
+      body: adaptee,
+      headers: {
+        'wallet-id': transaction.walletId,
+      },
+    });
+
+    return new Transaction(body);
   }
 }

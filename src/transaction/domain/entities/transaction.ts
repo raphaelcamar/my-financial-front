@@ -4,6 +4,8 @@ export type TypeTopic = 'FOOD' | 'TRANSPORT' | 'HEALTH' | 'OTHER' | 'SALARY';
 
 export type TypeStatus = 'FINISHED' | 'PENDING';
 
+export type TypeCoin = 'USD' | 'BRL' | 'EUR' | 'ARS' | 'GBP' | 'JPY' | 'CNY' | 'AUD' | 'CAD' | 'CHF' | 'NZD';
+
 export class Transaction {
   _id?: string;
   userId: string;
@@ -17,6 +19,7 @@ export class Transaction {
   topic: TypeTopic;
   status: TypeStatus;
   walletId: string;
+  coin?: TypeCoin;
 
   constructor(transaction: Transaction.Data) {
     this._id = transaction._id;
@@ -31,6 +34,7 @@ export class Transaction {
     this.total = transaction.total;
     this.walletId = transaction.walletId;
     this.status = transaction.status;
+    this.coin = transaction.coin;
   }
 }
 
@@ -48,6 +52,7 @@ export namespace Transaction {
     total?: number;
     walletId: string;
     status: TypeStatus;
+    coin?: TypeCoin;
   }
 
   export interface Response {
@@ -63,6 +68,7 @@ export namespace Transaction {
     amount: number;
     walletId: string;
     status: TypeStatus;
+    coin?: TypeCoin;
   }
 
   export interface Filter {

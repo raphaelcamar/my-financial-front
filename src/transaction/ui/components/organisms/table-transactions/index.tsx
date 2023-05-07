@@ -1,10 +1,10 @@
 /* eslint-disable no-nested-ternary */
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Button } from '@raphaelcamar/ui-lib';
 import { useSnackbar } from 'notistack';
 import { BodyTable, Container, HeaderTable, THead, WrapperBody, WrapperSkeletons } from './styles';
 import { Hide, Skeleton, Tbody, Tr, Typography } from '@/core/ui/components/atoms';
-import { TableRow, AccordionTableRow } from '@/transaction/ui/components/molecules';
+import { TableRow, AccordionTableRow, AddTransactionDrawer } from '@/transaction/ui/components/molecules';
 import { Transaction } from '@/transaction/domain';
 import { useAccessContext } from '@/user/presenters';
 import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/spents-and-revenues/context';
@@ -15,6 +15,8 @@ export const TableTransactions = (): ReactElement => {
     useSpentsAndRevenuesContext();
   const { enqueueSnackbar } = useSnackbar();
   const { currentWallet } = useAccessContext();
+
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const fetchTransactions = async (): Promise<void> => {
     try {
@@ -46,7 +48,7 @@ export const TableTransactions = (): ReactElement => {
         <Typography size="xlarge" weight={700}>
           Transações
         </Typography>
-        <Button>Adicionar</Button>
+        <Button onClick={() => setOpenModal(true)}>Adicionar</Button>
       </HeaderTable>
 
       {transactionLoader ? (
@@ -108,6 +110,7 @@ export const TableTransactions = (): ReactElement => {
       ) : (
         <EmptyState message="Você não possui transações neste mês" />
       )}
+      <AddTransactionDrawer open={openModal} setOpenModal={setOpenModal} />
     </Container>
   );
 };

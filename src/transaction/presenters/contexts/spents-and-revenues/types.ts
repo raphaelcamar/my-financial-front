@@ -34,4 +34,9 @@ export type UpdateIndicators = {
   payload: { spent: Indicator; entrance: Indicator };
 };
 
-export type ReducerActions = GetTransactions | UpdateFilter | DeleteTransaction | UpdateIndicators;
+export type CreateTransaction = {
+  type: ActionType.CREATE_TRANSACTION;
+  payload: Transaction;
+};
+
+export type ReducerActions = GetTransactions | UpdateFilter | DeleteTransaction | UpdateIndicators | CreateTransaction;

@@ -1,8 +1,8 @@
 import { Transaction } from '@/transaction/domain';
-import { TransactionRepository } from '@/transaction/data/protocols';
+import { SpentsAndRevenuesRepository } from '@/transaction/data/protocols';
 
 export class CreateTransaction {
-  constructor(private transaction: Transaction.Data, private transactionRepository: TransactionRepository) {}
+  constructor(private transactionRepository: SpentsAndRevenuesRepository, private transaction: Transaction.Data) {}
 
   async execute(): Promise<Transaction> {
     const transaction = await this.transactionRepository.create(this.transaction);

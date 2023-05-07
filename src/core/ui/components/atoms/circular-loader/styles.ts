@@ -7,7 +7,7 @@ export const Container = styled.svg<ICircularLoader>`
   height: ${({ size }) => `${size}px`};
 
   & .path {
-    stroke: ${({ theme, color }) => theme.palette[color][500]};
+    stroke: ${({ theme, color, shade }) => theme.palette[color][shade]};
     stroke-linecap: round;
     animation: dash 1.5s ease-in-out infinite;
   }

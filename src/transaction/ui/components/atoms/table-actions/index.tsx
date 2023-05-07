@@ -47,7 +47,6 @@ export const TableActions: React.FC<ITableActions> = ({ setOpenModal, buttonText
     }
   };
 
-  // TODO getting better this filter
   return (
     <>
       <Container onSubmit={handleSubmit(handleSubmitForm)}>
