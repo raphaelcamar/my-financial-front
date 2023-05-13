@@ -1,6 +1,11 @@
 import 'styled-components';
 
-export type VariantProps = {
+export type BackgroundProps = {
+  paper: string;
+  default: string;
+};
+
+export type VariantProps = BackgroundProps & {
   light: string;
   main: string;
   dark: string;
@@ -17,11 +22,6 @@ export type VariantProps = {
 };
 
 export type Shade = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-
-export type BackgroundProps = {
-  paper: string;
-  default: string;
-};
 
 export type BreakpointTypes = {
   xs: number;

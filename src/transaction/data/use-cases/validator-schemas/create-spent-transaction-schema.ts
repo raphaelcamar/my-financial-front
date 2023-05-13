@@ -19,7 +19,7 @@ const verifyDate = (value: string, originalValue: string): string => {
 export const CreateSpentTransactionSchema = yup.object({
   topic: yup
     .string()
-    .oneOf(['FOOD', 'TRANSPORT', 'HEALTH', 'SALARY', 'OTHER'], 'Deve informar algumas das opções')
+    .oneOf(['HEALTH', 'TRANSPORT', 'FOOD', 'LEISURE', 'OTHER'], 'Deve informar algumas das opções')
     .required('Deve informar um tópico')
     .nullable(),
   cost: yup

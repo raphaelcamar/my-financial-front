@@ -18,6 +18,7 @@ export class TransactionAdapter implements RequestAdapter {
       billedAt: parseDate(new Date().toLocaleDateString(), 'dd/MM/yyyy').toISOString(),
       amount: base.total,
       status: base.status,
+      paymentType: base.paymentType,
     };
 
     delete adaptee.createdAt;

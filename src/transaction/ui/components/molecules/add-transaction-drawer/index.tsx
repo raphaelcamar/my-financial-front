@@ -5,12 +5,12 @@ import { BodyForm, DrawerHeader } from './styles';
 import { Tabs, Typography, TabItem } from '@/core/ui/components/atoms';
 import { AddEntranceForm, AddSpentForm } from '../../atoms';
 
-type AddTransactionDrawer = {
+type AddTransactionDrawerProps = {
   open: boolean;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const AddTransactionDrawer = ({ open, setOpenModal }: AddTransactionDrawer): ReactElement => {
+export const AddTransactionDrawer = ({ open, setOpenModal }: AddTransactionDrawerProps): ReactElement => {
   const tabs: TabItem[] = [
     {
       content: <AddSpentForm onClose={setOpenModal} />,
@@ -32,7 +32,11 @@ export const AddTransactionDrawer = ({ open, setOpenModal }: AddTransactionDrawe
           <Typography type="h2" size="xlarge">
             Adicionar transação
           </Typography>
-          <IconButton icon="close" onClick={() => setOpenModal(false)} />
+          <IconButton
+            icon="close"
+            onClick={() => setOpenModal(false)}
+            iconProps={{ color: 'background', shade: 'paper' }}
+          />
         </DrawerHeader>
       }
     >

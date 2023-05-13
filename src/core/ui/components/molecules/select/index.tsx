@@ -83,7 +83,7 @@ export const Select = forwardRef<HTMLInputElement, ISelectProps>(
 
     return (
       <ClickAwayListener onClickAway={() => setOpen(false)}>
-        <Container>
+        <Container onClick={() => setOpen(!open)}>
           <StyledInput
             type="button"
             aria-haspopup="listbox"
@@ -99,7 +99,6 @@ export const Select = forwardRef<HTMLInputElement, ISelectProps>(
             placeholder={placeholder}
             value={selectedOption?.text}
             onKeyDown={e => handleKeyDown(e)}
-            onClick={() => setOpen(!open)}
             actionEnd={
               <WrapperIcon open={open}>
                 <Icon icon="arrowDown" />

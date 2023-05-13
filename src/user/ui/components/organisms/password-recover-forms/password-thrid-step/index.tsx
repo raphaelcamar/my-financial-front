@@ -24,7 +24,6 @@ export const PasswordThirdStep: React.FC = () => {
           {...register('password')}
         />
         <InputPassword
-          actionEnd="Teste"
           label="Confirme sua senha"
           error={!!errors?.confirm_password?.message}
           helperText={errors?.confirm_password?.message}

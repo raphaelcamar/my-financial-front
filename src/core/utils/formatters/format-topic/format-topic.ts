@@ -12,6 +12,8 @@ export const formatTopic = (topic: TypeTopic): string => {
       return 'Transporte';
     case 'SALARY':
       return 'Salário';
+    case 'LEISURE':
+      return 'Lazer';
     default:
       return '-';
   }

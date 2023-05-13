@@ -1,10 +1,12 @@
 export type TypeTransaction = 'ENTRANCE' | 'SPENT' | 'RECURRENT';
 
-export type TypeTopic = 'FOOD' | 'TRANSPORT' | 'HEALTH' | 'OTHER' | 'SALARY';
+export type TypeTopic = 'FOOD' | 'TRANSPORT' | 'HEALTH' | 'OTHER' | 'SALARY' | 'LEISURE';
 
 export type TypeStatus = 'FINISHED' | 'PENDING';
 
 export type TypeCoin = 'USD' | 'BRL' | 'EUR' | 'ARS' | 'GBP' | 'JPY' | 'CNY' | 'AUD' | 'CAD' | 'CHF' | 'NZD';
+
+export type PaymentType = 'CREDIT' | 'DEBIT' | 'MONEY' | 'PIX' | 'TRANSFER' | 'CRYPTO' | 'BANK_SLIP' | 'OTHER';
 
 export class Transaction {
   _id?: string;
@@ -20,6 +22,7 @@ export class Transaction {
   status: TypeStatus;
   walletId: string;
   coin?: TypeCoin;
+  paymentType: PaymentType;
 
   constructor(transaction: Transaction.Data) {
     this._id = transaction._id;
@@ -35,6 +38,7 @@ export class Transaction {
     this.walletId = transaction.walletId;
     this.status = transaction.status;
     this.coin = transaction.coin;
+    this.paymentType = transaction.paymentType;
   }
 }
 
@@ -53,6 +57,7 @@ export namespace Transaction {
     walletId: string;
     status: TypeStatus;
     coin?: TypeCoin;
+    paymentType: PaymentType;
   }
 
   export interface Response {
@@ -69,6 +74,7 @@ export namespace Transaction {
     walletId: string;
     status: TypeStatus;
     coin?: TypeCoin;
+    paymentType: PaymentType;
   }
 
   export interface Filter {

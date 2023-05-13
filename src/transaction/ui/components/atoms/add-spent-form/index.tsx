@@ -8,7 +8,7 @@ import { CreateSpentTransactionSchema } from '@/transaction/data';
 import { Form, WrapperButtons, WrapperInputs } from './styles';
 import { SelectType } from '@/core/domain';
 import { useAccessContext } from '@/user/presenters';
-import { Typography } from '@/core/ui/components/atoms';
+import { InputSelectHorizontal, ItemSelectHorizontalProps, Typography } from '@/core/ui/components/atoms';
 import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/spents-and-revenues/context';
 import { delay } from '@/core/utils';
 
@@ -18,12 +18,14 @@ type AddSpentFormProps = {
 
 export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const {
     register,
     handleSubmit,
     setValue,
     watch,
+    reset,
     control,
     formState: { errors },
   } = useForm<Transaction.Data>({ resolver: yupResolver(CreateSpentTransactionSchema) });
@@ -34,13 +36,20 @@ export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
 
   useEffect(() => {
     setValue('walletId', user?.currentWallet?.id);
+    setValue('status', 'FINISHED');
   }, [user]);
 
   const handleSubmitForm = async (data: Transaction.Data) => {
     try {
       setLoading(true);
-      await delay(2500);
       await createTransaction({ ...data, type: 'SPENT', billedAt: new Date(), coin: 'BRL' });
+
+      enqueueSnackbar('Criação criada com sucesso!', {
+        variant: 'success',
+      });
+
+      reset({});
+
       onClose(false);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível criar a transação. Tente novamente mais tarde', {
@@ -67,14 +76,44 @@ export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
     },
   ];
 
+  const topicOptions: ItemSelectHorizontalProps[] = [
+    { label: 'Saúde', value: 'HEALTH' },
+    { label: 'Transporte', value: 'TRANSPORT' },
+    { label: 'Alimentação', value: 'FOOD' },
+    { label: 'Lazer', value: 'LEISURE' },
+    { label: 'Outro', value: 'OTHER' },
+  ];
+
+  const paymentTypeOptions: ItemSelectHorizontalProps[] = [
+    { label: 'Cartão de crédito', value: 'CREDIT' },
+    { label: 'Cartão de débito', value: 'DEBIT' },
+    { label: 'Dinheiro', value: 'MONEY' },
+    { label: 'PIX', value: 'PIX' },
+    { label: 'Transferência bancária', value: 'TRANSFER' },
+    { label: 'Criptomoedas', value: 'CRYPTO' },
+    { label: 'Boleto bancário', value: 'BANK_SLIP' },
+    { label: 'Outro', value: 'OTHER' },
+  ];
+
   return (
     <>
       <Form onSubmit={handleSubmit(handleSubmitForm)}>
-        <Input
+        <InputSelectHorizontal
+          name="topic"
+          setValue={setValue}
           label="Tópico"
-          {...register('topic')}
-          error={!!errors?.topic?.message}
           helperText={errors?.topic?.message}
+          error={!!errors?.topic?.message}
+          items={topicOptions}
+        />
+
+        <InputSelectHorizontal
+          name="paymentType"
+          setValue={setValue}
+          label="Tipo de pagamento"
+          helperText={errors?.paymentType?.message}
+          error={!!errors?.paymentType?.message}
+          items={paymentTypeOptions}
         />
         <WrapperInputs>
           <Controller
@@ -104,7 +143,6 @@ export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
             value={watch('status')}
             label="Status"
             items={statusOptions}
-            defaultValue=""
           />
         </WrapperInputs>
 

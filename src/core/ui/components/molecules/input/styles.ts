@@ -8,20 +8,32 @@ type ContainerInputType = CssInputVariants & {
 const variantStyles = (theme: DefaultTheme, disabled?: boolean, variant: Variants = 'primary') =>
   disabled
     ? css`
-        border: 1px solid ${theme.palette.grey[300]};
+        border: 1px solid ${theme.palette.grey[200]};
       `
     : {
         primary: css`
-          border: 1px solid ${theme.palette.grey[400]};
+          border: 1px solid ${theme.palette.grey[300]};
+          -webkit-box-shadow: 0px 0 3px 0px ${theme.palette.grey[300]};
+          -moz-box-shadow: 0px 0 3px 0px ${theme.palette.grey[300]};
+          box-shadow: 0px 0 3px 0px ${theme.palette.grey[300]};
           &:focus-within {
             border: 1px solid ${theme.palette.primary.main};
+            -webkit-box-shadow: 0px 0 3px 0px ${theme.palette.primary.main};
+            -moz-box-shadow: 0px 0 3px 0px ${theme.palette.primary.main};
+            box-shadow: 0px 0 3px 0px ${theme.palette.primary.main};
           }
         `,
         error: css`
           border: 1px solid ${theme.palette.error.main};
+          -webkit-box-shadow: 0px 0 3px 0px ${theme.palette.error.main};
+          -moz-box-shadow: 0px 0 3px 0px ${theme.palette.error.main};
+          box-shadow: 0px 0 3px 0px ${theme.palette.error.main};
         `,
         success: css`
           border: 1px solid ${theme.palette.success.main};
+          -webkit-box-shadow: 0px 0 3px 0px ${theme.palette.success.main};
+          -moz-box-shadow: 0px 0 3px 0px ${theme.palette.success.main};
+          box-shadow: 0px 0 3px 0px ${theme.palette.success.main};
         `,
       }[variant];
 
