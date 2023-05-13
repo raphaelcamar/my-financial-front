@@ -26,6 +26,7 @@ export const InputSelectHorizontal = ({
   setValue,
   error,
   helperText,
+  label,
 }: InputSelectHorizontalProps): ReactElement => {
   const [selectedOption, setSelectedOption] = useState<ItemSelectHorizontalProps>(null);
   const variant = error ? 'error' : 'primary';
@@ -43,7 +44,7 @@ export const InputSelectHorizontal = ({
   };
   return (
     <Container>
-      <label htmlFor="select-hortizontal">Tópico</label>
+      <label htmlFor="select-hortizontal">{label}</label>
       <Options>
         {items.map(item => (
           <Option

@@ -22,6 +22,16 @@ export const CreateSpentTransactionSchema = yup.object({
     .oneOf(['HEALTH', 'TRANSPORT', 'FOOD', 'LEISURE', 'OTHER'], 'Deve informar algumas das opções')
     .required('Deve informar um tópico')
     .nullable(),
+
+  paymentType: yup
+    .string()
+    .oneOf(
+      ['CREDIT', 'DEBIT', 'MONEY', 'PIX', 'TRANSFER', 'CRYPTO', 'BANK_SLIP', 'OTHER'],
+      'Deve informar algumas das opções'
+    )
+    .required('Deve informar um tipo de pagamento')
+    .nullable(),
+
   cost: yup
     .number()
     .transform(verifyValue)
@@ -36,6 +46,30 @@ export const CreateSpentTransactionSchema = yup.object({
   //   .transform(verifyDate)
   //   .required('Deve informar uma data')
   //   .nullable(),
+
+  walletId: yup.string().required('Deve informar a carteira'),
+  status: yup.string().oneOf(['FINISHED', 'PENDING']).required('Deve informar o status'),
+  anotation: yup.string().required('Deve informar uma observação'),
+});
+
+export const CreateEntranceTransactionSchema = yup.object({
+  topic: yup
+    .string()
+    .oneOf(['SALARY', 'OTHER'], 'Deve informar algumas das opções')
+    .required('Deve informar um tópico')
+    .nullable(),
+  paymentType: yup
+    .string()
+    .oneOf(['MONEY', 'PIX', 'TRANSFER', 'OTHER'], 'Deve informar algumas das opções')
+    .required('Deve informar um tipo de pagamento')
+    .nullable(),
+
+  cost: yup
+    .number()
+    .transform(verifyValue)
+    .min(0, 'Caso negativo, coloque como despesa')
+    .required('Deve informar um valor')
+    .nullable(),
 
   walletId: yup.string().required('Deve informar a carteira'),
   status: yup.string().oneOf(['FINISHED', 'PENDING']).required('Deve informar o status'),

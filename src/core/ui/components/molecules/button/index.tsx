@@ -13,10 +13,18 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   colorLoading?: keyof ColorProps;
   sizeLoading?: number;
+  shadeLoading?: Shade;
 }
 
-export const Button: React.FC<IButtonProps> = ({ loading, children, colorLoading, sizeLoading, ...props }) => (
+export const Button: React.FC<IButtonProps> = ({
+  loading,
+  children,
+  colorLoading,
+  sizeLoading,
+  shadeLoading,
+  ...props
+}) => (
   <ButtonStyle data-testid="styled-button" {...props}>
-    {loading ? <CircularLoader color={colorLoading} size={sizeLoading} /> : children}
+    {loading ? <CircularLoader color={colorLoading} size={sizeLoading} shade={shadeLoading} /> : children}
   </ButtonStyle>
 );

@@ -10,7 +10,6 @@ import { SelectType } from '@/core/domain';
 import { useAccessContext } from '@/user/presenters';
 import { InputSelectHorizontal, ItemSelectHorizontalProps, Typography } from '@/core/ui/components/atoms';
 import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/spents-and-revenues/context';
-import { delay } from '@/core/utils';
 
 type AddSpentFormProps = {
   onClose: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,7 +17,6 @@ type AddSpentFormProps = {
 
 export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [open, setOpen] = useState<boolean>(false);
 
   const {
     register,

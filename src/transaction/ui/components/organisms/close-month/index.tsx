@@ -38,7 +38,13 @@ export const CloseMonth = (): ReactElement => {
 
   return (
     <Container>
-      <Button style={{ width: '100%' }} disabled={isClosed || loading} loading={loading}>
+      <Button
+        style={{ width: '100%' }}
+        disabled={isClosed || loading}
+        loading={loading}
+        colorLoading={isClosed || loading ? 'primary' : 'grey'}
+        shadeLoading={500}
+      >
         {isClosed ? 'Mês fechado' : 'Fechar mês'}
       </Button>
     </Container>
