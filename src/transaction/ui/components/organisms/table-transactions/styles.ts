@@ -45,3 +45,8 @@ export const WrapperBody = styled.tr`
   flex-direction: column;
   gap: 12px;
 `;
+
+export const Td = styled.td`
+  display: flex;
+  justify-content: center;
+`;

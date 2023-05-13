@@ -2,7 +2,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Button } from '@raphaelcamar/ui-lib';
 import { useSnackbar } from 'notistack';
-import { BodyTable, Container, HeaderTable, THead, WrapperBody, WrapperSkeletons } from './styles';
+import { BodyTable, Container, HeaderTable, THead, Td, WrapperBody, WrapperSkeletons } from './styles';
 import { Hide, Skeleton, Tbody, Tr, Typography } from '@/core/ui/components/atoms';
 import { TableRow, AccordionTableRow, AddTransactionDrawer } from '@/transaction/ui/components/molecules';
 import { Transaction } from '@/transaction/domain';
@@ -62,34 +62,34 @@ export const TableTransactions = (): ReactElement => {
         <BodyTable>
           <THead>
             <Tr>
-              <td>
+              <Td>
                 <Typography weight={600}>Tipo</Typography>
-              </td>
+              </Td>
             </Tr>
             <Tr>
-              <td>
+              <Td>
                 <Typography weight={600}>Observação</Typography>
-              </td>
+              </Td>
             </Tr>
             <Tr>
-              <td>
+              <Td>
                 <Typography weight={600}>Status</Typography>
-              </td>
+              </Td>
             </Tr>
             <Tr>
-              <td>
+              <Td>
                 <Typography weight={600}>Tópico</Typography>
-              </td>
+              </Td>
             </Tr>
             <Tr>
-              <td>
+              <Td>
                 <Typography weight={600}>Valor</Typography>
-              </td>
+              </Td>
             </Tr>
             <Tr>
-              <td>
+              <Td>
                 <Typography weight={600}>Ações</Typography>
-              </td>
+              </Td>
             </Tr>
           </THead>
           <Tbody>
