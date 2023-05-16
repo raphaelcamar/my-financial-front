@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { Transaction } from '@/transaction/domain';
 import { Response } from '../infra';
-import { TransactionMockBuilder } from './transaction';
+import { TransactionBuilder } from './transaction';
 import { formatDateBR } from '@/core/utils';
 
 export class StatisticsMockBuilder {
@@ -22,7 +22,7 @@ export class StatisticsMockBuilder {
       filter: this.getRandomFilters(),
       statistics: {
         average: this.getRandomValue(),
-        mostSpent: { ...new TransactionMockBuilder().transaction },
+        mostSpent: { ...TransactionBuilder.build() },
         total: this.getRandomValue(),
         totalFilter: this.getRandomValue(),
       },

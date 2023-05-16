@@ -7,6 +7,7 @@ export const getHeaderTitle = (uri: string): string => {
     '/recorrencias-mensais': 'Recorrências Mensais',
     '/tags': 'Tags',
     '/despesas-e-receitas': 'Despesas e receitas',
+    '/': 'Despesas e receitas',
   };
 
   return dataTitle?.[uri] || '';

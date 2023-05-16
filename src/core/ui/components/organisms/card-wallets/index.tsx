@@ -3,7 +3,7 @@ import { usePopper } from 'react-popper';
 import { Wallet } from '@/user/domain';
 import { ClickAwayListener } from '@/core/ui/components/atoms';
 import { IconButton } from '@/core/ui/components/molecules/icon-button';
-import { BodyItem, Container, Item } from './styles';
+import { BodyItem, Circle, Container, Item, Wrapper } from './styles';
 import { formatCurrency } from '@/core/utils';
 
 export type ICardWallets = {
@@ -46,10 +46,13 @@ export const CardWallets = ({ selected, wallets }: ICardWallets): ReactElement =
               {wallets?.map(wallet => (
                 <Fragment key={wallet.id}>
                   <Item selected={Boolean(walletSelected.id === wallet.id)} onClick={() => setWalletSelected(wallet)}>
-                    <BodyItem>
-                      <h3>{wallet.name}</h3>
-                      <span>{formatCurrency(wallet.value, true)}</span>
-                    </BodyItem>
+                    <Wrapper>
+                      <Circle color={wallet.color} />
+                      <BodyItem>
+                        <h3>{wallet.name}</h3>
+                        <span>{formatCurrency(wallet.value, true)}</span>
+                      </BodyItem>
+                    </Wrapper>
                   </Item>
                 </Fragment>
               ))}

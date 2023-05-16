@@ -72,3 +72,18 @@ export const BodyItem = styled.span`
   align-items: center;
   width: 100%;
 `;
+
+export const Circle = styled.div<{ color: string }>`
+  background: ${({ theme, color }) => theme.palette[color || 'primary'][500]};
+  width: 12px;
+  height: 12px;
+  padding: 8px;
+  border-radius: 50%;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+`;

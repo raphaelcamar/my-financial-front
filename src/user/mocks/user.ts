@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { User } from '@/user/domain';
+import { WalletMockBuilder } from './wallet';
 
 export class UserMockBuilder {
   public user: User.Data;
@@ -18,7 +19,13 @@ export class UserMockBuilder {
       pictureUrl: faker.image.avatar(),
       profession: faker.name.jobTitle(),
       salary: faker.datatype.number({ max: 9999999, min: 99999 }),
-      wallets: [],
+      wallets: [
+        new WalletMockBuilder().wallet,
+        new WalletMockBuilder().wallet,
+        new WalletMockBuilder().wallet,
+        new WalletMockBuilder().wallet,
+      ],
+      currentWallet: new WalletMockBuilder().wallet,
     };
   }
 }
