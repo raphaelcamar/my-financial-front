@@ -5,10 +5,10 @@ import { Icon } from '@/core/domain';
 export const TransactionDashboardIcon: React.FC<Icon> = ({ color }) => {
   const theme = useThemeContext();
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="4" width="20" height="7" fill={color || theme.palette.grey[400]} />
-      <rect x="2" y="13" width="11" height="7" fill={color || theme.palette.grey[400]} />
-      <rect x="15" y="13" width="7" height="7" fill={color || theme.palette.grey[400]} />
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9.16732 1.6665H0.833984V4.58317H9.16732V1.6665Z" fill={color || theme.palette.grey[400]} />
+      <path d="M5.41732 5.4165H0.833984V8.33317H5.41732V5.4165Z" fill={color || theme.palette.grey[400]} />
+      <path d="M9.16667 5.4165H6.25V8.33317H9.16667V5.4165Z" fill={color || theme.palette.grey[400]} />
     </svg>
   );
 };

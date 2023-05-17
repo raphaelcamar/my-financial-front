@@ -6,12 +6,10 @@ export const AddIcon: React.FC<Icon> = ({ color, dataTestId }) => {
   const theme = useThemeContext();
 
   return (
-    <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
-        d="M5.05422 9V5M5.05422 5V1M5.05422 5H9.10843M5.05422 5H1"
+        d="M4.59386 9V5M4.59386 5V1M4.59386 5H8.2795M4.59386 5H0.908203"
         stroke={color || theme.palette.grey[400]}
-        strokeWidth="2"
-        strokeLinecap="round"
       />
     </svg>
   );

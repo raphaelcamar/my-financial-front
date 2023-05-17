@@ -5,21 +5,18 @@ import { Icon } from '@/core/domain';
 export const MoreOptionIcon: React.FC<Icon> = ({ color }) => {
   const theme = useThemeContext();
   return (
-    <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
-        d="M1 2C1 2.55228 1.44772 3 2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2Z"
+        d="M4.5 1C4.5 1.27614 4.72386 1.5 5 1.5C5.27614 1.5 5.5 1.27614 5.5 1C5.5 0.72386 5.27614 0.5 5 0.5C4.72386 0.5 4.5 0.72386 4.5 1Z"
         stroke={color || theme.palette.grey[400]}
-        strokeWidth="2"
       />
       <path
-        d="M1 10C1 10.5523 1.44772 11 2 11C2.55228 11 3 10.5523 3 10C3 9.44772 2.55228 9 2 9C1.44772 9 1 9.44772 1 10Z"
+        d="M4.5 5C4.5 5.27615 4.72386 5.5 5 5.5C5.27614 5.5 5.5 5.27615 5.5 5C5.5 4.72386 5.27614 4.5 5 4.5C4.72386 4.5 4.5 4.72386 4.5 5Z"
         stroke={color || theme.palette.grey[400]}
-        strokeWidth="2"
       />
       <path
-        d="M1 18C1 18.5523 1.44772 19 2 19C2.55228 19 3 18.5523 3 18C3 17.4477 2.55228 17 2 17C1.44772 17 1 17.4477 1 18Z"
+        d="M4.5 9C4.5 9.27615 4.72386 9.5 5 9.5C5.27614 9.5 5.5 9.27615 5.5 9C5.5 8.72385 5.27614 8.5 5 8.5C4.72386 8.5 4.5 8.72385 4.5 9Z"
         stroke={color || theme.palette.grey[400]}
-        strokeWidth="2"
       />
     </svg>
   );

@@ -6,11 +6,18 @@ export const PersonIcon: React.FC<Icon> = ({ color }) => {
   const theme = useThemeContext();
 
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 10C5.33 10 0 11.34 0 14V16H16V14C16 11.34 10.67 10 8 10Z"
-        fill={color || theme.palette.grey[400]}
-      />
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_2147_3627)">
+        <path
+          d="M5 5C6.38125 5 7.5 3.88125 7.5 2.5C7.5 1.11875 6.38125 0 5 0C3.61875 0 2.5 1.11875 2.5 2.5C2.5 3.88125 3.61875 5 5 5ZM5 6.25C3.33125 6.25 0 7.0875 0 8.75V10H10V8.75C10 7.0875 6.66875 6.25 5 6.25Z"
+          fill={color || theme.palette.grey[400]}
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_2147_3627">
+          <rect width="10" height="10" fill="white" />
+        </clipPath>
+      </defs>
     </svg>
   );
 };

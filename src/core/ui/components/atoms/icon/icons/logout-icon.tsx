@@ -5,13 +5,18 @@ import { Icon } from '@/core/domain';
 export const LogoutIcon: React.FC<Icon> = ({ color }) => {
   const theme = useThemeContext();
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M0 1.77778C0 0.8 0.799822 0 1.77738 0H8.88691V1.77778H1.77738V14.2222H8.88691V16H1.77738C0.799822 16 0 15.2 0 14.2222V1.77778ZM12.5981 7.11111L10.3444 4.85689L11.601 3.6L16 8L11.601 12.4L10.3444 11.1431L12.5981 8.88889H6.74517V7.11111H12.5981Z"
-        fill={color || theme.palette.grey[400]}
-      />
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_2147_3603)">
+        <path
+          d="M0 1.11111C0 0.5 0.499889 0 1.11086 0H5.55432V1.11111H1.11086V8.88888H5.55432V10H1.11086C0.499889 10 0 9.5 0 8.88888V1.11111ZM7.87381 4.44444L6.46525 3.03556L7.25062 2.25L10 5L7.25062 7.75L6.46525 6.96444L7.87381 5.55556H4.21573V4.44444H7.87381Z"
+          fill={color || theme.palette.grey[400]}
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_2147_3603">
+          <rect width="10" height="10" fill="white" />
+        </clipPath>
+      </defs>
     </svg>
   );
 };

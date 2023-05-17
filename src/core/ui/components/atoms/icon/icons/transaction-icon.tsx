@@ -5,14 +5,18 @@ import { useThemeContext } from '@/core/presenters/contexts/styled-theme/themes/
 export const TransactionIcon: React.FC<Icon> = ({ color }) => {
   const theme = useThemeContext();
   return (
-    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M4.4 1V18M4.4 1L7.8 4.77778M4.4 1L1 4.77778M14.6 18V1M14.6 18L18 14.2222M14.6 18L11.2 14.2222"
-        stroke={color || theme.palette.grey[400]}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_2147_3653)">
+        <path
+          d="M2.31486 0.526367V9.47374M2.31486 0.526367L4.10434 2.51467M2.31486 0.526367L0.525391 2.51467M7.68329 9.47374V0.526367M7.68329 9.47374L9.47276 7.48542M7.68329 9.47374L5.89381 7.48542"
+          stroke={color || theme.palette.grey[400]}
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_2147_3653">
+          <rect width="10" height="10" fill="white" />
+        </clipPath>
+      </defs>
     </svg>
   );
 };

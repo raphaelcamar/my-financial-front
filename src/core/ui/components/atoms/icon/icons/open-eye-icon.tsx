@@ -5,21 +5,22 @@ import { useThemeContext } from '@/core/presenters/contexts/styled-theme/themes/
 export const OpenEyeIconIcon: React.FC<Icon> = ({ color }) => {
   const theme = useThemeContext();
   return (
-    <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M20.2565 6.962C20.7305 7.582 20.7305 8.419 20.2565 9.038C18.7635 10.987 15.1815 15 10.9995 15C6.81752 15 3.23552 10.987 1.74252 9.038C1.51191 8.74113 1.38672 8.37592 1.38672 8C1.38672 7.62408 1.51191 7.25887 1.74252 6.962C3.23552 5.013 6.81752 1 10.9995 1C15.1815 1 18.7635 5.013 20.2565 6.962V6.962Z"
-        stroke={color || theme.palette.grey[400]}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11 11C12.6569 11 14 9.65685 14 8C14 6.34315 12.6569 5 11 5C9.34315 5 8 6.34315 8 8C8 9.65685 9.34315 11 11 11Z"
-        stroke={color || theme.palette.grey[400]}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_2147_3622)">
+        <path
+          d="M9.03225 4.52836C9.2477 4.81018 9.2477 5.19063 9.03225 5.472C8.35361 6.35791 6.72543 8.182 4.82452 8.182C2.92362 8.182 1.29544 6.35791 0.616805 5.472C0.511983 5.33705 0.455078 5.17105 0.455078 5.00018C0.455078 4.8293 0.511983 4.6633 0.616805 4.52836C1.29544 3.64245 2.92362 1.81836 4.82452 1.81836C6.72543 1.81836 8.35361 3.64245 9.03225 4.52836Z"
+          stroke={color || theme.palette.grey[400]}
+        />
+        <path
+          d="M4.82457 6.3635C5.57771 6.3635 6.18821 5.75298 6.18821 4.99987C6.18821 4.24675 5.57771 3.63623 4.82457 3.63623C4.07146 3.63623 3.46094 4.24675 3.46094 4.99987C3.46094 5.75298 4.07146 6.3635 4.82457 6.3635Z"
+          stroke={color || theme.palette.grey[400]}
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_2147_3622">
+          <rect width="10" height="10" fill="white" />
+        </clipPath>
+      </defs>
     </svg>
   );
 };

@@ -144,9 +144,7 @@ const BellBallIcon = React.lazy(
 const LogoNewIcon = React.lazy(
   async () => import(/* webpackChunkName: "logoNew" */ '@/core/ui/components/atoms/icon/icons/logo-new-icon')
 );
-const LogoSmallIcon = React.lazy(
-  async () => import(/* webpackChunkName: "logoSmall" */ '@/core/ui/components/atoms/icon/icons/logo-small-icon')
-);
+
 const LogoutIcon = React.lazy(
   async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/logout-icon')
 );
@@ -175,7 +173,6 @@ export const Icons = {
   lineArrowDown: LineArrowDownIcon,
   lineArrowUp: LineArrowUpIcon,
   logo: LogoNewIcon,
-  logoSmall: LogoSmallIcon,
   logout: LogoutIcon,
   mail: MailIcon,
   miniArrowDown: MiniArrowDownIcon,

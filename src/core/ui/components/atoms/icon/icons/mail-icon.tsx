@@ -5,9 +5,9 @@ import { useThemeContext } from '@/core/presenters/contexts/styled-theme/themes/
 export const MailIcon: React.FC<Icon> = ({ color }) => {
   const theme = useThemeContext();
   return (
-    <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
-        d="M18 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 4L10 9L2 4V2L10 7L18 2V4Z"
+        d="M9 1H1C0.45 1 0.005 1.45 0.005 2L0 8C0 8.55 0.45 9 1 9H9C9.55 9 10 8.55 10 8V2C10 1.45 9.55 1 9 1ZM9 3L5 5.5L1 3V2L5 4.5L9 2V3Z"
         fill={color || theme.palette.grey[400]}
       />
     </svg>
