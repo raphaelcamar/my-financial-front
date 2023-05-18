@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Typography } from '@/core/ui/components/atoms';
+import { Modal, TextEllipsis, Typography } from '@/core/ui/components/atoms';
 import { ActionButtons, StyledButton, Wrapper, Information } from './styles';
 import { Transaction } from '@/transaction/domain';
 import { Chip } from '@/core/ui/components/molecules';
@@ -31,9 +31,11 @@ export const ModalDeleteTransaction: React.FC<IModalDeleteTransaction> = ({
     <Modal closeModal={onClose} open={openModal} title="Deseja excluir a transação?">
       <Wrapper>
         <Information>
-          <Typography color="grey" weight={500} size="normal">
-            {data?.anotation}
-          </Typography>
+          <TextEllipsis>
+            <Typography color="grey" weight={500} size="normal">
+              {data?.anotation}
+            </Typography>
+          </TextEllipsis>
           <Typography color="grey" weight={200}>
             {data?.billedAt ? formatDateBR(String(data?.billedAt)) : '-'}
           </Typography>

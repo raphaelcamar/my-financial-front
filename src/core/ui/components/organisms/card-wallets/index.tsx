@@ -39,7 +39,7 @@ export const CardWallets = ({ selected, wallets }: ICardWallets): ReactElement =
               icon="wallet"
               color="grey"
               shade="50"
-              iconProps={{ color: 'primary', shade: '500', size: 22 }}
+              iconProps={{ color: 'primary', shade: '500', size: 18 }}
               onClick={() => setMenuOpen(!menuOpen)}
             />
             <Container open={menuOpen} ref={setPopperElement} style={{ ...styles.popper }} {...attributes.popper}>

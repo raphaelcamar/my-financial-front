@@ -31,4 +31,5 @@ export const Information = styled.div`
   display: flex;
   gap: 12px;
   flex-direction: column;
+  max-width: 250px;
 `;

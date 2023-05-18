@@ -8,11 +8,14 @@ export const WrapperIcon = styled.div<WrapperIconType>`
   display: flex;
   align-items: center;
   justify-content: center;
-  ${({ size }) =>
-    size
-      ? css`
-          width: ${size}px;
-          height: ${size}px;
-        `
-      : ''}
+
+  & svg {
+    ${({ size }) =>
+      size
+        ? css`
+            width: ${size}px;
+            height: ${size}px;
+          `
+        : ''}
+  }
 `;

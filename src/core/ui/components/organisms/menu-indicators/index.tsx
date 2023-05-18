@@ -24,7 +24,7 @@ export const MenuIndicators = (): ReactElement => {
 
   return (
     <WrapperIconButtons>
-      <IconButton icon="bellBall" color="grey" shade="50" iconProps={{ color: 'primary', shade: '500', size: 24 }} />
+      <IconButton icon="bellBall" color="grey" shade="50" iconProps={{ color: 'primary', shade: '500', size: 18 }} />
       {user && <CardWallets wallets={user?.wallets} selected={currentWallet} />}
       <WrapperRevenue>
         <ReadonlyInput
@@ -33,7 +33,7 @@ export const MenuIndicators = (): ReactElement => {
           value={formatCurrency(walletValue || 0, true)}
         />
         <WrapperIcon onClick={() => setCurrencyOpen(!currencyOpen)}>
-          <Icon icon={currencyOpen ? 'openEye' : 'closeEye'} color="primary" shade="500" />
+          <Icon icon={currencyOpen ? 'openEye' : 'closeEye'} color="primary" shade="500" size={16} />
         </WrapperIcon>
       </WrapperRevenue>
     </WrapperIconButtons>
