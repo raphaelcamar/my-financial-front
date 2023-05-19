@@ -70,4 +70,23 @@ export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesReposit
 
     return new Transaction(body);
   }
+
+  async update(transaction: Transaction.Data): Promise<Transaction> {
+    const http = new RequestHttpRepository<Transaction.Response, Transaction.Data>(`${process.env.BASE_URL}/v2`);
+
+    const adapter = new TransactionAdapter();
+
+    const adaptee = adapter.request(transaction);
+
+    const { body } = await http.request({
+      method: 'put',
+      url: `transaction`,
+      body: adaptee,
+      headers: {
+        'wallet-id': transaction.walletId,
+      },
+    });
+
+    return new Transaction(body);
+  }
 }

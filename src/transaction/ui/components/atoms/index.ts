@@ -6,3 +6,4 @@ export * from './indicator-card';
 export * from './line-flag';
 export * from './add-spent-form';
 export * from './add-entrance-form';
+export * from './modal-edit-transaction';

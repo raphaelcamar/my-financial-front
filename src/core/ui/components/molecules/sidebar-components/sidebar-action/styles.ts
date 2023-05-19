@@ -23,7 +23,7 @@ export const IconWrapper = styled.div<SideBarActionType>`
   background: ${({ theme }) => theme.palette.primary[50]};
   box-shadow: 0px 0 0px 0px rgb(0 0 0 / 20%), 0px 0px 2px 0px rgb(0 0 0 / 14%), 0px 0px 6px 1px rgb(0 0 0 / 12%);
   border-radius: 50%;
-  padding: 12px 10px;
+  padding: 10px 10px;
   position: fixed;
   left: 0px;
   margin-top: 32px;

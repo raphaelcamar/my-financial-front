@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useMemo, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSnackbar } from 'notistack';
@@ -59,9 +59,10 @@ export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
     }
   };
 
-  const walletOptions: SelectType<string>[] = user?.wallets
-    ? user?.wallets?.map(wallet => ({ text: `${wallet.name}`, value: wallet.id }))
-    : [];
+  const walletOptions: SelectType<string>[] = useMemo(
+    () => (user?.wallets ? user?.wallets?.map(wallet => ({ text: `${wallet.name}`, value: wallet.id })) : []),
+    [user]
+  );
 
   const statusOptions: SelectType<TypeStatus>[] = [
     {

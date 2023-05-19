@@ -5,7 +5,6 @@ import { useSnackbar } from 'notistack';
 import { BodyTable, Container, HeaderTable, THead, Td, WrapperBody, WrapperSkeletons } from './styles';
 import { Hide, Skeleton, Tbody, Tr, Typography } from '@/core/ui/components/atoms';
 import { TableRow, AccordionTableRow, AddTransactionDrawer } from '@/transaction/ui/components/molecules';
-import { Transaction } from '@/transaction/domain';
 import { useAccessContext } from '@/user/presenters';
 import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/spents-and-revenues/context';
 import { EmptyState } from '@/core/ui/components/molecules';
@@ -33,14 +32,6 @@ export const TableTransactions = (): ReactElement => {
   useEffect(() => {
     if (currentWallet) fetchTransactions();
   }, [currentWallet]);
-
-  const handleEdit = async (transaction: Transaction): Promise<void> => {
-    try {
-      // TODO
-    } catch (err) {
-      // TODO
-    }
-  };
 
   return (
     <Container>
@@ -97,7 +88,7 @@ export const TableTransactions = (): ReactElement => {
               {transactions.map(transaction => (
                 <td key={transaction._id}>
                   <Hide breakpoint="sm" direction="down">
-                    <TableRow handleEdit={handleEdit} transaction={transaction} />
+                    <TableRow transaction={transaction} />
                   </Hide>
                   <Hide breakpoint="sm" direction="up">
                     <AccordionTableRow transaction={transaction} />

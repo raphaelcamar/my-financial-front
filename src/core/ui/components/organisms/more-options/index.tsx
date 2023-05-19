@@ -43,6 +43,9 @@ export const MoreOptions = ({ items, closeOnSelectIitem }: IMoreOptions): ReactE
         noBackground
         onClick={() => setOpen(!open)}
         ref={setReferenceElement}
+        iconProps={{
+          size: 18,
+        }}
       />
       {open ? (
         <Popup ref={setPopperElement} open={open} style={styles.popper} {...attributes.popper}>

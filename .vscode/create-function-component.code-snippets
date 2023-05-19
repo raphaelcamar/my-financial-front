@@ -3,14 +3,8 @@
     "prefix": "sptComponent",
     "body": [
       "import React, { ReactElement } from 'react';",
-
-     " const defaultProps = {};",
-      
-      "type I$1 = {} & typeof defaultProps;",
-      
-      "export const $1 = ({ handleDelete, name }: I$1): ReactElement => {};",
-      
-      "$1.defaultProps = defaultProps;"
+      "export const $1 = (): ReactElement => {};",
+    
     ]
   }
 }

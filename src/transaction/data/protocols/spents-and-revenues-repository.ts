@@ -5,4 +5,5 @@ export interface SpentsAndRevenuesRepository {
   delete(transactionId: string, walletId: string): Promise<void>;
   getIndicators(walletId: string, query: string): Promise<{ spent: Indicator; entrance: Indicator }>;
   create(transaction: Transaction.Data): Promise<Transaction>;
+  update(transaction: Transaction.Data): Promise<Transaction>;
 }

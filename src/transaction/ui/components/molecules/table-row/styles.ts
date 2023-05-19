@@ -11,7 +11,7 @@ export const IconIndicator = styled.span`
   justify-content: center;
 `;
 
-export const Row = styled.div`
+export const Row = styled.div<{ open: boolean }>`
   width: 100%;
   display: grid;
   align-items: center;

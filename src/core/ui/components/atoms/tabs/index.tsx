@@ -1,5 +1,6 @@
 import React, { ReactElement, ReactNode, useState } from 'react';
 import { Container, Item, TabContainer, TabItems } from './styles';
+import { randomId } from '@/core/utils';
 
 export type TabItem = {
   id: string;
@@ -22,7 +23,7 @@ export const Tabs = ({ tabs }: ITabs): ReactElement => {
       <TabItems>
         {tabs.map(tab => (
           <Item
-            key={tab.id}
+            key={randomId()}
             firstItem={firstItem === tab.id}
             length={tabs.length}
             type="button"

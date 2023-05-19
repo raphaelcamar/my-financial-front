@@ -9,7 +9,7 @@ interface IFigure {
 export const Figure: React.FC<IFigure> = ({ type }) => (
   <Root>
     <Format>
-      <Icon icon={type as AvailableIcons} color="primary" shade="main" />
+      <Icon icon={type as AvailableIcons} color="primary" shade="main" size={442} />
     </Format>
     <Blur />
   </Root>

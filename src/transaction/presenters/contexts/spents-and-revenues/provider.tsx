@@ -1,7 +1,13 @@
 import React, { ReactElement, useReducer, useState } from 'react';
 import { initialState, reducer } from './reducers';
 import { SpentsAndRevenuesContext } from './context';
-import { CreateTransaction, DeleteTransaction, GetIndicators, GetTransactions } from '@/transaction/data';
+import {
+  CreateTransaction,
+  DeleteTransaction,
+  GetIndicators,
+  GetTransactions,
+  UpdateTransaction,
+} from '@/transaction/data';
 import { fetchDeleteTransaction, fetchFilterTransaction, fetchGetTransactions, fetchIndicators } from './actions';
 import { delay } from '@/core/utils';
 import { Transaction } from '@/transaction/domain';
@@ -59,6 +65,18 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
     dispatch(fetchGetTransactions(transactions));
   };
 
+  const updateTransaction = async (transactionData: Transaction.Data): Promise<void> => {
+    const transactionRepository = new SpentsAndRevenuesRepositoryData();
+
+    const useCase = new UpdateTransaction(transactionRepository, transactionData, state.transactions);
+    await useCase.execute();
+
+    const getTransactionsUseCase = new GetTransactions(transactionRepository, transactionData.walletId, state.filter);
+    const transactions = await getTransactionsUseCase.execute();
+
+    dispatch(fetchGetTransactions(transactions));
+  };
+
   return (
     <SpentsAndRevenuesContext.Provider
       value={{
@@ -69,6 +87,7 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
         deleteTransaction,
         getIndicators,
         createTransaction,
+        updateTransaction,
         setFilter,
         filter: state.filter,
         indicators: state.indicators,

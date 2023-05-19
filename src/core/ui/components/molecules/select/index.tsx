@@ -19,7 +19,7 @@ interface ISelectProps {
   helperText?: string;
   error?: boolean;
   name: string;
-  value: string;
+  value?: string;
   defaultValue?: string;
   setValue?: (name: string, option: any) => void;
   placeholder?: string;

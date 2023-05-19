@@ -10,7 +10,7 @@ interface IInputMask extends IInput {
   mask: AvailableMasks;
   label: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  defaultValue?: string;
+  defaultValue?: number;
 }
 
 const availableMasks = {
@@ -43,7 +43,7 @@ export const InputMask: React.FC<IInputMask> = ({
       helperText={helperText}
       error={error}
       onChange={e => handleChangeInput(e)}
-      defaultValue={defaultValue && getMaskForDefaultValue[mask](defaultValue)}
+      defaultValue={defaultValue && getMaskForDefaultValue[mask](defaultValue as any)}
       {...props}
     />
   );

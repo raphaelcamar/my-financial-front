@@ -1,9 +1,9 @@
 import { Transaction } from '@/transaction/domain';
-import { TransactionRepository } from '@/transaction/data/protocols';
+import { SpentsAndRevenuesRepository } from '@/transaction/data/protocols';
 
 export class UpdateTransaction {
   constructor(
-    private transactionRepository: TransactionRepository,
+    private transactionRepository: SpentsAndRevenuesRepository,
     private transaction: Transaction.Data,
     private transactions: Transaction[]
   ) {}
