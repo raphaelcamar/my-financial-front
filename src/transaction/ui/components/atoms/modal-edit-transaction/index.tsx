@@ -180,7 +180,7 @@ export const ModalEditTransaction = ({
           <InputSelectHorizontal
             name="paymentType"
             setValue={setValue}
-            label="Tópico"
+            label="Tipo de pagamento"
             helperText={errors?.paymentType?.message}
             error={!!errors?.paymentType?.message}
             items={isSpent ? paymentTypeOptionsSpent : paymentTypeOptionsEntrance}

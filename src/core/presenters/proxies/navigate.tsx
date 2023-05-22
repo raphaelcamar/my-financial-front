@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-import type { NavigateProps } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { NavigateProps, useNavigate } from 'react-router';
 
 export const Navigate: React.FC<NavigateProps> = ({ to, replace, state }) => {
   const navigate = useNavigate();

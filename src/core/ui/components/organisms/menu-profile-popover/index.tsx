@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { ClickAwayListener, Hide, Icon, Typography } from '@/core/ui/components/atoms';
 import { Avatar, MenuItem } from '@/core/ui/components/molecules';
 import { Menu, Popover, Wrapper, PhotoName, WrapperIcon, WrapperMenuItem, Border } from './styles';

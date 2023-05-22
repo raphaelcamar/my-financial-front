@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
-import { Button } from '@raphaelcamar/ui-lib';
 import { createPortal } from 'react-dom';
 import { Container, WrapperSaveBar } from './styles';
 import { Typography } from '../../atoms';
+import { Button } from '../../molecules';
 
 type ISaveBar = {
   saveChanges: () => void;

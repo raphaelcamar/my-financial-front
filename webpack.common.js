@@ -19,7 +19,8 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      '@': path.join(__dirname, 'src')
+      '@': path.join(__dirname, 'src'),
+      react: path.resolve('./node_modules/react')
     }
   },
   module: {
@@ -41,7 +42,6 @@ module.exports = {
   },
   devServer: {
     static: './public',
-    hot: true,
     historyApiFallback: true,
     devMiddleware: {
       writeToDisk: true

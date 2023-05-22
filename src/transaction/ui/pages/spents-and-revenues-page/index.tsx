@@ -13,7 +13,7 @@ export const SpentsAndRevenuesPage = (): ReactElement => (
       <WrapperGridItem>
         <CloseMonth />
         <Indicators />
-        <div>Histórico</div>
+        {/* <div>Histórico</div> */}
       </WrapperGridItem>
     </Container>
   </SpentsAndRevenuesProvider>
