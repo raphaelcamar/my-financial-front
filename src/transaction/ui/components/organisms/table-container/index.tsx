@@ -12,7 +12,6 @@ import { tableHeaderData } from '@/transaction/utils/data';
 import { ModalDeleteTransaction, TableActions } from '@/transaction/ui/components/atoms';
 import { Transaction } from '@/transaction/domain';
 import { TableTransaction, DrawerTransaction } from '@/transaction/ui/components/molecules';
-import { TransactionMockBuilder } from '@/transaction/mocks';
 
 export const TableContainer: React.FC = () => {
   const { getTransactions, deleteTransaction, setTransactionLoader, transactions, transactionLoader } =

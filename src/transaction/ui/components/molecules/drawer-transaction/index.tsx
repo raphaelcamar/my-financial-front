@@ -127,7 +127,7 @@ export const DrawerTransaction: React.FC<IDrawerTransaction> = ({ openModal, set
           name="billedAt"
           render={({ field: { value, onChange } }) => (
             <InputMask
-              defaultValue={formatDateBR(defaultValues?.billedAt.toString())}
+              defaultValue={Number(formatDateBR(defaultValues?.billedAt.toString()))}
               error={!!errors?.billedAt}
               helperText={errors?.billedAt?.message}
               label="Data"
@@ -144,7 +144,7 @@ export const DrawerTransaction: React.FC<IDrawerTransaction> = ({ openModal, set
           name="cost"
           render={({ field: { onChange } }) => (
             <InputMask
-              defaultValue={String(defaultValues?.cost)}
+              defaultValue={defaultValues?.cost}
               error={!!errors?.cost}
               helperText={errors?.cost?.message}
               label="Valor"

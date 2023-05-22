@@ -1,8 +1,8 @@
 import 'styled-components';
 
 export type BackgroundProps = {
-  paper: string;
-  default: string;
+  paper?: string;
+  default?: string;
 };
 
 export type VariantProps = BackgroundProps & {

@@ -25,69 +25,55 @@ export const TransactionProvider: React.FC = ({ children }) => {
   const [transactionLoader, setTransactionLoader] = useState<boolean>(false);
 
   const createTransaction = async (transactionData: Transaction.Data): Promise<void> => {
-    const transactionRepository = new TransactionRepositoryData();
-
-    const useCase = new CreateTransaction(transactionData, transactionRepository);
-    await useCase.execute();
-
-    const getTransactions = new GetTransactions(transactionRepository, transactionData.walletId, state.filter);
-    const result = await getTransactions.execute();
-
-    dispatch(fetchCreateTransaction(result));
+    // const transactionRepository = new TransactionRepositoryData();
+    // const useCase = new CreateTransaction(transactionRepository, transactionData);
+    // await useCase.execute();
+    // const getTransactions = new GetTransactions(transactionRepository, transactionData.walletId, state.filter);
+    // const result = await getTransactions.execute();
+    // dispatch(fetchCreateTransaction(result));
   };
 
   const getTransactions = async (filter: Transaction.Filter, walletId: string): Promise<void> => {
-    setTransactionLoader(true);
-    const transactionRepository = new TransactionRepositoryData();
-
-    const useCase = new GetTransactions(transactionRepository, walletId, filter);
-
-    const transactions = await useCase.execute();
-
-    dispatch(fetchGetTransactions(transactions));
-    dispatch(fetchFilterTransaction(filter));
-
-    setTransactionLoader(false);
+    // setTransactionLoader(true);
+    // const transactionRepository = new TransactionRepositoryData();
+    // const useCase = new GetTransactions(transactionRepository, walletId, filter);
+    // const transactions = await useCase.execute();
+    // dispatch(fetchGetTransactions(transactions));
+    // dispatch(fetchFilterTransaction(filter));
+    // setTransactionLoader(false);
   };
 
   const getTransactionsV2 = async (filter: Transaction.Filter, walletId: string): Promise<void> => {
-    setTransactionLoader(true);
-    const transactionRepository = new TransactionRepositoryData();
-
-    const useCase = new GetTransactions(transactionRepository, walletId, filter);
-    const transactions = await useCase.execute();
-    await delay(2000);
-    dispatch(fetchGetTransactions(transactions));
-    dispatch(fetchFilterTransaction(filter));
-
-    setTransactionLoader(false);
+    // setTransactionLoader(true);
+    // const transactionRepository = new TransactionRepositoryData();
+    // const useCase = new GetTransactions(transactionRepository, walletId, filter);
+    // const transactions = await useCase.execute();
+    // await delay(2000);
+    // dispatch(fetchGetTransactions(transactions));
+    // dispatch(fetchFilterTransaction(filter));
+    // setTransactionLoader(false);
   };
 
   const deleteTransaction = async (transactionId: string, walletId: string): Promise<void> => {
-    const transactionRepository = new TransactionRepositoryData();
-
-    const useCase = new DeleteTransaction(transactionRepository, transactionId, walletId, state.transactions);
-    const filteredTransactions = await useCase.execute();
-    dispatch(fetchDeleteTransaction(filteredTransactions));
+    // const transactionRepository = new TransactionRepositoryData();
+    // const useCase = new DeleteTransaction(transactionRepository, transactionId, walletId, state.transactions);
+    // const filteredTransactions = await useCase.execute();
+    // dispatch(fetchDeleteTransaction(filteredTransactions));
   };
 
   const updateTransaction = async (transaction: Transaction.Data): Promise<void> => {
-    const transactionRepository = new TransactionRepositoryData();
-
-    const useCase = new UpdateTransaction(transactionRepository, transaction, state.transactions);
-
-    const filteredTransactions = await useCase.execute();
-
-    dispatch(fetchUpdateTransaction(filteredTransactions));
+    // const transactionRepository = new TransactionRepositoryData();
+    // const useCase = new UpdateTransaction(transactionRepository, transaction, state.transactions);
+    // const filteredTransactions = await useCase.execute();
+    // dispatch(fetchUpdateTransaction(filteredTransactions));
   };
 
   const getStatisticsByFilter = async (filter: Transaction.Filter): Promise<void> => {
-    const transactionRepository = new TransactionRepositoryData();
-
-    const useCase = new GetTransactionStatistic(transactionRepository, filter);
-    await delay(500);
-    const statistics = await useCase.execute();
-    dispatch(fetchGetStatistics(statistics));
+    // const transactionRepository = new TransactionRepositoryData();
+    // const useCase = new GetTransactionStatistic(transactionRepository, filter);
+    // await delay(500);
+    // const statistics = await useCase.execute();
+    // dispatch(fetchGetStatistics(statistics));
   };
 
   return (
