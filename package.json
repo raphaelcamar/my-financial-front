@@ -17,7 +17,8 @@
     "generate-2": "node scripts/generate-file.js",
     "madge": "madge --extensions ts,tsx --image graph.svg src/",
     "dependency-graph": "depcruise --include-only \"^src\" --output-type dot src | dot -T svg > dependency-graph.svg",
-    "circular": "madge --circular src/"
+    "circular": "madge --circular src/",
+    "check-updates": "npx npm-check-updates"
   },
   "author": "",
   "license": "ISC",
@@ -40,6 +41,7 @@
     "loglevel": "^1.8.1",
     "madge": "^5.0.1",
     "notistack": "^2.0.3",
+    "npm-check-updates": "^16.10.12",
     "process": "^0.11.10",
     "react": "^17.0.2",
     "react-datepicker": "^4.8.0",
