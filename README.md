@@ -4,7 +4,7 @@
 
 # My financial 
 
-![Pipeline](https://github.com/raphaelcamar/my-financial-front/actions/workflows/pipeline.yml/badge.svg)
+![Production](https://github.com/raphaelcamar/my-financial-front/actions/workflows/production-deployment.yml/badge.svg)
 
 ## Description
 My Financial it´s a app that allows you to control your financial life. The project was started to be a studying base, allowing to apply different solutions and new techonologies, in a very solid code base, always evolving.
