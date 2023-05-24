@@ -4,7 +4,7 @@ html, body{
   background: #FAFAFA
 }
 * {
-  font-family: "Nunito", sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
