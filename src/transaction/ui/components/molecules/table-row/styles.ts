@@ -15,9 +15,10 @@ export const Row = styled.div<{ open: boolean }>`
   width: 100%;
   display: grid;
   align-items: center;
-  grid-template-columns: 0.7fr 3.6fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.7fr 2.6fr 1fr 1fr 1fr 1fr;
   gap: 16px;
   border-radius: 8px;
+  text-align: left;
   cursor: pointer;
   transition: all ease 0.2s;
   &:hover {

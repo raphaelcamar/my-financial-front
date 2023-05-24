@@ -6,9 +6,10 @@ import { FirstRow, IconIndicator, Row, WrapperActionTableButtons } from './style
 import { Transaction } from '@/transaction/domain';
 import { LineFlag, ModalDeleteTransaction, ModalEditTransaction } from '@/transaction/ui/components/atoms';
 import { ColorProps } from '@/main/styled';
-import { formatCurrency, formatTopic } from '@/core/utils';
+import { formatCurrency, formatDate, formatTopic } from '@/core/utils';
 import { useAccessContext } from '@/user/presenters';
 import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/spents-and-revenues/context';
+import { formatPaymentType } from '@/transaction/utils';
 
 type ITableRow = {
   transaction?: Transaction;
@@ -22,8 +23,6 @@ export const TableRow = ({ transaction }: ITableRow): ReactElement => {
   const { currentWallet } = useAccessContext();
   const { deleteTransaction, updateTransaction } = useSpentsAndRevenuesContext();
   const { enqueueSnackbar } = useSnackbar();
-
-  const isFinished = transaction.status === 'FINISHED';
 
   const getColorFlagByType = (): keyof ColorProps => {
     if (transaction.type === 'ENTRANCE') return 'success';
@@ -73,12 +72,17 @@ export const TableRow = ({ transaction }: ITableRow): ReactElement => {
             <Icon icon="wallet" color="grey" shade="50" size={16} />
           </IconIndicator>
         </FirstRow>
-        <TextEllipsis>
-          <Typography type="p">{transaction.anotation}</Typography>
-        </TextEllipsis>
+        <div>
+          <TextEllipsis>
+            <Typography type="p">{transaction.anotation}</Typography>
+          </TextEllipsis>
+          <Typography type="span" size="small" color="grey" shade={400}>
+            {formatPaymentType(transaction.paymentType)}
+          </Typography>
+        </div>
 
-        <Typography type="p" color={isFinished ? 'success' : 'warning'}>
-          {isFinished ? 'Concluído' : 'Pendente'}
+        <Typography type="p" color="grey" shade={400} weight={500}>
+          {formatDate(transaction.billedAt)}
         </Typography>
         <Typography type="p">{formatTopic(transaction.topic)}</Typography>
 

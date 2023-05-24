@@ -19,9 +19,9 @@ export const HeaderTable = styled.header`
 `;
 
 export const BodyTable = styled.table`
-  display: flex;
+  /* display: flex;
   gap: 36px;
-  flex-direction: column;
+  flex-direction: column; */
 `;
 
 export const WrapperSkeletons = styled.div`

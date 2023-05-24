@@ -35,7 +35,7 @@ export const TableTransactions = (): ReactElement => {
     <Container>
       <HeaderTable>
         <Typography size="xlarge" weight={700}>
-          Transações
+          Atividades recentes
         </Typography>
         <Button onClick={() => setOpenModal(true)}>Adicionar</Button>
       </HeaderTable>
@@ -49,38 +49,6 @@ export const TableTransactions = (): ReactElement => {
         </WrapperSkeletons>
       ) : transactions?.length > 0 ? (
         <BodyTable>
-          <THead>
-            <Tr>
-              <Td>
-                <Typography weight={600}>Tipo</Typography>
-              </Td>
-            </Tr>
-            <Tr>
-              <Td>
-                <Typography weight={600}>Observação</Typography>
-              </Td>
-            </Tr>
-            <Tr>
-              <Td>
-                <Typography weight={600}>Status</Typography>
-              </Td>
-            </Tr>
-            <Tr>
-              <Td>
-                <Typography weight={600}>Tópico</Typography>
-              </Td>
-            </Tr>
-            <Tr>
-              <Td>
-                <Typography weight={600}>Valor</Typography>
-              </Td>
-            </Tr>
-            <Tr>
-              <Td>
-                <Typography weight={600}>Ações</Typography>
-              </Td>
-            </Tr>
-          </THead>
           <Tbody>
             <WrapperBody>
               {transactions.map(transaction => (

@@ -2,6 +2,7 @@ import React, { ReactElement, useReducer, useState } from 'react';
 import { initialState, reducer } from './reducers';
 import { SpentsAndRevenuesContext } from './context';
 import {
+  CloseMonth,
   CreateTransaction,
   DeleteTransaction,
   GetIndicators,
@@ -12,6 +13,7 @@ import { fetchDeleteTransaction, fetchFilterTransaction, fetchGetTransactions, f
 import { delay } from '@/core/utils';
 import { Transaction } from '@/transaction/domain';
 import { SpentsAndRevenuesRepositoryData } from '@/transaction/infra/http/spents-and-revenues-repository-data';
+import { MonthlyClosingRepositoryData } from '@/transaction/infra/http/monthly-closing-repository-data';
 
 export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -77,6 +79,14 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
     dispatch(fetchGetTransactions(transactions));
   };
 
+  const closeMonth = async (monthToClose: number, year: number, walletId: string): Promise<void> => {
+    const monthlyCloseRepository = new MonthlyClosingRepositoryData();
+
+    const useCase = new CloseMonth(monthlyCloseRepository, monthToClose, year, walletId);
+
+    await useCase.execute();
+  };
+
   return (
     <SpentsAndRevenuesContext.Provider
       value={{
@@ -91,6 +101,7 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
         setFilter,
         filter: state.filter,
         indicators: state.indicators,
+        closeMonth,
       }}
     >
       {children}

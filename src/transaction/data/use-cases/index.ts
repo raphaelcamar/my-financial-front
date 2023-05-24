@@ -5,3 +5,4 @@ export * from './get-transactions';
 export * from './update-transaction';
 export * from './validator-schemas';
 export * from './get-indicators';
+export * from './close-month';
