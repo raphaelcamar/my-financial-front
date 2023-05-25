@@ -13,19 +13,34 @@ export class AccessRepositoryDataHandlers implements MockContract<AccessReposito
 
   login(): RestHandler<MockedRequest<DefaultRequestBody>> {
     return rest.post(`${this.BASE_URL}/login`, (req, res, ctx) =>
-      res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(new UserMockBuilder().user), ctx.delay(2000))
+      res(
+        ctx.status(HttpSuccessStatusCode.OK),
+        ctx.json(new UserMockBuilder().user),
+        ctx.delay(2000),
+        ctx.set('Access-Control-Allow-Origin', '*')
+      )
     );
   }
 
   subscribe(): RestHandler<MockedRequest<DefaultRequestBody>> {
     return rest.post(`${this.BASE_URL}/subscribe`, (req, res, ctx) =>
-      res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(new UserMockBuilder().user), ctx.delay(2000))
+      res(
+        ctx.status(HttpSuccessStatusCode.OK),
+        ctx.json(new UserMockBuilder().user),
+        ctx.delay(2000),
+        ctx.set('Access-Control-Allow-Origin', '*')
+      )
     );
   }
 
   verifyAccessToken(): RestHandler<MockedRequest<DefaultRequestBody>> {
     return rest.post(`${this.BASE_URL}/verify`, (req, res, ctx) =>
-      res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(new UserMockBuilder().user), ctx.delay(2000))
+      res(
+        ctx.status(HttpSuccessStatusCode.OK),
+        ctx.json(new UserMockBuilder().user),
+        ctx.delay(2000),
+        ctx.set('Access-Control-Allow-Origin', '*')
+      )
     );
   }
 
