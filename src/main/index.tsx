@@ -4,7 +4,8 @@ import './global.css';
 import { Root } from './root';
 import { worker } from '@/core/presenters/request-interceptor';
 
-if (process.env.ENVIRONMENT === 'test') {
+if (process.env.MOCK_REQUEST === 'true') {
+  console.log('Entrou aqui');
   worker.start();
 }
 
