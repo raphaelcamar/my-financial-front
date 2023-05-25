@@ -4,7 +4,7 @@
   "description": "My financial frontend project",
   "scripts": {
     "dev": "webpack server --config webpack.dev.js --port=3000",
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js && npx msw init public",
     "test": "jest",
     "prestart": "npm-link-shared ./node_modules/@raphaelcamar/ui-lib/node_modules . react",
     "test:ci": "jest --ci --forceExit --coverage",
@@ -117,6 +117,6 @@
     "webpack-merge": "^5.8.0"
   },
   "msw": {
-    "workerDirectory": "dist"
+    "workerDirectory": "public"
   }
 }
