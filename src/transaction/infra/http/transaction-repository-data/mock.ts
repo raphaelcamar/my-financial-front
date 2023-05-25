@@ -1,28 +1,24 @@
 import { rest } from 'msw';
 import { HttpSuccessStatusCode } from '@/core/data';
-import { TransactionMockBuilder, StatisticsMockBuilder } from '@/transaction/mocks';
+import { TransactionBuilder, StatisticsMockBuilder } from '@/transaction/mocks';
 
 const BASE_URL = `${process.env.BASE_URL}/transaction`;
 
 const TransactionRepositoryDataHandlers = [
   rest.post(`${BASE_URL}`, (req, res, ctx) =>
-    res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(new TransactionMockBuilder().transaction), ctx.delay(1500))
+    res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(TransactionBuilder.build()), ctx.delay(1500))
   ),
 
   rest.get(`${BASE_URL}`, (req, res, ctx) =>
-    res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(new TransactionMockBuilder().getArray(20)), ctx.delay(1500))
+    res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(TransactionBuilder.getArray(20000)), ctx.delay(1500))
   ),
 
   rest.delete(`${BASE_URL}/:id`, (req, res, ctx) =>
-    res(
-      ctx.status(HttpSuccessStatusCode.NO_CONTENT),
-      ctx.json(new TransactionMockBuilder().getArray(20)),
-      ctx.delay(1500)
-    )
+    res(ctx.status(HttpSuccessStatusCode.NO_CONTENT), ctx.json(TransactionBuilder.getArray(20)), ctx.delay(1500))
   ),
 
   rest.put(`${BASE_URL}/update`, (req, res, ctx) =>
-    res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(new TransactionMockBuilder().getArray(20)), ctx.delay(1500))
+    res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(TransactionBuilder.getArray(20)), ctx.delay(1500))
   ),
 
   rest.get(`${BASE_URL}/statistics`, (req, res, ctx) => {

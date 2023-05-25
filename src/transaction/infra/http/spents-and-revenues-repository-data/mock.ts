@@ -14,7 +14,7 @@ export class SpentsAndRevenuesDataHandlers implements MockContract<SpentsAndReve
 
   getTransactions(): RestHandler<MockedRequest<DefaultRequestBody>> {
     return rest.get(this.BASE_URL, (req, res, ctx) =>
-      res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(TransactionBuilder.getArray(20)), ctx.delay(2000))
+      res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(TransactionBuilder.getArray(1000)), ctx.delay(2000))
     );
   }
 
