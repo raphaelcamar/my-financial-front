@@ -117,6 +117,6 @@
     "webpack-merge": "^5.8.0"
   },
   "msw": {
-    "workerDirectory": "public"
+    "workerDirectory": "dist"
   }
 }
