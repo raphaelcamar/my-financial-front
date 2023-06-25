@@ -13,6 +13,7 @@ interface IProfileProvider {
 
 export const ProfileProvider = ({ children }: PropsWithChildren<IProfileProvider>): React.ReactElement => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const updatePicture = async (picture: Blob): Promise<void> => {
     const profileRepository = new ProfileRepositoryData();
     const cacheRepository = new LocalStorageRepository();

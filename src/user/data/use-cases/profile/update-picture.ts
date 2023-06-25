@@ -12,10 +12,10 @@ export class UpdatePicture {
   async execute() {
     const result = await this.profileRepository.updatePicture(this.picture);
 
-    const user = this.cacheRepository.get<User>('@user');
+    const user = this.cacheRepository.get<User.Data>('@user');
     const picturePreview = URL.createObjectURL(this.picture);
 
-    const updatedPicture: User.Data = { ...user, pictureUrl: picturePreview };
+    const updatedPicture: User = new User({ ...user, pictureUrl: picturePreview });
 
     this.cacheRepository.set('@user', updatedPicture);
     window.dispatchEvent(new Event('storage'));

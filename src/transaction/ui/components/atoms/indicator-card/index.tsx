@@ -34,7 +34,12 @@ export const IndicatorCard = ({ date, description, percentage, type, value }: II
           />
         </Header>
         <Typography color="grey" shade={900} weight={700} size="xlarge">
-          <InputBase value={formatCurrency(value || 0)} type={showMoney ? 'text' : 'password'} readOnly />
+          <InputBase
+            value={formatCurrency(value || 0)}
+            type={showMoney ? 'text' : 'password'}
+            readOnly
+            aria-label={`Valor total de ${type === 'ENTRANCE' ? 'Entradas' : 'Saídas'}`}
+          />
         </Typography>
         {description || '-'}
       </Spacer>

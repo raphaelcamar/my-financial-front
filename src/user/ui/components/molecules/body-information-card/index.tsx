@@ -12,21 +12,27 @@ interface IBodyInformationCard {
 }
 
 export const BodyInformationCard: React.FC<IBodyInformationCard> = ({ user, updatePicture }) => (
-  <CardProfile>
-    <AvatarPosition>
-      <Avatar chooseAvatar size={112} url={user?.pictureUrl || user?.name} updatePicture={updatePicture} />
-    </AvatarPosition>
-    <Inputs>
-      <StyledInputBase readOnly value={user?.getNameAndLastName()} />
-      <StyledInputBase readOnly value={user.getFieldOrEmpty('email')} />
-      <SpaceInputs grid="1fr 1fr">
-        <StyledInputBase readOnly value={user.getFieldOrEmpty('profession')} />
-        <StyledInputBase readOnly value={formatCurrencyDefault(user.getFieldOrEmpty('salary'))} />
-      </SpaceInputs>
-      <SpaceInputs grid="2fr 1fr">
-        <StyledInputBase readOnly value={formatDateBR(user?.birthDate ? String(user.birthDate) : null) || '-'} />
-        <StyledInputBase readOnly value={differenceInYearsDate(user?.birthDate, new Date()) || '-'} />
-      </SpaceInputs>
-    </Inputs>
-  </CardProfile>
+  <>
+    {user ? (
+      <CardProfile>
+        <AvatarPosition>
+          <Avatar chooseAvatar size={112} url={user?.pictureUrl || user?.name} updatePicture={updatePicture} />
+        </AvatarPosition>
+        <Inputs>
+          <StyledInputBase readOnly value={`${user?.name} ${user?.lastname}`} />
+          <StyledInputBase readOnly value={user?.getFieldOrEmpty('email')} />
+          <SpaceInputs grid="1fr 1fr">
+            <StyledInputBase readOnly value={user?.getFieldOrEmpty('profession')} />
+            <StyledInputBase readOnly value={formatCurrencyDefault(user?.getFieldOrEmpty('salary'))} />
+          </SpaceInputs>
+          <SpaceInputs grid="2fr 1fr">
+            <StyledInputBase readOnly value={formatDateBR(user?.birthDate ? String(user.birthDate) : null) || '-'} />
+            <StyledInputBase readOnly value={differenceInYearsDate(user?.birthDate, new Date()) || '-'} />
+          </SpaceInputs>
+        </Inputs>
+      </CardProfile>
+    ) : (
+      <></>
+    )}
+  </>
 );

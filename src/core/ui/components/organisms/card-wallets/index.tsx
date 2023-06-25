@@ -41,6 +41,7 @@ export const CardWallets = ({ selected, wallets }: ICardWallets): ReactElement =
               shade="50"
               iconProps={{ color: 'primary', shade: '500', size: 18 }}
               onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Carteira"
             />
             <Container open={menuOpen} ref={setPopperElement} style={{ ...styles.popper }} {...attributes.popper}>
               {wallets?.map(wallet => (
@@ -50,7 +51,7 @@ export const CardWallets = ({ selected, wallets }: ICardWallets): ReactElement =
                       <Circle color={wallet.color} />
                       <BodyItem>
                         <h3>{wallet.name}</h3>
-                        <span>{formatCurrency(wallet.value, true)}</span>
+                        {/* <span>{formatCurrency(wallet.value, true)}</span> */}
                       </BodyItem>
                     </Wrapper>
                   </Item>

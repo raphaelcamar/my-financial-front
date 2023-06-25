@@ -55,9 +55,15 @@ export const Avatar: React.FC<IAvatar> = ({ url, size, chooseAvatar, updatePictu
       {chooseAvatar || loading ? (
         <ChooseAvatar size={size} open={openOption || loading}>
           <input type="file" accept="image/png, image/jpeg" onChange={handleUploadAvatar} />
-          {loading ? <CircularProgress size={8} color="background" /> : <Icon icon="photo" color="grey" shade="50" />}
+          {loading ? (
+            <CircularProgress size={8} color="background" />
+          ) : (
+            <Icon icon="photo" color="grey" shade="50" size={22} />
+          )}
         </ChooseAvatar>
-      ) : null}
+      ) : (
+        <></>
+      )}
     </WrapperAvatar>
   );
 };

@@ -25,8 +25,6 @@ export const CloseMonth = (): ReactElement => {
         const result = await repository.verify(createFilter(filter), currentWallet?.id);
 
         setIsClosed(result);
-
-        enqueueSnackbar('Mês fechado com sucesso!', { variant: 'success' });
       }
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível buscar o mês', { variant: 'error' });
@@ -43,6 +41,8 @@ export const CloseMonth = (): ReactElement => {
 
       await closeMonth(date.getMonth() + 1, date.getFullYear(), currentWallet.id);
       await fetchIfIsClosed();
+
+      enqueueSnackbar('Mês fechado com sucesso!', { variant: 'success' });
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível fechar o mês', { variant: 'error' });
     } finally {
@@ -57,6 +57,7 @@ export const CloseMonth = (): ReactElement => {
   return (
     <Container>
       <Button
+        aria-label={isClosed ? 'Mês fechado' : 'Fechar mês'}
         style={{ width: '100%' }}
         disabled={isClosed || loading}
         loading={loading}

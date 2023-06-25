@@ -12,7 +12,7 @@ export const MenuIndicators = (): ReactElement => {
 
   const { connection } = useSocketContext();
 
-  const [currencyOpen, setCurrencyOpen] = useState<boolean>(false);
+  const [currencyOpen, setCurrencyOpen] = useState<boolean>(true);
 
   useEffect(() => {
     if (connection) {
@@ -24,15 +24,25 @@ export const MenuIndicators = (): ReactElement => {
 
   return (
     <WrapperIconButtons>
-      <IconButton icon="bellBall" color="grey" shade="50" iconProps={{ color: 'primary', shade: '500', size: 18 }} />
+      <IconButton
+        icon="bellBall"
+        color="grey"
+        shade="50"
+        iconProps={{ color: 'primary', shade: '500', size: 18 }}
+        aria-label="Notificações"
+      />
       {user && <CardWallets wallets={user?.wallets} selected={currentWallet} />}
       <WrapperRevenue>
         <ReadonlyInput
           type={currencyOpen ? 'text' : 'password'}
           readOnly
+          aria-label="Valor da carteira"
           value={formatCurrency(walletValue || 0, true)}
         />
-        <WrapperIcon onClick={() => setCurrencyOpen(!currencyOpen)}>
+        <WrapperIcon
+          onClick={() => setCurrencyOpen(!currencyOpen)}
+          aria-label={currencyOpen ? 'Mostrar valor da carteira' : 'Esconder valor da carteira'}
+        >
           <Icon icon={currencyOpen ? 'openEye' : 'closeEye'} color="primary" shade="500" size={16} />
         </WrapperIcon>
       </WrapperRevenue>

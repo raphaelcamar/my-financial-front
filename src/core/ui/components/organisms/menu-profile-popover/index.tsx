@@ -18,9 +18,9 @@ export const MenuProfilePopover: React.FC = () => {
   };
 
   return (
-    <Wrapper open={menuOpen}>
+    <Wrapper open={menuOpen} aria-expanded={menuOpen}>
       <ClickAwayListener onClickAway={() => setMenuOpen(false)}>
-        <Menu onClick={() => setMenuOpen(!menuOpen)} open={menuOpen}>
+        <Menu onClick={() => setMenuOpen(!menuOpen)} open={menuOpen} tabIndex={0} role="button" aria-pressed="false">
           <PhotoName>
             <Avatar size={30} url={user?.pictureUrl || user?.name} />
             <Hide breakpoint="md">

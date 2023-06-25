@@ -9,7 +9,9 @@ const defaultProps = {
 type IModalDeleteTag = { name: string } & typeof defaultProps;
 
 export const ModalDeleteTag = ({ handleDelete, name }: IModalDeleteTag): ReactElement => (
-  <div onClick={() => handleDelete()}>{name}</div>
+  <button type="button" onClick={() => handleDelete()}>
+    {name}
+  </button>
 );
 
 ModalDeleteTag.defaultProps = defaultProps;

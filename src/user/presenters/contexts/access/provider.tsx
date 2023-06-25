@@ -51,8 +51,10 @@ export const AccessProvider: React.FC = ({ children }) => {
   const getStorageEvent = (event: StorageEvent) => {
     if (event.type === 'storage') {
       const localStorageRepository = new LocalStorageRepository();
-      const user = localStorageRepository.get<User>('@user');
-      dispatch(fetchLogin(user));
+      const user = localStorageRepository.get<User.Data>('@user');
+
+      const detachedUser = new User(user);
+      dispatch(fetchLogin(detachedUser));
     }
   };
 

@@ -25,12 +25,8 @@ export class User {
     this.profession = user?.profession;
     this.salary = user?.salary;
     this.token = user.token;
-    this.wallets = user.wallets.map(wallet => new Wallet(wallet));
+    this.wallets = user?.wallets?.map(wallet => new Wallet(wallet));
     this.currentWallet = user?.currentWallet ? new Wallet(user?.currentWallet) : null;
-  }
-
-  getNameAndLastName(): string {
-    return `${this.name} ${this.lastname}`;
   }
 
   getFieldOrEmpty(field: keyof User.Data): any {
