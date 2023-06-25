@@ -40,6 +40,26 @@ export const TransactionRoutes: RouteObject[] = [
       </Suspense>
     ),
   },
+  {
+    path: 'carteira',
+    element: (
+      <Suspense fallback={<CircularProgress color="info" size={40} />}>
+        <PrivateRoute>
+          <SpentsAndRevenuesPage />
+        </PrivateRoute>
+      </Suspense>
+    ),
+  },
+  {
+    path: 'carteira/dashboard',
+    element: (
+      <Suspense fallback={<CircularProgress color="info" size={40} />}>
+        <PrivateRoute>
+          <SpentsAndRevenuesPage />
+        </PrivateRoute>
+      </Suspense>
+    ),
+  },
 ];
 
 export const TransactionRoutesComponent = (): React.ReactElement => useRoutes(TransactionRoutes);

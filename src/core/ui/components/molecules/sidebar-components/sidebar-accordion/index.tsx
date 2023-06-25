@@ -28,6 +28,7 @@ export const SidebarAccordion: React.FC<ISidebarAccordion> = ({
         {icon && (
           <Icon
             icon={icon}
+            size={18}
             color={open || hasMatchedRoute ? 'primary' : null}
             shade={open || hasMatchedRoute ? 'main' : null}
           />
