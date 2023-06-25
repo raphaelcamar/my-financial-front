@@ -1,13 +1,12 @@
 /* eslint-disable no-nested-ternary */
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { Button } from '@raphaelcamar/ui-lib';
 import { BodyTable, Container, HeaderTable, WrapperBody, WrapperSkeletons } from './styles';
 import { TableRow, AccordionTableRow, AddTransactionDrawer } from '@/transaction/ui/components/molecules';
 import { useAccessContext } from '@/user/presenters';
 import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/spents-and-revenues/context';
 import { Hide, Skeleton, Tbody, Typography } from '@/core/ui/components/atoms';
-import { EmptyState } from '@/core/ui/components/molecules';
+import { Button, EmptyState } from '@/core/ui/components/molecules';
 
 export const TableTransactions = (): ReactElement => {
   const { getTransactions, transactions, transactionLoader, setTransactionLoader, filter } =
