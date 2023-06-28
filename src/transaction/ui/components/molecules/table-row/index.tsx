@@ -20,7 +20,7 @@ export const TableRow = ({ transaction }: ITableRow): ReactElement => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openEditModal, setOpenEditModal] = useState<boolean>(false);
 
-  const { currentWallet } = useAccessContext();
+  const { currentWallet, setNewWalletValue } = useAccessContext();
   const { deleteTransaction, updateTransaction } = useSpentsAndRevenuesContext();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -34,7 +34,8 @@ export const TableRow = ({ transaction }: ITableRow): ReactElement => {
   const fetchDeleteTransaction = async (): Promise<void> => {
     try {
       setLoading('delete');
-      await deleteTransaction(transaction._id, currentWallet.id);
+      const { newWalletValue } = await deleteTransaction(transaction, currentWallet.id);
+      setNewWalletValue(newWalletValue);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível buscar as transações. Tente novamente mais tarde', {
         variant: 'error',
@@ -48,7 +49,8 @@ export const TableRow = ({ transaction }: ITableRow): ReactElement => {
   const fetchEditTransaction = async (data: Transaction.Data): Promise<void> => {
     try {
       setLoading('edit');
-      await updateTransaction(data, currentWallet.id);
+      const { newWalletValue } = await updateTransaction(data, currentWallet.id);
+      setNewWalletValue(newWalletValue);
 
       enqueueSnackbar('Transação alterada!', {
         variant: 'success',

@@ -4,7 +4,6 @@ import { IconButton } from '@/core/ui/components/molecules';
 import { BodyForm, DrawerHeader } from './styles';
 import { Tabs, Typography, TabItem } from '@/core/ui/components/atoms';
 import { AddEntranceForm, AddSpentForm } from '../../atoms';
-import { randomId } from '@/core/utils';
 
 type AddTransactionDrawerProps = {
   open: boolean;

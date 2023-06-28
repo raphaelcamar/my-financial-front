@@ -10,7 +10,6 @@ import {
   UpdateTransaction,
 } from '@/transaction/data';
 import { fetchDeleteTransaction, fetchFilterTransaction, fetchGetTransactions, fetchIndicators } from './actions';
-import { delay } from '@/core/utils';
 import { Transaction } from '@/transaction/domain';
 import { SpentsAndRevenuesRepositoryData } from '@/transaction/infra/http/spents-and-revenues-repository-data';
 import { MonthlyClosingRepositoryData } from '@/transaction/infra/http/monthly-closing-repository-data';
@@ -26,7 +25,6 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
     const useCase = new GetTransactions(spentsAndRevenuesRepository, walletId, filter);
     const transactions = await useCase.execute();
 
-    await delay(2000);
     dispatch(fetchGetTransactions(transactions));
 
     setLoading(false);
@@ -36,13 +34,15 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
     dispatch(fetchFilterTransaction(filter));
   };
 
-  const deleteTransaction = async (transactionId: string, walletId: string): Promise<void> => {
+  const deleteTransaction = async (transaction: Transaction, walletId: string): Promise<{ newWalletValue: number }> => {
     const spentsAndRevenuesRepository = new SpentsAndRevenuesRepositoryData();
 
-    const useCase = new DeleteTransaction(spentsAndRevenuesRepository, transactionId, walletId, state.transactions);
-    const filteredTransactions = await useCase.execute();
+    const useCase = new DeleteTransaction(spentsAndRevenuesRepository, transaction, walletId, state.transactions);
+    const result = await useCase.execute();
 
-    dispatch(fetchDeleteTransaction(filteredTransactions));
+    dispatch(fetchDeleteTransaction(result.transactions));
+
+    return { newWalletValue: result.newWalletValue };
   };
 
   const getIndicators = async (walletId: string, filter: Transaction.Filter): Promise<void> => {
@@ -55,28 +55,31 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
     dispatch(fetchIndicators(result));
   };
 
-  const createTransaction = async (transactionData: Transaction.Data): Promise<void> => {
+  const createTransaction = async (transactionData: Transaction.Data): Promise<{ newWalletValue: number }> => {
     const transactionRepository = new SpentsAndRevenuesRepositoryData();
 
     const useCase = new CreateTransaction(transactionRepository, transactionData);
-    await useCase.execute();
+    const result = await useCase.execute();
 
     const getTransactionsUseCase = new GetTransactions(transactionRepository, transactionData.walletId, state.filter);
     const transactions = await getTransactionsUseCase.execute();
 
     dispatch(fetchGetTransactions(transactions));
+
+    return { newWalletValue: result.newWalletValue };
   };
 
-  const updateTransaction = async (transactionData: Transaction.Data): Promise<void> => {
+  const updateTransaction = async (transactionData: Transaction.Data): Promise<{ newWalletValue: number }> => {
     const transactionRepository = new SpentsAndRevenuesRepositoryData();
 
-    const useCase = new UpdateTransaction(transactionRepository, transactionData, state.transactions);
-    await useCase.execute();
+    const useCase = new UpdateTransaction(transactionRepository, transactionData);
+    const result = await useCase.execute();
 
     const getTransactionsUseCase = new GetTransactions(transactionRepository, transactionData.walletId, state.filter);
     const transactions = await getTransactionsUseCase.execute();
 
     dispatch(fetchGetTransactions(transactions));
+    return { newWalletValue: result };
   };
 
   const closeMonth = async (monthToClose: number, year: number, walletId: string): Promise<void> => {

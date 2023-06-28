@@ -156,7 +156,7 @@ export const ModalEditTransaction = ({
                 label="Valor"
                 mask="currency"
                 onChange={e => onChange(e)}
-                defaultValue={(transaction.cost * 100) as any}
+                defaultValue={transaction.cost as any}
                 actionEnd={
                   <Typography color="grey" shade={300}>
                     BRL

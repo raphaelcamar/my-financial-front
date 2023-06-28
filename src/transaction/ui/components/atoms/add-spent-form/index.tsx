@@ -28,7 +28,7 @@ export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
     formState: { errors },
   } = useForm<Transaction.Data>({ resolver: yupResolver(CreateSpentTransactionSchema) });
 
-  const { user } = useAccessContext();
+  const { user, setNewWalletValue } = useAccessContext();
   const { createTransaction } = useSpentsAndRevenuesContext();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -40,7 +40,9 @@ export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
   const handleSubmitForm = async (data: Transaction.Data) => {
     try {
       setLoading(true);
-      await createTransaction({ ...data, type: 'SPENT', billedAt: new Date(), coin: 'BRL' });
+
+      const { newWalletValue } = await createTransaction({ ...data, type: 'SPENT', billedAt: new Date(), coin: 'BRL' });
+      setNewWalletValue(newWalletValue);
 
       enqueueSnackbar('Criação criada com sucesso!', {
         variant: 'success',

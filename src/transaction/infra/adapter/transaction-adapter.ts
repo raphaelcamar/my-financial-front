@@ -8,7 +8,7 @@ export class TransactionAdapter implements RequestAdapter {
       userId: base?.userId,
       type: base?.type,
       topic: base?.topic,
-      value: base.cost / 100,
+      value: base.cost,
       createdAt: null,
       updatedAt: null,
       _id: base?._id,

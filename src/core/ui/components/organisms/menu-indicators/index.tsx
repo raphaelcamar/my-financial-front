@@ -1,26 +1,23 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { IconButton } from '@/core/ui/components/molecules/icon-button';
 import { ReadonlyInput, WrapperIcon, WrapperIconButtons, WrapperRevenue } from './styles';
 import { Icon } from '@/core/ui/components/atoms';
 import { useAccessContext } from '@/user/presenters';
 import { formatCurrency } from '@/core/utils';
 import { CardWallets } from '../card-wallets';
-import { useSocketContext } from '@/core/presenters/contexts/socket-provider/context';
 
 export const MenuIndicators = (): ReactElement => {
-  const { user, currentWallet, setNewWalletValue, walletValue } = useAccessContext();
-
-  const { connection } = useSocketContext();
+  const { user, currentWallet, walletValue } = useAccessContext();
 
   const [currencyOpen, setCurrencyOpen] = useState<boolean>(true);
 
-  useEffect(() => {
-    if (connection) {
-      connection.on('update-wallet-value', (payload: { value: number }) => {
-        setNewWalletValue(payload.value);
-      });
-    }
-  }, [connection]);
+  // useEffect(() => {
+  //   if (connection) {
+  //     connection.on('update-wallet-value', (payload: { value: number }) => {
+  //       setNewWalletValue(payload.value);
+  //     });
+  //   }
+  // }, [connection]);
 
   return (
     <WrapperIconButtons>

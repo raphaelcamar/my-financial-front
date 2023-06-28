@@ -23,16 +23,22 @@ export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesReposit
     return adaptee;
   }
 
-  async delete(transactionId: string, walletId: string): Promise<void> {
-    const http = new RequestHttpRepository<string, void>(`${process.env.BASE_URL}/v2`);
+  async delete(transaction: Transaction, walletId: string): Promise<{ newWalletValue: number }> {
+    const http = new RequestHttpRepository<unknown, { newWalletValue: number }>(`${process.env.BASE_URL}/v2`);
 
-    await http.request({
+    const adapter = new TransactionAdapter();
+    const adaptee = adapter.request(transaction);
+
+    const result = await http.request({
       method: 'delete',
-      url: `transaction/${transactionId}`,
+      url: `transaction/${transaction._id}`,
       headers: {
         'wallet-id': walletId,
       },
+      body: { ...adaptee },
     });
+
+    return result.body;
   }
 
   async getIndicators(walletId: string, query: string): Promise<{ spent: Indicator; entrance: Indicator }> {
@@ -52,8 +58,11 @@ export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesReposit
     return { entrance: entranceIndicator, spent: spentIndicator };
   }
 
-  async create(transaction: Transaction.Data): Promise<Transaction> {
-    const http = new RequestHttpRepository<Transaction.Response, Transaction.Data>(`${process.env.BASE_URL}/v2`);
+  async create(transaction: Transaction.Data): Promise<{ newWalletValue: number; transaction: Transaction }> {
+    const http = new RequestHttpRepository<
+      Transaction.Response,
+      { newWalletValue: number; transaction: Transaction.Data }
+    >(`${process.env.BASE_URL}/v2`);
 
     const adapter = new TransactionAdapter();
 
@@ -68,11 +77,14 @@ export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesReposit
       },
     });
 
-    return new Transaction(body);
+    return { transaction: new Transaction(body.transaction), newWalletValue: body.newWalletValue };
   }
 
-  async update(transaction: Transaction.Data): Promise<Transaction> {
-    const http = new RequestHttpRepository<Transaction.Response, Transaction.Data>(`${process.env.BASE_URL}/v2`);
+  async update(transaction: Transaction.Data): Promise<{ transaction: Transaction; newWalletValue: number }> {
+    const http = new RequestHttpRepository<
+      Transaction.Response,
+      { newWalletValue: number; transaction: Transaction.Data }
+    >(`${process.env.BASE_URL}/v2`);
 
     const adapter = new TransactionAdapter();
 
@@ -87,6 +99,6 @@ export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesReposit
       },
     });
 
-    return new Transaction(body);
+    return { transaction: new Transaction(body.transaction), newWalletValue: body.newWalletValue };
   }
 }

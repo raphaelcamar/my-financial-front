@@ -7,12 +7,12 @@ type PropsSpentAndRevenues = {
   filter: Transaction.Filter;
   indicators: { entrance: Indicator; spent: Indicator };
   getTransactions: (walletId: string, filter: Transaction.Filter) => Promise<void>;
-  deleteTransaction: (walletId: string, transactionId: string) => Promise<void>;
+  deleteTransaction: (transaction: Transaction, walletId: string) => Promise<{ newWalletValue: number }>;
   getIndicators: (walletId: string, filter: Transaction.Filter) => Promise<void>;
   setTransactionLoader: React.Dispatch<React.SetStateAction<boolean>>;
   setFilter: React.Dispatch<React.SetStateAction<Transaction.Filter>>;
-  createTransaction: (transaction: Transaction.Data) => Promise<void>;
-  updateTransaction: (transaction: Transaction.Data, walletId: string) => Promise<void>;
+  createTransaction: (transaction: Transaction.Data) => Promise<{ newWalletValue: number }>;
+  updateTransaction: (transaction: Transaction.Data, walletId: string) => Promise<{ newWalletValue: number }>;
   closeMonth: (monthToClose: number, year: number, walletId: string) => Promise<void>;
 };
 
