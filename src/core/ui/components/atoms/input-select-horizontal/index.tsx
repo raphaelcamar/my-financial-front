@@ -16,6 +16,7 @@ type InputSelectHorizontalProps = {
   error?: boolean;
   name: string;
   defaultValue?: string;
+  value: string;
   setValue: (name: string, option: any) => void;
 };
 
@@ -27,21 +28,21 @@ export const InputSelectHorizontal = ({
   error,
   helperText,
   label,
+  value,
 }: InputSelectHorizontalProps): ReactElement => {
-  const [selectedOption, setSelectedOption] = useState<ItemSelectHorizontalProps>(null);
   const variant = error ? 'error' : 'primary';
 
   useEffect(() => {
     if (defaultValue) {
       const option = items?.find(item => item?.value === defaultValue);
-      setSelectedOption(option || null);
+      setValue(name, option.value);
     }
   }, [defaultValue, items]);
 
   const handleSelectOption = (option: ItemSelectHorizontalProps) => {
     setValue(name, option.value);
-    setSelectedOption(option);
   };
+
   return (
     <Container>
       <label htmlFor="select-hortizontal">{label}</label>
@@ -49,7 +50,7 @@ export const InputSelectHorizontal = ({
         {items.map(item => (
           <Option
             key={randomId()}
-            selected={item.value === selectedOption?.value}
+            selected={item.value === value}
             onClick={() => handleSelectOption(item)}
             type="button"
           >

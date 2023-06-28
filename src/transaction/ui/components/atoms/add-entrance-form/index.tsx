@@ -103,6 +103,7 @@ export const AddEntranceForm = ({ onClose }: AddEntranceForm): ReactElement => {
         helperText={errors?.topic?.message}
         error={!!errors?.topic?.message}
         items={topicOptions}
+        value={watch('topic')}
       />
       <InputSelectHorizontal
         name="paymentType"
@@ -111,6 +112,7 @@ export const AddEntranceForm = ({ onClose }: AddEntranceForm): ReactElement => {
         helperText={errors?.paymentType?.message}
         error={!!errors?.paymentType?.message}
         items={paymentTypeOptions}
+        value={watch('paymentType')}
       />
       <WrapperInputs>
         <Controller

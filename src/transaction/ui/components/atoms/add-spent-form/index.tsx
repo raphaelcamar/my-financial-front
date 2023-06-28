@@ -47,17 +47,13 @@ export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
       enqueueSnackbar('Criação criada com sucesso!', {
         variant: 'success',
       });
-
-      reset({});
-
-      onClose(false);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível criar a transação. Tente novamente mais tarde', {
         variant: 'error',
       });
     } finally {
       setLoading(false);
-      onClose(false);
+      onClose(null);
     }
   };
 
@@ -102,6 +98,7 @@ export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
         <InputSelectHorizontal
           name="topic"
           setValue={setValue}
+          value={watch('topic')}
           label="Tópico"
           helperText={errors?.topic?.message}
           error={!!errors?.topic?.message}
@@ -111,6 +108,7 @@ export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
         <InputSelectHorizontal
           name="paymentType"
           setValue={setValue}
+          value={watch('paymentType')}
           label="Tipo de pagamento"
           helperText={errors?.paymentType?.message}
           error={!!errors?.paymentType?.message}
