@@ -1,6 +1,6 @@
 {
   "name": "my-financial-front",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "My financial frontend project",
   "scripts": {
     "dev": "webpack server --config webpack.dev.js --port=3000",
