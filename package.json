@@ -85,7 +85,7 @@
     "babel-loader": "^8.2.3",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^6.6.0",
+    "css-loader": "^6.8.1",
     "dependency-cruiser": "^11.18.0",
     "eslint": "^8.8.0",
     "eslint-config-airbnb": "^19.0.4",
