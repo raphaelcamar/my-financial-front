@@ -29,18 +29,19 @@ export const SidebarData: ISidebaroption[] = [
         id: randomId(),
         soon: false,
       },
-      // {
-      //   icon: 'recurrence',
-      //   path: '/recorrencias-mensais',
-      //   title: 'Recorrência mensal',
-      //   id: randomId(),
-      // },
     ],
   },
   {
     path: '/despesas-e-receitas',
     icon: 'transaction',
     title: 'Depesas e receitas',
+    id: randomId(),
+  },
+
+  {
+    icon: 'recurrence',
+    path: '/recorrencias-mensais',
+    title: 'Recorrências mensais',
     id: randomId(),
   },
 ];

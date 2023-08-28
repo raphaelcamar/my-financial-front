@@ -1,7 +1,6 @@
 import React from 'react';
 import { ColorProps } from '@/main/styled';
 import { Root, Circle } from './styles';
-import { Avatar } from '../../molecules';
 
 export interface ICircularProgress {
   size?: number;

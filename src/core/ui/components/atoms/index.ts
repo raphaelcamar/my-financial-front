@@ -18,3 +18,5 @@ export * from './slider';
 export * from './circular-loader';
 export * from './tabs';
 export * from './input-select-horizontal';
+export * from './base-grid';
+export * from './tooltip';

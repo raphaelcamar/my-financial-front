@@ -22,3 +22,14 @@ export const Popup = styled.div<PopupType>`
           transform: scale(0);
         `};
 `;
+
+export const WrapperIcon = styled.button`
+  background: none;
+  border: none;
+  transition: all ease 0.2s;
+  cursor: pointer;
+
+  &:active {
+    transform: scale(0.9);
+  }
+`;

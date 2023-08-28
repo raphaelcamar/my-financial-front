@@ -4,7 +4,6 @@ import { Wallet } from '@/user/domain';
 import { ClickAwayListener } from '@/core/ui/components/atoms';
 import { IconButton } from '@/core/ui/components/molecules/icon-button';
 import { BodyItem, Circle, Container, Item, Wrapper } from './styles';
-import { formatCurrency } from '@/core/utils';
 
 export type ICardWallets = {
   selected?: Wallet;

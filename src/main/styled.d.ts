@@ -38,6 +38,7 @@ export type FunctionBreakpointTypes = {
 };
 
 export type FontSizeProps = {
+  xxsmall: string;
   xsmall: string;
   small: string;
   normal: string;

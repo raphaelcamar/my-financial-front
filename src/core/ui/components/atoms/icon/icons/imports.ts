@@ -149,6 +149,17 @@ const LogoutIcon = React.lazy(
   async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/logout-icon')
 );
 
+const MoneyIcon = React.lazy(
+  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/money-icon')
+);
+
+const MoneyCuttedIcon = React.lazy(
+  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/money-cutted-icon')
+);
+const CalendarIcon = React.lazy(
+  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/calendar-icon')
+);
+
 export const Icons = {
   add: AddIcon,
   arrowDown: ArrowDownIcon,
@@ -159,6 +170,7 @@ export const Icons = {
   barView: BarViewIcon,
   bell: BellIcon,
   bellBall: BellBallIcon,
+  calendarIcon: CalendarIcon,
   circle: CircleIcon,
   close: CloseIcon,
   closeDrawerMobile: CloseDrawerMobileIcon,
@@ -177,7 +189,9 @@ export const Icons = {
   mail: MailIcon,
   miniArrowDown: MiniArrowDownIcon,
   miniArrowUp: MiniArrowUpIcon,
+  money: MoneyIcon,
   moneyBag: MoneyBagIcon,
+  moneyCutted: MoneyCuttedIcon,
   moreOption: MoreOptionIcon,
   openDrawerMobile: OpenDrawerMobileIcon,
   openEye: OpenEyeIcon,

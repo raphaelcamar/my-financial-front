@@ -29,6 +29,7 @@ export const Container = styled.button<ContainerType>`
   justify-content: center;
   ${({ color, shade }) => getBackgroundColor(color, shade)}
   cursor: pointer;
+  background: ${({ noBackground }) => (noBackground ? 'transparent' : 'none')};
   box-shadow: ${({ noBackground }) =>
     noBackground
       ? 'none'

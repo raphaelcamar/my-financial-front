@@ -183,6 +183,7 @@ export const mainTheme: DefaultTheme = {
       white: '#FAFAFA',
     },
     size: {
+      xxsmall: '0.625rem',
       xsmall: '0.75rem',
       small: '0.875rem',
       normal: '1rem',

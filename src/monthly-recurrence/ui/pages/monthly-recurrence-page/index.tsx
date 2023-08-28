@@ -1,26 +1,14 @@
 import React from 'react';
-import { FilterOption, MonthlyActions } from '@/monthly-recurrence/ui/components/organisms';
-import { Container, Filter, MonthlyCards } from './styles';
-import { MonthlyCard } from '../../components/organisms/monthly-card';
-import { PlusItems } from '@/monthly-recurrence/ui/components/atoms';
+import { FilterAndAddRecurrenceRow, RecurrenceCards } from '@/monthly-recurrence/ui/components/organisms';
+import { BaseGrid } from '@/core/ui/components/atoms';
 
 export const MonthlyRecurrencePage: React.FC = () => (
-  <Container>
-    <Filter>
-      <FilterOption />
-      <MonthlyActions />
-    </Filter>
-    <MonthlyCards>
-      <MonthlyCard />
-      <MonthlyCard />
-      <MonthlyCard />
-      <MonthlyCard />
-      <MonthlyCard />
-      <MonthlyCard />
-      <MonthlyCard />
-      <PlusItems />
-    </MonthlyCards>
-  </Container>
+  <BaseGrid>
+    <FilterAndAddRecurrenceRow />
+    <div>Teste 2</div>
+    <RecurrenceCards />
+    <div>Teste 4</div>
+  </BaseGrid>
 );
 
 export default MonthlyRecurrencePage;

@@ -1,8 +1,8 @@
 import React, { ReactElement, useState } from 'react';
 import { usePopper } from 'react-popper';
-import { ClickAwayListener } from '../../atoms';
-import { IMenuItem, IconButton, MenuItem } from '../../molecules';
-import { Popup } from './styles';
+import { ClickAwayListener, Icon } from '../../atoms';
+import { IMenuItem, MenuItem } from '../../molecules';
+import { Popup, WrapperIcon } from './styles';
 import { randomId } from '@/core/utils';
 
 type IMoreOptions = {
@@ -36,17 +36,9 @@ export const MoreOptions = ({ items, closeOnSelectIitem }: IMoreOptions): ReactE
 
   return (
     <ClickAwayListener onClickAway={() => setOpen(false)}>
-      <IconButton
-        icon="moreOption"
-        color="grey"
-        shade="50"
-        noBackground
-        onClick={() => setOpen(!open)}
-        ref={setReferenceElement}
-        iconProps={{
-          size: 18,
-        }}
-      />
+      <WrapperIcon onClick={() => setOpen(!open)} ref={setReferenceElement}>
+        <Icon icon="moreOption" color="grey" shade="500" size={18} />
+      </WrapperIcon>
       {open ? (
         <Popup ref={setPopperElement} open={open} style={styles.popper} {...attributes.popper}>
           {items?.map(menuItemProps => (

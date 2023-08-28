@@ -1,11 +1,12 @@
 import React, { ReactElement } from 'react';
-import { Container, WrapperGridItem } from './styles';
+import { WrapperGridItem } from './styles';
 import { TableTransactions, Filter, Indicators, CloseMonth } from '@/transaction/ui/components/organisms';
 import { SpentsAndRevenuesProvider } from '@/transaction/presenters/contexts/spents-and-revenues/provider';
+import { BaseGrid } from '@/core/ui/components/atoms';
 
 export const SpentsAndRevenuesPage = (): ReactElement => (
   <SpentsAndRevenuesProvider>
-    <Container>
+    <BaseGrid>
       <WrapperGridItem>
         <Filter />
         <TableTransactions />
@@ -13,8 +14,7 @@ export const SpentsAndRevenuesPage = (): ReactElement => (
       <WrapperGridItem>
         <CloseMonth />
         <Indicators />
-        {/* <div>Histórico</div> */}
       </WrapperGridItem>
-    </Container>
+    </BaseGrid>
   </SpentsAndRevenuesProvider>
 );
