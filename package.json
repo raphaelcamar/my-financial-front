@@ -26,7 +26,7 @@
     "@babel/preset-env": "^7.19.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "@hookform/resolvers": "^2.8.8",
+    "@hookform/resolvers": "^3.3.1",
     "@mui/material": "^5.13.2",
     "@popperjs/core": "^2.11.8",
     "axios": "^0.26.0",
