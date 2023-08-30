@@ -10,7 +10,7 @@ const TransactionRepositoryDataHandlers = [
   ),
 
   rest.get(`${BASE_URL}`, (req, res, ctx) =>
-    res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(TransactionBuilder.getArray(20000)), ctx.delay(1500))
+    res(ctx.status(HttpSuccessStatusCode.OK), ctx.json(TransactionBuilder.getArray(30)), ctx.delay(1500))
   ),
 
   rest.delete(`${BASE_URL}/:id`, (req, res, ctx) =>

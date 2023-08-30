@@ -1,11 +1,11 @@
 import React from 'react';
-import { FilterAndAddRecurrenceRow, RecurrenceCards } from '@/monthly-recurrence/ui/components/organisms';
+import { FilterAndAddRecurrenceRow, RecurrenceCards, TagList } from '@/monthly-recurrence/ui/components/organisms';
 import { BaseGrid } from '@/core/ui/components/atoms';
 
 export const MonthlyRecurrencePage: React.FC = () => (
   <BaseGrid>
     <FilterAndAddRecurrenceRow />
-    <div>Teste 2</div>
+    <TagList />
     <RecurrenceCards />
     <div>Teste 4</div>
   </BaseGrid>

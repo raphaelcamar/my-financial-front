@@ -11,7 +11,7 @@ export interface IChip {
 
 export const Chip: React.FC<IChip> = ({ children, color, width }) => (
   <ContainerChip data-testid="chip" color={color} width={width}>
-    <Typography color={color} size="small">
+    <Typography color={color} size="small" shade={500}>
       {children}
     </Typography>
   </ContainerChip>

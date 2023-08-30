@@ -65,7 +65,9 @@ export const SidebarOption: React.FC<ISidebarOption> = ({
           )}
           {sidebarOpen && (
             <WrapperTypography>
-              <Typography color={selected ? 'primary' : 'grey'}>{item.title}</Typography>
+              <Typography color={selected ? 'primary' : 'grey'} shade={500}>
+                {item.title}
+              </Typography>
               {item?.soon && <Chip color="warning">Em breve</Chip>}
             </WrapperTypography>
           )}

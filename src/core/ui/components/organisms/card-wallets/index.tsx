@@ -37,7 +37,7 @@ export const CardWallets = ({ selected, wallets }: ICardWallets): ReactElement =
             <IconButton
               icon="wallet"
               color="grey"
-              shade="50"
+              shade="200"
               iconProps={{ color: 'primary', shade: '500', size: 18 }}
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Carteira"

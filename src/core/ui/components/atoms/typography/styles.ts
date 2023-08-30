@@ -14,9 +14,9 @@ type TypographyProps = {
 export const TypographyStyle = styled.h1.attrs<TypographyProps>(({ type = 'p' }) => ({
   as: type,
 }))<TypographyProps>`
-  ${({ color = 'grey', size = 'normal', weight = 400, theme, ellipsis, shade = 500 }) => css`
+  ${({ color, size = 'normal', weight = 400, theme, ellipsis, shade }) => css`
     font-size: ${theme.font.size[size]};
-    color: ${theme.palette[color]?.[shade]};
+    color: ${theme.palette[color]?.[shade] || theme.font.color.default};
     font-weight: ${theme.font.weight[weight]};
     ${ellipsis &&
     css`

@@ -21,7 +21,7 @@ export class SpentsAndRevenuesDataHandlers implements MockContract<SpentsAndReve
     return rest.get(this.BASE_URL, (req, res, ctx) =>
       res(
         ctx.status(HttpSuccessStatusCode.OK),
-        ctx.json(TransactionBuilder.getArray(1000)),
+        ctx.json(TransactionBuilder.getArray(30)),
         ctx.delay(2000),
         ctx.set('Access-Control-Allow-Origin', '*')
       )

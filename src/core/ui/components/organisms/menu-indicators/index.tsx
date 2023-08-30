@@ -24,7 +24,7 @@ export const MenuIndicators = (): ReactElement => {
       <IconButton
         icon="bellBall"
         color="grey"
-        shade="50"
+        shade="200"
         iconProps={{ color: 'primary', shade: '500', size: 18 }}
         aria-label="Notificações"
       />

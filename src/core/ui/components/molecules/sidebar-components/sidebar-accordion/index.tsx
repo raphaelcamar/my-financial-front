@@ -34,7 +34,7 @@ export const SidebarAccordion: React.FC<ISidebarAccordion> = ({
           />
         )}
         {sidebarOpen && (
-          <Typography weight={500} color={open || hasMatchedRoute ? 'primary' : 'grey'}>
+          <Typography weight={500} color={open || hasMatchedRoute ? 'primary' : 'grey'} shade={500}>
             {titleAccordion}
           </Typography>
         )}
