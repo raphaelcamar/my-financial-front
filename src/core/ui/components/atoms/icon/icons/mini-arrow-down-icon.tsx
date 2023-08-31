@@ -13,4 +13,5 @@ export const MiniArrowDownIcon: React.FC<Icon> = ({ color }) => {
     </svg>
   );
 };
+
 export default MiniArrowDownIcon;

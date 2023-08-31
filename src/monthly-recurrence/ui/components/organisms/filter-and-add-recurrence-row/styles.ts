@@ -11,11 +11,19 @@ export const GroupFilter = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
+
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    flex-direction: column;
+  }
 `;
 
 export const StyledButton = styled(Button)`
   margin-top: 24px;
   width: 25%;
+
+  @media (${({ theme }) => theme.breakpoints.down('md')}) {
+    width: 100%;
+  }
 `;
 
 export const StyledIconButton = styled.button`

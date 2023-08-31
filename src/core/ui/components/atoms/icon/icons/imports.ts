@@ -156,8 +156,21 @@ const MoneyIcon = React.lazy(
 const MoneyCuttedIcon = React.lazy(
   async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/money-cutted-icon')
 );
+
 const CalendarIcon = React.lazy(
   async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/calendar-icon')
+);
+
+const MultipleCoinIcon = React.lazy(
+  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/multiple-coin-icon')
+);
+
+const SingleCoin = React.lazy(
+  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/single-coin')
+);
+
+const MoneyBagFilledIcon = React.lazy(
+  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/money-bag-filled-icon')
 );
 
 export const Icons = {
@@ -191,8 +204,10 @@ export const Icons = {
   miniArrowUp: MiniArrowUpIcon,
   money: MoneyIcon,
   moneyBag: MoneyBagIcon,
+  moneyBagFilled: MoneyBagFilledIcon,
   moneyCutted: MoneyCuttedIcon,
   moreOption: MoreOptionIcon,
+  multipeCoin: MultipleCoinIcon,
   openDrawerMobile: OpenDrawerMobileIcon,
   openEye: OpenEyeIcon,
   pen: PenIcon,
@@ -204,6 +219,7 @@ export const Icons = {
   search: SearchIcon,
   square: SquareIcon,
   squareView: SquareViewIcon,
+  singleCoin: SingleCoin,
   tag: TagIcon,
   transaction: TransactionIcon,
   transactionDashboard: TransactionDashboardIcon,

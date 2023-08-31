@@ -32,11 +32,10 @@ export const TitleAndLinkedItems = styled.div`
 
 export const WrapperActionButtons = styled.div<{ showButton?: boolean }>`
   display: flex;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
   transform: scale(0);
   transition: all ease 0.1s;
-  right: -48px;
 
   ${({ showButton }) => (showButton ? 'transform: scale(1)' : 'transform: scale(0)')}
 `;

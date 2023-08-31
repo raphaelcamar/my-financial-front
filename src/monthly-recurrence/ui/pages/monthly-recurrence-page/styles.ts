@@ -16,3 +16,9 @@ export const MonthlyCards = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 24px;
 `;
+
+export const WrapperleftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+`;

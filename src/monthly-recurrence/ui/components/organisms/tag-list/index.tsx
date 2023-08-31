@@ -14,7 +14,7 @@ export const TagList = (): ReactElement => {
             Suas tags
           </Typography>
           <StyledIconButton>
-            <Icon icon="add" color="primary" shade="500" />
+            <Icon icon="add" color="primary" shade="500" size={14} />
           </StyledIconButton>
         </Header>
         <WrapperTagItems>
