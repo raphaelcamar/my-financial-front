@@ -3,21 +3,20 @@ import { ColorProps } from '@/main/styled';
 export type TagStatus = 'active' | 'inactive';
 
 export class Tag {
-  _id?: string;
-  description: string;
-  color: keyof ColorProps;
-  title: string;
-  inactivatedAt?: Date;
-  createdAt?: Date;
-  userId: string;
+  public id?: string;
+  public description: string;
+  public color: keyof ColorProps;
+  public title: string;
+  public inactivatedAt?: Date;
+  public userId: string;
 
   constructor(data: Tag.Data) {
-    this._id = data?._id;
-    this.description = data.description;
+    this.id = data?._id;
     this.color = data.color as keyof ColorProps;
+    this.description = data.description;
+    this.inactivatedAt = data?.inactivatedAt;
+    this.userId = data.userId;
     this.title = data.title;
-    this.inactivatedAt = data.inactivatedAt;
-    this.createdAt = data?.createdAt;
   }
 }
 
@@ -29,6 +28,5 @@ export namespace Tag {
     title: string;
     inactivatedAt?: Date;
     userId: string;
-    createdAt: Date;
   }
 }

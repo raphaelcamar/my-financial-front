@@ -1,42 +1,47 @@
-export type PaymentType = 'CREDIT_CARD' | 'DEBIT_CARD' | 'PIX' | 'BANCARY_TRANSFER' | 'OTHER';
+import { Tag } from './tag';
+
+export type MonthlyRecurrencePaymentType = 'CREDIT' | 'DEBIT' | 'BANK_SLIP' | 'OTHER';
 
 export class MonthlyRecurrence {
-  public id?: string;
-  public startDate: Date;
-  public endDate?: Date;
-  public description?: string;
-  public type: PaymentType;
-  public name: string;
-  public value: string;
+  public title: string;
+  public id: string;
+  public description: string;
+  public tags: Tag[];
+  public value: number;
+  public expirationDate: Date;
+  public userId: string;
+  public dueDate: number;
+  public paymentType: MonthlyRecurrencePaymentType;
+  public walletId: string;
   public inactivatedAt?: Date;
-  public recurernceType: 'SIGNATURE' | string;
-  public tagId?: string;
 
   constructor(data: MonthlyRecurrence.Data) {
-    this.id = data?._id;
-    this.startDate = data?.startDate ? new Date(data?.startDate) : null;
-    this.endDate = data?.endDate ? new Date(data?.endDate) : null;
-    this.description = data?.description;
-    this.type = data?.type as PaymentType;
-    this.name = data?.name;
-    this.value = data?.value;
+    this.description = data.description;
+    this.dueDate = data.dueDate;
+    this.expirationDate = data?.expirationDate ? new Date(data.expirationDate) : null;
+    this.id = data._id;
     this.inactivatedAt = data?.inactivatedAt ? new Date(data?.inactivatedAt) : null;
-    this.recurernceType = data?.recurernceType;
-    this.tagId = data?.tagId;
+    this.paymentType = data.paymentType;
+    this.tags = data.tags.map(tag => new Tag(tag));
+    this.title = data.title;
+    this.userId = data.userId;
+    this.value = data.value;
+    this.walletId = data.walletId;
   }
 }
 
 export namespace MonthlyRecurrence {
   export interface Data {
-    _id?: string;
-    startDate: string;
-    endDate: string;
-    description?: string;
-    type: string;
-    name: string;
-    value: string;
-    inactivatedAt?: string;
-    recurernceType: string;
-    tagId?: string;
+    title: string;
+    _id: string;
+    description: string;
+    tags: Tag[];
+    value: number;
+    expirationDate: Date;
+    userId: string;
+    dueDate: number;
+    paymentType: MonthlyRecurrencePaymentType;
+    walletId: string;
+    inactivatedAt?: Date;
   }
 }

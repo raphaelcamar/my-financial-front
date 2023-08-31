@@ -3,18 +3,21 @@ import { FilterAndAddRecurrenceRow, RecurrenceCards, TagList } from '@/monthly-r
 import { BaseGrid } from '@/core/ui/components/atoms';
 import { WrapperleftContainer } from './styles';
 import { MonthlyRecurrenceIndicators } from '../../components/molecules';
+import { MonthlyRecurrenceProvider } from '@/monthly-recurrence/presenters/contexts/monthly-recurrence-context';
 
 export const MonthlyRecurrencePage: React.FC = () => (
-  <BaseGrid>
-    <WrapperleftContainer>
-      <FilterAndAddRecurrenceRow />
-      <RecurrenceCards />
-    </WrapperleftContainer>
-    <WrapperleftContainer>
-      <TagList />
-      <MonthlyRecurrenceIndicators />
-    </WrapperleftContainer>
-  </BaseGrid>
+  <MonthlyRecurrenceProvider>
+    <BaseGrid>
+      <WrapperleftContainer>
+        <FilterAndAddRecurrenceRow />
+        <RecurrenceCards />
+      </WrapperleftContainer>
+      <WrapperleftContainer>
+        <TagList />
+        <MonthlyRecurrenceIndicators />
+      </WrapperleftContainer>
+    </BaseGrid>
+  </MonthlyRecurrenceProvider>
 );
 
 export default MonthlyRecurrencePage;

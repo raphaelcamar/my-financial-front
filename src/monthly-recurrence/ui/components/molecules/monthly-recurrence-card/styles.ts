@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import styled from 'styled-components';
 
 export const ContainerCard = styled.div`
