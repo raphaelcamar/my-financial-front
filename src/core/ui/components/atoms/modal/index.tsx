@@ -22,6 +22,7 @@ export const Modal: React.FC<IModal> = ({ children, open, title, closeModal, ...
       clearTimeout(timer);
     };
   }, [open]);
+
   return (
     <Container open={displayModal} data-testid="modal-container">
       <ModalWrapper>
@@ -30,7 +31,14 @@ export const Modal: React.FC<IModal> = ({ children, open, title, closeModal, ...
             <Typography size="xlarge" color="grey" weight={600}>
               {title}
             </Typography>
-            <IconButton data-testid="icon-button-modal" onClick={closeModal} icon="close" color="primary" shade="500" />
+            <IconButton
+              data-testid="icon-button-modal"
+              onClick={closeModal}
+              icon="close"
+              color="primary"
+              shade="500"
+              iconProps={{ color: 'grey', shade: '50' }}
+            />
           </ModalHeader>
           {children}
         </Paper>

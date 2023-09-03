@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 import { Container } from './styles';
 import { MonthlyRecurrenceCard } from '../../molecules';
@@ -7,10 +7,8 @@ import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/con
 import { Skeleton } from '@/core/ui/components/atoms';
 
 export const RecurrenceCards = (): ReactElement => {
-  const [loading, setLoading] = useState(true);
-
   const { currentWallet } = useAccessContext();
-  const { getMonthlyRecurrences, monthlyRecurrences } = useMonthlyRecurrenceContext();
+  const { getMonthlyRecurrences, monthlyRecurrences, loading, setLoading } = useMonthlyRecurrenceContext();
   const { enqueueSnackbar } = useSnackbar();
 
   const fetchMonthlyRecurrences = async () => {

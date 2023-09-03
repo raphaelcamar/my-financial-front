@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: space-between;
 `;
 
-export const GroupFilter = styled.div`
+export const GroupFilter = styled.form`
   display: flex;
   align-items: center;
   gap: 24px;
@@ -40,5 +40,10 @@ export const StyledIconButton = styled.button`
 
   &:active {
     transform: scale(0.9);
+  }
+
+  &:disabled {
+    cursor: inherit;
+    transform: scale(1);
   }
 `;

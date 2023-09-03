@@ -25,4 +25,10 @@ export const StyledIconButton = styled.button`
   &:active {
     transform: scale(0.9);
   }
+
+  &:disabled {
+    cursor: inherit;
+    transform: scale(1);
+    filter: contrast(0.9);
+  }
 `;

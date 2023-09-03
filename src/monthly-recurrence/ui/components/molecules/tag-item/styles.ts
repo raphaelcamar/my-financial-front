@@ -1,18 +1,21 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{ selected?: boolean; isSelectable: boolean }>`
   background: ${({ theme }) => theme.palette.grey[100]};
   border-radius: 8px;
   display: flex;
   align-items: center;
+  transition: all ease 0.2s;
+  transform: ${({ selected }) => (selected ? 'scale(0.9)' : '')};
+  ${({ isSelectable }) => (isSelectable ? 'cursor: pointer' : '')}
 `;
 
-export const BorderLine = styled.div`
+export const BorderLine = styled.div<{ color: string; shade: string }>`
   width: 8px;
   height: 100%;
   border-radius: 8px 0 0 8px;
   height: 58px;
-  background: ${({ theme }) => theme.palette.primary[500]};
+  background: ${({ theme, color, shade }) => theme.palette[color][shade]};
 `;
 
 export const WrapperInfos = styled.div`

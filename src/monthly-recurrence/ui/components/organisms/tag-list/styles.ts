@@ -33,3 +33,9 @@ export const WrapperTagList = styled.div`
   gap: 24px;
   flex-direction: column;
 `;
+
+export const WrapperSkeletons = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+`;

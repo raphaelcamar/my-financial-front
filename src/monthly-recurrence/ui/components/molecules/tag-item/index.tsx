@@ -2,18 +2,33 @@ import React, { ReactElement, useState } from 'react';
 import { BorderLine, Container, TitleAndLinkedItems, WrapperActionButtons, WrapperInfos } from './styles';
 import { Typography } from '@/core/ui/components/atoms';
 import { IconButton } from '@/core/ui/components/molecules';
+import { Tag } from '@/monthly-recurrence/domain';
 
-export const TagItem = (): ReactElement => {
+interface ITagItem {
+  withoutActions?: boolean;
+  selected?: boolean;
+  onSelect?: () => void;
+  tag: Tag;
+}
+
+export const TagItem = ({ withoutActions, selected, onSelect, tag }: ITagItem): ReactElement => {
   const [showActionButtons, setShowActionButtons] = useState(false);
 
   return (
-    <Container onMouseEnter={() => setShowActionButtons(true)} onMouseLeave={() => setShowActionButtons(false)}>
-      <BorderLine />
+    <Container
+      onMouseEnter={() => (withoutActions ? null : setShowActionButtons(true))}
+      onMouseLeave={() => (withoutActions ? null : setShowActionButtons(false))}
+      selected={selected}
+      isSelectable={Boolean(onSelect)}
+      onClick={() => (onSelect ? onSelect() : null)}
+    >
+      <BorderLine color={tag.color} shade={tag.shade || '500'} />
       <WrapperInfos>
         <TitleAndLinkedItems>
           <Typography size="large" weight={500}>
-            Nome da tag
+            {tag.title}
           </Typography>
+          {/* TODO */}
           <Typography size="xxsmall" color="grey" shade={400}>
             Vinculado a 16 itens
           </Typography>

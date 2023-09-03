@@ -2,7 +2,7 @@ import { ReducerActions, InitialState, ActionType } from './types';
 
 export const initialState: InitialState = {
   monthlyRecurences: undefined,
-  filter: undefined,
+  tags: undefined,
 };
 
 export function reducer(state = initialState, action: ReducerActions): InitialState {
@@ -11,6 +11,12 @@ export function reducer(state = initialState, action: ReducerActions): InitialSt
       return {
         ...state,
         monthlyRecurences: action.payload,
+      };
+
+    case ActionType.GET_TAGS:
+      return {
+        ...state,
+        tags: action.payload,
       };
   }
 }

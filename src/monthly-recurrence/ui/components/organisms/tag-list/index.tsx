@@ -1,10 +1,40 @@
-import React, { ReactElement, useState } from 'react';
-import { Icon, Paper, Typography } from '@/core/ui/components/atoms';
-import { Header, StyledIconButton, WrapperTagItems, WrapperTagList } from './styles';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { Icon, Paper, Skeleton, Typography } from '@/core/ui/components/atoms';
+import { Header, StyledIconButton, WrapperSkeletons, WrapperTagItems, WrapperTagList } from './styles';
 import { TagItem, TagPagination } from '../../molecules';
+import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/contexts/monthly-recurrence-context';
+import { useAccessContext } from '@/user/presenters';
+import { Pagination } from '@/core/domain';
+import { Tag } from '@/monthly-recurrence/domain';
+import { delay } from '@/core/utils';
 
 export const TagList = (): ReactElement => {
-  const [state, setState] = useState();
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState<Pagination<Tag[], 'tags'>>(null);
+
+  const { tags, getTags } = useMonthlyRecurrenceContext();
+  const { currentWallet } = useAccessContext();
+
+  const fetchTags = async (pageToFetch: number) => {
+    try {
+      setLoading(true);
+      const result = await getTags(pageToFetch, currentWallet.id);
+      setPage(result);
+      await delay(2500);
+    } catch (err) {
+      // TODO
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTags(1);
+  }, []);
+
+  const onChangePage = async (pageToFetch: number) => {
+    await fetchTags(pageToFetch);
+  };
 
   return (
     <Paper density={1}>
@@ -18,12 +48,28 @@ export const TagList = (): ReactElement => {
           </StyledIconButton>
         </Header>
         <WrapperTagItems>
-          <TagItem />
-          <TagItem />
-          <TagItem />
-          <TagItem />
+          {loading ? (
+            <>
+              <Skeleton height={55} borderRadius={8} />
+              <Skeleton height={55} borderRadius={8} />
+              <Skeleton height={55} borderRadius={8} />
+              <Skeleton height={55} borderRadius={8} />
+              <Skeleton height={55} borderRadius={8} />
+            </>
+          ) : (
+            <>
+              {tags?.map(tag => (
+                <TagItem key={tag.id} tag={tag} />
+              ))}
+            </>
+          )}
         </WrapperTagItems>
-        <TagPagination />
+
+        <TagPagination
+          currentPage={page?.currentPage || 1}
+          totalPages={page?.totalPages || 1}
+          onChangePage={onChangePage}
+        />
       </WrapperTagList>
     </Paper>
   );

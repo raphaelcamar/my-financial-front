@@ -1,4 +1,4 @@
-import { ColorProps } from '@/main/styled';
+import { ColorProps, Shade } from '@/main/styled';
 
 export type TagStatus = 'active' | 'inactive';
 
@@ -9,6 +9,7 @@ export class Tag {
   public title: string;
   public inactivatedAt?: Date;
   public userId: string;
+  public shade: keyof Shade;
 
   constructor(data: Tag.Data) {
     this.id = data?._id;
@@ -17,6 +18,7 @@ export class Tag {
     this.inactivatedAt = data?.inactivatedAt;
     this.userId = data.userId;
     this.title = data.title;
+    this.shade = data.shade as keyof Shade;
   }
 }
 
@@ -28,5 +30,6 @@ export namespace Tag {
     title: string;
     inactivatedAt?: Date;
     userId: string;
+    shade: string;
   }
 }

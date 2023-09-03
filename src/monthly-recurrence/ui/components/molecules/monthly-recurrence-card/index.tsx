@@ -22,7 +22,7 @@ export const MonthlyRecurrenceCard = ({ monthlyRecurrenceItem }: IMonthlyRecurre
   const today = new Date().getDate();
   const isPayed = today >= monthlyRecurrenceItem.dueDate;
 
-  const { tags } = monthlyRecurrenceItem;
+  const tags = [...monthlyRecurrenceItem.tags];
 
   const firstTag = tags.shift();
   const fiveTags = tags.slice(0, 5);

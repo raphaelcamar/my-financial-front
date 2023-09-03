@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ColorProps } from '@/main/styled';
+import { Button } from '@/core/ui/components/molecules';
 
 export const SelectTagsButton = styled.button`
   height: 46px;
@@ -53,4 +54,28 @@ export const WrapperCircles = styled.div`
 
 export const NameLimit = styled.div`
   max-width: 30%;
+`;
+
+export const WrapperModal = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+`;
+
+export const WrapperTags = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  overflow: auto;
+`;
+
+export const WrapperButtons = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+`;
+
+export const StyledButton = styled(Button)`
+  width: 25%;
 `;

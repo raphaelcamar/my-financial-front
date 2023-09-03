@@ -1,11 +1,23 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState } from 'react';
-import { SelectTagsButton, TagCircle, WrapperCircles, WrapperInputTag, WrapperTagInfos } from './styles';
+import {
+  SelectTagsButton,
+  StyledButton,
+  TagCircle,
+  WrapperButtons,
+  WrapperCircles,
+  WrapperInputTag,
+  WrapperModal,
+  WrapperTagInfos,
+  WrapperTags,
+} from './styles';
 import { HelperText, Modal, TextEllipsis, Typography } from '@/core/ui/components/atoms';
+import { Input } from '@/core/ui/components/molecules';
+import { TagItem } from '../../molecules';
 
 export const InputSelectTags = (): ReactElement => {
-  const [state, setState] = useState();
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [selectableTags, setSelectableTags] = useState(false);
 
   const hasHelperText = false;
 
@@ -30,7 +42,26 @@ export const InputSelectTags = (): ReactElement => {
         <HelperText>{hasHelperText ? '' : ''}</HelperText>
       </WrapperInputTag>
       <Modal closeModal={() => setOpenModal(false)} open={openModal} title="Filtrar por tags">
-        Teste
+        <WrapperModal>
+          <Input label="Filtrar tag por nome" />
+          <WrapperTags>
+            {/* <TagItem withoutActions onSelect={() => setSelectableTags(!selectableTags)} selected={selectableTags} />
+            <TagItem withoutActions onSelect={() => null} />
+            <TagItem withoutActions onSelect={() => null} />
+            <TagItem withoutActions onSelect={() => null} />
+            <TagItem withoutActions onSelect={() => null} />
+            <TagItem withoutActions onSelect={() => null} />
+            <TagItem withoutActions onSelect={() => null} />
+            <TagItem withoutActions onSelect={() => null} />
+            <TagItem withoutActions onSelect={() => null} /> */}
+          </WrapperTags>
+          <WrapperButtons>
+            <StyledButton type="button" styleType="glass" variant="error" onClick={() => setOpenModal(false)}>
+              Cancelar
+            </StyledButton>
+            <StyledButton type="button">Confirmar</StyledButton>
+          </WrapperButtons>
+        </WrapperModal>
       </Modal>
     </>
   );
