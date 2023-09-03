@@ -23,7 +23,7 @@ export class GetMonthlyRecurrences {
     }
 
     if (this.filter?.tags?.length > 0) {
-      query += `&tags=${this.filter.tags.map(tag => tag.id).concat(',')}`;
+      query += `&tags=${this.filter.tags.map(tag => tag.id).join(',')}`;
     }
 
     return query;

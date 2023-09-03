@@ -5,7 +5,7 @@ import { Root } from './styles';
 interface IHelperText {
   disabled?: boolean;
   variant?: Variants;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const HelperText: React.FC<IHelperText> = ({ disabled, variant, children }) => (

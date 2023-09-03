@@ -13,12 +13,13 @@ export const FilterAndAddRecurrenceRow = (): ReactElement => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [inputSearch, setInputSearch] = useState('');
+  const [selectedTags, setSelectedTags] = useState<Array<{ id: string }>>([]);
 
   const applyFilter = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       setLoading(true);
-      await getMonthlyRecurrences(currentWallet.id, { input: inputSearch });
+      await getMonthlyRecurrences(currentWallet.id, { input: inputSearch, tags: selectedTags });
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível aplicar os filtros');
     } finally {
@@ -30,7 +31,7 @@ export const FilterAndAddRecurrenceRow = (): ReactElement => {
     <Container>
       <GroupFilter onSubmit={e => applyFilter(e)}>
         <Input label="Nome" name="name" onChange={e => setInputSearch(e.target.value)} value={inputSearch} />
-        <InputSelectTags />
+        <InputSelectTags setSelectedTags={setSelectedTags} />
         <StyledIconButton disabled={loading} type="submit">
           {loading ? (
             <CircularLoader color="primary" shade={500} size={16} />
