@@ -11,7 +11,7 @@ describe('Typography unit tests', () => {
 
     const typography = screen.getByTestId('typography');
 
-    expect(typography).toHaveStyle(`color: ${theme.palette.grey[500]}`);
+    expect(typography).toHaveStyle(`color: ${theme.font.color.default}`);
     expect(typography).toHaveStyle(`font-weight: ${theme.font.weight[400]}`);
     expect(typography).toHaveStyle(`font-size: ${theme.font.size.normal}`);
     expect(getByText(/Test/i)).toBeInTheDocument();
@@ -20,7 +20,7 @@ describe('Typography unit tests', () => {
   test('Should be able to render Typography component with grey color, large size and weight 100', () => {
     render(
       ProvideStyledTheme(
-        <Typography color="grey" size="large" weight={100}>
+        <Typography color="grey" size="large" weight={100} shade={500}>
           Test
         </Typography>
       )
@@ -36,7 +36,7 @@ describe('Typography unit tests', () => {
   test('Should be able to render Typography component with error color, normal size and weight 200', () => {
     render(
       ProvideStyledTheme(
-        <Typography color="error" size="normal" weight={200}>
+        <Typography color="error" size="normal" weight={200} shade={500}>
           Test
         </Typography>
       )
@@ -52,7 +52,7 @@ describe('Typography unit tests', () => {
   test('Should be able to render Typography component with grey color, small size and weight 300', () => {
     render(
       ProvideStyledTheme(
-        <Typography color="grey" size="small" weight={300}>
+        <Typography color="grey" size="small" weight={300} shade={500}>
           Test
         </Typography>
       )
@@ -68,7 +68,7 @@ describe('Typography unit tests', () => {
   test('Should be able to render Typography component with info color, xlarge size and weight 400', () => {
     render(
       ProvideStyledTheme(
-        <Typography color="info" size="xlarge" weight={400}>
+        <Typography color="info" size="xlarge" weight={400} shade={500}>
           Test
         </Typography>
       )
@@ -84,7 +84,7 @@ describe('Typography unit tests', () => {
   test('Should be able to render Typography component with primary color, xsmall size and weight 500', () => {
     render(
       ProvideStyledTheme(
-        <Typography color="primary" size="xsmall" weight={500}>
+        <Typography color="primary" size="xsmall" weight={500} shade={500}>
           Test
         </Typography>
       )
@@ -116,7 +116,7 @@ describe('Typography unit tests', () => {
   test('Should be able to render Typography component with success color, xxxlarge size and weight 700', () => {
     render(
       ProvideStyledTheme(
-        <Typography color="success" size="xxxlarge" weight={700}>
+        <Typography color="success" size="xxxlarge" weight={700} shade={500}>
           Test
         </Typography>
       )
@@ -132,7 +132,7 @@ describe('Typography unit tests', () => {
   test('Should be able to render Typography component with warning color, normal size and weight 800', () => {
     render(
       ProvideStyledTheme(
-        <Typography color="warning" size="normal" weight={800}>
+        <Typography color="warning" size="normal" weight={800} shade={500}>
           Test
         </Typography>
       )

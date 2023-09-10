@@ -1,5 +1,5 @@
 module.exports = {
-  roots: ['<rootDir>/src/core'],
+  roots: ['<rootDir>/src'],
   verbose: true,
   coverageDirectory: 'coverage',
   collectCoverageFrom: [
@@ -16,7 +16,7 @@ module.exports = {
     '!<rootDir>/src/**/types.ts',
     '!<rootDir>/src/**/*.data.ts',
     '!<rootDir>/src/monthly-recurrence/**/*',
-    '!<rootDir>/src/transaction/**/*',
+    // '!<rootDir>/src/transaction/**/*',
     '!<rootDir>/src/user/**/*',
     '!<rootDir>/src/**/*.d.*',
     '!<rootDir>/src/**/*-error.*',
