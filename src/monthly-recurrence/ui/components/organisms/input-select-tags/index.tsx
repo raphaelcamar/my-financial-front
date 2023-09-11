@@ -29,6 +29,8 @@ export const InputSelectTags = ({ setSelectedTags }: IInputSelectTags): ReactEle
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [preSelectTags, setPreSelectTags] = useState<ISelectableTag[]>([]);
 
+  const [inputValue, setInputValue] = useState('');
+
   const { tags } = useMonthlyRecurrenceContext();
 
   useEffect(() => {
@@ -59,6 +61,28 @@ export const InputSelectTags = ({ setSelectedTags }: IInputSelectTags): ReactEle
   };
 
   const selectedTags = useMemo(() => preSelectTags?.filter(tag => tag.selected), [preSelectTags]);
+  const filteredTags = useMemo(
+    () => preSelectTags?.filter(tag => tag.title.includes(inputValue) || tag.description.includes(inputValue)),
+    [inputValue]
+  );
+
+  const renderTagsOrFilteredTags = () => {
+    if (filteredTags.length > 0) {
+      return filteredTags?.map((tag, index) => (
+        <TagItem
+          key={tag.id}
+          tag={tag}
+          withoutActions
+          onSelect={() => handleSelectTag(index)}
+          selected={tag.selected}
+        />
+      ));
+    }
+
+    return preSelectTags?.map((tag, index) => (
+      <TagItem key={tag.id} tag={tag} withoutActions onSelect={() => handleSelectTag(index)} selected={tag.selected} />
+    ));
+  };
 
   return (
     <>
@@ -80,7 +104,9 @@ export const InputSelectTags = ({ setSelectedTags }: IInputSelectTags): ReactEle
               )}
               <TextEllipsis>
                 <Typography>
-                  {selectedTags?.length > 0 ? 'Tags selecionadas(s)' : 'Nenhuma tag selecionada'}{' '}
+                  {selectedTags?.length > 0
+                    ? `${selectedTags?.length} Tags selecionadas(s)`
+                    : 'Nenhuma tag selecionada'}{' '}
                 </Typography>
               </TextEllipsis>
             </WrapperCircles>
@@ -90,18 +116,8 @@ export const InputSelectTags = ({ setSelectedTags }: IInputSelectTags): ReactEle
       </WrapperInputTag>
       <Modal closeModal={() => setOpenModal(false)} open={openModal} title="Filtrar por tags">
         <WrapperModal>
-          <Input label="Filtrar tag por nome" />
-          <WrapperTags>
-            {preSelectTags?.map((tag, index) => (
-              <TagItem
-                key={tag.id}
-                tag={tag}
-                withoutActions
-                onSelect={() => handleSelectTag(index)}
-                selected={tag.selected}
-              />
-            ))}
-          </WrapperTags>
+          <Input label="Filtrar tag por nome" value={inputValue} onChange={e => setInputValue(e.target.value)} />
+          <WrapperTags>{renderTagsOrFilteredTags()}</WrapperTags>
           <WrapperButtons>
             <StyledButton type="button" styleType="glass" variant="error" onClick={() => handleCancelSelect()}>
               Cancelar
