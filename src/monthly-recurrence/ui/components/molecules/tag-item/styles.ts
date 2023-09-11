@@ -10,7 +10,7 @@ export const Container = styled.div<{ selected?: boolean; isSelectable: boolean 
   ${({ isSelectable }) => (isSelectable ? 'cursor: pointer' : '')}
 `;
 
-export const BorderLine = styled.div<{ color: string; shade: string }>`
+export const BorderLine = styled.div<{ color: string; shade: number }>`
   width: 8px;
   height: 100%;
   border-radius: 8px 0 0 8px;

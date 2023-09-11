@@ -14,6 +14,14 @@ interface ITagItem {
 export const TagItem = ({ withoutActions, selected, onSelect, tag }: ITagItem): ReactElement => {
   const [showActionButtons, setShowActionButtons] = useState(false);
 
+  const showLinkedDescription = (totalLinked: number) => {
+    if (totalLinked === 1) return 'Vinculado a 1 item';
+
+    if (totalLinked > 1) return `Vinculado a ${totalLinked} itens`;
+
+    return 'Sem item vinculado';
+  };
+
   return (
     <Container
       onMouseEnter={() => (withoutActions ? null : setShowActionButtons(true))}
@@ -22,7 +30,7 @@ export const TagItem = ({ withoutActions, selected, onSelect, tag }: ITagItem): 
       isSelectable={Boolean(onSelect)}
       onClick={() => (onSelect ? onSelect() : null)}
     >
-      <BorderLine color={tag.color} shade={tag.shade || '500'} />
+      <BorderLine color={tag.color} shade={tag.shade || 500} />
       <WrapperInfos>
         <TitleAndLinkedItems>
           <Typography size="large" weight={500}>
@@ -30,7 +38,7 @@ export const TagItem = ({ withoutActions, selected, onSelect, tag }: ITagItem): 
           </Typography>
           {/* TODO */}
           <Typography size="xxsmall" color="grey" shade={400}>
-            Vinculado a 16 itens
+            {showLinkedDescription(tag.totalLinked)}
           </Typography>
         </TitleAndLinkedItems>
         <WrapperActionButtons showButton={showActionButtons}>

@@ -10,6 +10,7 @@ export class Tag {
   public inactivatedAt?: Date;
   public userId: string;
   public shade: Shade;
+  public totalLinked?: number;
 
   constructor(data: Tag.Data) {
     this.id = data?._id;
@@ -19,6 +20,7 @@ export class Tag {
     this.userId = data.userId;
     this.title = data.title;
     this.shade = data.shade as unknown as Shade;
+    this.totalLinked = data.totalLinked;
   }
 }
 
@@ -31,5 +33,6 @@ export namespace Tag {
     inactivatedAt?: Date;
     userId: string;
     shade: string;
+    totalLinked?: number;
   }
 }
