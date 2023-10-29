@@ -1,8 +1,8 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { AccessRepositoryData } from '@/user/infra';
 import { AccessContext } from './context';
 import { initialState, reducer } from './reducers';
-import { User } from '@/user/domain';
+import { User, Wallet } from '@/user/domain';
 import { LocalStorageRepository } from '@/core/infra/cache';
 import {
   AuthenticateUser,
@@ -16,6 +16,7 @@ import { fetchLogin, fetchEmailPasswordRecover, fetchLogout, fetchWallet, fetchN
 
 export const AccessProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [loading, setLoading] = useState(false);
 
   const verifyUserAuth = async (): Promise<User> => {
     const localStorageRepository = new LocalStorageRepository();
@@ -36,6 +37,7 @@ export const AccessProvider: React.FC = ({ children }) => {
   useEffect(() => {
     async function verify() {
       try {
+        setLoading(true);
         const user = await verifyUserAuth();
         const wallet = user.currentWallet;
         if (wallet) dispatch(fetchWallet(wallet));
@@ -43,6 +45,8 @@ export const AccessProvider: React.FC = ({ children }) => {
         if (user) dispatch(fetchLogin(user));
       } catch (err) {
         dispatch(fetchLogin(null));
+      } finally {
+        setLoading(false);
       }
     }
     verify();
@@ -73,6 +77,14 @@ export const AccessProvider: React.FC = ({ children }) => {
 
     dispatch(fetchWallet(user?.currentWallet));
     dispatch(fetchLogin(user));
+  };
+
+  const changeWallet = async (newWallet: string) => {
+    const accessRepository = new AccessRepositoryData();
+    const wallet = await accessRepository.changeCurrentWallet(newWallet);
+    const entity = new Wallet(wallet);
+
+    dispatch(fetchWallet(entity));
   };
 
   const newUser = async (subscribeData: User.Subscribe): Promise<void> => {
@@ -133,9 +145,10 @@ export const AccessProvider: React.FC = ({ children }) => {
         sendCodeRecover,
         logout,
         setNewWalletValue,
+        changeWallet,
       }}
     >
-      {children}
+      {loading ? 'loading' : children}
     </AccessContext.Provider>
   );
 };

@@ -1,5 +1,5 @@
 import { AccessRepository } from '@/user/data/protocols/access-repository';
-import { User } from '@/user/domain';
+import { User, Wallet } from '@/user/domain';
 import { RequestHttpRepository } from '@/core/infra';
 
 type BodyRequestToken = {
@@ -79,5 +79,18 @@ export class AccessRepositoryData implements AccessRepository {
         code,
       },
     });
+  }
+
+  async changeCurrentWallet(newWallet: string): Promise<Wallet.Data> {
+    const http = new RequestHttpRepository<any, { wallet: Wallet.Data }>(process.env.BASE_URL);
+
+    const httpResponse = await http.request({
+      method: 'post',
+      url: 'wallet/change',
+      body: {
+        walletId: newWallet,
+      },
+    });
+    return httpResponse.body.wallet;
   }
 }

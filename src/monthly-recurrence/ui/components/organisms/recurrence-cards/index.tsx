@@ -1,10 +1,11 @@
 import React, { ReactElement, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
-import { Container } from './styles';
+import { Container, EmptyMonthlyRecurrences } from './styles';
 import { MonthlyRecurrenceCard } from '../../molecules';
 import { useAccessContext } from '@/user/presenters';
 import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/contexts/monthly-recurrence-context';
 import { Skeleton } from '@/core/ui/components/atoms';
+import { EmptyState } from '@/core/ui/components/molecules';
 
 export const RecurrenceCards = (): ReactElement => {
   const { currentWallet } = useAccessContext();
@@ -25,24 +26,33 @@ export const RecurrenceCards = (): ReactElement => {
     fetchMonthlyRecurrences();
   }, []);
 
+  const renderList = () =>
+    monthlyRecurrences?.map(monthlyRecurrence => <MonthlyRecurrenceCard monthlyRecurrenceItem={monthlyRecurrence} />);
+
   return (
-    <Container>
-      {loading ? (
-        <>
-          <Skeleton height={240} borderRadius={12} />
-          <Skeleton height={240} borderRadius={12} />
-          <Skeleton height={240} borderRadius={12} />
-          <Skeleton height={240} borderRadius={12} />
-          <Skeleton height={240} borderRadius={12} />
-          <Skeleton height={240} borderRadius={12} />
-          <Skeleton height={240} borderRadius={12} />
-          <Skeleton height={240} borderRadius={12} />
-        </>
+    <>
+      {monthlyRecurrences?.length === 0 && !loading ? (
+        <EmptyMonthlyRecurrences>
+          <EmptyState message="Não encontramos nenhuma recorrência mensal." />
+        </EmptyMonthlyRecurrences>
       ) : (
-        monthlyRecurrences?.map(monthlyRecurrence => (
-          <MonthlyRecurrenceCard monthlyRecurrenceItem={monthlyRecurrence} />
-        ))
+        <Container>
+          {loading ? (
+            <>
+              <Skeleton height={240} borderRadius={12} />
+              <Skeleton height={240} borderRadius={12} />
+              <Skeleton height={240} borderRadius={12} />
+              <Skeleton height={240} borderRadius={12} />
+              <Skeleton height={240} borderRadius={12} />
+              <Skeleton height={240} borderRadius={12} />
+              <Skeleton height={240} borderRadius={12} />
+              <Skeleton height={240} borderRadius={12} />
+            </>
+          ) : (
+            renderList()
+          )}
+        </Container>
       )}
-    </Container>
+    </>
   );
 };

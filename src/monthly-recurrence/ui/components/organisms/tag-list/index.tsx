@@ -1,15 +1,16 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { Icon, Paper, Skeleton, Typography } from '@/core/ui/components/atoms';
-import { Header, StyledIconButton, WrapperSkeletons, WrapperTagItems, WrapperTagList } from './styles';
+import { Icon, Modal, Paper, Skeleton, Switch, Typography } from '@/core/ui/components/atoms';
+import { Header, ModalContainer, StyledIconButton, WrapperTagItems, WrapperTagList } from './styles';
 import { TagItem, TagPagination } from '../../molecules';
 import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/contexts/monthly-recurrence-context';
 import { useAccessContext } from '@/user/presenters';
 import { Pagination } from '@/core/domain';
 import { Tag } from '@/monthly-recurrence/domain';
-import { delay } from '@/core/utils';
+import { Input } from '@/core/ui/components/molecules';
 
 export const TagList = (): ReactElement => {
   const [loading, setLoading] = useState(true);
+  const [openModal, setOpenModal] = useState(true);
   const [page, setPage] = useState<Pagination<Tag[], 'tags'>>(null);
 
   const { tags, getTags } = useMonthlyRecurrenceContext();
@@ -20,7 +21,6 @@ export const TagList = (): ReactElement => {
       setLoading(true);
       const result = await getTags(pageToFetch, currentWallet.id);
       setPage(result);
-      await delay(2500);
     } catch (err) {
       // TODO
     } finally {
@@ -43,7 +43,7 @@ export const TagList = (): ReactElement => {
           <Typography weight={600} size="xlarge" color="grey" shade={700}>
             Suas tags
           </Typography>
-          <StyledIconButton>
+          <StyledIconButton onClick={() => setOpenModal(true)}>
             <Icon icon="add" color="primary" shade="500" size={14} />
           </StyledIconButton>
         </Header>
@@ -71,6 +71,16 @@ export const TagList = (): ReactElement => {
           onChangePage={onChangePage}
         />
       </WrapperTagList>
+      {openModal && (
+        <>
+          <Modal open={openModal} title="Adicionar tag" closeModal={() => setOpenModal(false)}>
+            <ModalContainer>
+              <Input label="Título" />
+              <Switch label="Ativo" />
+            </ModalContainer>
+          </Modal>
+        </>
+      )}
     </Paper>
   );
 };

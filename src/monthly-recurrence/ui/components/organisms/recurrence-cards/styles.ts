@@ -21,3 +21,9 @@ export const Container = styled.div`
     grid-template-columns: 1fr;
   }
 `;
+
+export const EmptyMonthlyRecurrences = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

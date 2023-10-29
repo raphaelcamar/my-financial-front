@@ -1,4 +1,4 @@
-import { User } from '@/user/domain';
+import { User, Wallet } from '@/user/domain';
 
 export interface AccessRepository {
   login: (login: User.Login) => Promise<User.Data>;
@@ -7,4 +7,5 @@ export interface AccessRepository {
   sendRecoverPasswordEmail: (email: string) => Promise<void>;
   sendNewPasswordRecover: (password: string, email: string) => Promise<void>;
   sendCodePasswordRecover: (code: string, email: string) => Promise<void>;
+  changeCurrentWallet: (newWalletId: string) => Promise<Wallet.Data>;
 }

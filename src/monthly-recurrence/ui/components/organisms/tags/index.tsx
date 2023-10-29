@@ -25,7 +25,7 @@ export const Tags: React.FC = () => {
   const renderListTags = (): JSX.Element => (
     <>
       {tags?.map(tag => (
-        <TagCard key={tag?._id} tag={tag} modifyTagStatus={modifyTagStatus} deleteTag={deleteTag} />
+        <TagCard key={tag?.id} tag={tag} modifyTagStatus={modifyTagStatus} deleteTag={deleteTag} />
       ))}
     </>
   );

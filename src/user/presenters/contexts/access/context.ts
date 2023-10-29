@@ -15,6 +15,7 @@ type PropsAccessContext = {
   sendCodeRecover: (code: string) => Promise<void>;
   logout: () => void;
   setNewWalletValue: (newValue: number) => void;
+  changeWallet: (walletId: string) => void;
 };
 
 export const AccessContext = createContext<PropsAccessContext>({} as PropsAccessContext);
