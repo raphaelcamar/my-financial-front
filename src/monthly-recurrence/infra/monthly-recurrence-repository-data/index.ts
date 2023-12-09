@@ -20,7 +20,7 @@ export class MonthlyRecurrenceRepositoryData implements MonthlyRecurrenceReposit
   }
 
   async getTags(page: number, walletId: string): Promise<Pagination<Tag[], 'tags'>> {
-    const http = new RequestHttpRepository<unknown, Pagination<Tag[], 'tags'>>(process.env.BASE_URL);
+    const http = new RequestHttpRepository<unknown, Pagination<Tag.Data[], 'tags'>>(process.env.BASE_URL);
 
     const httpResponse = await http.request({
       method: 'get',

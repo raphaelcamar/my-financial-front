@@ -10,7 +10,7 @@ import { Input } from '@/core/ui/components/molecules';
 
 export const TagList = (): ReactElement => {
   const [loading, setLoading] = useState(true);
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
   const [page, setPage] = useState<Pagination<Tag[], 'tags'>>(null);
 
   const { tags, getTags } = useMonthlyRecurrenceContext();

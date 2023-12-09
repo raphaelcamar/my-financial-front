@@ -84,6 +84,48 @@ export const InputSelectTags = ({ setSelectedTags }: IInputSelectTags): ReactEle
     ));
   };
 
+  const renderSelectedTagsOnInput = () => {
+    if (selectedTags?.length >= 5) {
+      const arr = selectedTags.slice(0, 5);
+
+      return arr?.map((tag, ind) =>
+        ind === 0 ? (
+          <>
+            <TagCircle bgColor={tag.color} shade={tag.shade || 500} hasNoMargin />
+          </>
+        ) : (
+          <>
+            <TagCircle bgColor={tag.color} shade={tag.shade || 500} />
+          </>
+        )
+      );
+    }
+
+    return (
+      <>
+        {selectedTags?.map((tag, ind) =>
+          ind === 0 ? (
+            <>
+              <TagCircle bgColor={tag.color} shade={tag.shade || 500} hasNoMargin />
+            </>
+          ) : (
+            <>
+              <TagCircle bgColor={tag.color} shade={tag.shade || 500} />
+            </>
+          )
+        )}
+      </>
+    );
+  };
+
+  const messageTags = () => {
+    if (selectedTags.length > 5) {
+      return '5+ tags selecionadas';
+    }
+
+    return `${selectedTags?.length} Tags selecionadas(s)`;
+  };
+
   return (
     <>
       <WrapperInputTag onClick={() => setOpenModal(true)}>
@@ -91,23 +133,9 @@ export const InputSelectTags = ({ setSelectedTags }: IInputSelectTags): ReactEle
         <SelectTagsButton id="buttonTags" type="button">
           <WrapperTagInfos>
             <WrapperCircles>
-              {selectedTags?.map((tag, ind) =>
-                ind === 0 ? (
-                  <>
-                    <TagCircle bgColor={tag.color} shade={tag.shade || 500} hasNoMargin />
-                  </>
-                ) : (
-                  <>
-                    <TagCircle bgColor={tag.color} shade={tag.shade || 500} />
-                  </>
-                )
-              )}
+              {renderSelectedTagsOnInput()}
               <TextEllipsis>
-                <Typography>
-                  {selectedTags?.length > 0
-                    ? `${selectedTags?.length} Tags selecionadas(s)`
-                    : 'Nenhuma tag selecionada'}{' '}
-                </Typography>
+                <Typography>{selectedTags?.length > 0 ? messageTags() : 'Nenhuma tag selecionada'} </Typography>
               </TextEllipsis>
             </WrapperCircles>
           </WrapperTagInfos>
@@ -117,7 +145,13 @@ export const InputSelectTags = ({ setSelectedTags }: IInputSelectTags): ReactEle
       <Modal closeModal={() => setOpenModal(false)} open={openModal} title="Filtrar por tags">
         <WrapperModal>
           <Input label="Filtrar tag por nome" value={inputValue} onChange={e => setInputValue(e.target.value)} />
-          <WrapperTags>{renderTagsOrFilteredTags()}</WrapperTags>
+          <WrapperTags>
+            {filteredTags.length === 0 && inputValue.length > 0 ? (
+              <p>Não possui tags com esse filtro</p>
+            ) : (
+              renderTagsOrFilteredTags()
+            )}
+          </WrapperTags>
           <WrapperButtons>
             <StyledButton type="button" styleType="glass" variant="error" onClick={() => handleCancelSelect()}>
               Cancelar

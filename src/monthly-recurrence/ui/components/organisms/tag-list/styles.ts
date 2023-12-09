@@ -26,6 +26,9 @@ export const WrapperTagItems = styled.div`
   display: flex;
   flex-direction: column;
   gap: 18px;
+  max-height: calc(40vh - (66px));
+  overflow: auto;
+  padding: 0 4px 0 0;
 `;
 
 export const WrapperTagList = styled.div`

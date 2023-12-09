@@ -60,6 +60,8 @@ export const WrapperModal = styled.div`
   display: flex;
   flex-direction: column;
   gap: 48px;
+  height: 50vh;
+  overflow: auto;
 `;
 
 export const WrapperTags = styled.div`

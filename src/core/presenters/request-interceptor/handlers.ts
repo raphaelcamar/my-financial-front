@@ -5,6 +5,7 @@ import TagRepositoryDataHandlers from '@/monthly-recurrence/infra/tag-repository
 import AccessRepositoryDataHandlers from '@/user/infra/http/access-repository-data/mock';
 import { SpentsAndRevenuesDataHandlers } from '@/transaction/infra/http/spents-and-revenues-repository-data/mock';
 import { MonthlyClosingDataHandlers } from '@/transaction/infra/http/monthly-closing-repository-data/mock';
+import { MonthlyRecurrenceDataHandlers } from '@/monthly-recurrence/infra/monthly-recurrence-repository-data/mock';
 
 export type BaseType = {
   getHandlers: () => RestHandler<MockedRequest<DefaultRequestBody>>[];
@@ -20,5 +21,6 @@ export const handlers = [
   ...new AccessRepositoryDataHandlers().getHandlers(),
   ...TagRepositoryDataHandlers,
   ...new SpentsAndRevenuesDataHandlers().getHandlers(),
-  ...new MonthlyClosingDataHandlers().getHandlers()
+  ...new MonthlyClosingDataHandlers().getHandlers(),
+  ...new MonthlyRecurrenceDataHandlers().getHandlers()
 ];
