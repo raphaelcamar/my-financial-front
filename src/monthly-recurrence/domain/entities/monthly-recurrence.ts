@@ -35,7 +35,7 @@ export namespace MonthlyRecurrence {
     title: string;
     _id: string;
     description: string;
-    tags: Tag[];
+    tags: Tag.Data[];
     value: number;
     expirationDate: Date;
     userId: string;
