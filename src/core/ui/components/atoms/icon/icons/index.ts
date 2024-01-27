@@ -46,3 +46,4 @@ export * from './wallet-icon';
 export * from './multiple-coin-icon';
 export * from './single-coin';
 export * from './money-bag-filled-icon';
+export * from './check-icon';

@@ -1,12 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { Icon, Modal, Paper, Skeleton, Switch, Typography } from '@/core/ui/components/atoms';
-import { Header, ModalContainer, StyledIconButton, WrapperTagItems, WrapperTagList } from './styles';
+import { Icon, Paper, Skeleton, Typography } from '@/core/ui/components/atoms';
+import { Header, StyledIconButton, WrapperTagItems, WrapperTagList } from './styles';
 import { TagItem, TagPagination } from '../../molecules';
 import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/contexts/monthly-recurrence-context';
 import { useAccessContext } from '@/user/presenters';
 import { Pagination } from '@/core/domain';
 import { Tag } from '@/monthly-recurrence/domain';
-import { Input } from '@/core/ui/components/molecules';
+import { AddTagModal } from '../../molecules/add-tag-modal';
 
 export const TagList = (): ReactElement => {
   const [loading, setLoading] = useState(true);
@@ -71,16 +71,7 @@ export const TagList = (): ReactElement => {
           onChangePage={onChangePage}
         />
       </WrapperTagList>
-      {openModal && (
-        <>
-          <Modal open={openModal} title="Adicionar tag" closeModal={() => setOpenModal(false)}>
-            <ModalContainer>
-              <Input label="Título" />
-              <Switch label="Ativo" />
-            </ModalContainer>
-          </Modal>
-        </>
-      )}
+      {openModal && <AddTagModal closeModal={setOpenModal} />}
     </Paper>
   );
 };

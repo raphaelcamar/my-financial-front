@@ -69,6 +69,7 @@ export const WrapperTags = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   gap: 24px;
   overflow: auto;
+  padding: 0 4px;
 `;
 
 export const WrapperButtons = styled.div`

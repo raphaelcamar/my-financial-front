@@ -90,13 +90,9 @@ export const InputSelectTags = ({ setSelectedTags }: IInputSelectTags): ReactEle
 
       return arr?.map((tag, ind) =>
         ind === 0 ? (
-          <>
-            <TagCircle bgColor={tag.color} shade={tag.shade || 500} hasNoMargin />
-          </>
+          <TagCircle bgColor={tag.color} shade={tag.shade || 500} hasNoMargin />
         ) : (
-          <>
-            <TagCircle bgColor={tag.color} shade={tag.shade || 500} />
-          </>
+          <TagCircle bgColor={tag.color} shade={tag.shade || 500} />
         )
       );
     }
@@ -105,13 +101,9 @@ export const InputSelectTags = ({ setSelectedTags }: IInputSelectTags): ReactEle
       <>
         {selectedTags?.map((tag, ind) =>
           ind === 0 ? (
-            <>
-              <TagCircle bgColor={tag.color} shade={tag.shade || 500} hasNoMargin />
-            </>
+            <TagCircle bgColor={tag.color} shade={tag.shade || 500} hasNoMargin />
           ) : (
-            <>
-              <TagCircle bgColor={tag.color} shade={tag.shade || 500} />
-            </>
+            <TagCircle bgColor={tag.color} shade={tag.shade || 500} />
           )
         )}
       </>

@@ -150,27 +150,30 @@ const LogoutIcon = React.lazy(
 );
 
 const MoneyIcon = React.lazy(
-  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/money-icon')
+  async () => import(/* webpackChunkName: "money" */ '@/core/ui/components/atoms/icon/icons/money-icon')
 );
 
 const MoneyCuttedIcon = React.lazy(
-  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/money-cutted-icon')
+  async () => import(/* webpackChunkName: "moneyCutted" */ '@/core/ui/components/atoms/icon/icons/money-cutted-icon')
 );
 
 const CalendarIcon = React.lazy(
-  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/calendar-icon')
+  async () => import(/* webpackChunkName: "calendar" */ '@/core/ui/components/atoms/icon/icons/calendar-icon')
 );
 
 const MultipleCoinIcon = React.lazy(
-  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/multiple-coin-icon')
+  async () => import(/* webpackChunkName: "multipleCoin" */ '@/core/ui/components/atoms/icon/icons/multiple-coin-icon')
 );
 
 const SingleCoin = React.lazy(
-  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/single-coin')
+  async () => import(/* webpackChunkName: "singleCoin" */ '@/core/ui/components/atoms/icon/icons/single-coin')
 );
 
 const MoneyBagFilledIcon = React.lazy(
-  async () => import(/* webpackChunkName: "logout" */ '@/core/ui/components/atoms/icon/icons/money-bag-filled-icon')
+  async () => import(/* webpackChunkName: "moneyBag" */ '@/core/ui/components/atoms/icon/icons/money-bag-filled-icon')
+);
+const CheckIcon = React.lazy(
+  async () => import(/* webpackChunkName: "check" */ '@/core/ui/components/atoms/icon/icons/check-icon')
 );
 
 export const Icons = {
@@ -217,6 +220,7 @@ export const Icons = {
   recurrence: RecurrenceIcon,
   recurrencyValue: RecurrencyValueIcon,
   search: SearchIcon,
+  check: CheckIcon,
   square: SquareIcon,
   squareView: SquareViewIcon,
   singleCoin: SingleCoin,

@@ -1,17 +1,18 @@
-import React, { ReactElement, useReducer, useState } from 'react';
+import React, { ReactElement, useMemo, useReducer, useState } from 'react';
 import { initialState, reducer } from './reducers';
 import { MonthlyRecurrenceContext } from './context';
 import { MonthlyRecurrenceRepositoryData } from '@/monthly-recurrence/infra';
 import { GetMonthlyRecurrences, GetTags } from '@/monthly-recurrence/data/use-cases/monthly-recurrence';
 import { fetchMonthlyRecurrences, fetchTags } from './actions';
+import { Tag } from '@/monthly-recurrence/domain';
 
 export const MonthlyRecurrenceProvider = ({ children }): ReactElement => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(true);
 
-  const getMonthlyRecurrences = async (walletId: string, query?: { input?: string; tags?: Array<{ id: string }> }) => {
-    const monthlyClosingRepository = new MonthlyRecurrenceRepositoryData();
+  const monthlyClosingRepository = useMemo(() => new MonthlyRecurrenceRepositoryData(), []);
 
+  const getMonthlyRecurrences = async (walletId: string, query?: { input?: string; tags?: Array<{ id: string }> }) => {
     const useCase = new GetMonthlyRecurrences(monthlyClosingRepository, { ...query }, walletId);
 
     const result = await useCase.execute();
@@ -19,14 +20,16 @@ export const MonthlyRecurrenceProvider = ({ children }): ReactElement => {
   };
 
   const getTags = async (page: number, walletId: string) => {
-    const monthlyClosingRepository = new MonthlyRecurrenceRepositoryData();
-
     const useCase = new GetTags(monthlyClosingRepository, page, walletId);
     const result = await useCase.execute();
 
     dispatch(fetchTags(result.tags));
 
     return result;
+  };
+
+  const createTag = async (tag: Tag, walletId: string) => {
+    await monthlyClosingRepository.createTag(tag, walletId);
   };
 
   return (
@@ -36,6 +39,7 @@ export const MonthlyRecurrenceProvider = ({ children }): ReactElement => {
         getMonthlyRecurrences,
         setLoading,
         getTags,
+        createTag,
         loading,
         tags: state.tags,
       }}
