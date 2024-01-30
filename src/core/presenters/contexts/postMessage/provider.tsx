@@ -11,7 +11,7 @@ export const MessageCommunicationProvider = ({ children }) => {
   const [communicationActive, setCommunicationActive] = useState(false);
 
   const getCommunication = (event: MessageEvent) => {
-    console.log('Mensagem recebida:', event.data);
+    // console.log('Mensagem recebida:', event.data);
   };
 
   useEffect(() => {

@@ -14,12 +14,13 @@ import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/con
 
 interface IAddTagModal {
   closeModal: Dispatch<SetStateAction<boolean>>;
+  defaultValues?: Tag;
 }
 
 const availableShades = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
 const availableColors = ['primary', 'error', 'warning', 'grey', 'success', 'info', 'green', 'brown', 'purple', 'skin'];
 
-export const AddTagModal = ({ closeModal }: IAddTagModal): ReactElement => {
+export const AddTagModal = ({ closeModal, defaultValues }: IAddTagModal): ReactElement => {
   const theme = useTheme();
 
   const [selectedPrimaryColor, setSelectedPrimaryColor] = useState('primary');
@@ -27,6 +28,7 @@ export const AddTagModal = ({ closeModal }: IAddTagModal): ReactElement => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(CreateTagValidator) });
 
@@ -42,23 +44,39 @@ export const AddTagModal = ({ closeModal }: IAddTagModal): ReactElement => {
     setSelectedSecondaryColor('500');
   }, [selectedPrimaryColor]);
 
+  useEffect(() => {
+    if (defaultValues) {
+      reset(defaultValues);
+      setSelectedPrimaryColor(defaultValues.color);
+      setSelectedSecondaryColor(String(defaultValues.shade));
+    }
+  }, [defaultValues]);
+
   const isLowShadeSelected = Number(selectedSecondaryColor) < 500;
 
   const handleSubmitForm = async (data: Tag) => {
     try {
+      const tag = new Tag({
+        _id: defaultValues.id,
+        ...data,
+        color: selectedPrimaryColor,
+        shade: selectedSecondaryColor,
+      });
       setLoading(true);
 
-      const tag = new Tag({ ...data, color: selectedPrimaryColor, shade: selectedSecondaryColor });
-
-      await monthlyClosingRepository.createTag(tag, currentWallet.id);
-      enqueueSnackbar('Tag criada com sucesso!', {
+      if (defaultValues) {
+        await monthlyClosingRepository.editTag(tag, currentWallet.id);
+      } else {
+        await monthlyClosingRepository.createTag(tag, currentWallet.id);
+      }
+      enqueueSnackbar(`Tag ${defaultValues ? 'editada' : 'criada'} com sucesso!`, {
         variant: 'success',
       });
 
       await getTags(1, currentWallet.id);
       closeModal(false);
     } catch (err) {
-      enqueueSnackbar(err?.message || 'Não foi possível criar a tag', {
+      enqueueSnackbar(err?.message || `Não foi possível ${defaultValues ? 'editar' : 'criar'} a tag`, {
         variant: 'error',
       });
     } finally {

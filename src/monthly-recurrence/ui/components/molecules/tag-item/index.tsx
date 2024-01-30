@@ -3,6 +3,7 @@ import { BorderLine, Container, TitleAndLinkedItems, WrapperActionButtons, Wrapp
 import { Typography } from '@/core/ui/components/atoms';
 import { IconButton } from '@/core/ui/components/molecules';
 import { Tag } from '@/monthly-recurrence/domain';
+import { AddTagModal } from '../add-tag-modal';
 
 interface ITagItem {
   withoutActions?: boolean;
@@ -13,6 +14,7 @@ interface ITagItem {
 
 export const TagItem = ({ withoutActions, selected, onSelect, tag }: ITagItem): ReactElement => {
   const [showActionButtons, setShowActionButtons] = useState(false);
+  const [openModal, setOpenModal] = useState(null);
 
   const showLinkedDescription = (totalLinked: number) => {
     if (totalLinked === 1) return 'Vinculado a 1 item';
@@ -37,14 +39,27 @@ export const TagItem = ({ withoutActions, selected, onSelect, tag }: ITagItem): 
             {tag.title}
           </Typography>
           {/* TODO */}
-          <Typography size="xxsmall" color="grey" shade={400}>
+          <Typography size="xsmall" color="grey" shade={400}>
             {showLinkedDescription(tag.totalLinked)}
           </Typography>
         </TitleAndLinkedItems>
         <WrapperActionButtons showButton={showActionButtons}>
-          <IconButton icon="pen" color="grey" shade="200" iconProps={{ color: 'primary', shade: '500' }} />
-          <IconButton icon="trash" color="grey" shade="200" iconProps={{ color: 'primary', shade: '500' }} />
+          <IconButton
+            icon="pen"
+            color="grey"
+            shade="200"
+            iconProps={{ color: 'primary', shade: '500' }}
+            onClick={() => setOpenModal('edit')}
+          />
+          <IconButton
+            icon="trash"
+            color="grey"
+            shade="200"
+            iconProps={{ color: 'primary', shade: '500' }}
+            onClick={() => setOpenModal('delete')}
+          />
         </WrapperActionButtons>
+        {openModal === 'edit' && <AddTagModal closeModal={setOpenModal} defaultValues={tag} />}
       </WrapperInfos>
     </Container>
   );

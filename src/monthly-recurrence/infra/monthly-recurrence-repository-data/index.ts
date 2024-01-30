@@ -47,4 +47,17 @@ export class MonthlyRecurrenceRepositoryData implements MonthlyRecurrenceReposit
       body: tag,
     });
   }
+
+  async editTag(tag: Tag, walletId: string): Promise<void> {
+    const http = new RequestHttpRepository<unknown, Pagination<Tag.Data[], 'tags'>>(process.env.BASE_URL);
+
+    await http.request({
+      method: 'put',
+      url: 'v2/tag',
+      headers: {
+        'wallet-id': walletId,
+      },
+      body: tag,
+    });
+  }
 }
