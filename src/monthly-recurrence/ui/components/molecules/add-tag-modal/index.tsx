@@ -1,9 +1,16 @@
-import React, { Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, ReactElement, SetStateAction, useEffect, useMemo, useState } from 'react';
 import { useTheme } from 'styled-components';
 import { useSnackbar } from 'notistack';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Icon, Modal, Switch } from '@/core/ui/components/atoms';
 import { ColorItems, ColoredBall, Line, ModalContainer, StyledButton, WrapperButtons } from './styles';
 import { Input } from '@/core/ui/components/molecules';
+import { CreateTagValidator } from '@/monthly-recurrence/data/use-cases/validators';
+import { Tag } from '@/monthly-recurrence/domain';
+import { useAccessContext } from '@/user/presenters';
+import { MonthlyRecurrenceRepositoryData } from '@/monthly-recurrence/infra';
+import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/contexts/monthly-recurrence-context';
 
 interface IAddTagModal {
   closeModal: Dispatch<SetStateAction<boolean>>;
@@ -17,10 +24,19 @@ export const AddTagModal = ({ closeModal }: IAddTagModal): ReactElement => {
 
   const [selectedPrimaryColor, setSelectedPrimaryColor] = useState('primary');
   const [selectedSecondaryColor, setSelectedSecondaryColor] = useState('500');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(CreateTagValidator) });
 
   const [loading, setLoading] = useState(false);
 
   const { enqueueSnackbar } = useSnackbar();
+  const { currentWallet } = useAccessContext();
+  const { getTags } = useMonthlyRecurrenceContext();
+
+  const monthlyClosingRepository = useMemo(() => new MonthlyRecurrenceRepositoryData(), []);
 
   useEffect(() => {
     setSelectedSecondaryColor('500');
@@ -28,9 +44,19 @@ export const AddTagModal = ({ closeModal }: IAddTagModal): ReactElement => {
 
   const isLowShadeSelected = Number(selectedSecondaryColor) < 500;
 
-  const createTag = () => {
+  const handleSubmitForm = async (data: Tag) => {
     try {
       setLoading(true);
+
+      const tag = new Tag({ ...data, color: selectedPrimaryColor, shade: selectedSecondaryColor });
+
+      await monthlyClosingRepository.createTag(tag, currentWallet.id);
+      enqueueSnackbar('Tag criada com sucesso!', {
+        variant: 'success',
+      });
+
+      await getTags(1, currentWallet.id);
+      closeModal(false);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível criar a tag', {
         variant: 'error',
@@ -42,23 +68,37 @@ export const AddTagModal = ({ closeModal }: IAddTagModal): ReactElement => {
 
   return (
     <Modal open title="Adicionar tag" closeModal={() => closeModal(false)}>
-      <ModalContainer>
+      <ModalContainer onSubmit={handleSubmit(handleSubmitForm)}>
         <Line>
           <div style={{ width: '80%' }}>
-            <Input label="Título" />
+            <Input
+              label="Título"
+              {...register('title')}
+              error={!!errors?.title?.message}
+              helperText={errors?.title?.message as string}
+            />
           </div>
-          <Switch label="Ativo" />
+          <Switch label="Ativo" {...register('active')} />
         </Line>
         <Line>
           <div style={{ width: '100%' }}>
-            <Input label="Descrição" />
+            <Input
+              label="Descrição"
+              {...register('description')}
+              error={!!errors?.description?.message}
+              helperText={errors?.description?.message as string}
+            />
           </div>
         </Line>
         <Line>
           <ColorItems>
             {availableColors.map(item => (
               <>
-                <ColoredBall color={theme.palette[item][500]} onClick={() => setSelectedPrimaryColor(item)}>
+                <ColoredBall
+                  type="button"
+                  color={theme.palette[item][500]}
+                  onClick={() => setSelectedPrimaryColor(item)}
+                >
                   {selectedPrimaryColor === item && <Icon icon="check" color="grey" shade="50" />}
                 </ColoredBall>
               </>
@@ -72,6 +112,7 @@ export const AddTagModal = ({ closeModal }: IAddTagModal): ReactElement => {
                 {availableShades.map(item => (
                   <>
                     <ColoredBall
+                      type="button"
                       color={theme.palette?.[selectedPrimaryColor]?.[item]}
                       onClick={() => setSelectedSecondaryColor(item)}
                     >
@@ -96,7 +137,7 @@ export const AddTagModal = ({ closeModal }: IAddTagModal): ReactElement => {
             >
               Cancelar
             </StyledButton>
-            <StyledButton type="button" onClick={() => createTag()} loading={loading} disabled={loading}>
+            <StyledButton type="submit" loading={loading} disabled={loading}>
               Confirmar
             </StyledButton>
           </WrapperButtons>

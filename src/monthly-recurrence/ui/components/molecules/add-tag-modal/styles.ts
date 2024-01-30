@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Button } from '@/core/ui/components/molecules';
 
-export const ModalContainer = styled.section`
+export const ModalContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 16px;
