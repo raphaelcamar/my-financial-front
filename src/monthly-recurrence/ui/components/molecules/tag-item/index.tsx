@@ -55,6 +55,7 @@ export const TagItem = ({ withoutActions, selected, onSelect, tag }: ITagItem): 
             icon="trash"
             color="grey"
             shade="200"
+            disabled
             iconProps={{ color: 'primary', shade: '500' }}
             onClick={() => setOpenModal('delete')}
           />

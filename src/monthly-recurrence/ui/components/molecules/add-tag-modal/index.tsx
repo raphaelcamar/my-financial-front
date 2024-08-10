@@ -57,15 +57,15 @@ export const AddTagModal = ({ closeModal, defaultValues }: IAddTagModal): ReactE
   const handleSubmitForm = async (data: Tag) => {
     try {
       const tag = new Tag({
-        _id: defaultValues.id,
         ...data,
         color: selectedPrimaryColor,
         shade: selectedSecondaryColor,
       });
+
       setLoading(true);
 
       if (defaultValues) {
-        await monthlyClosingRepository.editTag(tag, currentWallet.id);
+        await monthlyClosingRepository.editTag({ ...tag, id: defaultValues.id }, currentWallet.id);
       } else {
         await monthlyClosingRepository.createTag(tag, currentWallet.id);
       }

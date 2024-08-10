@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { Container, Option, Options } from './styles';
 import { randomId } from '@/core/utils';
 import { HelperText } from '../helper-text';
@@ -23,7 +22,6 @@ type InputSelectHorizontalProps = {
 export const InputSelectHorizontal = ({
   items,
   name,
-  defaultValue,
   setValue,
   error,
   helperText,
@@ -31,13 +29,6 @@ export const InputSelectHorizontal = ({
   value,
 }: InputSelectHorizontalProps): ReactElement => {
   const variant = error ? 'error' : 'primary';
-
-  useEffect(() => {
-    if (defaultValue) {
-      const option = items?.find(item => item?.value === defaultValue);
-      setValue(name, option.value);
-    }
-  }, [defaultValue, items]);
 
   const handleSelectOption = (option: ItemSelectHorizontalProps) => {
     setValue(name, option.value);

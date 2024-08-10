@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
+import React, { ReactElement, useEffect, useMemo } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -14,7 +14,6 @@ import { Form, Row, WrapperButtons } from './styles';
 import { CreateEntranceTransactionSchema, CreateSpentTransactionSchema } from '@/transaction/data';
 import { SelectType } from '@/core/domain';
 import { useAccessContext } from '@/user/presenters';
-import { formatCurrency } from '@/core/utils';
 
 type ModalEditTransactionProps = {
   open: boolean;
@@ -63,11 +62,13 @@ export const ModalEditTransaction = ({
     { label: 'Alimentação', value: 'FOOD' },
     { label: 'Lazer', value: 'LEISURE' },
     { label: 'Outro', value: 'OTHER' },
+    { label: 'Recorrência mensal', value: 'MONTHLY_RECURRENCE' },
   ];
 
   const topicOptionsEntrance: ItemSelectHorizontalProps[] = [
     { label: 'Salário', value: 'SALARY' },
     { label: 'Outro', value: 'OTHER' },
+    { label: 'Recorrência mensal', value: 'MONTHLY_RECURRENCE' },
   ];
 
   const paymentTypeOptionsSpent: ItemSelectHorizontalProps[] = [
