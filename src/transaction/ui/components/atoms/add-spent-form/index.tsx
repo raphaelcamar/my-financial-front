@@ -23,7 +23,6 @@ export const AddSpentForm = ({ onClose }: AddSpentFormProps): ReactElement => {
     handleSubmit,
     setValue,
     watch,
-    reset,
     control,
     formState: { errors },
   } = useForm<Transaction.Data>({ resolver: yupResolver(CreateSpentTransactionSchema) });

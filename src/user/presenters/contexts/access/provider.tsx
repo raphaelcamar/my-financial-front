@@ -40,8 +40,8 @@ export const AccessProvider: React.FC = ({ children }) => {
         setLoading(true);
         const user = await verifyUserAuth();
         const wallet = user.currentWallet;
-        if (wallet) dispatch(fetchWallet(wallet));
 
+        if (wallet) dispatch(fetchWallet(wallet));
         if (user) dispatch(fetchLogin(user));
       } catch (err) {
         dispatch(fetchLogin(null));
@@ -93,6 +93,7 @@ export const AccessProvider: React.FC = ({ children }) => {
 
     const useCase = new CreateUser(accessRepository, localStorageRepository, subscribeData);
     const user = await useCase.execute();
+
     dispatch(fetchWallet(user?.currentWallet));
     dispatch(fetchLogin(user));
   };

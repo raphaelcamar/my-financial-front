@@ -1,6 +1,7 @@
 import { Tag } from './tag';
 
 export type MonthlyRecurrencePaymentType = 'CREDIT' | 'DEBIT' | 'BANK_SLIP' | 'OTHER';
+export type TransactionType = 'ENTRANCE' | 'SPENT';
 
 export class MonthlyRecurrence {
   public title: string;
@@ -14,6 +15,7 @@ export class MonthlyRecurrence {
   public paymentType: MonthlyRecurrencePaymentType;
   public walletId: string;
   public inactivatedAt?: Date;
+  public type: TransactionType;
 
   constructor(data: MonthlyRecurrence.Data) {
     this.description = data.description;
@@ -27,6 +29,7 @@ export class MonthlyRecurrence {
     this.userId = data.userId;
     this.value = data.value;
     this.walletId = data.walletId;
+    this.type = data.type;
   }
 }
 
@@ -43,5 +46,6 @@ export namespace MonthlyRecurrence {
     paymentType: MonthlyRecurrencePaymentType;
     walletId: string;
     inactivatedAt?: Date;
+    type?: TransactionType;
   }
 }
