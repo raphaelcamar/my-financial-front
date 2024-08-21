@@ -17,6 +17,7 @@ interface ISelectProps {
   label: string;
   items: SelectType<any>[];
   helperText?: string;
+  limitHeightIn?: number;
   error?: boolean;
   name: string;
   value?: string;
@@ -26,7 +27,7 @@ interface ISelectProps {
 }
 
 export const Select = forwardRef<HTMLInputElement, ISelectProps>(
-  ({ label, items, helperText, error, name, value, placeholder, setValue, defaultValue }, ref) => {
+  ({ label, items, helperText, error, name, placeholder, setValue, defaultValue, limitHeightIn }, ref) => {
     const [open, setOpen] = useState<boolean>(false);
     const [selectedOption, setSelectedOption] = useState<ISelectOption>(null);
 
@@ -105,7 +106,7 @@ export const Select = forwardRef<HTMLInputElement, ISelectProps>(
               </WrapperIcon>
             }
           />
-          <OptionsContainer onBlur={() => setOpen(false)} open={open} error={error}>
+          <OptionsContainer onBlur={() => setOpen(false)} open={open} error={error} limitHeightIn={limitHeightIn}>
             {items.map(option => (
               <Option
                 id={option?.value}

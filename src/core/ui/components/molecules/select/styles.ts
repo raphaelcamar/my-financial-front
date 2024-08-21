@@ -9,6 +9,7 @@ type SelectType = {
   open?: boolean;
   error?: boolean;
   selected?: boolean;
+  limitHeightIn?: number;
 };
 
 export const Container = styled.div`
@@ -37,11 +38,18 @@ export const OptionsContainer = styled.ul<SelectType>`
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%); // theme.shadows[1]
   position: absolute;
   width: 100%;
-  ${({ open, error }) =>
+  ${({ open, error, limitHeightIn }) =>
     open
       ? css`
           z-index: 1000;
-          height: auto;
+          height: ${() =>
+            limitHeightIn
+              ? `
+              calc(49px * ${limitHeightIn});
+              overflow: auto;
+              `
+              : 'auto'}
+
           border: 1px solid ${({ theme }) => (error ? theme.palette.error.main : theme.palette.primary.main)};
           border-top: none;
           transition: max-height 0.25s ease-in;

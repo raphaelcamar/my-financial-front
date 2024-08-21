@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@/core/ui/components/atoms';
+import { TextEllipsis, Typography } from '@/core/ui/components/atoms';
 import { ContainerChip } from './styles';
 import { ColorProps } from '@/main/styled';
 
@@ -11,8 +11,10 @@ export interface IChip {
 
 export const Chip: React.FC<IChip> = ({ children, color, width }) => (
   <ContainerChip data-testid="chip" color={color} width={width}>
-    <Typography color={color} size="small" shade={500}>
-      {children}
-    </Typography>
+    <TextEllipsis title={children.toString()} rows={1}>
+      <Typography color={color} size="small" shade={500}>
+        {children}
+      </Typography>
+    </TextEllipsis>
   </ContainerChip>
 );

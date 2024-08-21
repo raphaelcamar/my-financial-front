@@ -15,6 +15,7 @@ export interface IInput extends InputHTMLAttributes<HTMLInputElement> {
 export const Input = forwardRef<HTMLInputElement, IInput>(
   ({ label, helperText, error, actionEnd, actionStart, noBottomRadius, ...props }, ref) => {
     const variant = error ? 'error' : 'primary';
+
     return (
       <Root>
         <label htmlFor={label}>{label}</label>
