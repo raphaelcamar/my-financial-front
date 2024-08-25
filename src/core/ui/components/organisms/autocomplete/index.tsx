@@ -11,6 +11,7 @@ import { AutocompleteOption } from '../../molecules/autocomplete-option';
 export type OptionProps = {
   label: string;
   value: string;
+  data?: any;
   deletable?: boolean;
   selectable?: boolean;
   disabled?: boolean;
@@ -47,8 +48,8 @@ export const Autocomplete = ({
   const [selectedOptions, setSelectedOptions] = useState<Map<string, OptionProps>>(() => new Map());
 
   const [options, setOptions] = useState<AutocompleteStateOption>({
-    default: items,
-    filteredOptions: items,
+    default: [],
+    filteredOptions: [],
   });
 
   const [filtering, setFiltering] = useState<boolean>(false);
@@ -62,6 +63,8 @@ export const Autocomplete = ({
   useEffect(() => {
     items?.map(item => (item.selected ? selectedOptions.set(item.value, item) : null));
     setSelectedOptions(new Map(selectedOptions));
+
+    setOptions({ default: items, filteredOptions: [] });
   }, [items]);
 
   useEffect(() => {
@@ -93,8 +96,9 @@ export const Autocomplete = ({
     } else {
       selectedOptions.set(item.value, { ...item, selected: true });
       setSelectedOptions(new Map(selectedOptions));
-      toggleReturnSelectedItems(selectedOptions);
     }
+
+    toggleReturnSelectedItems(selectedOptions);
   };
 
   const renderFilteredOptions = useCallback(

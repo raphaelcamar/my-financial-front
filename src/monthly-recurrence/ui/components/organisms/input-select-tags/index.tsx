@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Dispatch, ReactElement, SetStateAction, useEffect, useMemo, useState } from 'react';
+import { useSnackbar } from 'notistack';
 import {
   SelectTagsButton,
   StyledButton,
@@ -14,8 +15,9 @@ import {
 import { HelperText, Modal, TextEllipsis, Typography } from '@/core/ui/components/atoms';
 import { Input } from '@/core/ui/components/molecules';
 import { TagItem } from '../../molecules';
-import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/contexts/monthly-recurrence-context';
 import { Tag } from '@/monthly-recurrence/domain';
+import { MonthlyRecurrenceRepositoryData } from '@/monthly-recurrence/infra';
+import { useAccessContext } from '@/user/presenters';
 
 interface IInputSelectTags {
   setSelectedTags: Dispatch<SetStateAction<{ id: string }[]>>;
@@ -28,10 +30,26 @@ interface ISelectableTag extends Tag {
 export const InputSelectTags = ({ setSelectedTags }: IInputSelectTags): ReactElement => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [preSelectTags, setPreSelectTags] = useState<ISelectableTag[]>([]);
-
   const [inputValue, setInputValue] = useState('');
+  const [tags, setTags] = useState([]);
 
-  const { tags } = useMonthlyRecurrenceContext();
+  const { currentWallet } = useAccessContext();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const getAllTags = async () => {
+    try {
+      const repository = new MonthlyRecurrenceRepositoryData();
+      const result = await repository.getAllTags(currentWallet.id);
+
+      setTags(result);
+    } catch (err) {
+      enqueueSnackbar(err?.message || 'Aconteceu alguma coisa. Tente novamente depois', { variant: 'error' });
+    }
+  };
+
+  useEffect(() => {
+    getAllTags();
+  }, []);
 
   useEffect(() => {
     const adaptTagsToSelect = tags?.map(tag => ({ ...tag, selected: false }));

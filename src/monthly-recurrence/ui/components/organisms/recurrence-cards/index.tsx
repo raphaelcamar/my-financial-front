@@ -27,7 +27,9 @@ export const RecurrenceCards = (): ReactElement => {
   }, []);
 
   const renderList = () =>
-    monthlyRecurrences?.map(monthlyRecurrence => <MonthlyRecurrenceCard monthlyRecurrenceItem={monthlyRecurrence} />);
+    monthlyRecurrences?.map(monthlyRecurrence => (
+      <MonthlyRecurrenceCard key={monthlyRecurrence.id} monthlyRecurrenceItem={monthlyRecurrence} />
+    ));
 
   return (
     <>

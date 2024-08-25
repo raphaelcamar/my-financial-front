@@ -36,7 +36,7 @@ export class MonthlyRecurrence {
 export namespace MonthlyRecurrence {
   export interface Data {
     title: string;
-    _id: string;
+    _id?: string;
     description: string;
     tags: Tag.Data[];
     value: number;
@@ -47,5 +47,25 @@ export namespace MonthlyRecurrence {
     walletId: string;
     inactivatedAt?: Date;
     type?: TransactionType;
+  }
+
+  export interface Server {
+    title: string;
+    _id?: string;
+    description: string;
+    tags: Tag[];
+    value: number;
+    expirationDate: Date;
+    userId: string;
+    type: TransactionType;
+    dueDate: number;
+    paymentType: 'CREDIT' | 'DEBIT' | 'BANK_SLIP' | 'OTHER';
+    walletId: string;
+    inactivatedAt?: Date;
+  }
+
+  export interface Create extends Omit<MonthlyRecurrence.Server, 'tags' | 'dueDate'> {
+    tags: Array<{ _id: string }>;
+    dueDate: Date;
   }
 }

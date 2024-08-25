@@ -1,6 +1,7 @@
-import React, { ReactElement, useMemo, useState } from 'react';
+import React, { ReactElement, useEffect, useMemo, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useSnackbar } from 'notistack';
 import { DatePicker, InputSelectHorizontal, ItemSelectHorizontalProps, Typography } from '@/core/ui/components/atoms';
 import * as S from './styles';
 import { IconButton, Input, InputMask, Select } from '@/core/ui/components/molecules';
@@ -9,6 +10,8 @@ import { MonthlyRecurrence } from '@/monthly-recurrence/domain';
 import { CreateMonthlyRecurrence } from './validation';
 import { Autocomplete } from '@/core/ui/components/organisms/autocomplete';
 import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/contexts/monthly-recurrence-context';
+import { useAccessContext } from '@/user/presenters';
+import { MonthlyRecurrenceRepositoryData } from '@/monthly-recurrence/infra';
 
 type IAddMonthlyRecurrenceModal = {
   closeModal: () => void;
@@ -17,13 +20,37 @@ type IAddMonthlyRecurrenceModal = {
 
 export const AddMonthlyRecurrenceModal = ({ closeModal, open }: IAddMonthlyRecurrenceModal): ReactElement => {
   const [loading, setLoading] = useState(false);
-  const { tags } = useMonthlyRecurrenceContext();
+  const [allTags, setAllTags] = useState([]);
+
+  const { createMonthlyRecurrence } = useMonthlyRecurrenceContext();
+  const { currentWallet } = useAccessContext();
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const getAllTags = async () => {
+    try {
+      const repository = new MonthlyRecurrenceRepositoryData();
+      const result = await repository.getAllTags(currentWallet.id);
+      setAllTags(result);
+    } catch (err) {
+      enqueueSnackbar(err?.message || 'Aconteceu alguma coisa. Tente novamente depois', { variant: 'error' });
+    }
+  };
+
+  useEffect(() => {
+    getAllTags();
+  }, []);
 
   const memoizedSelectValues: any = useMemo(
     () => Array.from({ length: 31 }, (_, ind) => ({ text: ind + 1, value: ind + 1 })),
     []
   );
-  const memoizedTagsList = tags?.map(tag => ({ label: `${tag?.title} - ${tag?.description}`, value: tag?.id }));
+
+  const memoizedTagsList = allTags?.map(tag => ({
+    label: `${tag?.title} - ${tag?.description}`,
+    value: tag?.id,
+    data: tag,
+  }));
 
   const {
     register,
@@ -48,13 +75,33 @@ export const AddMonthlyRecurrenceModal = ({ closeModal, open }: IAddMonthlyRecur
   const handleSubmitForm = async (data: MonthlyRecurrence.Data) => {
     try {
       setLoading(true);
-      // await getTransactions(data);
+
+      const selectedTags = data.tags.map(tag => ({ _id: (tag as any).value }));
+      const date = new Date();
+      date.setDate(data.dueDate);
+
+      await createMonthlyRecurrence({ ...data, tags: selectedTags, dueDate: date }, currentWallet.id);
     } catch (err) {
-      // enqueueSnackbar(err?.message || 'Aconteceu alguma coisa. Tente novamente depois', { variant: 'error' });
+      enqueueSnackbar(err?.message || 'Aconteceu alguma coisa. Tente novamente depois', { variant: 'error' });
     } finally {
       setLoading(false);
     }
   };
+
+  const memoizedAutocomplete = useMemo(
+    () => (
+      <Autocomplete
+        items={memoizedTagsList}
+        label="Tags"
+        placeholder={watch('tags')?.length > 0 ? `${watch('tags').length} selecionado(s)` : ''}
+        onSelect={e => setValue('tags', e)}
+        error={!!errors.tags?.message}
+        helperText={errors.tags?.message}
+        maxOptions={5}
+      />
+    ),
+    [allTags, watch('tags')]
+  );
 
   return (
     <Drawer
@@ -77,16 +124,7 @@ export const AddMonthlyRecurrenceModal = ({ closeModal, open }: IAddMonthlyRecur
             helperText={errors.title?.message}
           />
 
-          {memoizedTagsList && (
-            <Autocomplete
-              items={memoizedTagsList}
-              label="Tags"
-              placeholder={watch('tags')?.length > 0 && `${watch('tags').length} selecionado(s)`}
-              onSelect={e => setValue('tags', e)}
-              error={!!errors.tags?.message}
-              helperText={errors.tags?.message}
-            />
-          )}
+          {memoizedTagsList && memoizedAutocomplete}
 
           <Input
             label="Descrição"

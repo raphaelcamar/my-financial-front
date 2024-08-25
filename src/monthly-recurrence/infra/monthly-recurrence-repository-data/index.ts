@@ -35,6 +35,51 @@ export class MonthlyRecurrenceRepositoryData implements MonthlyRecurrenceReposit
     return { ...httpResponse.body, tags: adaptee };
   }
 
+  async deleteTag(tagId: string, walletId: string) {
+    const http = new RequestHttpRepository<unknown, Pagination<Tag.Data[], 'tags'>>(process.env.BASE_URL);
+
+    await http.request({
+      method: 'delete',
+      url: `v2/tag/${tagId}`,
+      headers: {
+        'wallet-id': walletId,
+      },
+    });
+  }
+
+  async getAllTags(walletId: string) {
+    const http = new RequestHttpRepository<unknown, Tag.Data[]>(process.env.BASE_URL);
+
+    const httpResponse = await http.request({
+      method: 'get',
+      url: `v2/allTags`,
+      headers: {
+        'wallet-id': walletId,
+      },
+    });
+
+    const adaptee = httpResponse.body.map(tag => new Tag(tag));
+
+    return adaptee;
+  }
+
+  async createMonthlyRecurrence(monthlyRecurrence: MonthlyRecurrence.Create, walletId: string): Promise<any> {
+    const http = new RequestHttpRepository<MonthlyRecurrence.Create, MonthlyRecurrence.Data>(process.env.BASE_URL);
+
+    const createdMonthlyRecurrence = await http.request({
+      method: 'post',
+      url: 'v2/monthly-recurrence/create',
+      body: {
+        ...monthlyRecurrence,
+      },
+      headers: {
+        'wallet-id': walletId,
+      },
+    });
+
+    return new MonthlyRecurrence(createdMonthlyRecurrence.body);
+  }
+
   async createTag(tag: Tag, walletId: string): Promise<void> {
     const http = new RequestHttpRepository<unknown, Pagination<Tag.Data[], 'tags'>>(process.env.BASE_URL);
 

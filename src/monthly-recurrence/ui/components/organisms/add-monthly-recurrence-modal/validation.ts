@@ -27,14 +27,14 @@ export const CreateMonthlyRecurrence = yup.object({
     .min(0, 'Caso negativo, coloque como despesa')
     .required('Deve informar um valor')
     .nullable(),
-  title: yup.string().required('Campo obrigatório').max(15, 'Máximo de 15 caracteres'),
+  title: yup.string().required('Campo obrigatório').max(30, 'Máximo de 30 caracteres'),
   description: yup.string().required('Campo obrigatório').max(40, 'Máximo de 40 caracteres'),
   type: yup
     .string()
     .oneOf(['ENTRANCE', 'SPENT'], 'Deve informar algumas das opções')
     .required('Deve informar um tipo de recorrência')
     .nullable(),
-  expirationDate: yup.date().min(today, 'A data não pode ser anterior ao dia de hoje').required('A data é obrigatória'),
+  expirationDate: yup.date().min(today, 'A data não pode ser anterior ao dia de hoje'),
   dueDate: yup.number().required('Informe um dia de cobrança'),
   tags: yup.array().required('Campo obrigatório'),
 });
