@@ -4,15 +4,17 @@ import { Typography } from '@/core/ui/components/atoms';
 import { IconButton } from '@/core/ui/components/molecules';
 import { Tag } from '@/monthly-recurrence/domain';
 import { AddTagModal } from '../add-tag-modal';
+import { RemoveTagModal } from '../remove-tag-modal';
 
 interface ITagItem {
   withoutActions?: boolean;
   selected?: boolean;
   onSelect?: () => void;
   tag: Tag;
+  page?: number;
 }
 
-export const TagItem = ({ withoutActions, selected, onSelect, tag }: ITagItem): ReactElement => {
+export const TagItem = ({ withoutActions, selected, onSelect, tag, page }: ITagItem): ReactElement => {
   const [showActionButtons, setShowActionButtons] = useState(false);
   const [openModal, setOpenModal] = useState(null);
 
@@ -55,12 +57,14 @@ export const TagItem = ({ withoutActions, selected, onSelect, tag }: ITagItem): 
             icon="trash"
             color="grey"
             shade="200"
-            disabled
+            title="Desvincule os itens antes de excluir a tag"
+            disabled={tag.totalLinked > 0}
             iconProps={{ color: 'primary', shade: '500' }}
             onClick={() => setOpenModal('delete')}
           />
         </WrapperActionButtons>
-        {openModal === 'edit' && <AddTagModal closeModal={setOpenModal} defaultValues={tag} />}
+        {openModal === 'edit' && <AddTagModal page={page} closeModal={setOpenModal} defaultValues={tag} />}
+        {openModal === 'delete' && <RemoveTagModal closeModal={setOpenModal} tag={tag} page={page} />}
       </WrapperInfos>
     </Container>
   );

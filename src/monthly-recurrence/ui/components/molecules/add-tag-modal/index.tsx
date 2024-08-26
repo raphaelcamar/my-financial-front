@@ -15,12 +15,13 @@ import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/con
 interface IAddTagModal {
   closeModal: Dispatch<SetStateAction<boolean>>;
   defaultValues?: Tag;
+  page: number;
 }
 
 const availableShades = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
 const availableColors = ['primary', 'error', 'warning', 'grey', 'success', 'info', 'green', 'brown', 'purple', 'skin'];
 
-export const AddTagModal = ({ closeModal, defaultValues }: IAddTagModal): ReactElement => {
+export const AddTagModal = ({ closeModal, defaultValues, page }: IAddTagModal): ReactElement => {
   const theme = useTheme();
 
   const [selectedPrimaryColor, setSelectedPrimaryColor] = useState('primary');
@@ -73,7 +74,7 @@ export const AddTagModal = ({ closeModal, defaultValues }: IAddTagModal): ReactE
         variant: 'success',
       });
 
-      await getTags(1, currentWallet.id);
+      await getTags(page, currentWallet.id);
       closeModal(false);
     } catch (err) {
       enqueueSnackbar(err?.message || `Não foi possível ${defaultValues ? 'editar' : 'criar'} a tag`, {

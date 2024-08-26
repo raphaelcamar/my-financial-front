@@ -59,7 +59,7 @@ export const TagList = (): ReactElement => {
           ) : (
             <>
               {tags?.map(tag => (
-                <TagItem key={tag.id} tag={tag} />
+                <TagItem key={tag.id} tag={tag} page={page.currentPage} />
               ))}
             </>
           )}
@@ -71,7 +71,7 @@ export const TagList = (): ReactElement => {
           onChangePage={onChangePage}
         />
       </WrapperTagList>
-      {openModal && <AddTagModal closeModal={setOpenModal} />}
+      {openModal && <AddTagModal page={page.currentPage} closeModal={setOpenModal} />}
     </Paper>
   );
 };
