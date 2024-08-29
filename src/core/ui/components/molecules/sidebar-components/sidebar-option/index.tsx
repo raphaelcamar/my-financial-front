@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { AvailableIcons, Icon, Typography } from '@/core/ui/components/atoms';
 import { Chip } from '@/core/ui/components/molecules';
 import { ISidebaroption } from '@/core/domain';
@@ -59,13 +58,13 @@ export const SidebarOption: React.FC<ISidebarOption> = ({
       >
         <WrapperIconText accordionOpen={accordionOpen}>
           {item?.icon && (
-            <WrapperIcon selected={selected} accordionOpen={accordionOpen} open={sidebarOpen}>
+            <WrapperIcon title={item.title} selected={selected} accordionOpen={accordionOpen} open={sidebarOpen}>
               <Icon icon={item.icon as AvailableIcons} color={state.color} shade={state.shade} size={16} />
             </WrapperIcon>
           )}
           {sidebarOpen && (
             <WrapperTypography>
-              <Typography color={selected ? 'primary' : 'grey'} shade={500}>
+              <Typography title={item.title} color={selected ? 'primary' : 'grey'} shade={500}>
                 {item.title}
               </Typography>
               {item?.soon && <Chip color="warning">Em breve</Chip>}

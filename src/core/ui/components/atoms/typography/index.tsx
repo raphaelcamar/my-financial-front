@@ -11,10 +11,11 @@ interface ITypography {
   type?: TypographyTags;
   children: ReactNode;
   ellipsis?: boolean;
+  title?: string;
 }
 
-export const Typography: React.FC<ITypography> = ({ children, ...props }) => (
-  <TypographyStyle data-testid="typography" {...props}>
+export const Typography: React.FC<ITypography> = ({ children, title, ...props }) => (
+  <TypographyStyle title={title} data-testid="typography" {...props}>
     {children}
   </TypographyStyle>
 );
