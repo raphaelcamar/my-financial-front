@@ -45,24 +45,26 @@ export const TagItem = ({ withoutActions, selected, onSelect, tag, page }: ITagI
             {showLinkedDescription(tag.totalLinked)}
           </Typography>
         </TitleAndLinkedItems>
-        <WrapperActionButtons showButton={showActionButtons}>
-          <IconButton
-            icon="pen"
-            color="grey"
-            shade="200"
-            iconProps={{ color: 'primary', shade: '500' }}
-            onClick={() => setOpenModal('edit')}
-          />
-          <IconButton
-            icon="trash"
-            color="grey"
-            shade="200"
-            title="Desvincule os itens antes de excluir a tag"
-            disabled={tag.totalLinked > 0}
-            iconProps={{ color: 'primary', shade: '500' }}
-            onClick={() => setOpenModal('delete')}
-          />
-        </WrapperActionButtons>
+        {showActionButtons && (
+          <WrapperActionButtons showButton={showActionButtons}>
+            <IconButton
+              icon="pen"
+              color="grey"
+              shade="200"
+              iconProps={{ color: 'primary', shade: '500' }}
+              onClick={() => setOpenModal('edit')}
+            />
+            <IconButton
+              icon="trash"
+              color="grey"
+              shade="200"
+              title="Desvincule os itens antes de excluir a tag"
+              disabled={tag.totalLinked > 0}
+              iconProps={{ color: 'primary', shade: '500' }}
+              onClick={() => setOpenModal('delete')}
+            />
+          </WrapperActionButtons>
+        )}
         {openModal === 'edit' && <AddTagModal page={page} closeModal={setOpenModal} defaultValues={tag} />}
         {openModal === 'delete' && <RemoveTagModal closeModal={setOpenModal} tag={tag} page={page} />}
       </WrapperInfos>

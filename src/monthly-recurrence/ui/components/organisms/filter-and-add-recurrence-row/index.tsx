@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { Container, GroupFilter, StyledButton, StyledIconButton } from './styles';
+import { Container, GroupFilter, StyledButton, StyledIconButton, StyledInput } from './styles';
 import { Input } from '@/core/ui/components/molecules';
 import { CircularLoader, Icon } from '@/core/ui/components/atoms';
 import { InputSelectTags } from '../input-select-tags';
@@ -33,7 +33,7 @@ export const FilterAndAddRecurrenceRow = (): ReactElement => {
     <>
       <Container>
         <GroupFilter onSubmit={e => applyFilter(e)}>
-          <Input label="Nome" name="name" onChange={e => setInputSearch(e.target.value)} value={inputSearch} />
+          <StyledInput label="Nome" name="name" onChange={e => setInputSearch(e.target.value)} value={inputSearch} />
           <InputSelectTags setSelectedTags={setSelectedTags} />
           <StyledIconButton disabled={loading} type="submit">
             {loading ? (

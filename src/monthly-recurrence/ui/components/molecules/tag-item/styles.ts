@@ -23,7 +23,6 @@ export const WrapperInfos = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-
   padding: 0 12px;
 `;
 
