@@ -2,13 +2,13 @@ import React, { ReactElement } from 'react';
 import { Container, StyledIconButton, WrapperButtons } from './styles';
 import { Icon, Typography } from '@/core/ui/components/atoms';
 
-type ITagPagination = {
+type IPagination = {
   currentPage: number;
   totalPages: number;
   onChangePage: (pageToFetch: number) => Promise<void>;
 };
 
-export const TagPagination = ({ currentPage, totalPages, onChangePage }: ITagPagination): ReactElement => {
+export const Pagination = ({ currentPage, totalPages, onChangePage }: IPagination): ReactElement => {
   const disableNextButton = currentPage === totalPages;
   const disablePreviousButton = currentPage === 1;
 

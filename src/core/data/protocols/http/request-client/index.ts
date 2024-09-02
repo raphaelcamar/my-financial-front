@@ -7,6 +7,7 @@ export type HttpPostParams<T> = {
   body?: T;
   method: Methods;
   headers?: AxiosRequestHeaders;
+  urlParams?: object;
 };
 
 export interface HttpClient<T, R> {

@@ -2,12 +2,19 @@ import { TransactionAdapter } from '@/transaction/infra/adapter/transaction-adap
 import { RequestHttpRepository } from '@/core/infra';
 import { SpentsAndRevenuesRepository } from '@/transaction/data';
 import { Indicator, Transaction } from '@/transaction/domain';
+import { Pagination } from '@/core/domain';
 
 type ResponseIndicators = { entrance: Indicator.Server; spent: Indicator.Server; month: number; year: number };
 
 export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesRepository {
-  async getTransactions(walletId: string, query?: string): Promise<Transaction[]> {
-    const http = new RequestHttpRepository<unknown, Transaction.Response[]>(`${process.env.BASE_URL}/v2`);
+  async getTransactions(
+    walletId: string,
+    query?: string,
+    page?: number
+  ): Promise<Pagination<Transaction[], 'transactions'>> {
+    const http = new RequestHttpRepository<unknown, Pagination<Transaction.Response[], 'transactions'>>(
+      `${process.env.BASE_URL}/v2`
+    );
 
     const httpResponse = await http.request({
       method: 'get',
@@ -15,12 +22,20 @@ export class SpentsAndRevenuesRepositoryData implements SpentsAndRevenuesReposit
       headers: {
         'wallet-id': walletId,
       },
+      urlParams: {
+        page,
+      },
     });
 
     const adapter = new TransactionAdapter();
-    const adaptee = httpResponse.body.map(transactionResponse => adapter.response(transactionResponse));
+    const adaptee = httpResponse.body.transactions?.map(transactionResponse => adapter.response(transactionResponse));
 
-    return adaptee;
+    return {
+      currentPage: httpResponse.body?.currentPage,
+      pageSize: httpResponse.body?.pageSize,
+      totalPages: httpResponse.body?.totalPages,
+      transactions: adaptee,
+    };
   }
 
   async delete(transaction: Transaction, walletId: string): Promise<{ newWalletValue: number }> {

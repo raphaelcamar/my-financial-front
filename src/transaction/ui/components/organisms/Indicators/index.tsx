@@ -5,7 +5,6 @@ import { IndicatorCard } from '@/transaction/ui/components/atoms';
 import { Skeleton, Typography } from '@/core/ui/components/atoms';
 import { useSpentsAndRevenuesContext } from '@/transaction/presenters/contexts/spents-and-revenues/context';
 import { useAccessContext } from '@/user/presenters';
-import { delay } from '@/core/utils';
 
 export const Indicators = (): ReactElement => {
   const { getIndicators, filter, indicators } = useSpentsAndRevenuesContext();
@@ -16,7 +15,6 @@ export const Indicators = (): ReactElement => {
   const fetchIndicators = async (): Promise<void> => {
     try {
       setLoading(true);
-      await delay(2500);
       await getIndicators(currentWallet.id, filter);
     } catch (err) {
       enqueueSnackbar(err?.message || 'Não foi possível trazer o indicadores.', { variant: 'error' });

@@ -1,7 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { Container, GroupFilter, StyledButton, StyledIconButton, StyledInput } from './styles';
-import { Input } from '@/core/ui/components/molecules';
 import { CircularLoader, Icon } from '@/core/ui/components/atoms';
 import { InputSelectTags } from '../input-select-tags';
 import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/contexts/monthly-recurrence-context';

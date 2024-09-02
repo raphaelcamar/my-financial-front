@@ -1,3 +1,5 @@
+import type { Pagination } from '@/core/domain';
+
 export type TypeTransaction = 'ENTRANCE' | 'SPENT' | 'RECURRENT';
 
 export type TypeTopic = 'FOOD' | 'TRANSPORT' | 'HEALTH' | 'OTHER' | 'SALARY' | 'LEISURE';
@@ -80,6 +82,7 @@ export namespace Transaction {
   export interface Filter {
     start?: Date | string;
     limit?: Date | string;
+    pagination: Omit<Pagination<Transaction[], 'transactions'>, 'transactions'>;
   }
 
   export interface Statistic {

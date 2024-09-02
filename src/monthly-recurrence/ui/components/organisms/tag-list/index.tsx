@@ -1,17 +1,18 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Icon, Paper, Skeleton, Typography } from '@/core/ui/components/atoms';
 import { Header, StyledIconButton, WrapperTagItems, WrapperTagList } from './styles';
-import { TagItem, TagPagination } from '../../molecules';
+import { TagItem } from '../../molecules';
 import { useMonthlyRecurrenceContext } from '@/monthly-recurrence/presenters/contexts/monthly-recurrence-context';
 import { useAccessContext } from '@/user/presenters';
-import { Pagination } from '@/core/domain';
+import { Pagination as EntityPagination } from '@/core/domain';
 import { Tag } from '@/monthly-recurrence/domain';
 import { AddTagModal } from '../../molecules/add-tag-modal';
+import { Pagination } from '@/core/ui/components/organisms';
 
 export const TagList = (): ReactElement => {
   const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
-  const [page, setPage] = useState<Pagination<Tag[], 'tags'>>(null);
+  const [page, setPage] = useState<EntityPagination<Tag[], 'tags'>>(null);
 
   const { tags, getTags } = useMonthlyRecurrenceContext();
   const { currentWallet } = useAccessContext();
@@ -65,7 +66,7 @@ export const TagList = (): ReactElement => {
           )}
         </WrapperTagItems>
 
-        <TagPagination
+        <Pagination
           currentPage={page?.currentPage || 1}
           totalPages={page?.totalPages || 1}
           onChangePage={onChangePage}

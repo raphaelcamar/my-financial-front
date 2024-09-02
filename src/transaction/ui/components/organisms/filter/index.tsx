@@ -15,7 +15,7 @@ type InitialValuesProps = {
 };
 
 export const Filter = (): ReactElement => {
-  const { getTransactions, setFilter } = useSpentsAndRevenuesContext();
+  const { getTransactions, setFilter, filter } = useSpentsAndRevenuesContext();
   const { currentWallet } = useAccessContext();
 
   const [hasChanges, setHasChanges] = useState<boolean>(false);
@@ -43,16 +43,18 @@ export const Filter = (): ReactElement => {
   const formatFilterToSend = (): Transaction.Filter => {
     const year = getListOfYears()[initialValues.year].id;
     const start = monthStartDate(new Date(Number(year), initialValues.month));
+
     const limit = new Date(Number(year), initialValues.month + 1, 0);
-    const filter: Transaction.Filter = { limit, start };
-    return filter;
+    const newFilter: Transaction.Filter = { ...filter, limit, start };
+
+    return newFilter;
   };
 
   const fetchTransactionsByFilter = async (): Promise<void> => {
     try {
       setLoading(true);
       setFilter(formatFilterToSend());
-      await getTransactions(currentWallet.id, formatFilterToSend());
+      await getTransactions(currentWallet.id, formatFilterToSend(), 1);
 
       setHasChanges(false);
     } catch (err) {

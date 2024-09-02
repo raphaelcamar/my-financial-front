@@ -5,7 +5,14 @@ import { Transaction } from '@/transaction/domain';
 const date = new Date();
 const start = monthStartDate(new Date());
 const limit = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-const filter: Transaction.Filter = { limit, start };
+
+const pagination = {
+  currentPage: 1,
+  totalPages: 0,
+  pageSize: 0,
+};
+
+const filter: Transaction.Filter = { limit, start, pagination };
 
 export const initialState: InitialState = {
   transactions: [],

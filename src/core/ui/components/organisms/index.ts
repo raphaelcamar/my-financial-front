@@ -9,3 +9,4 @@ export * from './table';
 export * from './menu-indicators';
 export * from './more-options';
 export * from './save-bar';
+export * from './pagination';

@@ -8,7 +8,7 @@ interface IEmptyState {
 
 export const EmptyState: React.FC<IEmptyState> = ({ message }) => (
   <Container>
-    <Icon icon="emptyState" size={448} />
+    <Icon icon="emptyState" size={428} />
     <Typography weight={600}>{message}</Typography>
   </Container>
 );

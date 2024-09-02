@@ -25,6 +25,7 @@ export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
         url: `${this.BASE_URL}/${params.url}`,
         method: params?.method,
         data: params?.body,
+        params: params.urlParams,
         headers: injectHeaders(params?.headers),
       });
       return {
