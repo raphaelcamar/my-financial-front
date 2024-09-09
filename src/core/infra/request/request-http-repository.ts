@@ -60,10 +60,6 @@ export class RequestHttpRepository<T, R> implements HttpClient<T, R> {
       case HttpErrorStatusCode.INTERNAL:
       case HttpErrorStatusCode.NOT_ACCEPTABLE:
       case HttpErrorStatusCode.NOT_FOUND:
-        return {
-          statusCode: response.status,
-          body: response.data,
-        };
       case HttpErrorStatusCode.UNPROCESSABLE_ENTITY:
       case HttpErrorStatusCode.UNSUPPORTED_MEDIA_TYPE:
         throw new ServerError(response?.data?.message, response.status);
