@@ -14,6 +14,8 @@ export const formatTopic = (topic: TypeTopic): string => {
       return 'Salário';
     case 'LEISURE':
       return 'Lazer';
+    case 'MONTHLY_RECURRENCE':
+      return 'Recorrência';
     default:
       return '-';
   }

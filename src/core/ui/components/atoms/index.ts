@@ -21,3 +21,4 @@ export * from './input-select-horizontal';
 export * from './base-grid';
 export * from './tooltip';
 export * from './switch';
+export * from './conditional-slot';

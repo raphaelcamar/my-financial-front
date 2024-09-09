@@ -77,7 +77,13 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
     const useCase = new CreateTransaction(transactionRepository, transactionData);
     const result = await useCase.execute();
 
-    const getTransactionsUseCase = new GetTransactions(transactionRepository, transactionData.walletId, state.filter);
+    const getTransactionsUseCase = new GetTransactions(
+      transactionRepository,
+      transactionData.walletId,
+      state.filter,
+      1
+    );
+
     const transactions = await getTransactionsUseCase.execute();
 
     dispatch(fetchGetTransactions(transactions.transactions));
@@ -91,7 +97,12 @@ export const SpentsAndRevenuesProvider = ({ children }): ReactElement => {
     const useCase = new UpdateTransaction(transactionRepository, transactionData);
     const result = await useCase.execute();
 
-    const getTransactionsUseCase = new GetTransactions(transactionRepository, transactionData.walletId, state.filter);
+    const getTransactionsUseCase = new GetTransactions(
+      transactionRepository,
+      transactionData.walletId,
+      state.filter,
+      1
+    );
     const transactions = await getTransactionsUseCase.execute();
 
     dispatch(fetchGetTransactions(transactions.transactions));

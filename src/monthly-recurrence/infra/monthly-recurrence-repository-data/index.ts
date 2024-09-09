@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { Pagination } from '@/core/domain';
 import { RequestHttpRepository } from '@/core/infra';
 import { MonthlyRecurrenceRepository } from '@/monthly-recurrence/data';
@@ -105,4 +106,37 @@ export class MonthlyRecurrenceRepositoryData implements MonthlyRecurrenceReposit
       body: tag,
     });
   }
+
+  async getIndicators(walletId: string): Promise<ReturnMonthlyRecurrenceType> {
+    const http = new RequestHttpRepository<any, any>(process.env.BASE_URL);
+
+    const { body } = await http.request({
+      method: 'get',
+      url: 'v2/monthly-recurrence/indicators',
+      headers: {
+        'wallet-id': walletId,
+      },
+    });
+
+    return body;
+  }
 }
+
+export type ReturnMonthlyRecurrenceType = {
+  mostSpent: {
+    value: number;
+    title: string;
+  };
+
+  lessSpent: {
+    value: number;
+    title: string;
+  };
+
+  mostUsedTag: {
+    percentage: number;
+    title: string;
+  };
+
+  totalSpent: number;
+};

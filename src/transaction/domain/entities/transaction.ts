@@ -2,7 +2,7 @@ import type { Pagination } from '@/core/domain';
 
 export type TypeTransaction = 'ENTRANCE' | 'SPENT' | 'RECURRENT';
 
-export type TypeTopic = 'FOOD' | 'TRANSPORT' | 'HEALTH' | 'OTHER' | 'SALARY' | 'LEISURE';
+export type TypeTopic = 'FOOD' | 'TRANSPORT' | 'HEALTH' | 'OTHER' | 'SALARY' | 'LEISURE' | 'MONTHLY_RECURRENCE';
 
 export type TypeStatus = 'FINISHED' | 'PENDING';
 
