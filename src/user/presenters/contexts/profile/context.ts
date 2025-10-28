@@ -1,4 +1,3 @@
-import { createContext, useContext } from 'react';
 import { User } from '@/user/domain';
 
 type PropsProfileContext = {
