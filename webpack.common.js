@@ -74,9 +74,7 @@ module.exports = {
       safe: true,
       systemvars: true
     }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'disabled',
-    }),
+    new BundleAnalyzerPlugin(),
     new DashboardPlugin()
   ]
 }

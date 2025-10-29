@@ -3,7 +3,7 @@
 Goal: Create a UI library that preserves the main styled components created in this project while migrating styles to Tailwind utility classes (and small reusable CSS via @apply when needed). The library should centralize shared UI primitives/components so the project keeps its original styled intent but uses Tailwind for implementation and new development.
 
 ## High-level plan
-- [ ] Install/configure Tailwind
+- [ ] Install/configure Tailwind and scss
 - [ ] Add global styles and design tokens (tailwind.config.js)
 - [ ] Convert components one-by-one
 - [ ] Replace shared styled files with utility classes / @apply in CSS
