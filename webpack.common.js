@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
         test: /\.json$/,
@@ -57,7 +57,8 @@ module.exports = {
     moduleIds: 'named'
   },
   performance: {
-    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
   },
   plugins: [
     new CleanWebpackPlugin(),
