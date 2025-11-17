@@ -2,7 +2,7 @@ import React from 'react';
 import { Input, Button } from '@/core/ui/components/molecules';
 
 import { AuthTitle, LogoName, RedirectLink, WrapperForm } from '@/user/ui/components/atoms';
-import { Container, Wrapper, Center } from './styles';
+import { Container, Center } from './styles';
 import { Icon, TextLink } from '@/core/ui/components/atoms';
 import { useLoginForm } from './hook';
 
@@ -12,8 +12,8 @@ export const LoginForm: React.FC = () => {
   return (
     <WrapperForm>
       <LogoName />
-      <Wrapper>
-        <Container onSubmit={handleSubmit(onSubmit)}>
+      <div className='h-full w-full'>
+        <form className='flex flex-col gap-[36px] pt-[36px] h-full' onSubmit={handleSubmit(onSubmit)}>
           <AuthTitle title="Bem vindo de volta" description="Seja bem vindo de volta! Entre com suas credenciais." />
           <Input
             actionStart={<Icon icon="person" />}
@@ -36,11 +36,11 @@ export const LoginForm: React.FC = () => {
 
           <Button loading={loading}>Login</Button>
           {/* <GoogleButton>Entre com o Google</GoogleButton> */}
-          <Center>
+          <div className='p-16'>
             <RedirectLink question="Não possui conta?" link="Inscreva-se!" to="/cadastro" />
-          </Center>
-        </Container>
-      </Wrapper>
+          </div >
+        </form>
+      </div>
     </WrapperForm>
   );
 };
